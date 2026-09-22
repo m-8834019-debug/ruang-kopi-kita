@@ -1,217 +1,1706 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruang Kopi Kita</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
+<title>Ruang Kopi Kita</title>
 
-        body {
-            background-color: #f7f1e8;
-            color: #3e2723;
-        }
+<style>
 
-        header {
-            background-color: #5d4037;
-            color: white;
-            padding: 25px;
-            text-align: center;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
 
-        header h1 {
-            font-size: 32px;
-            margin-bottom: 8px;
-        }
+body {
+    background: #f6efe5;
+    color: #3d281f;
+}
 
-        header p {
-            font-size: 16px;
-        }
+/* ================= HEADER ================= */
 
-        .container {
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 20px;
-        }
+header {
+    background: #3b2418;
+    color: white;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
-        .welcome {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+}
 
-        .welcome h2 {
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
 
-        .menu {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
+.cart-button {
+    background: #b88955;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+}
 
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            text-align: center;
-        }
+/* ================= HERO ================= */
 
-        .card h3 {
-            margin-bottom: 10px;
-        }
+.hero {
+    background:
+        linear-gradient(rgba(55,35,22,.75),rgba(55,35,22,.75)),
+        url("https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1600&q=80");
 
-        .price {
-            font-weight: bold;
-            margin: 15px 0;
-            font-size: 18px;
-        }
+    background-size: cover;
+    background-position: center;
 
-        button {
-            background-color: #795548;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-        }
+    min-height: 430px;
 
-        button:hover {
-            background-color: #4e342e;
-        }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        #cart {
-            margin-top: 40px;
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+    text-align: center;
+    color: white;
+    padding: 30px;
+}
 
-        #cart h2 {
-            margin-bottom: 15px;
-        }
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
 
-        #cart-items {
-            margin-bottom: 15px;
-        }
+.hero p {
+    font-size: 19px;
+    margin-bottom: 25px;
+}
 
-        footer {
-            margin-top: 50px;
-            background-color: #3e2723;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-    </style>
+.hero button {
+    background: #c69a6b;
+    border: none;
+    color: white;
+    padding: 14px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* ================= CATEGORY ================= */
+
+.categories {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 20px 7%;
+    background: white;
+}
+
+.category-btn {
+    white-space: nowrap;
+    border: none;
+    background: #ead9c6;
+    color: #4b3022;
+    padding: 10px 17px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.category-btn.active {
+    background: #5b3827;
+    color: white;
+}
+
+/* ================= MENU ================= */
+
+.section {
+    max-width: 1200px;
+    margin: auto;
+    padding: 45px 20px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-title h2 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+.menu-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,.09);
+    transition: .2s;
+}
+
+.menu-card:hover {
+    transform: translateY(-4px);
+}
+
+.menu-image {
+    height: 150px;
+    background: #d8c1a8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 65px;
+}
+
+.menu-info {
+    padding: 20px;
+}
+
+.menu-info h3 {
+    margin-bottom: 8px;
+    font-size: 19px;
+}
+
+.menu-info p {
+    color: #777;
+    font-size: 14px;
+    min-height: 20px;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.price-options {
+    display: flex;
+    gap: 7px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.price-options button {
+    border: 1px solid #8b6048;
+    background: white;
+    color: #5a3827;
+    padding: 7px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.price-options button.selected {
+    background: #5a3827;
+    color: white;
+}
+
+.add-button {
+    width: 100%;
+    border: none;
+    background: #6b4531;
+    color: white;
+    padding: 11px;
+    border-radius: 7px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.add-button:hover {
+    background: #43291d;
+}
+
+/* ================= CART ================= */
+
+.cart-section {
+    background: #fff;
+    max-width: 900px;
+    margin: 20px auto 60px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+}
+
+.cart-section h2 {
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-name {
+    font-weight: bold;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.quantity button {
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 5px;
+    background: #ead9c6;
+    cursor: pointer;
+}
+
+.remove {
+    color: #b3261e;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.total-box {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 2px solid #5a3827;
+    display: flex;
+    justify-content: space-between;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* ================= ORDER FORM ================= */
+
+.order-form {
+    margin-top: 30px;
+}
+
+.order-form h3 {
+    margin-bottom: 15px;
+}
+
+.order-form input {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+}
+
+.order-button {
+    width: 100%;
+    background: #3b2418;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #3b2418;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:700px) {
+
+    header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    nav a {
+        margin: 0 7px;
+        font-size: 14px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero {
+        min-height: 350px;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+}
+
+</style>
 </head>
+
 
 <body>
 
-    <header>
-        <h1>☕ Ruang Kopi Kita</h1>
-        <p>Selamat Datang</p>
-    </header>
+<!-- ================= HEADER ================= -->
 
-    <div class="container">
+<header>
 
-        <div class="welcome">
-            <h2>Menu Kami</h2>
-            <p>Pilih makanan dan minuman anda</p>
-        </div>
+    <div class="logo">
+        ☕ Ruang Kopi Kita
+    </div>
 
-        <div class="menu">
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
 
-            <div class="card">
-                <h3>Nasi Goreng</h3>
-                <p>Nasi goreng istimewa</p>
-                <div class="price">RM 8.00</div>
-                <button onclick="addToCart('Nasi Goreng', 8)">
-                    Tambah
-                </button>
-            </div>
+        <a href="#cart" class="cart-button">
+            🛒 Cart
+            (<span id="cartCount">0</span>)
+        </a>
+    </nav>
 
-            <div class="card">
-                <h3>Chicken Chop</h3>
-                <p>Chicken chop dengan sos</p>
-                <div class="price">RM 12.00</div>
-                <button onclick="addToCart('Chicken Chop', 12)">
-                    Tambah
-                </button>
-            </div>
+</header>
 
-            <div class="card">
-                <h3>Nugget</h3>
-                <p>Nugget ayam</p>
-                <div class="price">RM 5.00</div>
-                <button onclick="addToCart('Nugget', 5)">
-                    Tambah
-                </button>
-            </div>
 
-            <div class="card">
-                <h3>Kopi</h3>
-                <p>Kopi panas</p>
-                <div class="price">RM 4.00</div>
-                <button onclick="addToCart('Kopi', 4)">
-                    Tambah
-                </button>
-            </div>
+<!-- ================= HERO ================= -->
 
-        </div>
+<section class="hero" id="home">
 
-        <div id="cart">
+    <div>
 
-            <h2>🛒 Pesanan Anda</h2>
+        <h1>Ruang Kopi Kita</h1>
 
-            <div id="cart-items">
-                Belum ada pesanan.
-            </div>
+        <p>
+            "Ruang Kopi Kita - Ruang Gong Tanpa Kamu"
+        </p>
 
-            <h3>
-                Jumlah: RM <span id="total">0.00</span>
-            </h3>
-
-        </div>
+        <button onclick="goToMenu()">
+            Lihat Menu
+        </button>
 
     </div>
 
-    <footer>
-        <p>© 2026 Ruang Kopi Kita</p>
-    </footer>
+</section>
 
-    <script>
 
-        let total = 0;
+<!-- ================= CATEGORY ================= -->
 
-        function addToCart(name, price) {
+<div class="categories">
 
-            const cart = document.getElementById("cart-items");
+    <button class="category-btn active"
+            onclick="filterMenu('all', this)">
+        Semua
+    </button>
 
-            if (cart.innerHTML === "Belum ada pesanan.") {
-                cart.innerHTML = "";
-            }
+    <button class="category-btn"
+            onclick="filterMenu('coffee', this)">
+        ☕ Coffee
+    </button>
 
-            const item = document.createElement("p");
+    <button class="category-btn"
+            onclick="filterMenu('noncoffee', this)">
+        🥛 Non-Coffee
+    </button>
 
-            item.innerHTML = name + " - RM " + price.toFixed(2);
+    <button class="category-btn"
+            onclick="filterMenu('bites', this)">
+        🍟 Bites
+    </button>
 
-            cart.appendChild(item);
+    <button class="category-btn"
+            onclick="filterMenu('pasta', this)">
+        🍝 Pasta
+    </button>
 
-            total = total + price;
+    <button class="category-btn"
+            onclick="filterMenu('rice', this)">
+        🍚 Rice Bowl
+    </button>
 
-            document.getElementById("total").innerText =
-                total.toFixed(2);
+    <button class="category-btn"
+            onclick="filterMenu('milky', this)">
+        🥤 Milky
+    </button>
+
+    <button class="category-btn"
+            onclick="filterMenu('sparkling', this)">
+        🫧 Sparkling
+    </button>
+
+    <button class="category-btn"
+            onclick="filterMenu('tea', this)">
+        🍵 Tea
+    </button>
+
+    <button class="category-btn"
+            onclick="filterMenu('matcha', this)">
+        🍃 Matcha
+    </button>
+
+</div>
+
+
+<!-- ================= MENU ================= -->
+
+<section class="section" id="menu">
+
+    <div class="section-title">
+
+        <h2>🍽️ Menu Kami</h2>
+
+        <p>
+            Pilih makanan dan minuman anda
+        </p>
+
+    </div>
+
+    <div class="menu-grid" id="menuGrid"></div>
+
+</section>
+
+
+<!-- ================= CART ================= -->
+
+<section class="cart-section" id="cart">
+
+    <h2>🛒 Pesanan Anda</h2>
+
+    <div id="cartItems">
+
+        <p>Belum ada pesanan.</p>
+
+    </div>
+
+
+    <div class="total-box">
+
+        <span>Jumlah</span>
+
+        <span>
+            RM <span id="total">0.00</span>
+        </span>
+
+    </div>
+
+
+    <!-- ORDER FORM -->
+
+    <div class="order-form">
+
+        <h3>📋 Maklumat Pesanan</h3>
+
+        <input
+            type="text"
+            id="customerName"
+            placeholder="Nama pelanggan"
+        >
+
+        <input
+            type="text"
+            id="tableNumber"
+            placeholder="Nombor meja"
+        >
+
+        <button
+            class="order-button"
+            onclick="submitOrder()">
+
+            ✅ Hantar Pesanan
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        © 2026 Ruang Kopi Kita
+    </p>
+
+    <p>
+        Sistem Pesanan Digital
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   DATA MENU
+===================================================== */
+
+const menu = [
+
+/* ================= COFFEE ================= */
+
+{
+    category: "coffee",
+    name: "Americano",
+    icon: "☕",
+    prices: {
+        Hot: 8,
+        Cold: 9
+    }
+},
+
+{
+    category: "coffee",
+    name: "Latte",
+    icon: "☕",
+    prices: {
+        Hot: 9,
+        Cold: 10
+    }
+},
+
+{
+    category: "coffee",
+    name: "Vanila Latte",
+    icon: "☕",
+    prices: {
+        Hot: 12,
+        Cold: 14
+    }
+},
+
+{
+    category: "coffee",
+    name: "Hazelnut Latte",
+    icon: "☕",
+    prices: {
+        Hot: 12,
+        Cold: 14
+    }
+},
+
+{
+    category: "coffee",
+    name: "Spanish Latte",
+    icon: "☕",
+    prices: {
+        Hot: 12,
+        Cold: 14
+    }
+},
+
+{
+    category: "coffee",
+    name: "Strawberry Latte",
+    icon: "☕",
+    prices: {
+        Hot: 12,
+        Cold: 14
+    }
+},
+
+{
+    category: "coffee",
+    name: "Mocha Latte",
+    icon: "☕",
+    prices: {
+        Hot: 12,
+        Cold: 14
+    }
+},
+
+{
+    category: "coffee",
+    name: "Butterscotch Latte",
+    icon: "☕",
+    prices: {
+        Hot: 13,
+        Cold: 15
+    }
+},
+
+{
+    category: "coffee",
+    name: "Caramel Macchiato",
+    icon: "☕",
+    prices: {
+        Hot: 13,
+        Cold: 15
+    }
+},
+
+{
+    category: "coffee",
+    name: "Butter Cookie Latte",
+    icon: "☕",
+    prices: {
+        Hot: 13,
+        Cold: 15
+    }
+},
+
+{
+    category: "coffee",
+    name: "Pistachio Latte",
+    icon: "☕",
+    prices: {
+        Hot: 13,
+        Cold: 15
+    }
+},
+
+{
+    category: "coffee",
+    name: "Ruang Kopi Kita Signature",
+    icon: "☕",
+    prices: {
+        Regular: 17
+    }
+},
+
+
+/* ================= NON COFFEE ================= */
+
+{
+    category: "noncoffee",
+    name: "Chocolate",
+    icon: "🍫",
+    prices: {
+        Hot: 10,
+        Cold: 11
+    }
+},
+
+{
+    category: "noncoffee",
+    name: "Chocolate Hazelnut",
+    icon: "🍫",
+    prices: {
+        Hot: 11,
+        Cold: 13
+    }
+},
+
+{
+    category: "noncoffee",
+    name: "Chocolate Cookie",
+    icon: "🍪",
+    prices: {
+        Hot: 11,
+        Cold: 13
+    }
+},
+
+{
+    category: "noncoffee",
+    name: "Chocolate Caramel",
+    icon: "🍫",
+    prices: {
+        Hot: 11,
+        Cold: 13
+    }
+},
+
+{
+    category: "noncoffee",
+    name: "Chocolate Pistachio",
+    icon: "🍵",
+    prices: {
+        Cold: 14
+    }
+},
+
+{
+    category: "noncoffee",
+    name: "Black Forest",
+    icon: "🍫",
+    prices: {
+        Cold: 14
+    }
+},
+
+
+/* ================= BITES ================= */
+
+{
+    category: "bites",
+    name: "Shaker Fries",
+    icon: "🍟",
+    prices: {
+        Regular: 7
+    }
+},
+
+{
+    category: "bites",
+    name: "Chicken Nugget 5pcs",
+    icon: "🍗",
+    prices: {
+        Regular: 7
+    }
+},
+
+{
+    category: "bites",
+    name: "Wedges",
+    icon: "🥔",
+    prices: {
+        Regular: 10
+    }
+},
+
+{
+    category: "bites",
+    name: "Combo Set (Fries & Nugget)",
+    icon: "🍟",
+    prices: {
+        Regular: 12
+    }
+},
+
+{
+    category: "bites",
+    name: "Combo Set (Fries & Wedges)",
+    icon: "🍟",
+    prices: {
+        Regular: 15
+    }
+},
+
+{
+    category: "bites",
+    name: "Loaded Fries",
+    icon: "🍟",
+    prices: {
+        Regular: 12
+    }
+},
+
+{
+    category: "bites",
+    name: "Loaded Nachos",
+    icon: "🌮",
+    prices: {
+        Regular: 13
+    }
+},
+
+
+/* ================= PASTA ================= */
+
+{
+    category: "pasta",
+    name: "Aglio Olio",
+    icon: "🍝",
+    prices: {
+        Regular: 13
+    }
+},
+
+{
+    category: "pasta",
+    name: "Carbonara",
+    icon: "🍝",
+    prices: {
+        Regular: 13
+    }
+},
+
+{
+    category: "pasta",
+    name: "Bolognese",
+    icon: "🍝",
+    prices: {
+        Regular: 13
+    }
+},
+
+{
+    category: "pasta",
+    name: "Creamy Tomyam",
+    icon: "🍝",
+    prices: {
+        Regular: 15
+    }
+},
+
+{
+    category: "pasta",
+    name: "Gigi Hadid",
+    icon: "🍝",
+    prices: {
+        Regular: 15
+    }
+},
+
+
+/* ================= RICE BOWL ================= */
+
+{
+    category: "rice",
+    name: "Sukiya Magic Bowl",
+    icon: "🍚",
+    prices: {
+        Regular: 15
+    }
+},
+
+{
+    category: "rice",
+    name: "Sukiya Rice Bowl",
+    icon: "🍚",
+    prices: {
+        Regular: 17
+    }
+},
+
+{
+    category: "rice",
+    name: "Cili Padi Beef Bowl",
+    icon: "🍚",
+    prices: {
+        Regular: 17
+    }
+},
+
+{
+    category: "rice",
+    name: "Sukiya Beef Bowl (150g)",
+    icon: "🍚",
+    prices: {
+        Regular: 19
+    }
+},
+
+
+/* ================= MILKY ================= */
+
+{
+    category: "milky",
+    name: "Taro Milk",
+    icon: "🥛",
+    prices: {
+        Cold: 10
+    }
+},
+
+{
+    category: "milky",
+    name: "Strawberry Milk",
+    icon: "🥛",
+    prices: {
+        Cold: 10
+    }
+},
+
+{
+    category: "milky",
+    name: "Mango Milk",
+    icon: "🥭",
+    prices: {
+        Cold: 10
+    }
+},
+
+{
+    category: "milky",
+    name: "PineApple Milk",
+    icon: "🍍",
+    prices: {
+        Cold: 10
+    }
+},
+
+{
+    category: "milky",
+    name: "Brown Sugar Milk",
+    icon: "🥛",
+    prices: {
+        Cold: 10
+    }
+},
+
+
+/* ================= SPARKLING ================= */
+
+{
+    category: "sparkling",
+    name: "Lychee Soda",
+    icon: "🫧",
+    prices: {
+        Regular: 8
+    }
+},
+
+{
+    category: "sparkling",
+    name: "Blackcurrant",
+    icon: "🫐",
+    prices: {
+        Regular: 8
+    }
+},
+
+{
+    category: "sparkling",
+    name: "Strawberry Sprite",
+    icon: "🍓",
+    prices: {
+        Regular: 8
+    }
+},
+
+{
+    category: "sparkling",
+    name: "Mango Unite",
+    icon: "🥭",
+    prices: {
+        Regular: 8
+    }
+},
+
+{
+    category: "sparkling",
+    name: "Blue Lagoon",
+    icon: "🫧",
+    prices: {
+        Regular: 8
+    }
+},
+
+{
+    category: "sparkling",
+    name: "PineApple Pine",
+    icon: "🍍",
+    prices: {
+        Regular: 8
+    }
+},
+
+
+/* ================= TEA ================= */
+
+{
+    category: "tea",
+    name: "Lemon Tea",
+    icon: "🍋",
+    prices: {
+        Hot: 6,
+        Cold: 7
+    }
+},
+
+{
+    category: "tea",
+    name: "Peach Tea",
+    icon: "🍑",
+    prices: {
+        Hot: 6,
+        Cold: 7
+    }
+},
+
+{
+    category: "tea",
+    name: "Teh O",
+    icon: "🍵",
+    prices: {
+        Hot: 2,
+        Cold: 3
+    }
+},
+
+{
+    category: "tea",
+    name: "Teh Tarik",
+    icon: "🫖",
+    prices: {
+        Hot: 4,
+        Cold: 5
+    }
+},
+
+
+/* ================= MATCHA ================= */
+
+{
+    category: "matcha",
+    name: "Matcha",
+    icon: "🍃",
+    prices: {
+        Regular: 11
+    }
+},
+
+{
+    category: "matcha",
+    name: "Matcha Strawberry",
+    icon: "🍓",
+    prices: {
+        Regular: 13
+    }
+},
+
+{
+    category: "matcha",
+    name: "Matcha Mango",
+    icon: "🥭",
+    prices: {
+        Regular: 13
+    }
+},
+
+{
+    category: "matcha",
+    name: "Matcha Caramel",
+    icon: "🍃",
+    prices: {
+        Regular: 13
+    }
+},
+
+{
+    category: "matcha",
+    name: "Matcha Butterscotch",
+    icon: "🍃",
+    prices: {
+        Regular: 13
+    }
+},
+
+{
+    category: "matcha",
+    name: "Matcha Chocolate",
+    icon: "🍫",
+    prices: {
+        Regular: 13
+    }
+},
+
+{
+    category: "matcha",
+    name: "Matcha Taro",
+    icon: "🍃",
+    prices: {
+        Regular: 13
+    }
+},
+
+{
+    category: "matcha",
+    name: "Matcha Biscoff",
+    icon: "🍪",
+    prices: {
+        Regular: 14.90
+    }
+},
+
+
+/* ================= ADD ON ================= */
+
+{
+    category: "addon",
+    name: "Shabu Shabu Beef (50g)",
+    icon: "🥩",
+    prices: {
+        Regular: 10
+    }
+},
+
+{
+    category: "addon",
+    name: "Chicken Slice",
+    icon: "🍗",
+    prices: {
+        Regular: 2
+    }
+},
+
+{
+    category: "addon",
+    name: "Prawn 2pcs",
+    icon: "🍤",
+    prices: {
+        Regular: 6
+    }
+},
+
+{
+    category: "addon",
+    name: "Spaghetti",
+    icon: "🍝",
+    prices: {
+        Regular: 4
+    }
+},
+
+{
+    category: "addon",
+    name: "Maggie",
+    icon: "🍜",
+    prices: {
+        Regular: 5
+    }
+},
+
+{
+    category: "addon",
+    name: "Rice",
+    icon: "🍚",
+    prices: {
+        Regular: 2
+    }
+},
+
+{
+    category: "addon",
+    name: "Sukiya Sauce",
+    icon: "🥣",
+    prices: {
+        Regular: 2
+    }
+},
+
+{
+    category: "addon",
+    name: "Cheese Sauce",
+    icon: "🧀",
+    prices: {
+        Regular: 3
+    }
+},
+
+/* ================= CUSTOMIZE ================= */
+
+{
+    category: "addon",
+    name: "Espresso Shot",
+    icon: "☕",
+    prices: {
+        Regular: 3
+    }
+},
+
+{
+    category: "addon",
+    name: "Oat Milk",
+    icon: "🥛",
+    prices: {
+        Regular: 3
+    }
+},
+
+{
+    category: "addon",
+    name: "Flavoured Syrup",
+    icon: "🍯",
+    prices: {
+        Regular: 2
+    }
+},
+
+{
+    category: "addon",
+    name: "Whipping Cream",
+    icon: "🍦",
+    prices: {
+        Regular: 2
+    }
+},
+
+{
+    category: "addon",
+    name: "Drizzle",
+    icon: "🍫",
+    prices: {
+        Regular: 1
+    }
+},
+
+{
+    category: "addon",
+    name: "Pure Matcha",
+    icon: "🍃",
+    prices: {
+        Regular: 1
+    }
+}
+
+];
+
+
+/* =====================================================
+   PAPAR MENU
+===================================================== */
+
+const menuGrid =
+    document.getElementById("menuGrid");
+
+
+function displayMenu(category = "all") {
+
+    menuGrid.innerHTML = "";
+
+    const filtered =
+        category === "all"
+        ? menu
+        : menu.filter(item => item.category === category);
+
+
+    filtered.forEach((item, index) => {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "menu-card";
+
+
+        let options = "";
+
+        const priceTypes =
+            Object.keys(item.prices);
+
+
+        if (priceTypes.length > 1) {
+
+            options = `
+                <div class="price-options">
+
+                    ${priceTypes.map((type, i) => `
+                        <button
+                            class="${i === 0 ? "selected" : ""}"
+                            onclick="selectOption(
+                                ${index},
+                                '${type}',
+                                this
+                            )">
+
+                            ${type}
+                            RM ${item.prices[type].toFixed(2)}
+
+                        </button>
+                    `).join("")}
+
+                </div>
+            `;
+
+        } else {
+
+            options = `
+                <div class="price">
+                    RM ${item.prices[priceTypes[0]].toFixed(2)}
+                </div>
+            `;
+
         }
 
-    </script>
+
+        card.innerHTML = `
+
+            <div class="menu-image">
+                ${item.icon}
+            </div>
+
+            <div class="menu-info">
+
+                <h3>
+                    ${item.name}
+                </h3>
+
+                <p>
+                    Ruang Kopi Kita
+                </p>
+
+                ${options}
+
+                <button
+                    class="add-button"
+                    onclick="addMenuItem(${menu.indexOf(item)})">
+
+                    + Tambah ke Cart
+
+                </button>
+
+            </div>
+        `;
+
+
+        menuGrid.appendChild(card);
+
+    });
+
+}
+
+
+/* =====================================================
+   PILIH HOT / COLD
+===================================================== */
+
+const selectedOptions = {};
+
+
+function selectOption(index, type, button) {
+
+    selectedOptions[index] = type;
+
+    const parent =
+        button.parentElement;
+
+    parent
+        .querySelectorAll("button")
+        .forEach(btn =>
+            btn.classList.remove("selected")
+        );
+
+    button.classList.add("selected");
+
+}
+
+
+/* =====================================================
+   CART
+===================================================== */
+
+let cart = [];
+
+
+function addMenuItem(index) {
+
+    const item = menu[index];
+
+    const types =
+        Object.keys(item.prices);
+
+    const selected =
+        selectedOptions[index] || types[0];
+
+    const price =
+        item.prices[selected];
+
+
+    cart.push({
+
+        name: item.name,
+
+        option: selected,
+
+        price: price,
+
+        quantity: 1
+
+    });
+
+
+    updateCart();
+
+    document
+        .getElementById("cart")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+
+/* =====================================================
+   UPDATE CART
+===================================================== */
+
+function updateCart() {
+
+    const cartItems =
+        document.getElementById("cartItems");
+
+    const cartCount =
+        document.getElementById("cartCount");
+
+    const totalElement =
+        document.getElementById("total");
+
+
+    if (cart.length === 0) {
+
+        cartItems.innerHTML =
+            "<p>Belum ada pesanan.</p>";
+
+        cartCount.innerText = "0";
+
+        totalElement.innerText = "0.00";
+
+        return;
+
+    }
+
+
+    cartItems.innerHTML = "";
+
+    let total = 0;
+
+    let count = 0;
+
+
+    cart.forEach((item, index) => {
+
+        const subtotal =
+            item.price * item.quantity;
+
+        total += subtotal;
+
+        count += item.quantity;
+
+
+        const row =
+            document.createElement("div");
+
+        row.className = "cart-item";
+
+
+        row.innerHTML = `
+
+            <div>
+
+                <div class="cart-name">
+                    ${item.name}
+                </div>
+
+                <small>
+                    ${item.option}
+                    - RM ${item.price.toFixed(2)}
+                </small>
+
+            </div>
+
+
+            <div class="quantity">
+
+                <button
+                    onclick="changeQuantity(
+                        ${index},
+                        -1
+                    )">
+                    −
+                </button>
+
+                <span>
+                    ${item.quantity}
+                </span>
+
+                <button
+                    onclick="changeQuantity(
+                        ${index},
+                        1
+                    )">
+                    +
+                </button>
+
+            </div>
+
+
+            <strong>
+                RM ${subtotal.toFixed(2)}
+            </strong>
+
+
+            <button
+                class="remove"
+                onclick="removeItem(${index})">
+
+                Buang
+
+            </button>
+
+        `;
+
+
+        cartItems.appendChild(row);
+
+    });
+
+
+    cartCount.innerText = count;
+
+    totalElement.innerText =
+        total.toFixed(2);
+
+}
+
+
+/* =====================================================
+   KUANTITI
+===================================================== */
+
+function changeQuantity(index, amount) {
+
+    cart[index].quantity += amount;
+
+
+    if (cart[index].quantity <= 0) {
+
+        cart.splice(index, 1);
+
+    }
+
+
+    updateCart();
+
+}
+
+
+/* =====================================================
+   BUANG
+===================================================== */
+
+function removeItem(index) {
+
+    cart.splice(index, 1);
+
+    updateCart();
+
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+function filterMenu(category, button) {
+
+    document
+        .querySelectorAll(".category-btn")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+    button.classList.add("active");
+
+    displayMenu(category);
+
+}
+
+
+/* =====================================================
+   SCROLL MENU
+===================================================== */
+
+function goToMenu() {
+
+    document
+        .getElementById("menu")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+
+/* =====================================================
+   HANTAR PESANAN
+===================================================== */
+
+function submitOrder() {
+
+    if (cart.length === 0) {
+
+        alert("Sila pilih makanan atau minuman dahulu.");
+
+        return;
+
+    }
+
+
+    const name =
+        document
+        .getElementById("customerName")
+        .value
+        .trim();
+
+
+    const table =
+        document
+        .getElementById("tableNumber")
+        .value
+        .trim();
+
+
+    if (!name || !table) {
+
+        alert(
+            "Sila masukkan nama pelanggan dan nombor meja."
+        );
+
+        return;
+
+    }
+
+
+    let message =
+        "PESANAN RUANG KOPI KITA\n\n";
+
+
+    message +=
+        "Nama: " + name + "\n";
+
+    message +=
+        "Meja: " + table + "\n\n";
+
+
+    let total = 0;
+
+
+    cart.forEach(item => {
+
+        const subtotal =
+            item.price * item.quantity;
+
+        total += subtotal;
+
+
+        message +=
+            item.name +
+            " (" +
+            item.option +
+            ") x" +
+            item.quantity +
+            " = RM " +
+            subtotal.toFixed(2) +
+            "\n";
+
+    });
+
+
+    message +=
+        "\nJUMLAH: RM " +
+        total.toFixed(2);
+
+
+    alert(
+        "Pesanan berjaya disediakan!\n\n" +
+        message
+    );
+
+}
+
+
+/* =====================================================
+   MULA
+===================================================== */
+
+displayMenu();
+
+</script>
 
 </body>
 </html>
