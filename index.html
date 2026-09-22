@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ms">
 <head>
 <meta charset="UTF-8">
@@ -248,6 +248,7 @@ nav a {
 .cart-name {
     font-weight: bold;
 }
+
 .quantity {
     display: flex;
     align-items: center;
@@ -350,6 +351,7 @@ footer {
 </style>
 </head>
 
+
 <body>
 
 <!-- ================= HEADER ================= -->
@@ -382,7 +384,7 @@ footer {
         <h1>Ruang Kopi Kita</h1>
 
         <p>
-            "Ruang Kopi Kita - Ruang Kosong Tanpa Kamu"
+            "Ruang Kopi Kita - Ruang Gong Tanpa Kamu"
         </p>
 
         <button onclick="goToMenu()">
@@ -492,6 +494,311 @@ footer {
         </span>
 
     </div>
+
+
+    <!-- ORDER FORM -->
+
+    <div class="order-form">
+
+        <h3>📋 Maklumat Pesanan</h3>
+
+        <input
+            type="text"
+            id="customerName"
+            placeholder="Nama pelanggan"
+        >
+
+        <input
+            type="text"
+            id="tableNumber"
+            placeholder="Nombor meja"
+        >
+
+        <button
+            class="order-button"
+            onclick="submitOrder()">
+
+            ✅ Hantar Pesanan
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        © 2026 Ruang Kopi Kita
+    </p>
+
+    <p>
+        Sistem Pesanan Digital
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   DATA MENU
+===================================================== */
+
+const menu = [
+
+/* ================= COFFEE ================= */
+
+{
+    category: "coffee",
+    name: "Americano",
+    icon: "☕",
+    prices: {
+        Hot: 8,
+        Cold: 9
+    }
+},
+
+{
+    category: "coffee",
+    name: "Latte",
+    icon: "☕",
+    prices: {
+        Hot: 9,
+        Cold: 10
+    }
+},
+
+{
+    category: "coffee",
+    name: "Vanila Latte",
+    icon: "☕",
+    prices: {
+        Hot: 12,
+        Cold: 14
+    }
+},
+
+{
+    category: "coffee",
+    name: "Hazelnut Latte",
+    icon: "☕",
+    prices: {
+        Hot: 12,
+        Cold: 14
+    }
+},
+
+{
+    category: "coffee",
+    name: "Spanish Latte",
+    icon: "☕",
+    prices: {
+        Hot: 12,
+        Cold: 14
+    }
+},
+
+{
+    category: "coffee",
+    name: "Strawberry Latte",
+    icon: "☕",
+    prices: {
+        Hot: 12,
+        Cold: 14
+    }
+},
+
+{
+    category: "coffee",
+    name: "Mocha Latte",
+    icon: "☕",
+    prices: {
+        Hot: 12,
+        Cold: 14
+    }
+},
+
+{
+    category: "coffee",
+    name: "Butterscotch Latte",
+    icon: "☕",
+    prices: {
+        Hot: 13,
+        Cold: 15
+    }
+},
+
+{
+    category: "coffee",
+    name: "Caramel Macchiato",
+    icon: "☕",
+    prices: {
+        Hot: 13,
+        Cold: 15
+    }
+},
+
+{
+    category: "coffee",
+    name: "Butter Cookie Latte",
+    icon: "☕",
+    prices: {
+        Hot: 13,
+        Cold: 15
+    }
+},
+
+{
+    category: "coffee",
+    name: "Pistachio Latte",
+    icon: "☕",
+    prices: {
+        Hot: 13,
+        Cold: 15
+    }
+},
+
+{
+    category: "coffee",
+    name: "Ruang Kopi Kita Signature",
+    icon: "☕",
+    prices: {
+        Regular: 17
+    }
+},
+
+
+/* ================= NON COFFEE ================= */
+
+{
+    category: "noncoffee",
+    name: "Chocolate",
+    icon: "🍫",
+    prices: {
+        Hot: 10,
+        Cold: 11
+    }
+},
+
+{
+    category: "noncoffee",
+    name: "Chocolate Hazelnut",
+    icon: "🍫",
+    prices: {
+        Hot: 11,
+        Cold: 13
+    }
+},
+
+{
+    category: "noncoffee",
+    name: "Chocolate Cookie",
+    icon: "🍪",
+    prices: {
+        Hot: 11,
+        Cold: 13
+    }
+},
+
+{
+    category: "noncoffee",
+    name: "Chocolate Caramel",
+    icon: "🍫",
+    prices: {
+        Hot: 11,
+        Cold: 13
+    }
+},
+
+{
+    category: "noncoffee",
+    name: "Chocolate Pistachio",
+    icon: "🍵",
+    prices: {
+        Cold: 14
+    }
+},
+
+{
+    category: "noncoffee",
+    name: "Black Forest",
+    icon: "🍫",
+    prices: {
+        Cold: 14
+    }
+},
+
+
+/* ================= BITES ================= */
+
+{
+    category: "bites",
+    name: "Shaker Fries",
+    icon: "🍟",
+    prices: {
+        Regular: 7
+    }
+},
+
+{
+    category: "bites",
+    name: "Chicken Nugget 5pcs",
+    icon: "🍗",
+    prices: {
+        Regular: 7
+    }
+},
+
+{
+    category: "bites",
+    name: "Wedges",
+    icon: "🥔",
+    prices: {
+        Regular: 10
+    }
+},
+
+{
+    category: "bites",
+    name: "Combo Set (Fries & Nugget)",
+    icon: "🍟",
+    prices: {
+        Regular: 12
+    }
+},
+
+{
+    category: "bites",
+    name: "Combo Set (Fries & Wedges)",
+    icon: "🍟",
+    prices: {
+        Regular: 15
+    }
+},
+
+{
+    category: "bites",
+    name: "Loaded Fries",
+    icon: "🍟",
+    prices: {
+        Regular: 12
+    }
+},
+
+{
+    category: "bites",
+    name: "Loaded Nachos",
+    icon: "🌮",
+    prices: {
+        Regular: 13
+    }
+},
+
+
 /* ================= PASTA ================= */
 
 {
@@ -803,6 +1110,7 @@ footer {
 
 
 /* ================= ADD ON ================= */
+
 {
     category: "addon",
     name: "Shabu Shabu Beef (50g)",
@@ -968,10 +1276,10 @@ function displayMenu(category = "all") {
 
         if (priceTypes.length > 1) {
 
-            options = 
+            options = `
                 <div class="price-options">
 
-                    ${priceTypes.map((type, i) => 
+                    ${priceTypes.map((type, i) => `
                         <button
                             class="${i === 0 ? "selected" : ""}"
                             onclick="selectOption(
@@ -984,23 +1292,23 @@ function displayMenu(category = "all") {
                             RM ${item.prices[type].toFixed(2)}
 
                         </button>
-                    ).join("")}
+                    `).join("")}
 
                 </div>
-            ;
+            `;
 
         } else {
 
-            options = 
+            options = `
                 <div class="price">
                     RM ${item.prices[priceTypes[0]].toFixed(2)}
                 </div>
-            ;
+            `;
 
         }
 
 
-        card.innerHTML = 
+        card.innerHTML = `
 
             <div class="menu-image">
                 ${item.icon}
@@ -1027,7 +1335,7 @@ function displayMenu(category = "all") {
                 </button>
 
             </div>
-        ;
+        `;
 
 
         menuGrid.appendChild(card);
@@ -1050,7 +1358,8 @@ function selectOption(index, type, button) {
 
     const parent =
         button.parentElement;
-[ parent
+
+    parent
         .querySelectorAll("button")
         .forEach(btn =>
             btn.classList.remove("selected")
@@ -1159,7 +1468,7 @@ function updateCart() {
         row.className = "cart-item";
 
 
-        row.innerHTML = 
+        row.innerHTML = `
 
             <div>
 
@@ -1213,7 +1522,7 @@ function updateCart() {
 
             </button>
 
-        ;
+        `;
 
 
         cartItems.appendChild(row);
@@ -1293,7 +1602,8 @@ function goToMenu() {
         .scrollIntoView({
             behavior: "smooth"
         });
- }
+
+}
 
 
 /* =====================================================
@@ -1375,48 +1685,6 @@ function submitOrder() {
         "\nJUMLAH: RM " +
         total.toFixed(2);
 
-
-    /* =====================================================
-       SIMPAN PESANAN KE ADMIN DASHBOARD
-       Guna localStorage "transactions"
-    ===================================================== */
-
-    const transactions =
-        JSON.parse(
-            localStorage.getItem("transactions")
-        ) || [];
-
-
-    transactions.push({
-
-        type: "sales",
-
-        description:
-            "Pesanan Customer - " +
-            name +
-            " (Meja " +
-            table +
-            ")",
-
-        amount: total,
-
-        date:
-            new Date()
-            .toISOString()
-            .split("T")[0]
-
-    });
-
-
-    localStorage.setItem(
-        "transactions",
-        JSON.stringify(transactions)
-    );
-
-
-    /* =====================================================
-       PAPAR PESANAN BERJAYA
-    ===================================================== */
 
     alert(
         "Pesanan berjaya disediakan!\n\n" +
