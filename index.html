@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruang Kopi Kita</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f7f1e8;
+            color: #3e2723;
+        }
+
+        header {
+            background-color: #5d4037;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .welcome h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-weight: bold;
+            margin: 15px 0;
+            font-size: 18px;
+        }
+
+        button {
+            background-color: #795548;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #4e342e;
+        }
+
+        #cart {
+            margin-top: 40px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        #cart h2 {
+            margin-bottom: 15px;
+        }
+
+        #cart-items {
+            margin-bottom: 15px;
+        }
+
+        footer {
+            margin-top: 50px;
+            background-color: #3e2723;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>☕ Ruang Kopi Kita</h1>
+        <p>Selamat Datang</p>
+    </header>
+
+    <div class="container">
+
+        <div class="welcome">
+            <h2>Menu Kami</h2>
+            <p>Pilih makanan dan minuman anda</p>
+        </div>
+
+        <div class="menu">
+
+            <div class="card">
+                <h3>Nasi Goreng</h3>
+                <p>Nasi goreng istimewa</p>
+                <div class="price">RM 8.00</div>
+                <button onclick="addToCart('Nasi Goreng', 8)">
+                    Tambah
+                </button>
+            </div>
+
+            <div class="card">
+                <h3>Chicken Chop</h3>
+                <p>Chicken chop dengan sos</p>
+                <div class="price">RM 12.00</div>
+                <button onclick="addToCart('Chicken Chop', 12)">
+                    Tambah
+                </button>
+            </div>
+
+            <div class="card">
+                <h3>Nugget</h3>
+                <p>Nugget ayam</p>
+                <div class="price">RM 5.00</div>
+                <button onclick="addToCart('Nugget', 5)">
+                    Tambah
+                </button>
+            </div>
+
+            <div class="card">
+                <h3>Kopi</h3>
+                <p>Kopi panas</p>
+                <div class="price">RM 4.00</div>
+                <button onclick="addToCart('Kopi', 4)">
+                    Tambah
+                </button>
+            </div>
+
+        </div>
+
+        <div id="cart">
+
+            <h2>🛒 Pesanan Anda</h2>
+
+            <div id="cart-items">
+                Belum ada pesanan.
+            </div>
+
+            <h3>
+                Jumlah: RM <span id="total">0.00</span>
+            </h3>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2026 Ruang Kopi Kita</p>
+    </footer>
+
+    <script>
+
+        let total = 0;
+
+        function addToCart(name, price) {
+
+            const cart = document.getElementById("cart-items");
+
+            if (cart.innerHTML === "Belum ada pesanan.") {
+                cart.innerHTML = "";
+            }
+
+            const item = document.createElement("p");
+
+            item.innerHTML = name + " - RM " + price.toFixed(2);
+
+            cart.appendChild(item);
+
+            total = total + price;
+
+            document.getElementById("total").innerText =
+                total.toFixed(2);
+        }
+
+    </script>
+
+</body>
+</html>
