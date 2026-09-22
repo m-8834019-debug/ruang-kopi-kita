@@ -248,7 +248,6 @@ nav a {
 .cart-name {
     font-weight: bold;
 }
-
 .quantity {
     display: flex;
     align-items: center;
@@ -350,7 +349,6 @@ footer {
 
 </style>
 </head>
-
 
 <body>
 
@@ -494,8 +492,6 @@ footer {
         </span>
 
     </div>
-
-
     <!-- ORDER FORM -->
 
     <div class="order-form">
@@ -797,9 +793,7 @@ const menu = [
         Regular: 13
     }
 },
-
-
-/* ================= PASTA ================= */
+    /* ================= PASTA ================= */
 
 {
     category: "pasta",
@@ -1110,8 +1104,7 @@ const menu = [
 
 
 /* ================= ADD ON ================= */
-
-{
+    {
     category: "addon",
     name: "Shabu Shabu Beef (50g)",
     icon: "🥩",
@@ -1276,10 +1269,10 @@ function displayMenu(category = "all") {
 
         if (priceTypes.length > 1) {
 
-            options = `
+            options = 
                 <div class="price-options">
 
-                    ${priceTypes.map((type, i) => `
+                    ${priceTypes.map((type, i) => 
                         <button
                             class="${i === 0 ? "selected" : ""}"
                             onclick="selectOption(
@@ -1292,23 +1285,23 @@ function displayMenu(category = "all") {
                             RM ${item.prices[type].toFixed(2)}
 
                         </button>
-                    `).join("")}
+                    ).join("")}
 
                 </div>
-            `;
+            ;
 
         } else {
 
-            options = `
+            options = 
                 <div class="price">
                     RM ${item.prices[priceTypes[0]].toFixed(2)}
                 </div>
-            `;
+            ;
 
         }
 
 
-        card.innerHTML = `
+        card.innerHTML = 
 
             <div class="menu-image">
                 ${item.icon}
@@ -1335,7 +1328,7 @@ function displayMenu(category = "all") {
                 </button>
 
             </div>
-        `;
+        ;
 
 
         menuGrid.appendChild(card);
@@ -1358,7 +1351,6 @@ function selectOption(index, type, button) {
 
     const parent =
         button.parentElement;
-
     parent
         .querySelectorAll("button")
         .forEach(btn =>
@@ -1468,7 +1460,7 @@ function updateCart() {
         row.className = "cart-item";
 
 
-        row.innerHTML = `
+        row.innerHTML = 
 
             <div>
 
@@ -1522,7 +1514,7 @@ function updateCart() {
 
             </button>
 
-        `;
+        ;
 
 
         cartItems.appendChild(row);
@@ -1602,8 +1594,7 @@ function goToMenu() {
         .scrollIntoView({
             behavior: "smooth"
         });
-
-}
+    }
 
 
 /* =====================================================
@@ -1684,16 +1675,49 @@ function submitOrder() {
     message +=
         "\nJUMLAH: RM " +
         total.toFixed(2);
-    const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
-transactions.push({
-    type: "sales",
-    description: Order ${name} - Meja ${table},
-    amount: total,
-    date: new Date().toISOString().split("T")[0]
-});
 
-localStorage.setItem("transactions", JSON.stringify(transactions));
+    /* =====================================================
+       SIMPAN PESANAN KE ADMIN DASHBOARD
+       Guna localStorage "transactions"
+    ===================================================== */
+
+    const transactions =
+        JSON.parse(
+            localStorage.getItem("transactions")
+        ) || [];
+
+
+    transactions.push({
+
+        type: "sales",
+
+        description:
+            "Pesanan Customer - " +
+            name +
+            " (Meja " +
+            table +
+            ")",
+
+        amount: total,
+
+        date:
+            new Date()
+            .toISOString()
+            .split("T")[0]
+
+    });
+
+
+    localStorage.setItem(
+        "transactions",
+        JSON.stringify(transactions)
+    );
+
+
+    /* =====================================================
+       PAPAR PESANAN BERJAYA
+    ===================================================== */
 
     alert(
         "Pesanan berjaya disediakan!\n\n" +
