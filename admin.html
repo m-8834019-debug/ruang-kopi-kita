@@ -11,7 +11,7 @@
     box-sizing:border-box;
     margin:0;
     padding:0;
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
 }
 
 body{
@@ -115,7 +115,7 @@ header a{
 }
 
 .full{
-    grid-column:1 / -1;
+    grid-column:1/-1;
 }
 
 button{
@@ -133,6 +133,16 @@ button{
 
 .btn-primary:hover{
     background:#4e342e;
+}
+
+.btn-secondary{
+    background:#8d6e63;
+    color:white;
+}
+
+.btn-print{
+    background:#455a64;
+    color:white;
 }
 
 .btn-danger{
@@ -199,47 +209,6 @@ tr:hover{
     color:#0f5132;
 }
 
-.report-box{
-    background:white;
-    padding:25px;
-    border-radius:15px;
-    box-shadow:0 3px 12px rgba(0,0,0,.08);
-}
-
-.report-row{
-    display:flex;
-    justify-content:space-between;
-    padding:12px 0;
-    border-bottom:1px solid #eee;
-}
-
-.report-row.total{
-    font-size:20px;
-    font-weight:bold;
-    border-bottom:none;
-    margin-top:10px;
-}
-
-.profit{
-    color:#2e7d32;
-}
-
-.loss{
-    color:#c62828;
-}
-
-.chart-box{
-    background:white;
-    padding:25px;
-    border-radius:15px;
-    box-shadow:0 3px 12px rgba(0,0,0,.08);
-}
-
-canvas{
-    width:100% !important;
-    max-height:350px;
-}
-
 .info{
     background:#efebe9;
     padding:15px;
@@ -254,12 +223,145 @@ canvas{
     color:#888;
 }
 
+/* ================= REPORT ================= */
+
+.report-controls{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.report-buttons{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:15px;
+}
+
+.report-result{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+.report-header{
+    text-align:center;
+    margin-bottom:25px;
+    display:none;
+}
+
+.report-header h2{
+    margin-bottom:8px;
+}
+
+.report-header p{
+    color:#666;
+}
+
+.report-row{
+    display:flex;
+    justify-content:space-between;
+    padding:14px 0;
+    border-bottom:1px solid #eee;
+}
+
+.report-row.total{
+    font-size:21px;
+    font-weight:bold;
+    border-bottom:none;
+    margin-top:10px;
+}
+
+.profit{
+    color:#2e7d32;
+}
+
+.loss{
+    color:#c62828;
+}
+
+.report-note{
+    background:#f5f5f5;
+    padding:15px;
+    border-radius:8px;
+    margin-top:20px;
+    font-size:14px;
+}
+
+/* ================= CHART ================= */
+
+.chart-box{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+canvas{
+    width:100% !important;
+    max-height:350px;
+}
+
+/* ================= PRINT ================= */
+
+@media print{
+
+    body{
+        background:white;
+    }
+
+    header,
+    .no-print,
+    .dashboard,
+    .section-title,
+    .chart-box,
+    .form-box,
+    .table-box{
+        display:none !important;
+    }
+
+    .container{
+        width:100%;
+        max-width:none;
+        margin:0;
+    }
+
+    #reportSection{
+        display:block !important;
+    }
+
+    .report-header{
+        display:block;
+    }
+
+    .report-result{
+        box-shadow:none;
+        border:none;
+        padding:10px;
+    }
+
+    .report-controls{
+        display:none;
+    }
+
+    .report-note{
+        background:white;
+        border:1px solid #ddd;
+    }
+}
+
+/* ================= RESPONSIVE ================= */
+
 @media(max-width:900px){
+
     .dashboard{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .form-grid{
+    .form-grid,
+    .report-controls{
         grid-template-columns:1fr;
     }
 
@@ -269,6 +371,7 @@ canvas{
 }
 
 @media(max-width:600px){
+
     header{
         padding:20px;
         flex-direction:column;
@@ -300,362 +403,586 @@ canvas{
 
 <div class="container">
 
-    <!-- ================= DASHBOARD ================= -->
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
 
-    <h2 class="section-title">📊 Dashboard</h2>
+<h2 class="section-title">📊 Dashboard</h2>
 
-    <div class="dashboard">
+<div class="dashboard">
 
-        <div class="card">
-            <h3>Jualan Hari Ini</h3>
-            <p id="todaySales">RM0.00</p>
-        </div>
-
-        <div class="card">
-            <h3>Jualan Bulan Ini</h3>
-            <p id="monthSales">RM0.00</p>
-        </div>
-
-        <div class="card">
-            <h3>Jumlah Pesanan</h3>
-            <p id="totalOrders">0</p>
-        </div>
-
-        <div class="card">
-            <h3>Jumlah Belian</h3>
-            <p id="totalPurchases">RM0.00</p>
-        </div>
-
-        <div class="card">
-            <h3>Untung Bersih</h3>
-            <p id="netProfit">RM0.00</p>
-        </div>
-
+    <div class="card">
+        <h3>Jualan Hari Ini</h3>
+        <p id="todaySales">RM0.00</p>
     </div>
 
+    <div class="card">
+        <h3>Jualan Bulan Ini</h3>
+        <p id="monthSales">RM0.00</p>
+    </div>
 
-    <!-- ================= PEREKODAN BELIAN ================= -->
+    <div class="card">
+        <h3>Jumlah Pesanan</h3>
+        <p id="totalOrders">0</p>
+    </div>
 
-    <h2 class="section-title">🛒 Perekodan Belian</h2>
+    <div class="card">
+        <h3>Jumlah Belian</h3>
+        <p id="totalPurchases">RM0.00</p>
+    </div>
 
-    <div class="form-box">
+    <div class="card">
+        <h3>Untung Bersih</h3>
+        <p id="netProfit">RM0.00</p>
+    </div>
 
-        <div class="info">
-            Rekodkan bahan mentah, makanan, minuman, pembungkusan dan barang lain yang dibeli untuk operasi kedai.
-        </div>
+</div>
 
-        <form id="purchaseForm">
 
-            <div class="form-grid">
+<!-- =====================================================
+     PEREKODAN BELIAN
+===================================================== -->
 
-                <div class="form-group">
-                    <label>Tarikh Belian</label>
-                    <input type="date" id="purchaseDate" required>
-                </div>
+<h2 class="section-title">🛒 Perekodan Belian</h2>
 
-                <div class="form-group">
-                    <label>Nama Pembekal</label>
-                    <input type="text" id="supplier" placeholder="Contoh: ABC Supplier" required>
-                </div>
+<div class="form-box">
 
-                <div class="form-group">
-                    <label>Nama Barang / Bahan</label>
-                    <input type="text" id="purchaseItem" placeholder="Contoh: Susu Full Cream" required>
-                </div>
+    <div class="info">
+        Rekodkan bahan mentah, makanan, minuman, pembungkusan dan barang lain yang dibeli untuk operasi kedai.
+    </div>
 
-                <div class="form-group">
-                    <label>Kategori</label>
-                    <select id="purchaseCategory" required>
-                        <option value="">-- Pilih Kategori --</option>
-                        <option>Bahan Mentah</option>
-                        <option>Minuman</option>
-                        <option>Makanan</option>
-                        <option>Pembungkusan</option>
-                        <option>Lain-lain</option>
-                    </select>
-                </div>
+    <form id="purchaseForm">
 
-                <div class="form-group">
-                    <label>Kuantiti</label>
-                    <input type="number" id="purchaseQuantity" min="0" step="0.01" required>
-                </div>
+        <div class="form-grid">
 
-                <div class="form-group">
-                    <label>Harga Seunit (RM)</label>
-                    <input type="number" id="purchaseUnitPrice" min="0" step="0.01" required>
-                </div>
+            <div class="form-group">
+                <label>Tarikh Belian</label>
+                <input type="date" id="purchaseDate" required>
+            </div>
 
-                <div class="form-group">
-                    <label>Jumlah Belian (RM)</label>
-                    <input type="number" id="purchaseTotal" readonly>
-                </div>
+            <div class="form-group">
+                <label>Nama Pembekal</label>
+                <input type="text" id="supplier"
+                       placeholder="Contoh: ABC Supplier"
+                       required>
+            </div>
 
-                <div class="form-group">
-                    <label>Kaedah Bayaran</label>
-                    <select id="purchasePayment" required>
-                        <option value="">-- Pilih Kaedah --</option>
-                        <option>Tunai</option>
-                        <option>Online Banking</option>
-                        <option>Debit/Credit Card</option>
-                        <option>E-Wallet</option>
-                    </select>
-                </div>
+            <div class="form-group">
+                <label>Nama Barang / Bahan</label>
+                <input type="text" id="purchaseItem"
+                       placeholder="Contoh: Susu Full Cream"
+                       required>
+            </div>
 
-                <div class="form-group full">
-                    <label>Catatan</label>
-                    <textarea id="purchaseNote" placeholder="Catatan tambahan jika ada"></textarea>
-                </div>
+            <div class="form-group">
+                <label>Kategori</label>
 
-                <div class="full">
-                    <button type="submit" class="btn-primary">
-                        ➕ Simpan Belian
-                    </button>
-                </div>
+                <select id="purchaseCategory" required>
+
+                    <option value="">
+                        -- Pilih Kategori --
+                    </option>
+
+                    <option>Bahan Mentah</option>
+                    <option>Minuman</option>
+                    <option>Makanan</option>
+                    <option>Pembungkusan</option>
+                    <option>Lain-lain</option>
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Kuantiti</label>
+
+                <input type="number"
+                       id="purchaseQuantity"
+                       min="0"
+                       step="0.01"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Harga Seunit (RM)</label>
+
+                <input type="number"
+                       id="purchaseUnitPrice"
+                       min="0"
+                       step="0.01"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Jumlah Belian (RM)</label>
+
+                <input type="number"
+                       id="purchaseTotal"
+                       readonly>
+            </div>
+
+            <div class="form-group">
+                <label>Kaedah Bayaran</label>
+
+                <select id="purchasePayment" required>
+
+                    <option value="">
+                        -- Pilih Kaedah --
+                    </option>
+
+                    <option>Tunai</option>
+                    <option>Online Banking</option>
+                    <option>Debit/Credit Card</option>
+                    <option>E-Wallet</option>
+
+                </select>
+            </div>
+
+            <div class="form-group full">
+
+                <label>Catatan</label>
+
+                <textarea id="purchaseNote"
+                          placeholder="Catatan tambahan jika ada"></textarea>
 
             </div>
 
-        </form>
+            <div class="full">
 
-    </div>
+                <button type="submit"
+                        class="btn-primary">
 
+                    ➕ Simpan Belian
 
-    <!-- ================= SENARAI BELIAN ================= -->
-
-    <h2 class="section-title">📋 Senarai Belian</h2>
-
-    <div class="table-box">
-
-        <table>
-
-            <thead>
-                <tr>
-                    <th>Tarikh</th>
-                    <th>Pembekal</th>
-                    <th>Barang / Bahan</th>
-                    <th>Kategori</th>
-                    <th>Kuantiti</th>
-                    <th>Harga Seunit</th>
-                    <th>Jumlah</th>
-                    <th>Bayaran</th>
-                    <th>Tindakan</th>
-                </tr>
-            </thead>
-
-            <tbody id="purchaseTable"></tbody>
-
-        </table>
-
-    </div>
-
-
-    <!-- ================= PEREKODAN BELANJA OPERASI ================= -->
-
-    <h2 class="section-title">💸 Perekodan Belanja Operasi</h2>
-
-    <div class="form-box">
-
-        <div class="info">
-            Rekodkan perbelanjaan operasi kedai yang bukan pembelian bahan atau barang untuk dijual.
-        </div>
-
-        <form id="expenseForm">
-
-            <div class="form-grid">
-
-                <div class="form-group">
-                    <label>Tarikh Belanja</label>
-                    <input type="date" id="expenseDate" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Jenis Belanja</label>
-                    <select id="expenseCategory" required>
-
-                        <option value="">-- Pilih Jenis Belanja --</option>
-
-                        <option>Sewa</option>
-                        <option>Elektrik</option>
-                        <option>Air</option>
-                        <option>Internet</option>
-                        <option>Gaji / Upah</option>
-                        <option>Penghantaran</option>
-                        <option>Penyelenggaraan</option>
-                        <option>Pemasaran / Iklan</option>
-                        <option>Pengangkutan</option>
-                        <option>Peralatan</option>
-                        <option>Lain-lain</option>
-
-                    </select>
-                </div>
-
-                <div class="form-group full">
-                    <label>Keterangan Belanja</label>
-                    <input
-                        type="text"
-                        id="expenseDescription"
-                        placeholder="Contoh: Bayaran sewa kedai bulan September"
-                        required
-                    >
-                </div>
-
-                <div class="form-group">
-                    <label>Jumlah Belanja (RM)</label>
-                    <input
-                        type="number"
-                        id="expenseAmount"
-                        min="0"
-                        step="0.01"
-                        placeholder="0.00"
-                        required
-                    >
-                </div>
-
-                <div class="form-group">
-                    <label>Kaedah Bayaran</label>
-                    <select id="expensePayment" required>
-
-                        <option value="">-- Pilih Kaedah --</option>
-                        <option>Tunai</option>
-                        <option>Online Banking</option>
-                        <option>Debit/Credit Card</option>
-                        <option>E-Wallet</option>
-
-                    </select>
-                </div>
-
-                <div class="form-group full">
-                    <label>Catatan</label>
-                    <textarea
-                        id="expenseNote"
-                        placeholder="Catatan tambahan jika ada"
-                    ></textarea>
-                </div>
-
-                <div class="full">
-                    <button type="submit" class="btn-primary">
-                        ➕ Simpan Belanja Operasi
-                    </button>
-                </div>
+                </button>
 
             </div>
 
-        </form>
+        </div>
+
+    </form>
+
+</div>
+
+
+<!-- =====================================================
+     SENARAI BELIAN
+===================================================== -->
+
+<h2 class="section-title">📋 Senarai Belian</h2>
+
+<div class="table-box">
+
+<table>
+
+<thead>
+<tr>
+    <th>Tarikh</th>
+    <th>Pembekal</th>
+    <th>Barang / Bahan</th>
+    <th>Kategori</th>
+    <th>Kuantiti</th>
+    <th>Harga Seunit</th>
+    <th>Jumlah</th>
+    <th>Bayaran</th>
+    <th>Tindakan</th>
+</tr>
+</thead>
+
+<tbody id="purchaseTable"></tbody>
+
+</table>
+
+</div>
+
+
+<!-- =====================================================
+     PEREKODAN BELANJA OPERASI
+===================================================== -->
+
+<h2 class="section-title">💸 Perekodan Belanja Operasi</h2>
+
+<div class="form-box">
+
+    <div class="info">
+
+        Rekodkan perbelanjaan operasi kedai yang bukan
+        pembelian bahan atau barang untuk dijual.
+
+    </div>
+
+    <form id="expenseForm">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>Tarikh Belanja</label>
+
+                <input type="date"
+                       id="expenseDate"
+                       required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Jenis Belanja</label>
+
+                <select id="expenseCategory"
+                        required>
+
+                    <option value="">
+                        -- Pilih Jenis Belanja --
+                    </option>
+
+                    <option>Sewa</option>
+                    <option>Elektrik</option>
+                    <option>Air</option>
+                    <option>Internet</option>
+                    <option>Gaji / Upah</option>
+                    <option>Penghantaran</option>
+                    <option>Penyelenggaraan</option>
+                    <option>Pemasaran / Iklan</option>
+                    <option>Pengangkutan</option>
+                    <option>Peralatan</option>
+                    <option>Lain-lain</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>Keterangan Belanja</label>
+
+                <input type="text"
+                       id="expenseDescription"
+                       placeholder="Contoh: Bayaran sewa kedai bulan September"
+                       required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Jumlah Belanja (RM)</label>
+
+                <input type="number"
+                       id="expenseAmount"
+                       min="0"
+                       step="0.01"
+                       placeholder="0.00"
+                       required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Kaedah Bayaran</label>
+
+                <select id="expensePayment"
+                        required>
+
+                    <option value="">
+                        -- Pilih Kaedah --
+                    </option>
+
+                    <option>Tunai</option>
+                    <option>Online Banking</option>
+                    <option>Debit/Credit Card</option>
+                    <option>E-Wallet</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>Catatan</label>
+
+                <textarea id="expenseNote"
+                          placeholder="Catatan tambahan jika ada"></textarea>
+
+            </div>
+
+
+            <div class="full">
+
+                <button type="submit"
+                        class="btn-primary">
+
+                    ➕ Simpan Belanja Operasi
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+<!-- =====================================================
+     SENARAI BELANJA OPERASI
+===================================================== -->
+
+<h2 class="section-title">📋 Senarai Belanja Operasi</h2>
+
+<div class="table-box">
+
+<table>
+
+<thead>
+
+<tr>
+    <th>Tarikh</th>
+    <th>Jenis</th>
+    <th>Keterangan</th>
+    <th>Jumlah</th>
+    <th>Bayaran</th>
+    <th>Catatan</th>
+    <th>Tindakan</th>
+</tr>
+
+</thead>
+
+<tbody id="expenseTable"></tbody>
+
+</table>
+
+</div>
+
+
+<!-- =====================================================
+     PESANAN PELANGGAN
+===================================================== -->
+
+<h2 class="section-title">🧾 Pesanan Pelanggan</h2>
+
+<div class="table-box">
+
+<table>
+
+<thead>
+
+<tr>
+    <th>Pelanggan</th>
+    <th>Meja</th>
+    <th>Pesanan</th>
+    <th>Jumlah</th>
+    <th>Tarikh / Masa</th>
+    <th>Status</th>
+    <th>Tindakan</th>
+</tr>
+
+</thead>
+
+<tbody id="orderTable"></tbody>
+
+</table>
+
+</div>
+
+
+<!-- =====================================================
+     LAPORAN UNTUNG RUGI
+===================================================== -->
+
+<h2 class="section-title no-print">
+    📑 Laporan Untung Rugi
+</h2>
+
+<section id="reportSection">
+
+<div class="form-box no-print">
+
+    <div class="info">
+
+        Pilih tempoh laporan untuk melihat jumlah
+        jualan, belian, belanja operasi dan untung bersih.
 
     </div>
 
 
-    <!-- ================= SENARAI BELANJA OPERASI ================= -->
+    <div class="report-controls">
 
-    <h2 class="section-title">📋 Senarai Belanja Operasi</h2>
+        <div class="form-group">
 
-    <div class="table-box">
+            <label>Tempoh Laporan</label>
 
-        <table>
+            <select id="reportPeriod">
 
-            <thead>
+                <option value="today">
+                    Hari Ini
+                </option>
 
-                <tr>
-                    <th>Tarikh</th>
-                    <th>Jenis</th>
-                    <th>Keterangan</th>
-                    <th>Jumlah</th>
-                    <th>Bayaran</th>
-                    <th>Catatan</th>
-                    <th>Tindakan</th>
-                </tr>
+                <option value="month" selected>
+                    Bulan Ini
+                </option>
 
-            </thead>
+                <option value="all">
+                    Semua Rekod
+                </option>
 
-            <tbody id="expenseTable"></tbody>
+                <option value="custom">
+                    Tarikh Custom
+                </option>
 
-        </table>
-
-    </div>
-
-
-    <!-- ================= PESANAN PELANGGAN ================= -->
-
-    <h2 class="section-title">🧾 Pesanan Pelanggan</h2>
-
-    <div class="table-box">
-
-        <table>
-
-            <thead>
-
-                <tr>
-                    <th>Pelanggan</th>
-                    <th>Meja</th>
-                    <th>Pesanan</th>
-                    <th>Jumlah</th>
-                    <th>Tarikh / Masa</th>
-                    <th>Status</th>
-                    <th>Tindakan</th>
-                </tr>
-
-            </thead>
-
-            <tbody id="orderTable"></tbody>
-
-        </table>
-
-    </div>
-
-
-    <!-- ================= LAPORAN RINGKAS ================= -->
-
-    <h2 class="section-title">📑 Ringkasan Untung Rugi</h2>
-
-    <div class="report-box">
-
-        <div class="report-row">
-            <span>Jumlah Jualan</span>
-            <strong id="reportSales">RM0.00</strong>
-        </div>
-
-        <div class="report-row">
-            <span>Jumlah Belian</span>
-            <strong id="reportPurchases">RM0.00</strong>
-        </div>
-
-        <div class="report-row">
-            <span>Jumlah Belanja Operasi</span>
-            <strong id="reportExpenses">RM0.00</strong>
-        </div>
-
-        <div class="report-row total">
-
-            <span>Untung Bersih</span>
-
-            <strong id="reportProfit">
-                RM0.00
-            </strong>
+            </select>
 
         </div>
 
-        <div class="info" style="margin-top:20px; margin-bottom:0;">
 
-            <strong>Formula:</strong>
+        <div class="form-group">
 
-            <br><br>
+            <label>Tarikh Mula</label>
 
-            Jumlah Jualan − Jumlah Belian − Jumlah Belanja Operasi
-            = <strong>Untung Bersih</strong>
+            <input type="date"
+                   id="reportStart">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Tarikh Akhir</label>
+
+            <input type="date"
+                   id="reportEnd">
 
         </div>
 
     </div>
 
 
-    <!-- ================= CARTA ================= -->
+    <div class="report-buttons">
 
-    <h2 class="section-title">📈 Jualan 7 Hari</h2>
+        <button
+            type="button"
+            class="btn-primary"
+            onclick="generateReport()">
 
-    <div class="chart-box">
+            🔍 Jana Laporan
 
-        <canvas id="salesChart"></canvas>
+        </button>
+
+
+        <button
+            type="button"
+            class="btn-print"
+            onclick="printReport()">
+
+            🖨️ Cetak Laporan
+
+        </button>
 
     </div>
+
+</div>
+
+
+<div class="report-result">
+
+    <div class="report-header">
+
+        <h2>RUANG KOPI KITA</h2>
+
+        <h3>LAPORAN UNTUNG RUGI</h3>
+
+        <p id="printPeriod">
+            Tempoh: -
+        </p>
+
+    </div>
+
+
+    <div class="report-row">
+
+        <span>
+            Jumlah Jualan
+        </span>
+
+        <strong id="reportSales">
+            RM0.00
+        </strong>
+
+    </div>
+
+
+    <div class="report-row">
+
+        <span>
+            Tolak: Jumlah Belian
+        </span>
+
+        <strong id="reportPurchases">
+            RM0.00
+        </strong>
+
+    </div>
+
+
+    <div class="report-row">
+
+        <span>
+            Tolak: Belanja Operasi
+        </span>
+
+        <strong id="reportExpenses">
+            RM0.00
+        </strong>
+
+    </div>
+
+
+    <div class="report-row total">
+
+        <span>
+            Untung Bersih
+        </span>
+
+        <strong id="reportProfit">
+            RM0.00
+        </strong>
+
+    </div>
+
+
+    <div class="report-note">
+
+        <strong>Formula Pengiraan:</strong>
+
+        <br><br>
+
+        Jumlah Jualan − Jumlah Belian −
+        Jumlah Belanja Operasi
+
+        = <strong>Untung Bersih</strong>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     CARTA JUALAN
+===================================================== -->
+
+<h2 class="section-title">📈 Jualan 7 Hari</h2>
+
+<div class="chart-box">
+
+    <canvas id="salesChart"></canvas>
+
+</div>
 
 </div>
 
@@ -663,7 +990,7 @@ canvas{
 <script>
 
 /* =====================================================
-   DATA LOCAL STORAGE
+   DATA
 ===================================================== */
 
 let transactions =
@@ -685,22 +1012,26 @@ let expenses =
 
 function money(value){
 
-    return "RM" + Number(value || 0).toFixed(2);
+    return "RM" +
+        Number(value || 0).toFixed(2);
 
 }
 
 
 function todayDate(){
 
-    const today = new Date();
+    const d = new Date();
 
-    const year = today.getFullYear();
+    const year =
+        d.getFullYear();
 
     const month =
-        String(today.getMonth() + 1).padStart(2,"0");
+        String(d.getMonth()+1)
+        .padStart(2,"0");
 
     const day =
-        String(today.getDate()).padStart(2,"0");
+        String(d.getDate())
+        .padStart(2,"0");
 
     return `${year}-${month}-${day}`;
 
@@ -709,8 +1040,11 @@ function todayDate(){
 
 function escapeHTML(text){
 
-    if(text === undefined || text === null){
+    if(text === undefined ||
+       text === null){
+
         return "";
+
     }
 
     return String(text)
@@ -724,7 +1058,7 @@ function escapeHTML(text){
 
 
 /* =====================================================
-   SET DEFAULT DATE
+   DEFAULT DATE
 ===================================================== */
 
 document.getElementById("purchaseDate").value =
@@ -735,135 +1069,178 @@ document.getElementById("expenseDate").value =
 
 
 /* =====================================================
-   PURCHASE TOTAL CALCULATION
+   PURCHASE CALCULATION
 ===================================================== */
 
 function calculatePurchaseTotal(){
 
     const quantity =
-        Number(document.getElementById("purchaseQuantity").value) || 0;
+        Number(
+            document.getElementById(
+                "purchaseQuantity"
+            ).value
+        ) || 0;
 
     const unitPrice =
-        Number(document.getElementById("purchaseUnitPrice").value) || 0;
+        Number(
+            document.getElementById(
+                "purchaseUnitPrice"
+            ).value
+        ) || 0;
 
-    const total = quantity * unitPrice;
-
-    document.getElementById("purchaseTotal").value =
-        total.toFixed(2);
+    document.getElementById(
+        "purchaseTotal"
+    ).value =
+        (quantity * unitPrice).toFixed(2);
 
 }
 
 
-document.getElementById("purchaseQuantity")
-.addEventListener("input", calculatePurchaseTotal);
+document.getElementById(
+    "purchaseQuantity"
+).addEventListener(
+    "input",
+    calculatePurchaseTotal
+);
 
 
-document.getElementById("purchaseUnitPrice")
-.addEventListener("input", calculatePurchaseTotal);
+document.getElementById(
+    "purchaseUnitPrice"
+).addEventListener(
+    "input",
+    calculatePurchaseTotal
+);
 
 
 /* =====================================================
    ADD PURCHASE
 ===================================================== */
 
-document.getElementById("purchaseForm")
-.addEventListener("submit", function(e){
+document.getElementById(
+    "purchaseForm"
+).addEventListener(
+    "submit",
+    function(e){
 
-    e.preventDefault();
+        e.preventDefault();
 
-    const purchase = {
+        const purchase = {
 
-        date:
-            document.getElementById("purchaseDate").value,
+            date:
+                document.getElementById(
+                    "purchaseDate"
+                ).value,
 
-        supplier:
-            document.getElementById("supplier").value,
+            supplier:
+                document.getElementById(
+                    "supplier"
+                ).value,
 
-        item:
-            document.getElementById("purchaseItem").value,
+            item:
+                document.getElementById(
+                    "purchaseItem"
+                ).value,
 
-        category:
-            document.getElementById("purchaseCategory").value,
+            category:
+                document.getElementById(
+                    "purchaseCategory"
+                ).value,
 
-        quantity:
-            Number(document.getElementById("purchaseQuantity").value),
+            quantity:
+                Number(
+                    document.getElementById(
+                        "purchaseQuantity"
+                    ).value
+                ),
 
-        unitPrice:
-            Number(document.getElementById("purchaseUnitPrice").value),
+            unitPrice:
+                Number(
+                    document.getElementById(
+                        "purchaseUnitPrice"
+                    ).value
+                ),
 
-        total:
-            Number(document.getElementById("purchaseTotal").value),
+            total:
+                Number(
+                    document.getElementById(
+                        "purchaseTotal"
+                    ).value
+                ),
 
-        payment:
-            document.getElementById("purchasePayment").value,
+            payment:
+                document.getElementById(
+                    "purchasePayment"
+                ).value,
 
-        note:
-            document.getElementById("purchaseNote").value
+            note:
+                document.getElementById(
+                    "purchaseNote"
+                ).value
 
-    };
-
-
-    purchases.push(purchase);
-
-    localStorage.setItem(
-        "purchases",
-        JSON.stringify(purchases)
-    );
-
-
-    /*
-       Simpan transaksi belian
-       untuk rekod transaksi keseluruhan.
-    */
-
-    transactions.push({
-
-        type:"purchase",
-
-        description:
-            "Belian - " +
-            purchase.item +
-            " | " +
-            purchase.supplier,
-
-        amount:
-            purchase.total,
-
-        date:
-            purchase.date
-
-    });
+        };
 
 
-    localStorage.setItem(
-        "transactions",
-        JSON.stringify(transactions)
-    );
+        purchases.push(purchase);
+
+        localStorage.setItem(
+            "purchases",
+            JSON.stringify(purchases)
+        );
 
 
-    alert("Belian berjaya direkodkan.");
+        transactions.push({
 
-    this.reset();
+            type:"purchase",
 
-    document.getElementById("purchaseDate").value =
-        todayDate();
+            description:
+                "Belian - " +
+                purchase.item +
+                " | " +
+                purchase.supplier,
 
-    document.getElementById("purchaseTotal").value =
-        "";
+            amount:
+                purchase.total,
 
-    loadAll();
+            date:
+                purchase.date
 
-});
+        });
+
+
+        localStorage.setItem(
+            "transactions",
+            JSON.stringify(transactions)
+        );
+
+
+        alert(
+            "Belian berjaya direkodkan."
+        );
+
+
+        this.reset();
+
+        document.getElementById(
+            "purchaseDate"
+        ).value =
+            todayDate();
+
+        loadAll();
+
+    }
+);
 
 
 /* =====================================================
-   DISPLAY PURCHASES
+   LOAD PURCHASES
 ===================================================== */
 
 function loadPurchases(){
 
     const table =
-        document.getElementById("purchaseTable");
+        document.getElementById(
+            "purchaseTable"
+        );
 
     table.innerHTML = "";
 
@@ -871,55 +1248,95 @@ function loadPurchases(){
     if(purchases.length === 0){
 
         table.innerHTML = `
-            <tr>
-                <td colspan="9" class="empty">
-                    Tiada rekod belian.
-                </td>
-            </tr>
+
+        <tr>
+            <td colspan="9"
+                class="empty">
+
+                Tiada rekod belian.
+
+            </td>
+        </tr>
+
         `;
 
         return;
     }
 
 
-    purchases.forEach((purchase,index)=>{
+    purchases.forEach(
+        (purchase,index)=>{
 
-        table.innerHTML += `
+            table.innerHTML += `
 
             <tr>
 
-                <td>${escapeHTML(purchase.date)}</td>
+                <td>
+                    ${escapeHTML(
+                        purchase.date
+                    )}
+                </td>
 
-                <td>${escapeHTML(purchase.supplier)}</td>
+                <td>
+                    ${escapeHTML(
+                        purchase.supplier
+                    )}
+                </td>
 
-                <td>${escapeHTML(purchase.item)}</td>
+                <td>
+                    ${escapeHTML(
+                        purchase.item
+                    )}
+                </td>
 
-                <td>${escapeHTML(purchase.category)}</td>
+                <td>
+                    ${escapeHTML(
+                        purchase.category
+                    )}
+                </td>
 
-                <td>${purchase.quantity}</td>
+                <td>
+                    ${purchase.quantity}
+                </td>
 
-                <td>${money(purchase.unitPrice)}</td>
+                <td>
+                    ${money(
+                        purchase.unitPrice
+                    )}
+                </td>
 
-                <td><strong>${money(purchase.total)}</strong></td>
+                <td>
+                    <strong>
+                        ${money(
+                            purchase.total
+                        )}
+                    </strong>
+                </td>
 
-                <td>${escapeHTML(purchase.payment)}</td>
+                <td>
+                    ${escapeHTML(
+                        purchase.payment
+                    )}
+                </td>
 
                 <td>
 
                     <button
                         class="btn-danger"
-                        onclick="deletePurchase(${index})"
-                    >
+                        onclick="deletePurchase(${index})">
+
                         Padam
+
                     </button>
 
                 </td>
 
             </tr>
 
-        `;
+            `;
 
-    });
+        }
+    );
 
 }
 
@@ -930,18 +1347,18 @@ function loadPurchases(){
 
 function deletePurchase(index){
 
-    if(!confirm("Padam rekod belian ini?")){
+    if(!confirm(
+        "Padam rekod belian ini?"
+    )){
+
         return;
+
     }
 
 
     const purchase =
         purchases[index];
 
-
-    /*
-       Cari transaksi belian yang sepadan.
-    */
 
     const transactionIndex =
         transactions.findIndex(t =>
@@ -950,9 +1367,12 @@ function deletePurchase(index){
 
             t.date === purchase.date &&
 
-            Number(t.amount) === Number(purchase.total) &&
+            Number(t.amount) ===
+            Number(purchase.total) &&
 
-            t.description.includes(purchase.item)
+            t.description.includes(
+                purchase.item
+            )
 
         );
 
@@ -990,93 +1410,115 @@ function deletePurchase(index){
    ADD OPERATING EXPENSE
 ===================================================== */
 
-document.getElementById("expenseForm")
-.addEventListener("submit", function(e){
+document.getElementById(
+    "expenseForm"
+).addEventListener(
+    "submit",
+    function(e){
 
-    e.preventDefault();
-
-
-    const expense = {
-
-        date:
-            document.getElementById("expenseDate").value,
-
-        category:
-            document.getElementById("expenseCategory").value,
-
-        description:
-            document.getElementById("expenseDescription").value,
-
-        amount:
-            Number(
-                document.getElementById("expenseAmount").value
-            ),
-
-        payment:
-            document.getElementById("expensePayment").value,
-
-        note:
-            document.getElementById("expenseNote").value
-
-    };
+        e.preventDefault();
 
 
-    expenses.push(expense);
+        const expense = {
 
-    localStorage.setItem(
-        "expenses",
-        JSON.stringify(expenses)
-    );
+            date:
+                document.getElementById(
+                    "expenseDate"
+                ).value,
+
+            category:
+                document.getElementById(
+                    "expenseCategory"
+                ).value,
+
+            description:
+                document.getElementById(
+                    "expenseDescription"
+                ).value,
+
+            amount:
+                Number(
+                    document.getElementById(
+                        "expenseAmount"
+                    ).value
+                ),
+
+            payment:
+                document.getElementById(
+                    "expensePayment"
+                ).value,
+
+            note:
+                document.getElementById(
+                    "expenseNote"
+                ).value
+
+        };
 
 
-    /*
-       Simpan juga sebagai transaksi expense.
-    */
-
-    transactions.push({
-
-        type:"expense",
-
-        description:
-            expense.category +
-            " - " +
-            expense.description,
-
-        amount:
-            expense.amount,
-
-        date:
-            expense.date
-
-    });
+        expenses.push(expense);
 
 
-    localStorage.setItem(
-        "transactions",
-        JSON.stringify(transactions)
-    );
+        localStorage.setItem(
+            "expenses",
+            JSON.stringify(expenses)
+        );
 
 
-    alert("Belanja operasi berjaya direkodkan.");
+        transactions.push({
 
-    this.reset();
+            type:"expense",
 
-    document.getElementById("expenseDate").value =
-        todayDate();
+            description:
+                expense.category +
+                " - " +
+                expense.description,
 
-    loadAll();
+            amount:
+                expense.amount,
 
-});
+            date:
+                expense.date
+
+        });
+
+
+        localStorage.setItem(
+            "transactions",
+            JSON.stringify(transactions)
+        );
+
+
+        alert(
+            "Belanja operasi berjaya direkodkan."
+        );
+
+
+        this.reset();
+
+
+        document.getElementById(
+            "expenseDate"
+        ).value =
+            todayDate();
+
+
+        loadAll();
+
+    }
+);
 
 
 /* =====================================================
-   DISPLAY OPERATING EXPENSES
+   LOAD EXPENSES
 ===================================================== */
 
 function loadExpenses(){
 
     const table =
-        document.getElementById("expenseTable");
+        document.getElementById(
+            "expenseTable"
+        );
 
     table.innerHTML = "";
 
@@ -1085,15 +1527,16 @@ function loadExpenses(){
 
         table.innerHTML = `
 
-            <tr>
+        <tr>
 
-                <td colspan="7" class="empty">
+            <td colspan="7"
+                class="empty">
 
-                    Tiada rekod belanja operasi.
+                Tiada rekod belanja operasi.
 
-                </td>
+            </td>
 
-            </tr>
+        </tr>
 
         `;
 
@@ -1101,76 +1544,91 @@ function loadExpenses(){
     }
 
 
-    expenses.forEach((expense,index)=>{
+    expenses.forEach(
+        (expense,index)=>{
 
-        table.innerHTML += `
+            table.innerHTML += `
 
             <tr>
 
                 <td>
-                    ${escapeHTML(expense.date)}
+                    ${escapeHTML(
+                        expense.date
+                    )}
                 </td>
 
                 <td>
-                    ${escapeHTML(expense.category)}
+                    ${escapeHTML(
+                        expense.category
+                    )}
                 </td>
 
                 <td>
-                    ${escapeHTML(expense.description)}
+                    ${escapeHTML(
+                        expense.description
+                    )}
                 </td>
 
                 <td>
                     <strong>
-                        ${money(expense.amount)}
+                        ${money(
+                            expense.amount
+                        )}
                     </strong>
                 </td>
 
                 <td>
-                    ${escapeHTML(expense.payment)}
+                    ${escapeHTML(
+                        expense.payment
+                    )}
                 </td>
 
                 <td>
-                    ${escapeHTML(expense.note)}
+                    ${escapeHTML(
+                        expense.note
+                    )}
                 </td>
 
                 <td>
 
                     <button
                         class="btn-danger"
-                        onclick="deleteExpense(${index})"
-                    >
+                        onclick="deleteExpense(${index})">
+
                         Padam
+
                     </button>
 
                 </td>
 
             </tr>
 
-        `;
+            `;
 
-    });
+        }
+    );
 
 }
 
 
 /* =====================================================
-   DELETE OPERATING EXPENSE
+   DELETE EXPENSE
 ===================================================== */
 
 function deleteExpense(index){
 
-    if(!confirm("Padam rekod belanja operasi ini?")){
+    if(!confirm(
+        "Padam rekod belanja operasi ini?"
+    )){
+
         return;
+
     }
 
 
     const expense =
         expenses[index];
 
-
-    /*
-       Cari transaksi expense yang sepadan.
-    */
 
     const transactionIndex =
         transactions.findIndex(t =>
@@ -1179,9 +1637,12 @@ function deleteExpense(index){
 
             t.date === expense.date &&
 
-            Number(t.amount) === Number(expense.amount) &&
+            Number(t.amount) ===
+            Number(expense.amount) &&
 
-            t.description.includes(expense.description)
+            t.description.includes(
+                expense.description
+            )
 
         );
 
@@ -1216,13 +1677,15 @@ function deleteExpense(index){
 
 
 /* =====================================================
-   CUSTOMER ORDERS
+   ORDERS
 ===================================================== */
 
 function loadOrders(){
 
     const table =
-        document.getElementById("orderTable");
+        document.getElementById(
+            "orderTable"
+        );
 
     table.innerHTML = "";
 
@@ -1231,15 +1694,16 @@ function loadOrders(){
 
         table.innerHTML = `
 
-            <tr>
+        <tr>
 
-                <td colspan="7" class="empty">
+            <td colspan="7"
+                class="empty">
 
-                    Tiada pesanan pelanggan.
+                Tiada pesanan pelanggan.
 
-                </td>
+            </td>
 
-            </tr>
+        </tr>
 
         `;
 
@@ -1247,71 +1711,79 @@ function loadOrders(){
     }
 
 
-    orders.forEach((order,index)=>{
+    orders.forEach(
+        (order,index)=>{
 
-        const status =
-            order.status || "Baru";
-
-
-        let statusClass =
-            "status-baru";
+            const status =
+                order.status || "Baru";
 
 
-        if(status === "Sedang Diproses"){
-
-            statusClass =
-                "status-proses";
-
-        }
+            let statusClass =
+                "status-baru";
 
 
-        if(status === "Siap"){
+            if(status === "Sedang Diproses"){
 
-            statusClass =
-                "status-siap";
+                statusClass =
+                    "status-proses";
 
-        }
-
-
-        let itemsText = "";
+            }
 
 
-        if(Array.isArray(order.items)){
+            if(status === "Siap"){
 
-            itemsText =
-                order.items.map(item =>
+                statusClass =
+                    "status-siap";
 
-                    `${item.name} ×${item.quantity}`
-
-                ).join(", ");
-
-        }else{
-
-            itemsText =
-                order.items || "-";
-
-        }
+            }
 
 
-        table.innerHTML += `
+            let itemsText = "";
+
+
+            if(Array.isArray(order.items)){
+
+                itemsText =
+                    order.items.map(
+                        item =>
+                        `${item.name} ×${item.quantity}`
+                    ).join(", ");
+
+            }else{
+
+                itemsText =
+                    order.items || "-";
+
+            }
+
+
+            table.innerHTML += `
 
             <tr>
 
                 <td>
-                    ${escapeHTML(order.customer || "-")}
+                    ${escapeHTML(
+                        order.customer || "-"
+                    )}
                 </td>
 
                 <td>
-                    ${escapeHTML(order.table || "-")}
+                    ${escapeHTML(
+                        order.table || "-"
+                    )}
                 </td>
 
                 <td>
-                    ${escapeHTML(itemsText)}
+                    ${escapeHTML(
+                        itemsText
+                    )}
                 </td>
 
                 <td>
                     <strong>
-                        ${money(order.total)}
+                        ${money(
+                            order.total
+                        )}
                     </strong>
                 </td>
 
@@ -1325,8 +1797,11 @@ function loadOrders(){
 
                 <td>
 
-                    <span class="status ${statusClass}">
+                    <span
+                        class="status ${statusClass}">
+
                         ${escapeHTML(status)}
+
                     </span>
 
                 </td>
@@ -1335,25 +1810,28 @@ function loadOrders(){
 
                     <button
                         class="btn-status"
-                        onclick="changeOrderStatus(${index})"
-                    >
+                        onclick="changeOrderStatus(${index})">
+
                         Tukar Status
+
                     </button>
 
                     <button
                         class="btn-danger"
-                        onclick="deleteOrder(${index})"
-                    >
+                        onclick="deleteOrder(${index})">
+
                         Padam
+
                     </button>
 
                 </td>
 
             </tr>
 
-        `;
+            `;
 
-    });
+        }
+    );
 
 }
 
@@ -1373,12 +1851,16 @@ function changeOrderStatus(index){
         orders[index].status =
             "Sedang Diproses";
 
-    }else if(currentStatus === "Sedang Diproses"){
+    }
+    else if(
+        currentStatus === "Sedang Diproses"
+    ){
 
         orders[index].status =
             "Siap";
 
-    }else{
+    }
+    else{
 
         orders[index].status =
             "Baru";
@@ -1403,8 +1885,12 @@ function changeOrderStatus(index){
 
 function deleteOrder(index){
 
-    if(!confirm("Padam pesanan pelanggan ini?")){
+    if(!confirm(
+        "Padam pesanan pelanggan ini?"
+    )){
+
         return;
+
     }
 
 
@@ -1413,7 +1899,7 @@ function deleteOrder(index){
 
 
     /*
-       Cari sales transaction yang sepadan.
+       Padam sales transaction yang sepadan.
     */
 
     const transactionIndex =
@@ -1421,7 +1907,8 @@ function deleteOrder(index){
 
             t.type === "sales" &&
 
-            Number(t.amount) === Number(order.total)
+            Number(t.amount) ===
+            Number(order.total)
 
         );
 
@@ -1456,16 +1943,22 @@ function deleteOrder(index){
 
 
 /* =====================================================
-   SALES CALCULATION
+   TOTALS
 ===================================================== */
 
 function getSales(){
 
     return transactions
-        .filter(t => t.type === "sales")
+
+        .filter(
+            t => t.type === "sales"
+        )
+
         .reduce(
             (sum,t) =>
-                sum + Number(t.amount || 0),
+            sum + Number(
+                t.amount || 0
+            ),
             0
         );
 
@@ -1475,9 +1968,12 @@ function getSales(){
 function getPurchases(){
 
     return purchases
+
         .reduce(
             (sum,p) =>
-                sum + Number(p.total || 0),
+            sum + Number(
+                p.total || 0
+            ),
             0
         );
 
@@ -1487,9 +1983,12 @@ function getPurchases(){
 function getExpenses(){
 
     return expenses
+
         .reduce(
             (sum,e) =>
-                sum + Number(e.amount || 0),
+            sum + Number(
+                e.amount || 0
+            ),
             0
         );
 
@@ -1513,119 +2012,57 @@ function loadDashboard(){
     const currentMonth =
         currentDate.getMonth();
 
+
     const currentYear =
         currentDate.getFullYear();
 
 
-    /*
-       Jualan hari ini
-    */
-
     const todaySales =
         transactions
+
         .filter(t =>
             t.type === "sales" &&
-            t.date === today
+            normalizeDate(t.date) === today
         )
+
         .reduce(
             (sum,t) =>
-                sum + Number(t.amount || 0),
+            sum + Number(
+                t.amount || 0
+            ),
             0
         );
 
 
-    /*
-       Jualan bulan ini
-    */
-
     const monthSales =
         transactions
+
         .filter(t => {
 
             if(t.type !== "sales"){
                 return false;
             }
 
-
             const date =
-                new Date(t.date);
-
+                parseDateSafe(t.date);
 
             return (
-                date.getMonth() === currentMonth &&
-                date.getFullYear() === currentYear
+                date &&
+                date.getMonth() ===
+                currentMonth &&
+                date.getFullYear() ===
+                currentYear
             );
 
         })
+
         .reduce(
             (sum,t) =>
-                sum + Number(t.amount || 0),
+            sum + Number(
+                t.amount || 0
+            ),
             0
         );
-
-
-    const totalPurchases =
-        getPurchases();
-
-
-    const totalExpenses =
-        getExpenses();
-
-
-    const netProfit =
-        getSales()
-        - totalPurchases
-        - totalExpenses;
-
-
-    document.getElementById("todaySales")
-        .textContent =
-        money(todaySales);
-
-
-    document.getElementById("monthSales")
-        .textContent =
-        money(monthSales);
-
-
-    document.getElementById("totalOrders")
-        .textContent =
-        orders.length;
-
-
-    document.getElementById("totalPurchases")
-        .textContent =
-        money(totalPurchases);
-
-
-    document.getElementById("netProfit")
-        .textContent =
-        money(netProfit);
-
-
-    if(netProfit < 0){
-
-        document.getElementById("netProfit")
-            .className = "loss";
-
-    }else{
-
-        document.getElementById("netProfit")
-            .className = "profit";
-
-    }
-
-}
-
-
-/* =====================================================
-   PROFIT & LOSS REPORT
-===================================================== */
-
-function loadReport(){
-
-    const sales =
-        getSales();
 
 
     const purchasesTotal =
@@ -1637,57 +2074,525 @@ function loadReport(){
 
 
     const profit =
-        sales
+        getSales()
         - purchasesTotal
         - expensesTotal;
 
 
-    document.getElementById("reportSales")
-        .textContent =
-        money(sales);
+    document.getElementById(
+        "todaySales"
+    ).textContent =
+        money(todaySales);
 
 
-    document.getElementById("reportPurchases")
-        .textContent =
+    document.getElementById(
+        "monthSales"
+    ).textContent =
+        money(monthSales);
+
+
+    document.getElementById(
+        "totalOrders"
+    ).textContent =
+        orders.length;
+
+
+    document.getElementById(
+        "totalPurchases"
+    ).textContent =
         money(purchasesTotal);
 
 
-    document.getElementById("reportExpenses")
-        .textContent =
-        money(expensesTotal);
-
-
     const profitElement =
-        document.getElementById("reportProfit");
+        document.getElementById(
+            "netProfit"
+        );
 
 
     profitElement.textContent =
         money(profit);
 
 
-    if(profit < 0){
+    profitElement.className =
+        profit < 0
+        ? "loss"
+        : "profit";
 
-        profitElement.className =
-            "loss";
+}
 
-    }else{
 
-        profitElement.className =
-            "profit";
+/* =====================================================
+   DATE HELPERS
+===================================================== */
+
+function normalizeDate(value){
+
+    if(!value){
+        return "";
+    }
+
+
+    /*
+       Jika sudah YYYY-MM-DD
+    */
+
+    if(
+        /^\d{4}-\d{2}-\d{2}$/.test(
+            String(value)
+        )
+    ){
+
+        return String(value);
+
+    }
+
+
+    const parsed =
+        parseDateSafe(value);
+
+
+    if(!parsed){
+        return "";
+    }
+
+
+    const year =
+        parsed.getFullYear();
+
+    const month =
+        String(
+            parsed.getMonth()+1
+        ).padStart(2,"0");
+
+    const day =
+        String(
+            parsed.getDate()
+        ).padStart(2,"0");
+
+
+    return `${year}-${month}-${day}`;
+
+}
+
+
+function parseDateSafe(value){
+
+    if(!value){
+        return null;
+    }
+
+
+    const date =
+        new Date(value);
+
+
+    if(isNaN(date.getTime())){
+        return null;
+    }
+
+
+    return date;
+
+}
+
+
+/* =====================================================
+   REPORT PERIOD
+===================================================== */
+
+function setReportDates(){
+
+    const period =
+        document.getElementById(
+            "reportPeriod"
+        ).value;
+
+
+    const start =
+        document.getElementById(
+            "reportStart"
+        );
+
+    const end =
+        document.getElementById(
+            "reportEnd"
+        );
+
+
+    const today =
+        todayDate();
+
+
+    if(period === "today"){
+
+        start.value =
+            today;
+
+        end.value =
+            today;
+
+    }
+
+
+    else if(period === "month"){
+
+        const d =
+            new Date();
+
+        const year =
+            d.getFullYear();
+
+        const month =
+            String(
+                d.getMonth()+1
+            ).padStart(2,"0");
+
+
+        start.value =
+            `${year}-${month}-01`;
+
+        end.value =
+            today;
+
+    }
+
+
+    else if(period === "all"){
+
+        start.value = "";
+
+        end.value = "";
+
+    }
+
+
+    else if(period === "custom"){
+
+        /*
+           Kekalkan tarikh yang dipilih.
+           Jika kosong, gunakan hari ini.
+        */
+
+        if(!start.value){
+            start.value = today;
+        }
+
+        if(!end.value){
+            end.value = today;
+        }
 
     }
 
 }
 
 
+document.getElementById(
+    "reportPeriod"
+).addEventListener(
+    "change",
+    function(){
+
+        setReportDates();
+
+        generateReport();
+
+    }
+);
+
+
 /* =====================================================
-   7-DAY SALES CHART
+   REPORT FILTER
+===================================================== */
+
+function dateInRange(
+    dateValue,
+    start,
+    end
+){
+
+    const normalized =
+        normalizeDate(dateValue);
+
+
+    if(!normalized){
+        return false;
+    }
+
+
+    if(start &&
+       normalized < start){
+
+        return false;
+
+    }
+
+
+    if(end &&
+       normalized > end){
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =====================================================
+   GENERATE REPORT
+===================================================== */
+
+function generateReport(){
+
+    const period =
+        document.getElementById(
+            "reportPeriod"
+        ).value;
+
+
+    let start =
+        document.getElementById(
+            "reportStart"
+        ).value;
+
+
+    let end =
+        document.getElementById(
+            "reportEnd"
+        ).value;
+
+
+    if(period !== "all" &&
+       (!start || !end)){
+
+        setReportDates();
+
+        start =
+            document.getElementById(
+                "reportStart"
+            ).value;
+
+        end =
+            document.getElementById(
+                "reportEnd"
+            ).value;
+
+    }
+
+
+    if(
+        start &&
+        end &&
+        start > end
+    ){
+
+        alert(
+            "Tarikh mula tidak boleh melebihi tarikh akhir."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       JUALAN
+    */
+
+    const sales =
+        transactions
+
+        .filter(t =>
+
+            t.type === "sales" &&
+
+            dateInRange(
+                t.date,
+                start,
+                end
+            )
+
+        )
+
+        .reduce(
+            (sum,t) =>
+            sum + Number(
+                t.amount || 0
+            ),
+            0
+        );
+
+
+    /*
+       BELIAN
+    */
+
+    const purchaseTotal =
+        purchases
+
+        .filter(p =>
+
+            dateInRange(
+                p.date,
+                start,
+                end
+            )
+
+        )
+
+        .reduce(
+            (sum,p) =>
+            sum + Number(
+                p.total || 0
+            ),
+            0
+        );
+
+
+    /*
+       BELANJA OPERASI
+    */
+
+    const expenseTotal =
+        expenses
+
+        .filter(e =>
+
+            dateInRange(
+                e.date,
+                start,
+                end
+            )
+
+        )
+
+        .reduce(
+            (sum,e) =>
+            sum + Number(
+                e.amount || 0
+            ),
+            0
+        );
+
+
+    /*
+       UNTUNG BERSIH
+    */
+
+    const profit =
+        sales
+        - purchaseTotal
+        - expenseTotal;
+
+
+    document.getElementById(
+        "reportSales"
+    ).textContent =
+        money(sales);
+
+
+    document.getElementById(
+        "reportPurchases"
+    ).textContent =
+        money(purchaseTotal);
+
+
+    document.getElementById(
+        "reportExpenses"
+    ).textContent =
+        money(expenseTotal);
+
+
+    const profitElement =
+        document.getElementById(
+            "reportProfit"
+        );
+
+
+    profitElement.textContent =
+        money(profit);
+
+
+    profitElement.className =
+        profit < 0
+        ? "loss"
+        : "profit";
+
+
+    /*
+       Paparan tempoh
+    */
+
+    let periodText = "";
+
+
+    if(period === "today"){
+
+        periodText =
+            "Hari Ini: " + start;
+
+    }
+
+    else if(period === "month"){
+
+        periodText =
+            "Bulan Ini: " +
+            start +
+            " hingga " +
+            end;
+
+    }
+
+    else if(period === "all"){
+
+        periodText =
+            "Semua Rekod";
+
+    }
+
+    else{
+
+        periodText =
+            start +
+            " hingga " +
+            end;
+
+    }
+
+
+    document.getElementById(
+        "printPeriod"
+    ).textContent =
+        "Tempoh: " + periodText;
+
+}
+
+
+/* =====================================================
+   PRINT REPORT
+===================================================== */
+
+function printReport(){
+
+    generateReport();
+
+    window.print();
+
+}
+
+
+/* =====================================================
+   CHART
 ===================================================== */
 
 function drawChart(){
 
     const canvas =
-        document.getElementById("salesChart");
+        document.getElementById(
+            "salesChart"
+        );
 
 
     const ctx =
@@ -1721,14 +2626,18 @@ function drawChart(){
     const values = [];
 
 
-    for(let i = 6; i >= 0; i--){
+    for(
+        let i=6;
+        i>=0;
+        i--
+    ){
 
         const date =
             new Date(now);
 
 
         date.setDate(
-            now.getDate() - i
+            now.getDate()-i
         );
 
 
@@ -1754,13 +2663,22 @@ function drawChart(){
 
         const total =
             transactions
+
             .filter(t =>
+
                 t.type === "sales" &&
-                t.date === dateString
+
+                normalizeDate(
+                    t.date
+                ) === dateString
+
             )
+
             .reduce(
                 (sum,t) =>
-                    sum + Number(t.amount || 0),
+                sum + Number(
+                    t.amount || 0
+                ),
                 0
             );
 
@@ -1776,15 +2694,22 @@ function drawChart(){
 
     const padding = 60;
 
+
     const chartWidth =
-        width - padding * 2;
+        width -
+        padding*2;
+
 
     const chartHeight =
-        height - padding * 2;
+        height -
+        padding*2;
 
 
     const maxValue =
-        Math.max(...values,10);
+        Math.max(
+            ...values,
+            10
+        );
 
 
     /*
@@ -1794,8 +2719,7 @@ function drawChart(){
     ctx.strokeStyle =
         "#c8b8ad";
 
-    ctx.lineWidth =
-        2;
+    ctx.lineWidth = 2;
 
 
     ctx.beginPath();
@@ -1819,161 +2743,177 @@ function drawChart(){
 
 
     /*
-       Sales line
+       Line
     */
 
     ctx.beginPath();
 
 
-    values.forEach((value,index)=>{
+    values.forEach(
+        (value,index)=>{
 
-        const x =
-            padding +
-            (
-                index /
-                (values.length-1)
-            ) *
-            chartWidth;
-
-
-        const y =
-            height -
-            padding -
-            (
-                value /
-                maxValue
-            ) *
-            chartHeight;
+            const x =
+                padding +
+                (
+                    index /
+                    (values.length-1)
+                ) *
+                chartWidth;
 
 
-        if(index === 0){
+            const y =
+                height -
+                padding -
+                (
+                    value /
+                    maxValue
+                ) *
+                chartHeight;
 
-            ctx.moveTo(x,y);
 
-        }else{
+            if(index === 0){
 
-            ctx.lineTo(x,y);
+                ctx.moveTo(
+                    x,
+                    y
+                );
+
+            }else{
+
+                ctx.lineTo(
+                    x,
+                    y
+                );
+
+            }
 
         }
-
-    });
+    );
 
 
     ctx.strokeStyle =
         "#6d4c41";
 
-    ctx.lineWidth =
-        4;
+    ctx.lineWidth = 4;
 
     ctx.stroke();
 
 
     /*
-       Points
+       Points + labels
     */
 
-    values.forEach((value,index)=>{
+    values.forEach(
+        (value,index)=>{
 
-        const x =
-            padding +
-            (
-                index /
-                (values.length-1)
-            ) *
-            chartWidth;
-
-
-        const y =
-            height -
-            padding -
-            (
-                value /
-                maxValue
-            ) *
-            chartHeight;
+            const x =
+                padding +
+                (
+                    index /
+                    (values.length-1)
+                ) *
+                chartWidth;
 
 
-        ctx.beginPath();
-
-        ctx.arc(
-            x,
-            y,
-            6,
-            0,
-            Math.PI * 2
-        );
-
-        ctx.fillStyle =
-            "#6d4c41";
-
-        ctx.fill();
+            const y =
+                height -
+                padding -
+                (
+                    value /
+                    maxValue
+                ) *
+                chartHeight;
 
 
-        ctx.fillStyle =
-            "#3e2723";
+            ctx.beginPath();
 
-        ctx.font =
-            "bold 22px Arial";
-
-        ctx.textAlign =
-            "center";
-
-        ctx.fillText(
-            "RM" + value.toFixed(0),
-            x,
-            y - 15
-        );
+            ctx.arc(
+                x,
+                y,
+                6,
+                0,
+                Math.PI*2
+            );
 
 
-        ctx.fillStyle =
-            "#555";
+            ctx.fillStyle =
+                "#6d4c41";
 
-        ctx.font =
-            "20px Arial";
+            ctx.fill();
 
-        ctx.fillText(
-            labels[index],
-            x,
-            height - 20
-        );
 
-    });
+            ctx.fillStyle =
+                "#3e2723";
+
+            ctx.font =
+                "bold 22px Arial";
+
+            ctx.textAlign =
+                "center";
+
+
+            ctx.fillText(
+                "RM" +
+                value.toFixed(0),
+                x,
+                y-15
+            );
+
+
+            ctx.fillStyle =
+                "#555";
+
+            ctx.font =
+                "20px Arial";
+
+
+            ctx.fillText(
+                labels[index],
+                x,
+                height-20
+            );
+
+        }
+    );
 
 }
 
 
 /* =====================================================
-   LOAD EVERYTHING
+   LOAD ALL
 ===================================================== */
 
 function loadAll(){
 
-    /*
-       Ambil semula data terbaru
-       daripada localStorage.
-    */
-
     transactions =
         JSON.parse(
-            localStorage.getItem("transactions")
+            localStorage.getItem(
+                "transactions"
+            )
         ) || [];
 
 
     orders =
         JSON.parse(
-            localStorage.getItem("orders")
+            localStorage.getItem(
+                "orders"
+            )
         ) || [];
 
 
     purchases =
         JSON.parse(
-            localStorage.getItem("purchases")
+            localStorage.getItem(
+                "purchases"
+            )
         ) || [];
 
 
     expenses =
         JSON.parse(
-            localStorage.getItem("expenses")
+            localStorage.getItem(
+                "expenses"
+            )
         ) || [];
 
 
@@ -1985,7 +2925,12 @@ function loadAll(){
 
     loadOrders();
 
-    loadReport();
+    /*
+       Laporan tidak perlu auto berubah
+       jika user sedang pilih custom date.
+    */
+
+    generateReport();
 
     drawChart();
 
@@ -1996,13 +2941,13 @@ function loadAll(){
    START
 ===================================================== */
 
+setReportDates();
+
 loadAll();
 
 
 /*
-   Auto refresh setiap 3 saat
-   supaya data pesanan yang masuk
-   dapat dikemas kini.
+   Auto refresh.
 */
 
 setInterval(
@@ -2012,7 +2957,8 @@ setInterval(
 
 
 /*
-   Redraw chart bila saiz skrin berubah.
+   Redraw chart apabila
+   saiz skrin berubah.
 */
 
 window.addEventListener(
