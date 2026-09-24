@@ -351,7 +351,6 @@ footer {
 </style>
 </head>
 
-
 <body>
 
 <!-- ================= HEADER ================= -->
@@ -363,13 +362,20 @@ footer {
     </div>
 
     <nav>
-        <a href="#home">Home</a>
-        <a href="#menu">Menu</a>
+
+        <a href="#home">
+            Home
+        </a>
+
+        <a href="#menu">
+            Menu
+        </a>
 
         <a href="#cart" class="cart-button">
             🛒 Cart
             (<span id="cartCount">0</span>)
         </a>
+
     </nav>
 
 </header>
@@ -381,7 +387,9 @@ footer {
 
     <div>
 
-        <h1>Ruang Kopi Kita</h1>
+        <h1>
+            Ruang Kopi Kita
+        </h1>
 
         <p>
             "Ruang Kopi Kita - Ruang Kosong Tanpa Kamu"
@@ -400,54 +408,70 @@ footer {
 
 <div class="categories">
 
-    <button class="category-btn active"
-            onclick="filterMenu('all', this)">
+    <button
+        class="category-btn active"
+        onclick="filterMenu('all', this)">
         Semua
     </button>
 
-    <button class="category-btn"
-            onclick="filterMenu('coffee', this)">
+    <button
+        class="category-btn"
+        onclick="filterMenu('coffee', this)">
         ☕ Coffee
     </button>
 
-    <button class="category-btn"
-            onclick="filterMenu('noncoffee', this)">
+    <button
+        class="category-btn"
+        onclick="filterMenu('noncoffee', this)">
         🥛 Non-Coffee
     </button>
 
-    <button class="category-btn"
-            onclick="filterMenu('bites', this)">
+    <button
+        class="category-btn"
+        onclick="filterMenu('bites', this)">
         🍟 Bites
     </button>
 
-    <button class="category-btn"
-            onclick="filterMenu('pasta', this)">
+    <button
+        class="category-btn"
+        onclick="filterMenu('pasta', this)">
         🍝 Pasta
     </button>
 
-    <button class="category-btn"
-            onclick="filterMenu('rice', this)">
+    <button
+        class="category-btn"
+        onclick="filterMenu('rice', this)">
         🍚 Rice Bowl
     </button>
 
-    <button class="category-btn"
-            onclick="filterMenu('milky', this)">
+    <button
+        class="category-btn"
+        onclick="filterMenu('milky', this)">
         🥤 Milky
     </button>
 
-    <button class="category-btn"
-            onclick="filterMenu('sparkling', this)">
+    <button
+        class="category-btn"
+        onclick="filterMenu('sparkling', this)">
         🫧 Sparkling
     </button>
 
-    <button class="category-btn"
-            onclick="filterMenu('tea', this)">
+    <button
+        class="category-btn"
+        onclick="filterMenu('tea', this)">
         🍵 Tea
     </button>
 
-    <button class="category-btn"
-            onclick="filterMenu('matcha', this)">
+    <button
+        class="category-btn"
+        onclick="filterMenu('matcha', this)">
         🍃 Matcha
+    </button>
+
+    <button
+        class="category-btn"
+        onclick="filterMenu('addon', this)">
+        ➕ Add On
     </button>
 
 </div>
@@ -459,7 +483,9 @@ footer {
 
     <div class="section-title">
 
-        <h2>🍽️ Menu Kami</h2>
+        <h2>
+            🍽️ Menu Kami
+        </h2>
 
         <p>
             Pilih makanan dan minuman anda
@@ -467,7 +493,10 @@ footer {
 
     </div>
 
-    <div class="menu-grid" id="menuGrid"></div>
+    <div
+        class="menu-grid"
+        id="menuGrid">
+    </div>
 
 </section>
 
@@ -476,21 +505,30 @@ footer {
 
 <section class="cart-section" id="cart">
 
-    <h2>🛒 Pesanan Anda</h2>
+    <h2>
+        🛒 Pesanan Anda
+    </h2>
 
     <div id="cartItems">
 
-        <p>Belum ada pesanan.</p>
+        <p>
+            Belum ada pesanan.
+        </p>
 
     </div>
 
 
     <div class="total-box">
 
-        <span>Jumlah</span>
+        <span>
+            Jumlah
+        </span>
 
         <span>
-            RM <span id="total">0.00</span>
+            RM
+            <span id="total">
+                0.00
+            </span>
         </span>
 
     </div>
@@ -500,19 +538,19 @@ footer {
 
     <div class="order-form">
 
-        <h3>📋 Maklumat Pesanan</h3>
+        <h3>
+            📋 Maklumat Pesanan
+        </h3>
 
         <input
             type="text"
             id="customerName"
-            placeholder="Nama pelanggan"
-        >
+            placeholder="Nama pelanggan">
 
         <input
             type="text"
             id="tableNumber"
-            placeholder="Nombor meja"
-        >
+            placeholder="Nombor meja">
 
         <button
             class="order-button"
@@ -550,694 +588,692 @@ footer {
 
 const menu = [
 
-/* ================= COFFEE ================= */
-
-{
-    category: "coffee",
-    name: "Americano",
-    icon: "☕",
-    prices: {
-        Hot: 8,
-        Cold: 9
+    /* ================= COFFEE ================= */
+
+    {
+        category: "coffee",
+        name: "Americano",
+        icon: "☕",
+        prices: {
+            Hot: 8,
+            Cold: 9
+        }
+    },
+
+    {
+        category: "coffee",
+        name: "Latte",
+        icon: "☕",
+        prices: {
+            Hot: 9,
+            Cold: 10
+        }
+    },
+
+    {
+        category: "coffee",
+        name: "Vanila Latte",
+        icon: "☕",
+        prices: {
+            Hot: 12,
+            Cold: 14
+        }
+    },
+
+    {
+        category: "coffee",
+        name: "Hazelnut Latte",
+        icon: "☕",
+        prices: {
+            Hot: 12,
+            Cold: 14
+        }
+    },
+
+    {
+        category: "coffee",
+        name: "Spanish Latte",
+        icon: "☕",
+        prices: {
+            Hot: 12,
+            Cold: 14
+        }
+    },
+
+    {
+        category: "coffee",
+        name: "Strawberry Latte",
+        icon: "☕",
+        prices: {
+            Hot: 12,
+            Cold: 14
+        }
+    },
+
+    {
+        category: "coffee",
+        name: "Mocha Latte",
+        icon: "☕",
+        prices: {
+            Hot: 12,
+            Cold: 14
+        }
+    },
+
+    {
+        category: "coffee",
+        name: "Butterscotch Latte",
+        icon: "☕",
+        prices: {
+            Hot: 13,
+            Cold: 15
+        }
+    },
+
+    {
+        category: "coffee",
+        name: "Caramel Macchiato",
+        icon: "☕",
+        prices: {
+            Hot: 13,
+            Cold: 15
+        }
+    },
+
+    {
+        category: "coffee",
+        name: "Butter Cookie Latte",
+        icon: "☕",
+        prices: {
+            Hot: 13,
+            Cold: 15
+        }
+    },
+
+    {
+        category: "coffee",
+        name: "Pistachio Latte",
+        icon: "☕",
+        prices: {
+            Hot: 13,
+            Cold: 15
+        }
+    },
+
+    {
+        category: "coffee",
+        name: "Ruang Kopi Kita Signature",
+        icon: "☕",
+        prices: {
+            Regular: 17
+        }
+    },
+
+
+    /* ================= NON COFFEE ================= */
+
+    {
+        category: "noncoffee",
+        name: "Chocolate",
+        icon: "🍫",
+        prices: {
+            Hot: 10,
+            Cold: 11
+        }
+    },
+
+    {
+        category: "noncoffee",
+        name: "Chocolate Hazelnut",
+        icon: "🍫",
+        prices: {
+            Hot: 11,
+            Cold: 13
+        }
+    },
+
+    {
+        category: "noncoffee",
+        name: "Chocolate Cookie",
+        icon: "🍪",
+        prices: {
+            Hot: 11,
+            Cold: 13
+        }
+    },
+
+    {
+        category: "noncoffee",
+        name: "Chocolate Caramel",
+        icon: "🍫",
+        prices: {
+            Hot: 11,
+            Cold: 13
+        }
+    },
+
+    {
+        category: "noncoffee",
+        name: "Chocolate Pistachio",
+        icon: "🍵",
+        prices: {
+            Cold: 14
+        }
+    },
+
+    {
+        category: "noncoffee",
+        name: "Black Forest",
+        icon: "🍫",
+        prices: {
+            Cold: 14
+        }
+    },
+
+
+    /* ================= BITES ================= */
+
+    {
+        category: "bites",
+        name: "Shaker Fries",
+        icon: "🍟",
+        prices: {
+            Regular: 7
+        }
+    },
+
+    {
+        category: "bites",
+        name: "Chicken Nugget 5pcs",
+        icon: "🍗",
+        prices: {
+            Regular: 7
+        }
+    },
+
+    {
+        category: "bites",
+        name: "Wedges",
+        icon: "🥔",
+        prices: {
+            Regular: 10
+        }
+    },
+
+    {
+        category: "bites",
+        name: "Combo Set (Fries & Nugget)",
+        icon: "🍟",
+        prices: {
+            Regular: 12
+        }
+    },
+
+    {
+        category: "bites",
+        name: "Combo Set (Fries & Wedges)",
+        icon: "🍟",
+        prices: {
+            Regular: 15
+        }
+    },
+
+    {
+        category: "bites",
+        name: "Loaded Fries",
+        icon: "🍟",
+        prices: {
+            Regular: 12
+        }
+    },
+
+    {
+        category: "bites",
+        name: "Loaded Nachos",
+        icon: "🌮",
+        prices: {
+            Regular: 13
+        }
+    },
+
+
+    /* ================= PASTA ================= */
+
+    {
+        category: "pasta",
+        name: "Aglio Olio",
+        icon: "🍝",
+        prices: {
+            Regular: 13
+        }
+    },
+
+    {
+        category: "pasta",
+        name: "Carbonara",
+        icon: "🍝",
+        prices: {
+            Regular: 13
+        }
+    },
+
+    {
+        category: "pasta",
+        name: "Bolognese",
+        icon: "🍝",
+        prices: {
+            Regular: 13
+        }
+    },
+
+    {
+        category: "pasta",
+        name: "Creamy Tomyam",
+        icon: "🍝",
+        prices: {
+            Regular: 15
+        }
+    },
+
+    {
+        category: "pasta",
+        name: "Gigi Hadid",
+        icon: "🍝",
+        prices: {
+            Regular: 15
+        }
+    },
+
+
+    /* ================= RICE BOWL ================= */
+
+    {
+        category: "rice",
+        name: "Sukiya Maggie Bowl",
+        icon: "🍚",
+        prices: {
+            Regular: 15
+        }
+    },
+
+    {
+        category: "rice",
+        name: "Sukiya Rice Bowl",
+        icon: "🍚",
+        prices: {
+            Regular: 17
+        }
+    },
+
+    {
+        category: "rice",
+        name: "Cili Padi Beef Bowl",
+        icon: "🍚",
+        prices: {
+            Regular: 17
+        }
+    },
+
+    {
+        category: "rice",
+        name: "Sukiya Beef Bowl (150g)",
+        icon: "🍚",
+        prices: {
+            Regular: 19
+        }
+    },
+
+
+    /* ================= MILKY ================= */
+
+    {
+        category: "milky",
+        name: "Taro Milk",
+        icon: "🥛",
+        prices: {
+            Cold: 10
+        }
+    },
+
+    {
+        category: "milky",
+        name: "Strawberry Milk",
+        icon: "🥛",
+        prices: {
+            Cold: 10
+        }
+    },
+
+    {
+        category: "milky",
+        name: "Mango Milk",
+        icon: "🥭",
+        prices: {
+            Cold: 10
+        }
+    },
+
+    {
+        category: "milky",
+        name: "PineApple Milk",
+        icon: "🍍",
+        prices: {
+            Cold: 10
+        }
+    },
+
+    {
+        category: "milky",
+        name: "Brown Sugar Milk",
+        icon: "🥛",
+        prices: {
+            Cold: 10
+        }
+    },
+
+
+    /* ================= SPARKLING ================= */
+
+    {
+        category: "sparkling",
+        name: "Lychee Soda",
+        icon: "🫧",
+        prices: {
+            Regular: 8
+        }
+    },
+
+    {
+        category: "sparkling",
+        name: "Blackcurrant",
+        icon: "🫐",
+        prices: {
+            Regular: 8
+        }
+    },
+
+    {
+        category: "sparkling",
+        name: "Strawberry Sprite",
+        icon: "🍓",
+        prices: {
+            Regular: 8
+        }
+    },
+
+    {
+        category: "sparkling",
+        name: "Mango Unite",
+        icon: "🥭",
+        prices: {
+            Regular: 8
+        }
+    },
+
+    {
+        category: "sparkling",
+        name: "Blue Lagoon",
+        icon: "🫧",
+        prices: {
+            Regular: 8
+        }
+    },
+
+    {
+        category: "sparkling",
+        name: "PineApple Pine",
+        icon: "🍍",
+        prices: {
+            Regular: 8
+        }
+    },
+
+
+    /* ================= TEA ================= */
+
+    {
+        category: "tea",
+        name: "Lemon Tea",
+        icon: "🍋",
+        prices: {
+            Hot: 6,
+            Cold: 7
+        }
+    },
+
+    {
+        category: "tea",
+        name: "Peach Tea",
+        icon: "🍑",
+        prices: {
+            Hot: 6,
+            Cold: 7
+        }
+    },
+
+    {
+        category: "tea",
+        name: "Teh O",
+        icon: "🍵",
+        prices: {
+            Hot: 2,
+            Cold: 3
+        }
+    },
+
+    {
+        category: "tea",
+        name: "Teh Tarik",
+        icon: "🫖",
+        prices: {
+            Hot: 4,
+            Cold: 5
+        }
+    },
+
+
+    /* ================= MATCHA ================= */
+
+    {
+        category: "matcha",
+        name: "Matcha",
+        icon: "🍃",
+        prices: {
+            Regular: 11
+        }
+    },
+
+    {
+        category: "matcha",
+        name: "Matcha Strawberry",
+        icon: "🍓",
+        prices: {
+            Regular: 13
+        }
+    },
+
+    {
+        category: "matcha",
+        name: "Matcha Mango",
+        icon: "🥭",
+        prices: {
+            Regular: 13
+        }
+    },
+
+    {
+        category: "matcha",
+        name: "Matcha Caramel",
+        icon: "🍃",
+        prices: {
+            Regular: 13
+        }
+    },
+
+    {
+        category: "matcha",
+        name: "Matcha Butterscotch",
+        icon: "🍃",
+        prices: {
+            Regular: 13
+        }
+    },
+
+    {
+        category: "matcha",
+        name: "Matcha Chocolate",
+        icon: "🍫",
+        prices: {
+            Regular: 13
+        }
+    },
+
+    {
+        category: "matcha",
+        name: "Matcha Taro",
+        icon: "🍃",
+        prices: {
+            Regular: 13
+        }
+    },
+
+    {
+        category: "matcha",
+        name: "Matcha Biscoff",
+        icon: "🍪",
+        prices: {
+            Regular: 14.90
+        }
+    },
+
+
+    /* ================= ADD ON ================= */
+
+    {
+        category: "addon",
+        name: "Shabu Shabu Beef (50g)",
+        icon: "🥩",
+        prices: {
+            Regular: 10
+        }
+    },
+
+    {
+        category: "addon",
+        name: "Chicken Slice",
+        icon: "🍗",
+        prices: {
+            Regular: 2
+        }
+    },
+
+    {
+        category: "addon",
+        name: "Prawn 2pcs",
+        icon: "🍤",
+        prices: {
+            Regular: 6
+        }
+    },
+
+    {
+        category: "addon",
+        name: "Spaghetti",
+        icon: "🍝",
+        prices: {
+            Regular: 4
+        }
+    },
+
+    {
+        category: "addon",
+        name: "Maggie",
+        icon: "🍜",
+        prices: {
+            Regular: 5
+        }
+    },
+
+    {
+        category: "addon",
+        name: "Rice",
+        icon: "🍚",
+        prices: {
+            Regular: 2
+        }
+    },
+
+    {
+        category: "addon",
+        name: "Sukiya Sauce",
+        icon: "🥣",
+        prices: {
+            Regular: 2
+        }
+    },
+
+    {
+        category: "addon",
+        name: "Cheese Sauce",
+        icon: "🧀",
+        prices: {
+            Regular: 3
+        }
+    },
+
+    {
+        category: "addon",
+        name: "Espresso Shot",
+        icon: "☕",
+        prices: {
+            Regular: 3
+        }
+    },
+
+    {
+        category: "addon",
+        name: "Oat Milk",
+        icon: "🥛",
+        prices: {
+            Regular: 3
+        }
+    },
+
+    {
+        category: "addon",
+        name: "Flavoured Syrup",
+        icon: "🍯",
+        prices: {
+            Regular: 2
+        }
+    },
+
+    {
+        category: "addon",
+        name: "Whipping Cream",
+        icon: "🍦",
+        prices: {
+            Regular: 2
+        }
+    },
+
+    {
+        category: "addon",
+        name: "Drizzle",
+        icon: "🍫",
+        prices: {
+            Regular: 1
+        }
+    },
+
+    {
+        category: "addon",
+        name: "Pure Matcha",
+        icon: "🍃",
+        prices: {
+            Regular: 1
+        }
     }
-},
-
-{
-    category: "coffee",
-    name: "Latte",
-    icon: "☕",
-    prices: {
-        Hot: 9,
-        Cold: 10
-    }
-},
-
-{
-    category: "coffee",
-    name: "Vanila Latte",
-    icon: "☕",
-    prices: {
-        Hot: 12,
-        Cold: 14
-    }
-},
-
-{
-    category: "coffee",
-    name: "Hazelnut Latte",
-    icon: "☕",
-    prices: {
-        Hot: 12,
-        Cold: 14
-    }
-},
-
-{
-    category: "coffee",
-    name: "Spanish Latte",
-    icon: "☕",
-    prices: {
-        Hot: 12,
-        Cold: 14
-    }
-},
-
-{
-    category: "coffee",
-    name: "Strawberry Latte",
-    icon: "☕",
-    prices: {
-        Hot: 12,
-        Cold: 14
-    }
-},
-
-{
-    category: "coffee",
-    name: "Mocha Latte",
-    icon: "☕",
-    prices: {
-        Hot: 12,
-        Cold: 14
-    }
-},
-
-{
-    category: "coffee",
-    name: "Butterscotch Latte",
-    icon: "☕",
-    prices: {
-        Hot: 13,
-        Cold: 15
-    }
-},
-
-{
-    category: "coffee",
-    name: "Caramel Macchiato",
-    icon: "☕",
-    prices: {
-        Hot: 13,
-        Cold: 15
-    }
-},
-
-{
-    category: "coffee",
-    name: "Butter Cookie Latte",
-    icon: "☕",
-    prices: {
-        Hot: 13,
-        Cold: 15
-    }
-},
-
-{
-    category: "coffee",
-    name: "Pistachio Latte",
-    icon: "☕",
-    prices: {
-        Hot: 13,
-        Cold: 15
-    }
-},
-
-{
-    category: "coffee",
-    name: "Ruang Kopi Kita Signature",
-    icon: "☕",
-    prices: {
-        Regular: 17
-    }
-},
-
-
-/* ================= NON COFFEE ================= */
-
-{
-    category: "noncoffee",
-    name: "Chocolate",
-    icon: "🍫",
-    prices: {
-        Hot: 10,
-        Cold: 11
-    }
-},
-
-{
-    category: "noncoffee",
-    name: "Chocolate Hazelnut",
-    icon: "🍫",
-    prices: {
-        Hot: 11,
-        Cold: 13
-    }
-},
-
-{
-    category: "noncoffee",
-    name: "Chocolate Cookie",
-    icon: "🍪",
-    prices: {
-        Hot: 11,
-        Cold: 13
-    }
-},
-
-{
-    category: "noncoffee",
-    name: "Chocolate Caramel",
-    icon: "🍫",
-    prices: {
-        Hot: 11,
-        Cold: 13
-    }
-},
-
-{
-    category: "noncoffee",
-    name: "Chocolate Pistachio",
-    icon: "🍵",
-    prices: {
-        Cold: 14
-    }
-},
-
-{
-    category: "noncoffee",
-    name: "Black Forest",
-    icon: "🍫",
-    prices: {
-        Cold: 14
-    }
-},
-
-
-/* ================= BITES ================= */
-
-{
-    category: "bites",
-    name: "Shaker Fries",
-    icon: "🍟",
-    prices: {
-        Regular: 7
-    }
-},
-
-{
-    category: "bites",
-    name: "Chicken Nugget 5pcs",
-    icon: "🍗",
-    prices: {
-        Regular: 7
-    }
-},
-
-{
-    category: "bites",
-    name: "Wedges",
-    icon: "🥔",
-    prices: {
-        Regular: 10
-    }
-},
-
-{
-    category: "bites",
-    name: "Combo Set (Fries & Nugget)",
-    icon: "🍟",
-    prices: {
-        Regular: 12
-    }
-},
-
-{
-    category: "bites",
-    name: "Combo Set (Fries & Wedges)",
-    icon: "🍟",
-    prices: {
-        Regular: 15
-    }
-},
-
-{
-    category: "bites",
-    name: "Loaded Fries",
-    icon: "🍟",
-    prices: {
-        Regular: 12
-    }
-},
-
-{
-    category: "bites",
-    name: "Loaded Nachos",
-    icon: "🌮",
-    prices: {
-        Regular: 13
-    }
-},
-
-
-/* ================= PASTA ================= */
-
-{
-    category: "pasta",
-    name: "Aglio Olio",
-    icon: "🍝",
-    prices: {
-        Regular: 13
-    }
-},
-
-{
-    category: "pasta",
-    name: "Carbonara",
-    icon: "🍝",
-    prices: {
-        Regular: 13
-    }
-},
-
-{
-    category: "pasta",
-    name: "Bolognese",
-    icon: "🍝",
-    prices: {
-        Regular: 13
-    }
-},
-
-{
-    category: "pasta",
-    name: "Creamy Tomyam",
-    icon: "🍝",
-    prices: {
-        Regular: 15
-    }
-},
-
-{
-    category: "pasta",
-    name: "Gigi Hadid",
-    icon: "🍝",
-    prices: {
-        Regular: 15
-    }
-},
-
-
-/* ================= RICE BOWL ================= */
-
-{
-    category: "rice",
-    name: "Sukiya Maggie Bowl",
-    icon: "🍚",
-    prices: {
-        Regular: 15
-    }
-},
-
-{
-    category: "rice",
-    name: "Sukiya Rice Bowl",
-    icon: "🍚",
-    prices: {
-        Regular: 17
-    }
-},
-
-{
-    category: "rice",
-    name: "Cili Padi Beef Bowl",
-    icon: "🍚",
-    prices: {
-        Regular: 17
-    }
-},
-
-{
-    category: "rice",
-    name: "Sukiya Beef Bowl (150g)",
-    icon: "🍚",
-    prices: {
-        Regular: 19
-    }
-},
-
-
-/* ================= MILKY ================= */
-
-{
-    category: "milky",
-    name: "Taro Milk",
-    icon: "🥛",
-    prices: {
-        Cold: 10
-    }
-},
-
-{
-    category: "milky",
-    name: "Strawberry Milk",
-    icon: "🥛",
-    prices: {
-        Cold: 10
-    }
-},
-
-{
-    category: "milky",
-    name: "Mango Milk",
-    icon: "🥭",
-    prices: {
-        Cold: 10
-    }
-},
-
-{
-    category: "milky",
-    name: "PineApple Milk",
-    icon: "🍍",
-    prices: {
-        Cold: 10
-    }
-},
-
-{
-    category: "milky",
-    name: "Brown Sugar Milk",
-    icon: "🥛",
-    prices: {
-        Cold: 10
-    }
-},
-
-
-/* ================= SPARKLING ================= */
-
-{
-    category: "sparkling",
-    name: "Lychee Soda",
-    icon: "🫧",
-    prices: {
-        Regular: 8
-    }
-},
-
-{
-    category: "sparkling",
-    name: "Blackcurrant",
-    icon: "🫐",
-    prices: {
-        Regular: 8
-    }
-},
-
-{
-    category: "sparkling",
-    name: "Strawberry Sprite",
-    icon: "🍓",
-    prices: {
-        Regular: 8
-    }
-},
-
-{
-    category: "sparkling",
-    name: "Mango Unite",
-    icon: "🥭",
-    prices: {
-        Regular: 8
-    }
-},
-
-{
-    category: "sparkling",
-    name: "Blue Lagoon",
-    icon: "🫧",
-    prices: {
-        Regular: 8
-    }
-},
-
-{
-    category: "sparkling",
-    name: "PineApple Pine",
-    icon: "🍍",
-    prices: {
-        Regular: 8
-    }
-},
-
-
-/* ================= TEA ================= */
-
-{
-    category: "tea",
-    name: "Lemon Tea",
-    icon: "🍋",
-    prices: {
-        Hot: 6,
-        Cold: 7
-    }
-},
-
-{
-    category: "tea",
-    name: "Peach Tea",
-    icon: "🍑",
-    prices: {
-        Hot: 6,
-        Cold: 7
-    }
-},
-
-{
-    category: "tea",
-    name: "Teh O",
-    icon: "🍵",
-    prices: {
-        Hot: 2,
-        Cold: 3
-    }
-},
-
-{
-    category: "tea",
-    name: "Teh Tarik",
-    icon: "🫖",
-    prices: {
-        Hot: 4,
-        Cold: 5
-    }
-},
-
-
-/* ================= MATCHA ================= */
-
-{
-    category: "matcha",
-    name: "Matcha",
-    icon: "🍃",
-    prices: {
-        Regular: 11
-    }
-},
-
-{
-    category: "matcha",
-    name: "Matcha Strawberry",
-    icon: "🍓",
-    prices: {
-        Regular: 13
-    }
-},
-
-{
-    category: "matcha",
-    name: "Matcha Mango",
-    icon: "🥭",
-    prices: {
-        Regular: 13
-    }
-},
-
-{
-    category: "matcha",
-    name: "Matcha Caramel",
-    icon: "🍃",
-    prices: {
-        Regular: 13
-    }
-},
-
-{
-    category: "matcha",
-    name: "Matcha Butterscotch",
-    icon: "🍃",
-    prices: {
-        Regular: 13
-    }
-},
-
-{
-    category: "matcha",
-    name: "Matcha Chocolate",
-    icon: "🍫",
-    prices: {
-        Regular: 13
-    }
-},
-
-{
-    category: "matcha",
-    name: "Matcha Taro",
-    icon: "🍃",
-    prices: {
-        Regular: 13
-    }
-},
-
-{
-    category: "matcha",
-    name: "Matcha Biscoff",
-    icon: "🍪",
-    prices: {
-        Regular: 14.90
-    }
-},
-
-
-/* ================= ADD ON ================= */
-
-{
-    category: "addon",
-    name: "Shabu Shabu Beef (50g)",
-    icon: "🥩",
-    prices: {
-        Regular: 10
-    }
-},
-
-{
-    category: "addon",
-    name: "Chicken Slice",
-    icon: "🍗",
-    prices: {
-        Regular: 2
-    }
-},
-
-{
-    category: "addon",
-    name: "Prawn 2pcs",
-    icon: "🍤",
-    prices: {
-        Regular: 6
-    }
-},
-
-{
-    category: "addon",
-    name: "Spaghetti",
-    icon: "🍝",
-    prices: {
-        Regular: 4
-    }
-},
-
-{
-    category: "addon",
-    name: "Maggie",
-    icon: "🍜",
-    prices: {
-        Regular: 5
-    }
-},
-
-{
-    category: "addon",
-    name: "Rice",
-    icon: "🍚",
-    prices: {
-        Regular: 2
-    }
-},
-
-{
-    category: "addon",
-    name: "Sukiya Sauce",
-    icon: "🥣",
-    prices: {
-        Regular: 2
-    }
-},
-
-{
-    category: "addon",
-    name: "Cheese Sauce",
-    icon: "🧀",
-    prices: {
-        Regular: 3
-    }
-},
-
-/* ================= CUSTOMIZE ================= */
-
-{
-    category: "addon",
-    name: "Espresso Shot",
-    icon: "☕",
-    prices: {
-        Regular: 3
-    }
-},
-
-{
-    category: "addon",
-    name: "Oat Milk",
-    icon: "🥛",
-    prices: {
-        Regular: 3
-    }
-},
-
-{
-    category: "addon",
-    name: "Flavoured Syrup",
-    icon: "🍯",
-    prices: {
-        Regular: 2
-    }
-},
-
-{
-    category: "addon",
-    name: "Whipping Cream",
-    icon: "🍦",
-    prices: {
-        Regular: 2
-    }
-},
-
-{
-    category: "addon",
-    name: "Drizzle",
-    icon: "🍫",
-    prices: {
-        Regular: 1
-    }
-},
-
-{
-    category: "addon",
-    name: "Pure Matcha",
-    icon: "🍃",
-    prices: {
-        Regular: 1
-    }
-}
 
 ];
 
@@ -1249,7 +1285,6 @@ const menu = [
 const menuGrid =
     document.getElementById("menuGrid");
 
-
 function displayMenu(category = "all") {
 
     menuGrid.innerHTML = "";
@@ -1257,41 +1292,50 @@ function displayMenu(category = "all") {
     const filtered =
         category === "all"
         ? menu
-        : menu.filter(item => item.category === category);
+        : menu.filter(
+            item => item.category === category
+        );
 
+    filtered.forEach(item => {
 
-    filtered.forEach((item, index) => {
+        const originalIndex =
+            menu.indexOf(item);
 
         const card =
             document.createElement("div");
 
         card.className = "menu-card";
 
-
-        let options = "";
-
         const priceTypes =
             Object.keys(item.prices);
 
+        let options = "";
 
         if (priceTypes.length > 1) {
 
             options = `
                 <div class="price-options">
 
-                    ${priceTypes.map((type, i) => `
+                    ${priceTypes.map(
+                        (type, i) => `
+
                         <button
                             class="${i === 0 ? "selected" : ""}"
-                            onclick="selectOption(
-                                ${index},
-                                '${type}',
-                                this
-                            )">
+                            onclick="
+                                selectOption(
+                                    ${originalIndex},
+                                    '${type}',
+                                    this
+                                )
+                            ">
 
                             ${type}
-                            RM ${item.prices[type].toFixed(2)}
+
+                            RM
+                            ${item.prices[type].toFixed(2)}
 
                         </button>
+
                     `).join("")}
 
                 </div>
@@ -1301,12 +1345,14 @@ function displayMenu(category = "all") {
 
             options = `
                 <div class="price">
-                    RM ${item.prices[priceTypes[0]].toFixed(2)}
+
+                    RM
+                    ${item.prices[priceTypes[0]].toFixed(2)}
+
                 </div>
             `;
 
         }
-
 
         card.innerHTML = `
 
@@ -1328,15 +1374,17 @@ function displayMenu(category = "all") {
 
                 <button
                     class="add-button"
-                    onclick="addMenuItem(${menu.indexOf(item)})">
+                    onclick="
+                        addMenuItem(${originalIndex})
+                    ">
 
                     + Tambah ke Cart
 
                 </button>
 
             </div>
-        `;
 
+        `;
 
         menuGrid.appendChild(card);
 
@@ -1350,7 +1398,6 @@ function displayMenu(category = "all") {
 ===================================================== */
 
 const selectedOptions = {};
-
 
 function selectOption(index, type, button) {
 
@@ -1487,11 +1534,15 @@ function updateCart() {
             <div class="quantity">
 
                 <button
-                    onclick="changeQuantity(
-                        ${index},
-                        -1
-                    )">
+                    onclick="
+                        changeQuantity(
+                            ${index},
+                            -1
+                        )
+                    ">
+
                     −
+
                 </button>
 
                 <span>
@@ -1499,31 +1550,38 @@ function updateCart() {
                 </span>
 
                 <button
-                    onclick="changeQuantity(
-                        ${index},
-                        1
-                    )">
+                    onclick="
+                        changeQuantity(
+                            ${index},
+                            1
+                        )
+                    ">
+
                     +
+
                 </button>
 
             </div>
 
 
             <strong>
+
                 RM ${subtotal.toFixed(2)}
+
             </strong>
 
 
             <button
                 class="remove"
-                onclick="removeItem(${index})">
+                onclick="
+                    removeItem(${index})
+                ">
 
                 Buang
 
             </button>
 
         `;
-
 
         cartItems.appendChild(row);
 
@@ -1546,13 +1604,11 @@ function changeQuantity(index, amount) {
 
     cart[index].quantity += amount;
 
-
     if (cart[index].quantity <= 0) {
 
         cart.splice(index, 1);
 
     }
-
 
     updateCart();
 
@@ -1608,13 +1664,16 @@ function goToMenu() {
 
 /* =====================================================
    HANTAR PESANAN
+   + SIMPAN SALES UNTUK ADMIN
 ===================================================== */
 
 function submitOrder() {
 
     if (cart.length === 0) {
 
-        alert("Sila pilih makanan atau minuman dahulu.");
+        alert(
+            "Sila pilih makanan atau minuman dahulu."
+        );
 
         return;
 
@@ -1651,13 +1710,19 @@ function submitOrder() {
 
 
     message +=
-        "Nama: " + name + "\n";
+        "Nama: " +
+        name +
+        "\n";
 
     message +=
-        "Meja: " + table + "\n\n";
+        "Meja: " +
+        table +
+        "\n\n";
 
 
     let total = 0;
+
+    let orderItems = [];
 
 
     cart.forEach(item => {
@@ -1666,6 +1731,21 @@ function submitOrder() {
             item.price * item.quantity;
 
         total += subtotal;
+
+
+        orderItems.push({
+
+            name: item.name,
+
+            option: item.option,
+
+            quantity: item.quantity,
+
+            price: item.price,
+
+            subtotal: subtotal
+
+        });
 
 
         message +=
@@ -1686,10 +1766,121 @@ function submitOrder() {
         total.toFixed(2);
 
 
+    /* =================================================
+       SIMPAN SALES KE ADMIN DASHBOARD
+    ================================================= */
+
+    let transactions =
+        JSON.parse(
+            localStorage.getItem("transactions")
+        ) || [];
+
+
+    const today =
+        new Date();
+
+
+    const date =
+        today.toISOString().split("T")[0];
+
+
+    const itemSummary =
+        orderItems
+        .map(item =>
+            item.name +
+            " x" +
+            item.quantity
+        )
+        .join(", ");
+
+
+    const transaction = {
+
+        type: "sales",
+
+        description:
+            "Order - " +
+            itemSummary +
+            " | " +
+            name +
+            " | Meja " +
+            table,
+
+        amount: total,
+
+        date: date
+
+    };
+
+
+    transactions.push(transaction);
+
+
+    localStorage.setItem(
+        "transactions",
+        JSON.stringify(transactions)
+    );
+
+
+    /* =================================================
+       SIMPAN REKOD ORDER
+    ================================================= */
+
+    let orders =
+        JSON.parse(
+            localStorage.getItem("orders")
+        ) || [];
+
+
+    orders.push({
+
+        customerName: name,
+
+        tableNumber: table,
+
+        items: orderItems,
+
+        total: total,
+
+        date: date,
+
+        time:
+            today.toLocaleTimeString("ms-MY")
+
+    });
+
+
+    localStorage.setItem(
+        "orders",
+        JSON.stringify(orders)
+    );
+
+
+    /* =================================================
+       PAPAR PESANAN
+    ================================================= */
+
     alert(
         "Pesanan berjaya disediakan!\n\n" +
         message
     );
+
+
+    /* =================================================
+       KOSONGKAN CART SELEPAS ORDER
+    ================================================= */
+
+    cart = [];
+
+    updateCart();
+
+    document
+        .getElementById("customerName")
+        .value = "";
+
+    document
+        .getElementById("tableNumber")
+        .value = "";
 
 }
 
@@ -1699,6 +1890,8 @@ function submitOrder() {
 ===================================================== */
 
 displayMenu();
+
+updateCart();
 
 </script>
 
