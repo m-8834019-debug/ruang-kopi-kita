@@ -5,7 +5,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ruang Kopi Kita | Sistem Perakaunan Admin</title>
-
 <style>
 :root {
   --dark:#382318;
@@ -19,273 +18,67 @@
   --red:#aa4040;
 }
 *{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  color:var(--dark);
-  background:var(--cream);
-}
+body{margin:0;font-family:Arial,sans-serif;color:var(--dark);background:var(--cream)}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
 .hidden{display:none!important}
-header{
-  background:var(--dark);
-  color:white;
-  padding:17px 5%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-  flex-wrap:wrap;
-}
+header{background:var(--dark);color:white;padding:17px 5%;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
 header h1{margin:0;font-size:23px}
 header small{color:#e8c8a6}
-.header-right{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
-}
-.btn{
-  border:0;
-  border-radius:9px;
-  padding:11px 16px;
-  font-weight:bold;
-  background:var(--brown);
-  color:white;
-}
+.header-right{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.btn{border:0;border-radius:9px;padding:11px 16px;font-weight:bold;background:var(--brown);color:white}
 .btn:hover{opacity:.9}
 .btn:disabled{opacity:.55;cursor:not-allowed}
 .btn-gold{background:var(--gold);color:var(--dark)}
 .btn-red{background:var(--red)}
-.btn-light{
-  background:white;
-  color:var(--brown);
-  border:1px solid var(--line);
-}
 .btn-small{padding:8px 11px;font-size:13px}
-main{
-  max-width:1250px;
-  margin:auto;
-  padding:25px 18px 65px;
-}
-.login-card{
-  max-width:440px;
-  margin:55px auto;
-  padding:30px;
-  background:white;
-  border-radius:17px;
-  box-shadow:0 8px 30px #38231816;
-}
+main{max-width:1250px;margin:auto;padding:25px 18px 65px}
+.login-card{max-width:440px;margin:55px auto;padding:30px;background:white;border-radius:17px;box-shadow:0 8px 30px #38231816}
 .login-card h2{text-align:center}
-.login-card p{
-  text-align:center;
-  color:var(--muted);
-  line-height:1.5;
-}
+.login-card p{text-align:center;color:var(--muted);line-height:1.5}
 .field{margin:15px 0}
-.field label{
-  display:block;
-  font-weight:bold;
-  margin-bottom:7px;
-}
-.field input,.field select,.field textarea{
-  width:100%;
-  padding:12px;
-  border:1px solid #d6c8ba;
-  border-radius:8px;
-  background:white;
-}
+.field label{display:block;font-weight:bold;margin-bottom:7px}
+.field input,.field select,.field textarea{width:100%;padding:12px;border:1px solid #d6c8ba;border-radius:8px;background:white}
 .field textarea{min-height:75px;resize:vertical}
 .login-card .btn{width:100%}
-.message{
-  margin:15px 0;
-  padding:12px 15px;
-  background:#fbe8e5;
-  color:#953e38;
-  border-radius:9px;
-  font-size:14px;
-}
-.message.success{
-  background:#e4f4e9;
-  color:#24643e;
-}
-nav{
-  display:flex;
-  flex-wrap:wrap;
-  gap:9px;
-  margin-bottom:25px;
-}
-.nav-btn{
-  padding:12px 17px;
-  border:1px solid var(--line);
-  border-radius:9px;
-  background:white;
-  color:var(--brown);
-  font-weight:bold;
-}
-.nav-btn.active{
-  background:var(--brown);
-  color:white;
-}
+.message{margin:15px 0;padding:12px 15px;background:#fbe8e5;color:#953e38;border-radius:9px;font-size:14px}
+.message.success{background:#e4f4e9;color:#24643e}
+nav{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:25px}
+.nav-btn{padding:12px 17px;border:1px solid var(--line);border-radius:9px;background:white;color:var(--brown);font-weight:bold}
+.nav-btn.active{background:var(--brown);color:white}
 .page-title{margin:0 0 7px;font-size:25px}
-.subtitle{
-  color:var(--muted);
-  margin:0 0 22px;
-  line-height:1.5;
-}
-.stats{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:15px;
-  margin-bottom:23px;
-}
-.stat{
-  background:white;
-  padding:20px;
-  border:1px solid var(--line);
-  border-radius:14px;
-}
+.subtitle{color:var(--muted);margin:0 0 22px;line-height:1.5}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:23px}
+.stat{background:white;padding:20px;border:1px solid var(--line);border-radius:14px}
 .stat span{font-size:13px;color:var(--muted)}
-.stat strong{
-  display:block;
-  margin-top:12px;
-  font-size:25px;
-  overflow-wrap:anywhere;
-}
-.panel{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:15px;
-  padding:22px;
-  margin-bottom:20px;
-}
+.stat strong{display:block;margin-top:12px;font-size:25px;overflow-wrap:anywhere}
+.panel{background:white;border:1px solid var(--line);border-radius:15px;padding:22px;margin-bottom:20px}
 .panel h3{margin-top:0}
-.two-col{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-}
-.form-grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:0 15px;
-}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 15px}
 .full{grid-column:1/-1}
 .table-wrap{overflow-x:auto}
-table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:620px;
-}
-th,td{
-  padding:13px 12px;
-  border-bottom:1px solid #eee5db;
-  text-align:left;
-  vertical-align:top;
-}
-th{
-  background:#f7f0e7;
-  color:var(--brown);
-  font-size:13px;
-}
+table{width:100%;border-collapse:collapse;min-width:620px}
+th,td{padding:13px 12px;border-bottom:1px solid #eee5db;text-align:left;vertical-align:top}
+th{background:#f7f0e7;color:var(--brown);font-size:13px}
 td{font-size:14px}
 .muted{color:var(--muted)}
-.toolbar{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-bottom:17px;
-  align-items:center;
-}
-.toolbar input,.toolbar select{
-  padding:11px;
-  border:1px solid var(--line);
-  border-radius:8px;
-  background:white;
-}
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:17px;align-items:center}
+.toolbar input,.toolbar select{padding:11px;border:1px solid var(--line);border-radius:8px;background:white}
 .toolbar input[type="search"]{flex:1;min-width:200px}
-.report-line{
-  display:flex;
-  justify-content:space-between;
-  gap:15px;
-  padding:12px 0;
-  border-bottom:1px solid #eee5db;
-}
+.report-line{display:flex;justify-content:space-between;gap:15px;padding:12px 0;border-bottom:1px solid #eee5db}
 .report-line.indent{padding-left:20px}
-.report-line.heading{
-  font-weight:bold;
-  background:#f9f3eb;
-  padding:13px 10px;
-  margin-top:12px;
-}
-.report-line.total{
-  font-weight:bold;
-  border-top:2px solid var(--brown);
-  font-size:18px;
-}
-.report-line.final{
-  font-weight:bold;
-  font-size:21px;
-  background:#f0e2d2;
-  padding:18px 12px;
-  border-radius:9px;
-  margin-top:15px;
-}
+.report-line.heading{font-weight:bold;background:#f9f3eb;padding:13px 10px;margin-top:12px}
+.report-line.total{font-weight:bold;border-top:2px solid var(--brown);font-size:18px}
+.report-line.final{font-weight:bold;font-size:21px;background:#f0e2d2;padding:18px 12px;border-radius:9px;margin-top:15px}
 .positive{color:var(--green)}
 .negative{color:var(--red)}
-.chart{
-  height:230px;
-  display:flex;
-  align-items:flex-end;
-  gap:10px;
-  padding:20px 10px 10px;
-  border-bottom:2px solid var(--line);
-}
-.bar-wrap{
-  flex:1;
-  min-width:0;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:flex-end;
-  gap:6px;
-}
-.bar{
-  width:65%;
-  max-width:65px;
-  background:var(--gold);
-  border-radius:7px 7px 0 0;
-  min-height:2px;
-}
-.bar-label{
-  font-size:11px;
-  color:var(--muted);
-  white-space:nowrap;
-}
-.badge{
-  display:inline-block;
-  padding:6px 10px;
-  background:#f8e6c4;
-  border-radius:20px;
-  font-size:12px;
-}
-.note{
-  padding:13px 15px;
-  border:1px solid #e8d3a1;
-  border-radius:9px;
-  background:#fff9eb;
-  font-size:13px;
-  line-height:1.6;
-  margin-bottom:20px;
-}
-footer{
-  text-align:center;
-  color:var(--muted);
-  padding:25px;
-  font-size:13px;
-}
+.chart{height:230px;display:flex;align-items:flex-end;gap:10px;padding:20px 10px 10px;border-bottom:2px solid var(--line)}
+.bar-wrap{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px}
+.bar{width:65%;max-width:65px;background:var(--gold);border-radius:7px 7px 0 0;min-height:2px}
+.bar-label{font-size:11px;color:var(--muted);white-space:nowrap}
+.note{padding:13px 15px;border:1px solid #e8d3a1;border-radius:9px;background:#fff9eb;font-size:13px;line-height:1.6;margin-bottom:20px}
+footer{text-align:center;color:var(--muted);padding:25px;font-size:13px}
 @media(max-width:850px){
   .stats{grid-template-columns:repeat(2,1fr)}
   .two-col{grid-template-columns:1fr}
@@ -298,20 +91,16 @@ footer{
   .page-title{font-size:21px}
 }
 @media print{
-  header,nav,footer,.no-print,
-  #loginSection,.btn,.toolbar{
-    display:none!important;
-  }
+  header,nav,footer,.no-print,#loginSection,.btn,.toolbar{display:none!important}
   body{background:white}
   main{padding:0}
   .panel{border:0;box-shadow:none}
-  #dashboardSection > section{display:none!important}
+  .page-section{display:none!important}
+  #dashboardSection{display:block!important}
   #reportSection{display:block!important}
-  #reportSection .panel{display:block!important}
 }
 </style>
 </head>
-
 <body>
 
 <header>
@@ -321,97 +110,56 @@ footer{
   </div>
   <div class="header-right">
     <span id="adminEmail"></span>
-    <button id="logoutBtn"
-      class="btn btn-red hidden"
-      onclick="logoutAdmin()">
-      Log Keluar
-    </button>
+    <button id="logoutBtn" class="btn btn-red hidden" onclick="logoutAdmin()">Log Keluar</button>
   </div>
 </header>
 
 <main>
 
-<!-- LOGIN -->
 <section id="loginSection" class="login-card">
   <h2>🔐 Login Admin</h2>
   <p>Log masuk menggunakan akaun admin yang didaftarkan dalam Supabase.</p>
-
   <form id="loginForm">
     <div class="field">
       <label>Email Admin</label>
-      <input id="email" type="email"
-        autocomplete="username" required>
+      <input id="email" type="email" autocomplete="username" required>
     </div>
-
     <div class="field">
       <label>Kata Laluan</label>
-      <input id="password" type="password"
-        autocomplete="current-password" required>
+      <input id="password" type="password" autocomplete="current-password" required>
     </div>
-
-    <button id="loginBtn" class="btn" type="submit">
-      Masuk Sistem Admin
-    </button>
+    <button id="loginBtn" class="btn" type="submit">Masuk Sistem Admin</button>
   </form>
-
   <div id="loginMessage" class="message hidden"></div>
 </section>
 
-<!-- DASHBOARD -->
 <div id="dashboardSection" class="hidden">
 
 <nav class="no-print">
-  <button class="nav-btn active" data-page="homeSection">
-    🏠 Dashboard
-  </button>
-  <button class="nav-btn" data-page="salesSection">
-    💰 Jualan
-  </button>
-  <button class="nav-btn" data-page="purchasesSection">
-    🛒 Belian
-  </button>
-  <button class="nav-btn" data-page="expensesSection">
-    🧾 Belanja Operasi
-  </button>
-  <button class="nav-btn" data-page="reportSection">
-    📊 Untung Rugi
-  </button>
+  <button class="nav-btn active" data-page="homeSection">🏠 Dashboard</button>
+  <button class="nav-btn" data-page="salesSection">💰 Jualan</button>
+  <button class="nav-btn" data-page="purchasesSection">🛒 Belian</button>
+  <button class="nav-btn" data-page="expensesSection">🧾 Belanja Operasi</button>
+  <button class="nav-btn" data-page="reportSection">📊 Untung Rugi</button>
 </nav>
 
 <div id="globalMessage" class="message hidden"></div>
 
-<!-- HOME -->
 <section id="homeSection" class="page-section">
   <h2 class="page-title">Dashboard Kewangan</h2>
-  <p class="subtitle">
-    Ringkasan prestasi kewangan Ruang Kopi Kita.
-  </p>
+  <p class="subtitle">Ringkasan prestasi kewangan Ruang Kopi Kita.</p>
 
   <div class="toolbar no-print">
     <label>Bulan laporan:</label>
     <input type="month" id="dashboardMonth">
-    <button class="btn btn-gold" onclick="loadAll()">
-      🔄 Refresh Data
-    </button>
+    <button class="btn btn-gold" onclick="loadAll()">🔄 Refresh Data</button>
   </div>
 
   <div class="stats">
-    <div class="stat">
-      <span>Jumlah Jualan</span>
-      <strong id="homeSales">RM 0.00</strong>
-    </div>
-    <div class="stat">
-      <span>Jumlah Belian</span>
-      <strong id="homePurchases">RM 0.00</strong>
-    </div>
-    <div class="stat">
-      <span>Belanja Operasi</span>
-      <strong id="homeExpenses">RM 0.00</strong>
-    </div>
-    <div class="stat">
-      <span>Lebihan / Kurangan</span>
-      <strong id="homeProfit">RM 0.00</strong>
-    </div>
+    <div class="stat"><span>Jumlah Jualan</span><strong id="homeSales">RM 0.00</strong></div>
+    <div class="stat"><span>Jumlah Belian</span><strong id="homePurchases">RM 0.00</strong></div>
+    <div class="stat"><span>Belanja Operasi</span><strong id="homeExpenses">RM 0.00</strong></div>
+    <div class="stat"><span>Lebihan / Kurangan</span><strong id="homeProfit">RM 0.00</strong></div>
   </div>
 
   <div class="two-col">
@@ -419,47 +167,26 @@ footer{
       <h3>📈 Carta Jualan 7 Hari Terakhir</h3>
       <div id="salesChart" class="chart"></div>
     </div>
-
     <div class="panel">
       <h3>📌 Ringkasan Operasi</h3>
-      <div class="report-line">
-        <span>Pesanan bulan dipilih</span>
-        <strong id="homeOrders">0</strong>
-      </div>
-      <div class="report-line">
-        <span>Rekod belian</span>
-        <strong id="homePurchaseCount">0</strong>
-      </div>
-      <div class="report-line">
-        <span>Rekod belanja operasi</span>
-        <strong id="homeExpenseCount">0</strong>
-      </div>
-      <div class="report-line">
-        <span>Pesanan dibatalkan</span>
-        <strong id="homeCancelled">0</strong>
-      </div>
+      <div class="report-line"><span>Pesanan bulan dipilih</span><strong id="homeOrders">0</strong></div>
+      <div class="report-line"><span>Rekod belian</span><strong id="homePurchaseCount">0</strong></div>
+      <div class="report-line"><span>Rekod belanja operasi</span><strong id="homeExpenseCount">0</strong></div>
+      <div class="report-line"><span>Pesanan dibatalkan</span><strong id="homeCancelled">0</strong></div>
     </div>
   </div>
 
   <div class="note">
-    Dashboard mengira jualan daripada pesanan yang tidak
-    dibatalkan. Untuk penyata kewangan sebenar, kos jualan
-    perlu mengambil kira stok awal dan stok akhir.
+    Jualan dikira daripada pesanan yang tidak dibatalkan. Jumlah belian digunakan sebagai anggaran pengurangan hasil sementara kerana inventori awal dan akhir belum direkodkan.
   </div>
 </section>
 
-<!-- SALES -->
 <section id="salesSection" class="page-section hidden">
   <h2 class="page-title">💰 Rekod Jualan</h2>
-  <p class="subtitle">
-    Data jualan diambil terus daripada pesanan pelanggan
-    dalam Supabase.
-  </p>
-
+  <p class="subtitle">Data jualan diambil terus daripada pesanan pelanggan dalam Supabase.</p>
   <div class="panel">
     <div class="toolbar no-print">
-      <input type="search" id="salesSearch"
-        placeholder="Cari nombor pesanan, nama atau meja...">
+      <input type="search" id="salesSearch" placeholder="Cari nombor pesanan, nama atau meja...">
       <select id="salesStatus">
         <option value="all">Semua Status</option>
         <option value="Baharu">Baharu</option>
@@ -469,17 +196,12 @@ footer{
         <option value="Dibatalkan">Dibatalkan</option>
       </select>
     </div>
-
     <div class="table-wrap">
       <table>
         <thead>
           <tr>
-            <th>Nombor Pesanan</th>
-            <th>Tarikh</th>
-            <th>Pelanggan</th>
-            <th>Meja</th>
-            <th>Status</th>
-            <th>Jumlah</th>
+            <th>Nombor Pesanan</th><th>Tarikh</th><th>Pelanggan</th>
+            <th>Meja</th><th>Status</th><th>Jumlah</th>
           </tr>
         </thead>
         <tbody id="salesTable"></tbody>
@@ -488,61 +210,58 @@ footer{
   </div>
 </section>
 
-<!-- PURCHASES -->
 <section id="purchasesSection" class="page-section hidden">
   <h2 class="page-title">🛒 Perekodan Belian</h2>
-  <p class="subtitle">
-    Rekod pembelian bahan mentah dan barang perniagaan.
-  </p>
+  <p class="subtitle">Rekod pembelian bahan mentah dan barang perniagaan.</p>
 
   <div class="panel">
     <h3>Tambah Rekod Belian</h3>
-
     <form id="purchaseForm">
       <div class="form-grid">
+
+        <div class="field">
+          <label>Nama Pembekal</label>
+          <input id="purchaseSupplier" type="text"
+                 placeholder="Contoh: Ayu Sdn Bhd" required>
+        </div>
+
         <div class="field">
           <label>Nama Barang</label>
           <input id="purchaseItem" type="text"
-            placeholder="Contoh: Biji kopi" required>
+                 placeholder="Contoh: Serbuk kopi" required>
         </div>
 
         <div class="field">
           <label>Kuantiti</label>
           <input id="purchaseQty" type="number"
-            min="0.001" step="any" required>
+                 min="0.001" step="any" required>
         </div>
 
         <div class="field">
           <label>Jumlah Kos Belian (RM)</label>
           <input id="purchaseAmount" type="number"
-            min="0" step="0.01" required>
+                 min="0" step="0.01" required>
         </div>
 
-        <div class="field">
+        <div class="field full">
           <label>Catatan</label>
           <input id="purchaseNotes" type="text"
-            placeholder="Contoh: Belian daripada pembekal">
+                 placeholder="Contoh: Belian bahan mentah">
         </div>
       </div>
 
-      <button id="savePurchaseBtn" class="btn" type="submit">
-        + Simpan Belian
-      </button>
+      <button id="savePurchaseBtn" class="btn" type="submit">+ Simpan Belian</button>
     </form>
   </div>
 
   <div class="panel">
     <h3>Senarai Rekod Belian</h3>
-
     <div class="table-wrap">
       <table>
         <thead>
           <tr>
-            <th>Tarikh Rekod</th>
-            <th>Barang</th>
-            <th>Kuantiti</th>
-            <th>Jumlah</th>
-            <th>Catatan</th>
+            <th>Tarikh Rekod</th><th>Pembekal</th><th>Barang</th>
+            <th>Kuantiti</th><th>Jumlah</th><th>Catatan</th>
             <th class="no-print">Tindakan</th>
           </tr>
         </thead>
@@ -552,16 +271,12 @@ footer{
   </div>
 </section>
 
-<!-- EXPENSES -->
 <section id="expensesSection" class="page-section hidden">
   <h2 class="page-title">🧾 Belanja Operasi</h2>
-  <p class="subtitle">
-    Rekod perbelanjaan untuk menjalankan operasi kedai.
-  </p>
+  <p class="subtitle">Rekod perbelanjaan untuk menjalankan operasi kedai.</p>
 
   <div class="panel">
     <h3>Tambah Belanja Operasi</h3>
-
     <form id="expenseForm">
       <div class="form-grid">
         <div class="field">
@@ -573,49 +288,37 @@ footer{
           <label>Kategori</label>
           <select id="expenseCategory" required>
             <option value="">Pilih kategori</option>
-            <option>Sewa</option>
-            <option>Gaji</option>
-            <option>Elektrik</option>
-            <option>Air</option>
-            <option>Internet</option>
-            <option>Pengangkutan</option>
-            <option>Penyelenggaraan</option>
-            <option>Pemasaran</option>
+            <option>Sewa</option><option>Gaji</option>
+            <option>Elektrik</option><option>Air</option>
+            <option>Internet</option><option>Pengangkutan</option>
+            <option>Penyelenggaraan</option><option>Pemasaran</option>
             <option>Lain-lain</option>
           </select>
         </div>
 
         <div class="field">
           <label>Jumlah (RM)</label>
-          <input id="expenseAmount" type="number"
-            min="0" step="0.01" required>
+          <input id="expenseAmount" type="number" min="0" step="0.01" required>
         </div>
 
         <div class="field">
           <label>Keterangan</label>
           <input id="expenseDescription" type="text"
-            placeholder="Contoh: Bil elektrik Oktober">
+                 placeholder="Contoh: Bil elektrik Oktober">
         </div>
       </div>
-
-      <button id="saveExpenseBtn" class="btn" type="submit">
-        + Simpan Belanja
-      </button>
+      <button id="saveExpenseBtn" class="btn" type="submit">+ Simpan Belanja</button>
     </form>
   </div>
 
   <div class="panel">
     <h3>Senarai Belanja Operasi</h3>
-
     <div class="table-wrap">
       <table>
         <thead>
           <tr>
-            <th>Tarikh</th>
-            <th>Kategori</th>
-            <th>Keterangan</th>
-            <th>Jumlah</th>
-            <th class="no-print">Tindakan</th>
+            <th>Tarikh</th><th>Kategori</th><th>Keterangan</th>
+            <th>Jumlah</th><th class="no-print">Tindakan</th>
           </tr>
         </thead>
         <tbody id="expenseTable"></tbody>
@@ -624,72 +327,32 @@ footer{
   </div>
 </section>
 
-<!-- PROFIT LOSS -->
 <section id="reportSection" class="page-section hidden">
   <h2 class="page-title">📊 Laporan Untung Rugi</h2>
-  <p class="subtitle">
-    RUANG KOPI KITA — Laporan kewangan mengikut tempoh.
-  </p>
+  <p class="subtitle">RUANG KOPI KITA — Laporan kewangan mengikut tempoh.</p>
 
   <div class="toolbar no-print">
     <label>Bulan:</label>
     <input id="reportMonth" type="month">
-    <button class="btn btn-gold"
-      onclick="renderReport()">
-      Jana Laporan
-    </button>
-    <button class="btn"
-      onclick="window.print()">
-      🖨️ Cetak / Simpan PDF
-    </button>
+    <button class="btn btn-gold" onclick="renderReport()">Jana Laporan</button>
+    <button class="btn" onclick="window.print()">🖨️ Cetak / Simpan PDF</button>
   </div>
 
   <div class="panel">
-    <h3 style="text-align:center">
-      RUANG KOPI KITA
-    </h3>
+    <h3 style="text-align:center">RUANG KOPI KITA</h3>
+    <h3 style="text-align:center">LAPORAN UNTUNG RUGI SEMENTARA</h3>
+    <p id="reportPeriod" style="text-align:center;color:#796b60"></p>
 
-    <h3 style="text-align:center">
-      LAPORAN UNTUNG RUGI SEMENTARA
-    </h3>
+    <div class="report-line heading"><span>HASIL</span><span>RM</span></div>
+    <div class="report-line indent"><span>Jualan</span><strong id="reportSales">RM 0.00</strong></div>
+    <div class="report-line total"><span>Jumlah Hasil</span><strong id="reportRevenue">RM 0.00</strong></div>
 
-    <p id="reportPeriod"
-      style="text-align:center;color:#796b60">
-    </p>
+    <div class="report-line heading"><span>BELIAN</span><span>RM</span></div>
+    <div class="report-line indent"><span>Jumlah Belian</span><strong id="reportPurchases">RM 0.00</strong></div>
 
-    <div class="report-line heading">
-      <span>HASIL</span><span>RM</span>
-    </div>
-
-    <div class="report-line indent">
-      <span>Jualan</span>
-      <strong id="reportSales">RM 0.00</strong>
-    </div>
-
-    <div class="report-line total">
-      <span>Jumlah Hasil</span>
-      <strong id="reportRevenue">RM 0.00</strong>
-    </div>
-
-    <div class="report-line heading">
-      <span>BELIAN</span><span>RM</span>
-    </div>
-
-    <div class="report-line indent">
-      <span>Jumlah Belian</span>
-      <strong id="reportPurchases">RM 0.00</strong>
-    </div>
-
-    <div class="report-line heading">
-      <span>BELANJA OPERASI</span><span>RM</span>
-    </div>
-
+    <div class="report-line heading"><span>BELANJA OPERASI</span><span>RM</span></div>
     <div id="expenseBreakdown"></div>
-
-    <div class="report-line total">
-      <span>Jumlah Belanja Operasi</span>
-      <strong id="reportExpenses">RM 0.00</strong>
-    </div>
+    <div class="report-line total"><span>Jumlah Belanja Operasi</span><strong id="reportExpenses">RM 0.00</strong></div>
 
     <div class="report-line final">
       <span>Lebihan / (Kurangan) Sementara</span>
@@ -697,11 +360,7 @@ footer{
     </div>
 
     <p class="muted" style="font-size:12px;line-height:1.6">
-      Nota: Laporan ini menggunakan jumlah belian sebagai
-      pengurangan sementara daripada hasil. Ia belum
-      merupakan Penyata Untung Rugi muktamad kerana
-      pelarasan inventori awal, inventori akhir dan
-      kos jualan sebenar belum dimasukkan.
+      Nota: Laporan ini menggunakan jumlah belian sebagai pengurangan sementara daripada hasil. Ia belum merupakan Penyata Untung Rugi muktamad kerana pelarasan inventori awal, inventori akhir dan kos jualan sebenar belum dimasukkan.
     </p>
   </div>
 </section>
@@ -709,175 +368,109 @@ footer{
 </div>
 </main>
 
-<footer>
-  © 2026 Ruang Kopi Kita |
-  Pembangunan Sistem Pelaporan Untung Rugi
-</footer>
+<footer>© 2026 Ruang Kopi Kita | Pembangunan Sistem Pelaporan Untung Rugi</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
 "use strict";
 
-/* ======================================
-   SAMBUNGAN SUPABASE
-====================================== */
-
-const SUPABASE_URL =
-  "https://ledcwlnyztcsvdedwmtq.supabase.co";
-
-const SUPABASE_KEY =
-  "sb_publishable_a1sRyLibWsIpRThtxfUbUQ_-Ksjebvl";
+const SUPABASE_URL = "https://ledcwlnyztcsvdedwmtq.supabase.co";
+const SUPABASE_KEY = "sb_publishable_a1sRyLibWsIpRThtxfUbUQ_-Ksjebvl";
 
 const db = window.supabase
-  ? window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    )
+  ? window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY)
   : null;
 
-/* ======================================
-   PEMBOLEH UBAH
-====================================== */
+let orders=[];
+let purchases=[];
+let expenses=[];
+let currentAdmin=null;
+let isLoading=false;
 
-let orders = [];
-let purchases = [];
-let expenses = [];
-let currentAdmin = null;
-let isLoading = false;
-
-/* ======================================
-   UTILITI
-====================================== */
-
-function $(id){
-  return document.getElementById(id);
-}
-
-function money(value){
-  return "RM " + Number(value || 0).toFixed(2);
-}
-
-function numberValue(value){
-  return Number(value || 0);
-}
+function $(id){return document.getElementById(id)}
+function money(v){return "RM "+Number(v||0).toFixed(2)}
+function num(v){return Number(v||0)}
 
 function todayMY(){
-  const parts = new Intl.DateTimeFormat("en-CA",{
+  const p=new Intl.DateTimeFormat("en-CA",{
     timeZone:"Asia/Kuala_Lumpur",
-    year:"numeric",
-    month:"2-digit",
-    day:"2-digit"
+    year:"numeric",month:"2-digit",day:"2-digit"
   }).formatToParts(new Date());
-
-  const get = type =>
-    parts.find(part=>part.type===type).value;
-
-  return get("year")+"-"+get("month")+"-"+get("day");
+  const g=t=>p.find(x=>x.type===t).value;
+  return g("year")+"-"+g("month")+"-"+g("day");
 }
 
-function currentMonth(){
-  return todayMY().slice(0,7);
-}
+function currentMonth(){return todayMY().slice(0,7)}
 
-function localDate(value){
-  if(!value)return "";
-
-  const parts = new Intl.DateTimeFormat("en-CA",{
+function localDate(v){
+  if(!v)return "";
+  const p=new Intl.DateTimeFormat("en-CA",{
     timeZone:"Asia/Kuala_Lumpur",
-    year:"numeric",
-    month:"2-digit",
-    day:"2-digit"
-  }).formatToParts(new Date(value));
-
-  const get = type =>
-    parts.find(part=>part.type===type).value;
-
-  return get("year")+"-"+get("month")+"-"+get("day");
+    year:"numeric",month:"2-digit",day:"2-digit"
+  }).formatToParts(new Date(v));
+  const g=t=>p.find(x=>x.type===t).value;
+  return g("year")+"-"+g("month")+"-"+g("day");
 }
 
-function formatDate(value){
-  if(!value)return "-";
-
-  return new Date(value).toLocaleString("ms-MY",{
+function formatDate(v){
+  if(!v)return "-";
+  return new Date(v).toLocaleString("ms-MY",{
     timeZone:"Asia/Kuala_Lumpur",
-    day:"2-digit",
-    month:"short",
-    year:"numeric",
-    hour:"2-digit",
-    minute:"2-digit"
+    day:"2-digit",month:"short",year:"numeric",
+    hour:"2-digit",minute:"2-digit"
   });
 }
 
-function textNode(tag,value){
-  const node=document.createElement(tag);
-  node.textContent=String(value??"");
-  return node;
+function node(tag,value){
+  const el=document.createElement(tag);
+  el.textContent=String(value??"");
+  return el;
 }
 
-function makeCell(value){
-  return textNode("td",value);
-}
-
-function clearTable(id){
-  $(id).replaceChildren();
-}
+function cell(v){return node("td",v)}
 
 function emptyRow(id,colspan){
-  const row=document.createElement("tr");
-  const cell=document.createElement("td");
-
-  cell.colSpan=colspan;
-  cell.textContent="Tiada rekod untuk dipaparkan.";
-  cell.className="muted";
-
-  row.appendChild(cell);
-  $(id).appendChild(row);
+  const tr=document.createElement("tr");
+  const td=node("td","Tiada rekod untuk dipaparkan.");
+  td.colSpan=colspan;
+  td.className="muted";
+  tr.appendChild(td);
+  $(id).appendChild(tr);
 }
 
-function showMessage(message,success=false){
+function showMessage(msg,ok=false){
   const box=$("globalMessage");
-  box.textContent=message;
-  box.className="message"+(success?" success":"");
+  box.textContent=msg;
+  box.className="message"+(ok?" success":"");
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
-function showLoginMessage(message){
-  $("loginMessage").textContent=message;
+function showLoginMessage(msg){
+  $("loginMessage").textContent=msg;
   $("loginMessage").classList.remove("hidden");
 }
 
 function sum(rows,key){
-  return rows.reduce(
-    (total,row)=>total+numberValue(row[key]),
-    0
-  );
+  return rows.reduce((a,r)=>a+num(r[key]),0);
 }
 
-function monthFilter(rows,dateField,month){
-  return rows.filter(row=>{
-    const date=dateField==="created_at"
-      ?localDate(row[dateField])
-      :String(row[dateField]||"").slice(0,10);
-
-    return date.startsWith(month);
+function monthFilter(rows,field,month){
+  return rows.filter(r=>{
+    const d=field==="created_at"
+      ?localDate(r[field])
+      :String(r[field]||"").slice(0,10);
+    return d.startsWith(month);
   });
 }
 
 function validSales(rows){
-  return rows.filter(row=>
-    String(row.status||"").toLowerCase()
-      !=="dibatalkan"
+  return rows.filter(r=>
+    String(r.status||"").toLowerCase()!=="dibatalkan"
   );
 }
 
-/* ======================================
-   LOGIN ADMIN
-====================================== */
-
 function showLogin(){
   currentAdmin=null;
-
   $("loginSection").classList.remove("hidden");
   $("dashboardSection").classList.add("hidden");
   $("logoutBtn").classList.add("hidden");
@@ -886,150 +479,109 @@ function showLogin(){
 
 function showDashboard(user){
   currentAdmin=user;
-
   $("loginSection").classList.add("hidden");
   $("dashboardSection").classList.remove("hidden");
   $("logoutBtn").classList.remove("hidden");
-
   $("adminEmail").textContent=user.email||"Admin";
-
   $("loginMessage").classList.add("hidden");
-
   loadAll();
 }
 
 async function checkAdmin(userId){
-  const {data,error}=await db
-    .from("user_roles")
-    .select("role")
-    .eq("user_id",userId)
-    .maybeSingle();
-
+  const {data,error}=await db.from("user_roles")
+    .select("role").eq("user_id",userId).maybeSingle();
   if(error)throw error;
-
   return data?.role==="admin";
 }
 
-$("loginForm").addEventListener(
-  "submit",async event=>{
-    event.preventDefault();
-
-    if(!db){
-      showLoginMessage(
-        "Supabase gagal dimuatkan. Refresh halaman."
-      );
-      return;
-    }
-
-    const button=$("loginBtn");
-    button.disabled=true;
-    button.textContent="Sedang login...";
-
-    $("loginMessage").classList.add("hidden");
-
-    try{
-      const {data,error}=
-        await db.auth.signInWithPassword({
-          email:$("email").value.trim(),
-          password:$("password").value
-        });
-
-      if(error)throw error;
-      if(!data.user)throw new Error("Login gagal.");
-
-      const allowed=await checkAdmin(data.user.id);
-
-      if(!allowed){
-        await db.auth.signOut();
-        throw new Error(
-          "Akaun ini tidak mempunyai kebenaran admin."
-        );
-      }
-
-      $("password").value="";
-      showDashboard(data.user);
-
-    }catch(error){
-      showLogin();
-      showLoginMessage(error.message);
-    }finally{
-      button.disabled=false;
-      button.textContent="Masuk Sistem Admin";
-    }
+$("loginForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+  if(!db){
+    showLoginMessage("Supabase gagal dimuatkan. Refresh halaman.");
+    return;
   }
-);
+
+  const btn=$("loginBtn");
+  btn.disabled=true;
+  btn.textContent="Sedang login...";
+  $("loginMessage").classList.add("hidden");
+
+  try{
+    const {data,error}=await db.auth.signInWithPassword({
+      email:$("email").value.trim(),
+      password:$("password").value
+    });
+    if(error)throw error;
+    if(!data.user)throw new Error("Login gagal.");
+
+    const allowed=await checkAdmin(data.user.id);
+    if(!allowed){
+      await db.auth.signOut();
+      throw new Error("Akaun ini tidak mempunyai kebenaran admin.");
+    }
+
+    $("password").value="";
+    showDashboard(data.user);
+  }catch(err){
+    showLogin();
+    showLoginMessage(err.message);
+  }finally{
+    btn.disabled=false;
+    btn.textContent="Masuk Sistem Admin";
+  }
+});
 
 async function logoutAdmin(){
   if(db)await db.auth.signOut();
   showLogin();
 }
 
-/* ======================================
-   NAVIGASI
-====================================== */
+document.querySelectorAll(".nav-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".nav-btn")
+      .forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
 
-document.querySelectorAll(".nav-btn")
-  .forEach(button=>{
-    button.addEventListener("click",()=>{
-      document.querySelectorAll(".nav-btn")
-        .forEach(btn=>btn.classList.remove("active"));
+    document.querySelectorAll(".page-section")
+      .forEach(s=>s.classList.add("hidden"));
 
-      button.classList.add("active");
+    $(btn.dataset.page).classList.remove("hidden");
 
-      document.querySelectorAll(".page-section")
-        .forEach(section=>
-          section.classList.add("hidden")
-        );
-
-      $(button.dataset.page)
-        .classList.remove("hidden");
-
-      if(button.dataset.page==="reportSection"){
-        renderReport();
-      }
-    });
+    if(btn.dataset.page==="reportSection")renderReport();
   });
-
-/* ======================================
-   AMBIL SEMUA DATA SUPABASE
-====================================== */
+});
 
 async function fetchAllRows(table,orderColumn){
-  const results=[];
-  const pageSize=1000;
+  const rows=[];
+  const size=1000;
 
-  for(let start=0;start<100000;start+=pageSize){
-    const {data,error}=await db
-      .from(table)
+  for(let start=0;start<100000;start+=size){
+    const {data,error}=await db.from(table)
       .select("*")
       .order(orderColumn,{ascending:false})
-      .range(start,start+pageSize-1);
+      .range(start,start+size-1);
 
     if(error)throw error;
-
-    results.push(...(data||[]));
-
-    if(!data||data.length<pageSize)break;
+    rows.push(...(data||[]));
+    if(!data||data.length<size)break;
   }
-
-  return results;
+  return rows;
 }
 
 async function loadAll(){
   if(!db||!currentAdmin||isLoading)return;
-
   isLoading=true;
 
   try{
-    const results=await Promise.all([
+    const result=await Promise.all([
       fetchAllRows("orders","created_at"),
       fetchAllRows("purchases","created_at"),
       fetchAllRows("operating_expenses","expense_date")
     ]);
 
-    orders=results[0];
-    purchases=results[1];
-    expenses=results[2];
+    orders=result[0];
+    purchases=result[1];
+    expenses=result[2];
 
     $("globalMessage").classList.add("hidden");
 
@@ -1038,83 +590,45 @@ async function loadAll(){
     renderPurchases();
     renderExpenses();
     renderReport();
-
-  }catch(error){
-    console.error(error);
-
-    showMessage(
-      "Gagal membaca data Supabase: "+error.message
-    );
+  }catch(err){
+    console.error(err);
+    showMessage("Gagal membaca data Supabase: "+err.message);
   }finally{
     isLoading=false;
   }
 }
 
-/* ======================================
-   DASHBOARD KEWANGAN
-====================================== */
-
 function renderDashboard(){
   const month=$("dashboardMonth").value||currentMonth();
 
-  const monthOrders=monthFilter(
-    orders,"created_at",month
-  );
+  const mo=monthFilter(orders,"created_at",month);
+  const mp=monthFilter(purchases,"created_at",month);
+  const me=monthFilter(expenses,"expense_date",month);
 
-  const monthPurchases=monthFilter(
-    purchases,"created_at",month
-  );
+  const sales=sum(validSales(mo),"total_amount");
+  const buying=sum(mp,"total_amount");
+  const spending=sum(me,"amount");
+  const balance=sales-buying-spending;
 
-  const monthExpenses=monthFilter(
-    expenses,"expense_date",month
-  );
-
-  const salesTotal=sum(
-    validSales(monthOrders),"total_amount"
-  );
-
-  const purchaseTotal=sum(
-    monthPurchases,"total_amount"
-  );
-
-  const expenseTotal=sum(
-    monthExpenses,"amount"
-  );
-
-  const balance=salesTotal-purchaseTotal-expenseTotal;
-
-  $("homeSales").textContent=money(salesTotal);
-  $("homePurchases").textContent=money(purchaseTotal);
-  $("homeExpenses").textContent=money(expenseTotal);
+  $("homeSales").textContent=money(sales);
+  $("homePurchases").textContent=money(buying);
+  $("homeExpenses").textContent=money(spending);
   $("homeProfit").textContent=money(balance);
+  $("homeProfit").className=balance>=0?"positive":"negative";
 
-  $("homeProfit").className=
-    balance>=0?"positive":"negative";
-
-  $("homeOrders").textContent=monthOrders.length;
-  $("homePurchaseCount").textContent=
-    monthPurchases.length;
-
-  $("homeExpenseCount").textContent=
-    monthExpenses.length;
-
-  $("homeCancelled").textContent=
-    monthOrders.filter(row=>
-      String(row.status||"").toLowerCase()
-        ==="dibatalkan"
-    ).length;
+  $("homeOrders").textContent=mo.length;
+  $("homePurchaseCount").textContent=mp.length;
+  $("homeExpenseCount").textContent=me.length;
+  $("homeCancelled").textContent=mo.filter(r=>
+    String(r.status||"").toLowerCase()==="dibatalkan"
+  ).length;
 
   renderChart();
 }
 
-/* ======================================
-   CARTA JUALAN 7 HARI
-====================================== */
-
 function renderChart(){
   const chart=$("salesChart");
   chart.replaceChildren();
-
   const days=[];
 
   const today=new Date(todayMY()+"T12:00:00+08:00");
@@ -1125,45 +639,28 @@ function renderChart(){
 
     const key=date.toLocaleDateString("en-CA",{
       timeZone:"Asia/Kuala_Lumpur",
-      year:"numeric",
-      month:"2-digit",
-      day:"2-digit"
+      year:"numeric",month:"2-digit",day:"2-digit"
     });
 
-    const total=sum(
-      validSales(
-        orders.filter(order=>
-          localDate(order.created_at)===key
-        )
-      ),
-      "total_amount"
-    );
+    const total=sum(validSales(orders.filter(o=>
+      localDate(o.created_at)===key
+    )),"total_amount");
 
-    days.push({
-      label:key.slice(8,10)+"/"+key.slice(5,7),
-      total
-    });
+    days.push({label:key.slice(8,10)+"/"+key.slice(5,7),total});
   }
 
-  const max=Math.max(
-    1,...days.map(day=>day.total)
-  );
+  const max=Math.max(1,...days.map(d=>d.total));
 
-  days.forEach(day=>{
+  days.forEach(d=>{
     const wrap=document.createElement("div");
     wrap.className="bar-wrap";
 
-    const value=textNode(
-      "small",
-      day.total>0?day.total.toFixed(0):"0"
-    );
-
+    const value=node("small",d.total.toFixed(0));
     const bar=document.createElement("div");
     bar.className="bar";
-    bar.style.height=
-      Math.max(2,day.total/max*160)+"px";
+    bar.style.height=Math.max(2,d.total/max*160)+"px";
 
-    const label=textNode("span",day.label);
+    const label=node("span",d.label);
     label.className="bar-label";
 
     wrap.append(value,bar,label);
@@ -1171,27 +668,19 @@ function renderChart(){
   });
 }
 
-/* ======================================
-   REKOD JUALAN
-====================================== */
-
 function renderSales(){
-  clearTable("salesTable");
+  $("salesTable").replaceChildren();
 
-  const search=$("salesSearch")
-    .value.trim().toLowerCase();
-
+  const search=$("salesSearch").value.trim().toLowerCase();
   const status=$("salesStatus").value;
 
-  const filtered=orders.filter(order=>{
-    const combined=[
-      order.order_number,
-      order.customer_name,
-      order.table_number
+  const filtered=orders.filter(o=>{
+    const text=[
+      o.order_number,o.customer_name,o.table_number
     ].join(" ").toLowerCase();
 
-    return combined.includes(search)&&
-      (status==="all"||order.status===status);
+    return text.includes(search)&&
+      (status==="all"||o.status===status);
   });
 
   if(!filtered.length){
@@ -1199,341 +688,219 @@ function renderSales(){
     return;
   }
 
-  filtered.forEach(order=>{
-    const row=document.createElement("tr");
-
+  filtered.forEach(o=>{
+    const tr=document.createElement("tr");
     [
-      order.order_number||("#"+order.id),
-      formatDate(order.created_at),
-      order.customer_name||"-",
-      order.table_number||"-",
-      order.status||"Baharu",
-      money(order.total_amount)
-    ].forEach(value=>
-      row.appendChild(makeCell(value))
-    );
-
-    $("salesTable").appendChild(row);
+      o.order_number||("#"+o.id),
+      formatDate(o.created_at),
+      o.customer_name||"-",
+      o.table_number||"-",
+      o.status||"Baharu",
+      money(o.total_amount)
+    ].forEach(v=>tr.appendChild(cell(v)));
+    $("salesTable").appendChild(tr);
   });
 }
 
-$("salesSearch").addEventListener(
-  "input",renderSales
-);
+$("salesSearch").addEventListener("input",renderSales);
+$("salesStatus").addEventListener("change",renderSales);
 
-$("salesStatus").addEventListener(
-  "change",renderSales
-);
+/* SIMPAN BELIAN - SUDAH TERMASUK SUPPLIER_NAME */
+$("purchaseForm").addEventListener("submit",async e=>{
+  e.preventDefault();
 
-/* ======================================
-   SIMPAN REKOD BELIAN
-====================================== */
+  const btn=$("savePurchaseBtn");
+  btn.disabled=true;
 
-$("purchaseForm").addEventListener(
-  "submit",async event=>{
-    event.preventDefault();
+  try{
+    const supplier=$("purchaseSupplier").value.trim();
+    const item=$("purchaseItem").value.trim();
+    const quantity=Number($("purchaseQty").value);
+    const amount=Number($("purchaseAmount").value);
 
-    const button=$("savePurchaseBtn");
-    button.disabled=true;
-
-    try{
-      const item=$("purchaseItem").value.trim();
-      const quantity=Number($("purchaseQty").value);
-      const amount=Number($("purchaseAmount").value);
-
-      if(!item||quantity<=0||amount<0){
-        throw new Error(
-          "Sila isi maklumat belian dengan betul."
-        );
-      }
-
-      const record={
-        item_name:item,
-        quantity:quantity,
-        total_amount:amount,
-        notes:$("purchaseNotes").value.trim()
-      };
-
-      const {error}=await db
-        .from("purchases")
-        .insert(record);
-
-      if(error)throw error;
-
-      $("purchaseForm").reset();
-
-      await loadAll();
-
-      showMessage(
-        "Rekod belian berjaya disimpan ke Supabase.",
-        true
-      );
-
-    }catch(error){
-      showMessage(
-        "Gagal menyimpan belian: "+error.message
-      );
-    }finally{
-      button.disabled=false;
+    if(!supplier){
+      throw new Error("Sila masukkan nama pembekal.");
     }
+    if(!item||!Number.isFinite(quantity)||quantity<=0||
+       !Number.isFinite(amount)||amount<0){
+      throw new Error("Sila isi maklumat belian dengan betul.");
+    }
+
+    const record={
+      supplier_name:supplier,
+      item_name:item,
+      quantity:quantity,
+      total_amount:amount,
+      notes:$("purchaseNotes").value.trim()
+    };
+
+    const {error}=await db.from("purchases").insert(record);
+    if(error)throw error;
+
+    $("purchaseForm").reset();
+    await loadAll();
+
+    showMessage("Rekod belian berjaya disimpan ke Supabase.",true);
+  }catch(err){
+    showMessage("Gagal menyimpan belian: "+err.message);
+  }finally{
+    btn.disabled=false;
   }
-);
+});
 
 function renderPurchases(){
-  clearTable("purchaseTable");
+  $("purchaseTable").replaceChildren();
 
   if(!purchases.length){
-    emptyRow("purchaseTable",6);
+    emptyRow("purchaseTable",7);
     return;
   }
 
-  purchases.forEach(purchase=>{
-    const row=document.createElement("tr");
-
+  purchases.forEach(p=>{
+    const tr=document.createElement("tr");
     [
-      formatDate(purchase.created_at),
-      purchase.item_name||"-",
-      purchase.quantity,
-      money(purchase.total_amount),
-      purchase.notes||"-"
-    ].forEach(value=>
-      row.appendChild(makeCell(value))
-    );
+      formatDate(p.created_at),
+      p.supplier_name||"-",
+      p.item_name||"-",
+      p.quantity,
+      money(p.total_amount),
+      p.notes||"-"
+    ].forEach(v=>tr.appendChild(cell(v)));
 
     const action=document.createElement("td");
     action.className="no-print";
 
-    const button=textNode("button","Padam");
-    button.className="btn btn-red btn-small";
-
-    button.addEventListener("click",()=>{
-      deleteRecord(
-        "purchases",
-        purchase.id,
-        "rekod belian"
-      );
+    const btn=node("button","Padam");
+    btn.className="btn btn-red btn-small";
+    btn.addEventListener("click",()=>{
+      deleteRecord("purchases",p.id,"rekod belian");
     });
 
-    action.appendChild(button);
-    row.appendChild(action);
-
-    $("purchaseTable").appendChild(row);
+    action.appendChild(btn);
+    tr.appendChild(action);
+    $("purchaseTable").appendChild(tr);
   });
 }
 
-/* ======================================
-   SIMPAN BELANJA OPERASI
-====================================== */
+$("expenseForm").addEventListener("submit",async e=>{
+  e.preventDefault();
 
-$("expenseForm").addEventListener(
-  "submit",async event=>{
-    event.preventDefault();
+  const btn=$("saveExpenseBtn");
+  btn.disabled=true;
 
-    const button=$("saveExpenseBtn");
-    button.disabled=true;
+  try{
+    const amount=Number($("expenseAmount").value);
 
-    try{
-      const amount=Number($("expenseAmount").value);
-
-      if(
-        !$("expenseDate").value||
-        !$("expenseCategory").value||
-        amount<0
-      ){
-        throw new Error(
-          "Sila isi maklumat belanja dengan betul."
-        );
-      }
-
-      const record={
-        expense_date:$("expenseDate").value,
-        category:$("expenseCategory").value,
-        description:$("expenseDescription")
-          .value.trim(),
-        amount:amount
-      };
-
-      const {error}=await db
-        .from("operating_expenses")
-        .insert(record);
-
-      if(error)throw error;
-
-      $("expenseForm").reset();
-      $("expenseDate").value=todayMY();
-
-      await loadAll();
-
-      showMessage(
-        "Belanja operasi berjaya disimpan.",
-        true
-      );
-
-    }catch(error){
-      showMessage(
-        "Gagal menyimpan belanja: "+error.message
-      );
-    }finally{
-      button.disabled=false;
+    if(!$("expenseDate").value||!$("expenseCategory").value||
+       !Number.isFinite(amount)||amount<0){
+      throw new Error("Sila isi maklumat belanja dengan betul.");
     }
+
+    const record={
+      expense_date:$("expenseDate").value,
+      category:$("expenseCategory").value,
+      description:$("expenseDescription").value.trim(),
+      amount:amount
+    };
+
+    const {error}=await db.from("operating_expenses").insert(record);
+    if(error)throw error;
+
+    $("expenseForm").reset();
+    $("expenseDate").value=todayMY();
+
+    await loadAll();
+    showMessage("Belanja operasi berjaya disimpan.",true);
+  }catch(err){
+    showMessage("Gagal menyimpan belanja: "+err.message);
+  }finally{
+    btn.disabled=false;
   }
-);
+});
 
 function renderExpenses(){
-  clearTable("expenseTable");
+  $("expenseTable").replaceChildren();
 
   if(!expenses.length){
     emptyRow("expenseTable",5);
     return;
   }
 
-  expenses.forEach(expense=>{
-    const row=document.createElement("tr");
-
+  expenses.forEach(e=>{
+    const tr=document.createElement("tr");
     [
-      expense.expense_date||"-",
-      expense.category||"-",
-      expense.description||"-",
-      money(expense.amount)
-    ].forEach(value=>
-      row.appendChild(makeCell(value))
-    );
+      e.expense_date||"-",
+      e.category||"-",
+      e.description||"-",
+      money(e.amount)
+    ].forEach(v=>tr.appendChild(cell(v)));
 
     const action=document.createElement("td");
     action.className="no-print";
 
-    const button=textNode("button","Padam");
-    button.className="btn btn-red btn-small";
-
-    button.addEventListener("click",()=>{
-      deleteRecord(
-        "operating_expenses",
-        expense.id,
-        "belanja operasi"
-      );
+    const btn=node("button","Padam");
+    btn.className="btn btn-red btn-small";
+    btn.addEventListener("click",()=>{
+      deleteRecord("operating_expenses",e.id,"belanja operasi");
     });
 
-    action.appendChild(button);
-    row.appendChild(action);
-
-    $("expenseTable").appendChild(row);
+    action.appendChild(btn);
+    tr.appendChild(action);
+    $("expenseTable").appendChild(tr);
   });
 }
 
-/* ======================================
-   PADAM REKOD
-====================================== */
-
 async function deleteRecord(table,id,label){
   if(!currentAdmin)return;
-
-  const confirmDelete=confirm(
-    "Adakah awak pasti mahu padam "+label+" ini?"
-  );
-
-  if(!confirmDelete)return;
+  if(!confirm("Adakah awak pasti mahu padam "+label+" ini?"))return;
 
   try{
-    const {data,error}=await db
-      .from(table)
-      .delete()
-      .eq("id",id)
-      .select("id");
+    const {data,error}=await db.from(table)
+      .delete().eq("id",id).select("id");
 
     if(error)throw error;
-
     if(!data||data.length!==1){
-      throw new Error(
-        "Rekod tidak dipadam. Semak kebenaran admin."
-      );
+      throw new Error("Rekod tidak dipadam. Semak kebenaran admin.");
     }
 
     await loadAll();
-
-    showMessage(
-      "Rekod berjaya dipadam daripada Supabase.",
-      true
-    );
-
-  }catch(error){
-    showMessage(
-      "Gagal memadam rekod: "+error.message
-    );
+    showMessage("Rekod berjaya dipadam daripada Supabase.",true);
+  }catch(err){
+    showMessage("Gagal memadam rekod: "+err.message);
   }
 }
-
-/* ======================================
-   LAPORAN UNTUNG RUGI SEMENTARA
-====================================== */
 
 function renderReport(){
   const month=$("reportMonth").value||currentMonth();
 
-  const monthOrders=monthFilter(
-    orders,"created_at",month
-  );
+  const mo=monthFilter(orders,"created_at",month);
+  const mp=monthFilter(purchases,"created_at",month);
+  const me=monthFilter(expenses,"expense_date",month);
 
-  const monthPurchases=monthFilter(
-    purchases,"created_at",month
-  );
+  const sales=sum(validSales(mo),"total_amount");
+  const buying=sum(mp,"total_amount");
+  const spending=sum(me,"amount");
+  const balance=sales-buying-spending;
 
-  const monthExpenses=monthFilter(
-    expenses,"expense_date",month
-  );
+  const [year,monthNo]=month.split("-");
+  const period=new Date(Number(year),Number(monthNo)-1,1)
+    .toLocaleDateString("ms-MY",{month:"long",year:"numeric"});
 
-  const salesTotal=sum(
-    validSales(monthOrders),
-    "total_amount"
-  );
-
-  const purchasesTotal=sum(
-    monthPurchases,"total_amount"
-  );
-
-  const expensesTotal=sum(
-    monthExpenses,"amount"
-  );
-
-  const balance=
-    salesTotal-purchasesTotal-expensesTotal;
-
-  const [year,monthNumber]=month.split("-");
-
-  const period=new Date(
-    Number(year),
-    Number(monthNumber)-1,
-    1
-  ).toLocaleDateString("ms-MY",{
-    month:"long",
-    year:"numeric"
-  });
-
-  $("reportPeriod").textContent=
-    "Bagi bulan berakhir "+period;
-
-  $("reportSales").textContent=money(salesTotal);
-  $("reportRevenue").textContent=money(salesTotal);
-  $("reportPurchases").textContent=
-    money(purchasesTotal);
-
-  $("reportExpenses").textContent=
-    money(expensesTotal);
-
+  $("reportPeriod").textContent="Bagi bulan berakhir "+period;
+  $("reportSales").textContent=money(sales);
+  $("reportRevenue").textContent=money(sales);
+  $("reportPurchases").textContent=money(buying);
+  $("reportExpenses").textContent=money(spending);
   $("reportProfit").textContent=money(balance);
-  $("reportProfit").className=
-    balance>=0?"positive":"negative";
+  $("reportProfit").className=balance>=0?"positive":"negative";
 
   const breakdown=$("expenseBreakdown");
   breakdown.replaceChildren();
 
   const categories={};
-
-  monthExpenses.forEach(expense=>{
-    const name=expense.category||"Lain-lain";
-
-    categories[name]=
-      (categories[name]||0)+
-      numberValue(expense.amount);
+  me.forEach(e=>{
+    const name=e.category||"Lain-lain";
+    categories[name]=(categories[name]||0)+num(e.amount);
   });
 
   const entries=Object.entries(categories)
@@ -1542,41 +909,22 @@ function renderReport(){
   if(!entries.length){
     const line=document.createElement("div");
     line.className="report-line indent";
-    line.append(
-      textNode("span","Tiada belanja direkodkan"),
-      textNode("span",money(0))
-    );
+    line.append(node("span","Tiada belanja direkodkan"),
+                node("span",money(0)));
     breakdown.appendChild(line);
   }
 
   entries.forEach(([category,total])=>{
     const line=document.createElement("div");
     line.className="report-line indent";
-
-    line.append(
-      textNode("span",category),
-      textNode("strong",money(total))
-    );
-
+    line.append(node("span",category),
+                node("strong",money(total)));
     breakdown.appendChild(line);
   });
 }
 
-/* ======================================
-   PENAPIS BULAN
-====================================== */
-
-$("dashboardMonth").addEventListener(
-  "change",renderDashboard
-);
-
-$("reportMonth").addEventListener(
-  "change",renderReport
-);
-
-/* ======================================
-   MULAKAN SISTEM
-====================================== */
+$("dashboardMonth").addEventListener("change",renderDashboard);
+$("reportMonth").addEventListener("change",renderReport);
 
 async function initialize(){
   $("dashboardMonth").value=currentMonth();
@@ -1584,9 +932,7 @@ async function initialize(){
   $("expenseDate").value=todayMY();
 
   if(!db){
-    showLoginMessage(
-      "Supabase tidak dapat dimuatkan. Sila refresh."
-    );
+    showLoginMessage("Supabase tidak dapat dimuatkan. Sila refresh.");
     return;
   }
 
@@ -1603,22 +949,18 @@ async function initialize(){
     if(!allowed){
       await db.auth.signOut();
       showLogin();
-      showLoginMessage(
-        "Akaun ini tidak mempunyai kebenaran admin."
-      );
+      showLoginMessage("Akaun ini tidak mempunyai kebenaran admin.");
       return;
     }
 
     showDashboard(data.user);
-
-  }catch(error){
+  }catch(err){
     showLogin();
-    showLoginMessage(error.message);
+    showLoginMessage(err.message);
   }
 }
 
 initialize();
-
 </script>
 </body>
 </html>
