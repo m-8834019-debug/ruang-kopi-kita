@@ -1822,5 +1822,384 @@ async function init(){
 
 init();
 </script>
+<!-- ==================================================
+     RUANG KOPI KITA - 3 FUNGSI TAMBAHAN
+     Tampal sebelum </body> dalam admin.html
+================================================== -->
+<style>
+.extra-tools{display:flex;flex-wrap:wrap;gap:10px;margin:15px 0}
+.extra-card{background:white;border:1px solid #e8d9ca;border-radius:14px;padding:20px;margin:15px 0}
+.extra-card label{display:block;font-weight:bold;margin-bottom:7px}
+.extra-card input,.extra-card select{width:100%;max-width:450px;padding:12px;border:1px solid #d8c9ba;border-radius:8px;margin-bottom:12px}
+.extra-table{width:100%;border-collapse:collapse;min-width:620px}
+.extra-table th,.extra-table td{padding:12px;border-bottom:1px solid #e8d9ca;text-align:left}
+.extra-scroll{overflow-x:auto}
+.extra-status{margin:12px 0;line-height:1.6}
+.extra-positive{color:#267347;font-weight:bold}
+.extra-negative{color:#ac4242;font-weight:bold}
+@media print{#extraComparison,#extraReceipts,.extra-export{display:none!important}}
+</style>
+
+<script>
+(function(){
+"use strict";
+
+const receiptBucket="rkk-receipts";
+let receiptRecords=[];
+
+function el(tag,text){
+  const x=document.createElement(tag);
+  if(text!==undefined)x.textContent=String(text);
+  return x;
+}
+function amount(v){return "RM "+Number(v||0).toFixed(2)}
+function status(text){
+  const x=document.getElementById("extraReceiptStatus");
+  if(x)x.textContent=text;
+}
+function makeButton(text,fn){
+  const b=el("button",text);
+  b.type="button";
+  b.className="btn";
+  b.addEventListener("click",fn);
+  return b;
+}
+function addNav(text,pageId){
+  const nav=document.querySelector("#dashboardSection nav");
+  const b=el("button",text);
+  b.className="nav-btn";
+  b.type="button";
+  b.addEventListener("click",()=>{
+    document.querySelectorAll(".nav-btn").forEach(x=>x.classList.remove("active"));
+    document.querySelectorAll(".page-section").forEach(x=>x.classList.add("hidden"));
+    b.classList.add("active");
+    document.getElementById(pageId).classList.remove("hidden");
+    if(pageId==="extraComparison")renderComparison();
+    if(pageId==="extraReceipts")loadReceiptRecords();
+  });
+  nav.appendChild(b);
+}
+function addSection(id,title){
+  const s=el("section");
+  s.id=id;
+  s.className="page-section hidden";
+  s.appendChild(el("h2",title));
+  document.getElementById("dashboardSection").appendChild(s);
+  return s;
+}
+function csvValue(v){
+  const s=String(v??"");
+  return '"'+s.replace(/"/g,'""')+'"';
+}
+function saveCSV(filename,rows){
+  const csv="\uFEFF"+rows.map(r=>r.map(csvValue).join(",")).join("\r\n");
+  const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
+  const a=document.createElement("a");
+  a.href=url;
+  a.download=filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function exportData(type){
+  if(!admin)return alert("Sila login sebagai Admin.");
+
+  const month=document.getElementById("extraExportMonth").value;
+  let rows=[],filename="";
+
+  if(type==="sales"){
+    rows=[["No Pesanan","Tarikh","Pelanggan","Meja","Status","Jumlah RM"]];
+    orders.filter(r=>!month||orderDate(r.created_at).startsWith(month))
+      .forEach(r=>rows.push([
+        r.order_number||r.id,
+        formatDate(r.created_at),
+        r.customer_name,r.table_number,r.status,r.total_amount
+      ]));
+    filename="Jualan";
+  }
+  if(type==="purchases"){
+    rows=[["Tarikh","Pembekal","Barang","Kuantiti","Jumlah RM","Catatan"]];
+    purchases.filter(r=>!month||String(r.created_at||"").slice(0,7)===month)
+      .forEach(r=>rows.push([
+        formatDate(r.created_at),r.supplier_name,r.item_name,
+        r.quantity,r.total_amount,r.notes
+      ]));
+    filename="Belian";
+  }
+  if(type==="expenses"){
+    rows=[["Tarikh","Kategori","Keterangan","Jumlah RM"]];
+    expenses.filter(r=>!month||String(r.expense_date||"").slice(0,7)===month)
+      .forEach(r=>rows.push([
+        r.expense_date,r.category,r.description,r.amount
+      ]));
+    filename="Belanja_Operasi";
+  }
+  if(type==="report"){
+    if(!month)return alert("Pilih bulan laporan dahulu.");
+    const f=financialSummary(month);
+    rows=[
+      ["RUANG KOPI KITA","LAPORAN UNTUNG RUGI"],
+      ["Bulan",month],
+      ["Perkara","Jumlah RM"],
+      ["Jualan",f.sales],
+      ["Inventori Awal",f.inv.opening??"Belum direkod"],
+      ["Belian",f.buying],
+      ["Inventori Akhir",f.inv.closing??"Belum direkod"],
+      ["Kos Jualan",f.cogs??"Belum lengkap"],
+      ["Untung / Rugi Kasar",f.gross??"Belum lengkap"],
+      ["Belanja Operasi",f.spending],
+      ["Untung / Rugi Bersih",f.net??"Belum lengkap"]
+    ];
+    filename="Untung_Rugi";
+  }
+  saveCSV("Ruang_Kopi_Kita_"+filename+"_"+(month||"Semua")+".csv",rows);
+}
+
+/* FUNGSI 1: EKSPORT CSV */
+const exportSection=addSection("extraExports","📥 Eksport Rekod Kewangan");
+addNav("📥 Eksport CSV","extraExports");
+const exportCard=el("div");
+exportCard.className="extra-card";
+exportCard.appendChild(el("p","Pilih bulan dan jenis rekod untuk dimuat turun. Fail CSV boleh dibuka menggunakan Microsoft Excel."));
+const monthLabel=el("label","Pilih Bulan (kosong = semua rekod)");
+const exportMonth=el("input");
+exportMonth.type="month";
+exportMonth.id="extraExportMonth";
+exportCard.append(monthLabel,exportMonth);
+const exportButtons=el("div");
+exportButtons.className="extra-tools";
+[
+  ["💰 Eksport Jualan","sales"],
+  ["🛒 Eksport Belian","purchases"],
+  ["🧾 Eksport Belanja","expenses"],
+  ["📊 Eksport Untung Rugi","report"]
+].forEach(([label,type])=>exportButtons.appendChild(makeButton(label,()=>exportData(type))));
+exportCard.appendChild(exportButtons);
+exportSection.appendChild(exportCard);
+
+/* FUNGSI 2: PERBANDINGAN BULANAN */
+const comparisonSection=addSection("extraComparison","📊 Perbandingan Untung Rugi Bulanan");
+addNav("📊 Banding Bulan","extraComparison");
+const comparisonCard=el("div");
+comparisonCard.className="extra-card";
+comparisonCard.appendChild(el("p","Bandingkan jualan, kos jualan, belanja dan keuntungan bagi dua bulan."));
+const compareA=el("input"),compareB=el("input");
+compareA.type="month";compareB.type="month";
+compareA.id="extraMonthA";compareB.id="extraMonthB";
+compareA.value=previousMonth(monthNow());
+compareB.value=monthNow();
+comparisonCard.append(el("label","Bulan Pertama"),compareA,el("label","Bulan Kedua"),compareB);
+comparisonCard.appendChild(makeButton("Jana Perbandingan",renderComparison));
+const compareResult=el("div");
+compareResult.id="extraCompareResult";
+compareResult.className="extra-scroll";
+comparisonCard.appendChild(compareResult);
+comparisonSection.appendChild(comparisonCard);
+
+function renderComparison(){
+  const a=compareA.value,b=compareB.value;
+  if(!a||!b)return;
+  const fa=financialSummary(a),fb=financialSummary(b);
+  const fields=[
+    ["Jualan","sales"],
+    ["Belian","buying"],
+    ["Kos Jualan","cogs"],
+    ["Untung / Rugi Kasar","gross"],
+    ["Belanja Operasi","spending"],
+    ["Untung / Rugi Bersih","net"]
+  ];
+  const table=el("table");
+  table.className="extra-table";
+  const head=el("tr");
+  ["Perkara",a,b,"Perubahan"].forEach(t=>head.appendChild(el("th",t)));
+  table.appendChild(head);
+  fields.forEach(([label,key])=>{
+    const av=fa[key],bv=fb[key];
+    const tr=el("tr");
+    const diff=av===null||bv===null?null:bv-av;
+    [
+      label,
+      av===null?"Belum lengkap":amount(av),
+      bv===null?"Belum lengkap":amount(bv),
+      diff===null?"—":(diff>0?"+":"")+amount(diff)
+    ].forEach(t=>tr.appendChild(el("td",t)));
+    table.appendChild(tr);
+  });
+  compareResult.replaceChildren(table);
+}
+
+/* FUNGSI 3: RESIT DAN INVOIS */
+const receiptSection=addSection("extraReceipts","📎 Simpan Resit & Invois");
+addNav("📎 Resit & Invois","extraReceipts");
+const receiptCard=el("div");
+receiptCard.className="extra-card";
+receiptCard.appendChild(el("p","Lampirkan resit atau invois pada rekod belian atau belanja operasi yang telah disimpan."));
+const receiptType=el("select");
+receiptType.id="extraReceiptType";
+[["purchase","Belian"],["expense","Belanja Operasi"]].forEach(([v,t])=>{
+  const o=el("option",t);o.value=v;receiptType.appendChild(o);
+});
+const receiptRecord=el("select");
+receiptRecord.id="extraReceiptRecord";
+const receiptFile=el("input");
+receiptFile.id="extraReceiptFile";
+receiptFile.type="file";
+receiptFile.accept="application/pdf,image/jpeg,image/png,image/webp";
+receiptCard.append(
+  el("label","Jenis Rekod"),receiptType,
+  el("label","Pilih Rekod"),receiptRecord,
+  el("label","Pilih Resit / Invois (maksimum 5 MB)"),receiptFile
+);
+receiptCard.appendChild(makeButton("📤 Muat Naik Dokumen",uploadReceipt));
+const receiptStatus=el("p");
+receiptStatus.id="extraReceiptStatus";
+receiptStatus.className="extra-status";
+receiptCard.appendChild(receiptStatus);
+const receiptList=el("div");
+receiptList.id="extraReceiptList";
+receiptList.className="extra-scroll";
+receiptCard.appendChild(receiptList);
+receiptSection.appendChild(receiptCard);
+
+function renderReceiptOptions(){
+  const type=receiptType.value;
+  const list=type==="purchase"?purchases:expenses;
+  receiptRecord.replaceChildren();
+  list.forEach(r=>{
+    const label=type==="purchase"
+      ?(r.item_name||"Belian")+" — "+amount(r.total_amount)
+      :(r.category||"Belanja")+" — "+amount(r.amount);
+    const option=el("option",label);
+    option.value=String(r.id);
+    receiptRecord.appendChild(option);
+  });
+  renderReceiptList();
+}
+receiptType.addEventListener("change",renderReceiptOptions);
+receiptRecord.addEventListener("change",renderReceiptList);
+
+async function loadReceiptRecords(){
+  if(!admin)return;
+  status("Memuatkan senarai dokumen...");
+  try{
+    const {data,error}=await db.from("transaction_receipts")
+      .select("*").order("created_at",{ascending:false});
+    if(error)throw error;
+    receiptRecords=data||[];
+    renderReceiptOptions();
+    status("Senarai dokumen telah dikemas kini.");
+  }catch(err){
+    status("Gagal membaca dokumen: "+err.message);
+  }
+}
+function renderReceiptList(){
+  receiptList.replaceChildren();
+  const selected=receiptRecord.value;
+  const type=receiptType.value;
+  const docs=receiptRecords.filter(r=>
+    r.record_type===type&&String(r.record_id)===selected
+  );
+  if(!docs.length){
+    receiptList.appendChild(el("p","Tiada resit atau invois untuk rekod ini."));
+    return;
+  }
+  const table=el("table");
+  table.className="extra-table";
+  const head=el("tr");
+  ["Nama Fail","Tarikh","Tindakan"].forEach(t=>head.appendChild(el("th",t)));
+  table.appendChild(head);
+  docs.forEach(doc=>{
+    const tr=el("tr");
+    tr.append(el("td",doc.file_name),el("td",formatDate(doc.created_at)));
+    const action=el("td");
+    const view=makeButton("Lihat",()=>viewReceipt(doc));
+    const del=makeButton("Padam",()=>deleteReceipt(doc));
+    del.classList.add("red");
+    action.append(view," ",del);
+    tr.appendChild(action);
+    table.appendChild(tr);
+  });
+  receiptList.appendChild(table);
+}
+async function uploadReceipt(){
+  if(!admin)return status("Sila login sebagai Admin.");
+  const file=receiptFile.files[0];
+  const recordId=receiptRecord.value;
+  if(!recordId)return status("Pilih rekod terlebih dahulu.");
+  if(!file)return status("Pilih fail terlebih dahulu.");
+  if(file.size>5*1024*1024)return status("Saiz fail melebihi 5 MB.");
+  const allowedTypes=["application/pdf","image/jpeg","image/png","image/webp"];
+  if(!allowedTypes.includes(file.type))return status("Format fail tidak dibenarkan.");
+
+  status("Sedang memuat naik...");
+  let path=null;
+  try{
+    const {data:userData,error:userError}=await db.auth.getUser();
+    if(userError||!userData.user)throw new Error("Sesi login tidak sah.");
+    const uid=userData.user.id;
+    const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
+    const unique=crypto.randomUUID();
+    path=uid+"/"+unique+"_"+safeName;
+    const {error:uploadError}=await db.storage.from(receiptBucket)
+      .upload(path,file,{contentType:file.type,upsert:false});
+    if(uploadError)throw uploadError;
+
+    const {error:recordError}=await db.from("transaction_receipts").insert({
+      record_type:receiptType.value,
+      record_id:String(recordId),
+      file_name:file.name,
+      storage_path:path,
+      mime_type:file.type,
+      file_size:file.size
+    });
+    if(recordError)throw recordError;
+
+    receiptFile.value="";
+    status("Resit / invois berjaya disimpan.");
+    await loadReceiptRecords();
+  }catch(err){
+    if(path)await db.storage.from(receiptBucket).remove([path]);
+    status("Gagal memuat naik: "+err.message);
+  }
+}
+async function viewReceipt(doc){
+  try{
+    const {data,error}=await db.storage.from(receiptBucket)
+      .createSignedUrl(doc.storage_path,60);
+    if(error)throw error;
+    window.open(data.signedUrl,"_blank","noopener,noreferrer");
+  }catch(err){
+    status("Gagal membuka dokumen: "+err.message);
+  }
+}
+async function deleteReceipt(doc){
+  if(!confirm("Padam resit / invois ini secara kekal?"))return;
+  try{
+    const {error:storageError}=await db.storage.from(receiptBucket)
+      .remove([doc.storage_path]);
+    if(storageError)throw storageError;
+    const {error:dbError}=await db.from("transaction_receipts")
+      .delete().eq("id",doc.id);
+    if(dbError)throw dbError;
+    await loadReceiptRecords();
+    status("Dokumen berjaya dipadam.");
+  }catch(err){
+    status("Gagal memadam: "+err.message);
+  }
+}
+
+/* Segarkan pilihan rekod selepas data dimuatkan */
+const oldLoadAll=loadAll;
+loadAll=async function(){
+  await oldLoadAll();
+  if(!document.getElementById("extraReceipts").classList.contains("hidden")){
+    await loadReceiptRecords();
+  }
+};
+
+})();
+</script>
+
 </body>
 </html>
