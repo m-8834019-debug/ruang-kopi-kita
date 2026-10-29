@@ -3,993 +3,971 @@
 <html lang="ms">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ruang Kopi Kita | Sistem Pesanan Digital</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#38291F">
+<title>Ruang Kopi Kita | Vintage Café</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+:root{
+  --dark:#38291F;
+  --brown:#624734;
+  --cream:#F7F0E3;
+  --paper:#FFFAEF;
+  --olive:#747C51;
+  --gold:#B99865;
+  --line:#D9C7A9;
+  --muted:#897662;
 }
-
-html {
-    scroll-behavior: smooth;
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--dark);
+  font-family:"DM Sans",sans-serif;
 }
-
-body {
-    background: #f6efe5;
-    color: #3d281f;
+button,input,select{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}
+header{
+  background:var(--dark);
+  color:var(--paper);
+  text-align:center;
+  padding:26px 15px;
+  border-bottom:6px double var(--gold);
 }
-
-header {
-    background: #3b2418;
-    color: white;
-    padding: 18px 7%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+.brand{
+  font:700 clamp(29px,5vw,43px) "Playfair Display",serif;
 }
-
-.logo {
-    font-size: 23px;
-    font-weight: bold;
+header p{
+  color:#D7BE98;
+  letter-spacing:3px;
+  font-size:11px;
+  margin:9px 0 0;
 }
-
-nav {
-    display: flex;
-    gap: 20px;
-    align-items: center;
+.topbar{
+  background:#E9DCC7;
+  padding:13px 18px;
+  text-align:center;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:2px;
+  border-bottom:1px solid var(--line);
 }
-
-nav a {
-    color: white;
-    text-decoration: none;
+.hero{
+  max-width:1240px;
+  margin:28px auto;
+  padding:55px 25px;
+  background:#E8D9BD;
+  border:2px solid var(--brown);
+  outline:5px solid #E8D9BD;
+  outline-offset:3px;
+  text-align:center;
+  position:relative;
 }
-
-.cart-button {
-    background: #b88955;
-    padding: 10px 15px;
-    border-radius: 20px;
+.hero:before,.hero:after{
+  content:"✦";
+  position:absolute;
+  top:18px;
+  font-size:27px;
+  color:var(--gold);
 }
-
-.hero {
-    background:
-        linear-gradient(rgba(55,35,22,.75),rgba(55,35,22,.75)),
-        url("https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1600&q=80");
-    background-size: cover;
-    background-position: center;
-    min-height: 430px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-    padding: 30px;
+.hero:before{left:22px}
+.hero:after{right:22px}
+.hero small{
+  font-size:11px;
+  letter-spacing:4px;
+  color:var(--olive);
+  font-weight:800;
 }
-
-.hero h1 {
-    font-size: 48px;
-    margin-bottom: 15px;
+.hero h1{
+  font:700 clamp(35px,6vw,65px) "Playfair Display",serif;
+  margin:15px 0;
 }
-
-.hero p {
-    font-size: 19px;
-    margin-bottom: 25px;
+.hero p{
+  font-style:italic;
+  color:#715944;
+  font-size:16px;
 }
-
-.hero button {
-    background: #c69a6b;
-    border: none;
-    color: white;
-    padding: 14px 25px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
+.hero button,.add,.checkout{
+  background:var(--olive);
+  color:white;
+  border:1px solid var(--dark);
+  padding:13px 22px;
+  font-weight:800;
 }
-
-.categories {
-    display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    padding: 20px 7%;
-    background: white;
+.hero button{margin-top:20px}
+.hero button:hover,.add:hover,.checkout:hover{
+  background:var(--dark);
 }
-
-.category-btn {
-    white-space: nowrap;
-    border: none;
-    background: #ead9c6;
-    color: #4b3022;
-    padding: 10px 17px;
-    border-radius: 20px;
-    cursor: pointer;
+.container{
+  max-width:1300px;
+  margin:auto;
+  padding:20px 20px 110px;
 }
-
-.category-btn.active {
-    background: #5b3827;
-    color: white;
+.section-title{
+  text-align:center;
+  font:700 34px "Playfair Display",serif;
+  margin:25px 0 10px;
 }
-
-.section {
-    max-width: 1200px;
-    margin: auto;
-    padding: 45px 20px;
+.ornament{
+  text-align:center;
+  color:var(--gold);
+  font-size:29px;
+  margin-bottom:25px;
 }
-
-.section-title {
-    text-align: center;
-    margin-bottom: 35px;
+.search{
+  width:100%;
+  padding:16px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  outline:none;
+  margin-bottom:19px;
 }
-
-.section-title h2 {
-    font-size: 32px;
-    margin-bottom: 8px;
+.categories{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  justify-content:center;
+  margin-bottom:28px;
 }
-
-.menu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 20px;
+.category-btn{
+  background:#EDE1CF;
+  color:var(--brown);
+  border:1px solid var(--brown);
+  padding:10px 14px;
+  font-weight:800;
+  font-size:12px;
 }
-
-.menu-card {
-    background: white;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,.09);
-    transition: .2s;
+.category-btn.active,.category-btn:hover{
+  background:var(--dark);
+  color:white;
 }
-
-.menu-card:hover {
-    transform: translateY(-4px);
+.menu-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:22px;
 }
-
-.menu-image {
-    height: 150px;
-    background: #d8c1a8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 65px;
+.menu-card{
+  background:var(--paper);
+  border:1px solid var(--line);
+  padding:9px;
+  box-shadow:4px 4px 0 #DFD0B8;
+  min-width:0;
 }
-
-.menu-info {
-    padding: 20px;
+.menu-picture{
+  display:block;
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  background:#E8D9BD;
 }
-
-.menu-info h3 {
-    margin-bottom: 8px;
-    font-size: 19px;
+.menu-body{padding:15px 9px 10px}
+.menu-category{
+  color:var(--olive);
+  text-transform:uppercase;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:2px;
 }
-
-.menu-info p {
-    color: #777;
-    font-size: 14px;
+.menu-body h3{
+  font:700 21px "Playfair Display",serif;
+  margin:9px 0 12px;
+  min-height:52px;
 }
-
-.price {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 15px 0;
+.menu-body select{
+  width:100%;
+  border:1px solid var(--line);
+  background:#F7F0E3;
+  color:var(--brown);
+  padding:10px;
+  margin-bottom:13px;
 }
-
-.price-options {
-    display: flex;
-    gap: 7px;
-    margin-top: 12px;
-    flex-wrap: wrap;
+.menu-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:7px;
 }
-
-.price-options button {
-    border: 1px solid #8b6048;
-    background: white;
-    color: #5a3827;
-    padding: 7px 10px;
-    border-radius: 6px;
-    cursor: pointer;
+.price{
+  font:700 19px "Playfair Display",serif;
+  white-space:nowrap;
 }
-
-.price-options button.selected {
-    background: #5a3827;
-    color: white;
+.add{
+  padding:10px 11px;
+  font-size:12px;
 }
-
-.add-button {
-    width: 100%;
-    border: none;
-    background: #6b4531;
-    color: white;
-    padding: 11px;
-    border-radius: 7px;
-    cursor: pointer;
-    margin-top: 10px;
+.cart-float{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  background:var(--dark);
+  color:white;
+  border:2px solid var(--gold);
+  padding:16px 22px;
+  font-weight:800;
+  box-shadow:4px 4px 0 var(--gold);
+  z-index:10;
 }
-
-.add-button:hover {
-    background: #43291d;
+.overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#24180ECC;
+  z-index:20;
 }
-
-.cart-section {
-    background: white;
-    max-width: 900px;
-    margin: 20px auto 60px;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+.overlay.show{display:block}
+.cart-panel{
+  position:fixed;
+  right:0;
+  top:0;
+  height:100dvh;
+  width:min(450px,100%);
+  background:var(--paper);
+  z-index:21;
+  padding:25px;
+  overflow-y:auto;
+  transform:translateX(105%);
+  transition:transform .25s;
+  box-shadow:-8px 0 25px #0002;
 }
-
-.cart-section h2 {
-    margin-bottom: 20px;
+.cart-panel.show{transform:translateX(0)}
+.cart-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:2px solid var(--line);
+  padding-bottom:15px;
 }
-
-.cart-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    padding: 15px 0;
-    border-bottom: 1px solid #ddd;
+.cart-head h2{
+  font:700 29px "Playfair Display",serif;
+  margin:0;
 }
-
-.cart-name {
-    font-weight: bold;
+.close{
+  background:none;
+  border:0;
+  font-size:30px;
 }
-
-.quantity {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:17px 0;
+  border-bottom:1px solid var(--line);
 }
-
-.quantity button {
-    width: 28px;
-    height: 28px;
-    border: none;
-    border-radius: 5px;
-    background: #ead9c6;
-    cursor: pointer;
+.cart-item strong{display:block}
+.cart-item small{
+  display:block;
+  color:var(--muted);
+  margin-top:5px;
 }
-
-.remove {
-    color: #b3261e;
-    cursor: pointer;
-    border: none;
-    background: none;
+.qty{
+  display:flex;
+  gap:11px;
+  align-items:center;
+  margin-top:10px;
 }
-
-.total-box {
-    margin-top: 25px;
-    padding-top: 20px;
-    border-top: 2px solid #5a3827;
-    display: flex;
-    justify-content: space-between;
-    font-size: 22px;
-    font-weight: bold;
+.qty button{
+  background:#E8DCC8;
+  border:1px solid var(--brown);
+  width:30px;
+  height:30px;
 }
-
-.order-form {
-    margin-top: 30px;
+.total{
+  display:flex;
+  justify-content:space-between;
+  margin:24px 0;
+  font:700 23px "Playfair Display",serif;
 }
-
-.order-form h3 {
-    margin-bottom: 15px;
+label{
+  display:block;
+  margin:17px 0 7px;
+  font-size:13px;
+  font-weight:800;
 }
-
-.order-form input {
-    width: 100%;
-    padding: 13px;
-    margin-bottom: 12px;
-    border: 1px solid #ccc;
-    border-radius: 7px;
+.field{
+  width:100%;
+  padding:13px;
+  border:1px solid var(--line);
+  background:white;
 }
-
-.order-button {
-    width: 100%;
-    background: #3b2418;
-    color: white;
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
+.checkout{
+  width:100%;
+  margin-top:22px;
+  padding:16px;
 }
-
-.order-button:disabled {
-    opacity: .6;
-    cursor: not-allowed;
+.message{
+  margin-top:15px;
+  padding:13px;
+  border:1px solid var(--olive);
+  background:#E9EBD9;
+  font-size:13px;
+  line-height:1.6;
+  display:none;
+  overflow-wrap:anywhere;
 }
-
-.order-result {
-    display: none;
-    margin-top: 20px;
-    padding: 22px;
-    background: #f6efe5;
-    border: 2px solid #b88955;
-    border-radius: 12px;
-    text-align: center;
-    color: #3b2418;
+footer{
+  background:var(--dark);
+  color:#E1C8A3;
+  text-align:center;
+  padding:30px 15px;
+  font-size:12px;
+  letter-spacing:1px;
 }
-
-.order-result h3 {
-    margin-bottom: 12px;
+@media(max-width:1050px){
+  .menu-grid{grid-template-columns:repeat(3,1fr)}
 }
-
-.order-result p {
-    margin-top: 8px;
+@media(max-width:750px){
+  .menu-grid{grid-template-columns:repeat(2,1fr)}
 }
-
-.order-number {
-    margin: 12px 0;
-    font-size: 27px;
-    color: #6b4531;
-    overflow-wrap: anywhere;
-}
-
-footer {
-    background: #3b2418;
-    color: white;
-    text-align: center;
-    padding: 25px;
-}
-
-@media(max-width:700px) {
-    header {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    nav {
-        gap: 12px;
-    }
-
-    nav a {
-        font-size: 14px;
-    }
-
-    .hero h1 {
-        font-size: 32px;
-    }
-
-    .hero {
-        min-height: 350px;
-    }
-
-    .cart-item {
-        flex-wrap: wrap;
-    }
-
-    .cart-section {
-        margin: 20px 12px 60px;
-        padding: 20px;
-    }
+@media(max-width:500px){
+  .menu-grid{grid-template-columns:1fr}
+  .menu-picture{aspect-ratio:5/3}
+  .menu-body h3{min-height:0}
+  .hero{margin:24px 15px;padding:38px 16px}
+  .container{padding:18px 15px 100px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header>
-    <div class="logo">☕ Ruang Kopi Kita</div>
-
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#menu">Menu</a>
-        <a href="#cart" class="cart-button">
-            🛒 Cart (<span id="cartCount">0</span>)
-        </a>
-    </nav>
+  <div class="brand">☕ Ruang Kopi Kita</div>
+  <p>THE LITTLE VINTAGE COFFEE HOUSE</p>
 </header>
 
-<!-- HOME -->
-<section class="hero" id="home">
-    <div>
-        <h1>Ruang Kopi Kita</h1>
-        <p>"Ruang Kopi Kita - Ruang Kosong Tanpa Kamu"</p>
-        <button onclick="goToMenu()">Lihat Menu</button>
-    </div>
-</section>
-
-<!-- KATEGORI -->
-<div class="categories">
-    <button class="category-btn active" onclick="filterMenu('all',this)">Semua</button>
-    <button class="category-btn" onclick="filterMenu('coffee',this)">☕ Coffee</button>
-    <button class="category-btn" onclick="filterMenu('noncoffee',this)">🥛 Non-Coffee</button>
-    <button class="category-btn" onclick="filterMenu('bites',this)">🍟 Bites</button>
-    <button class="category-btn" onclick="filterMenu('pasta',this)">🍝 Pasta</button>
-    <button class="category-btn" onclick="filterMenu('rice',this)">🍚 Rice Bowl</button>
-    <button class="category-btn" onclick="filterMenu('milky',this)">🥤 Milky</button>
-    <button class="category-btn" onclick="filterMenu('sparkling',this)">🫧 Sparkling</button>
-    <button class="category-btn" onclick="filterMenu('tea',this)">🍵 Tea</button>
-    <button class="category-btn" onclick="filterMenu('matcha',this)">🍃 Matcha</button>
-    <button class="category-btn" onclick="filterMenu('addon',this)">➕ Add On</button>
+<div class="topbar">
+  ✦ FRESHLY BREWED • MADE WITH LOVE ✦
 </div>
 
-<!-- MENU -->
-<section class="section" id="menu">
-    <div class="section-title">
-        <h2>🍽️ Menu Kami</h2>
-        <p>Pilih makanan dan minuman anda</p>
-    </div>
-
-    <div class="menu-grid" id="menuGrid"></div>
+<section class="hero">
+  <small>WELCOME TO OUR CAFÉ</small>
+  <h1>Ruang Kopi Kita</h1>
+  <p>“Ruang Kosong Tanpa Kamu”</p>
+  <button onclick="document.getElementById('menu').scrollIntoView()">
+    Explore Our Menu ✦
+  </button>
 </section>
 
-<!-- TROLI -->
-<section class="cart-section" id="cart">
-    <h2>🛒 Pesanan Anda</h2>
+<main class="container" id="menu">
+  <h2 class="section-title">Our Vintage Menu</h2>
+  <div class="ornament">❧ ───── ✦ ───── ❧</div>
 
-    <div id="cartItems">
-        <p>Belum ada pesanan.</p>
-    </div>
+  <input
+    id="searchInput"
+    class="search"
+    type="search"
+    placeholder="Cari kopi, makanan atau minuman...">
 
-    <div class="total-box">
-        <span>Jumlah</span>
-        <span>RM <span id="total">0.00</span></span>
-    </div>
+  <div id="categories" class="categories"></div>
+  <div id="menuGrid" class="menu-grid"></div>
+</main>
 
-    <!-- BORANG PELANGGAN -->
-    <div class="order-form">
-        <h3>📋 Maklumat Pesanan</h3>
+<button class="cart-float" onclick="openCart()">
+  🛒 Troli (<span id="cartCount">0</span>)
+</button>
 
-        <input
-            type="text"
-            id="customerName"
-            placeholder="Nama pelanggan"
-            maxlength="100"
-        >
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
 
-        <input
-            type="text"
-            id="tableNumber"
-            placeholder="Nombor meja"
-            maxlength="20"
-        >
+<aside class="cart-panel" id="cartPanel">
+  <div class="cart-head">
+    <h2>✦ Your Order</h2>
+    <button class="close" onclick="closeCart()">×</button>
+  </div>
 
-        <button
-            class="order-button"
-            id="submitButton"
-            onclick="submitOrder()"
-        >
-            ✅ Hantar Pesanan
-        </button>
+  <div id="cartItems"></div>
 
-        <!-- KOTAK NOMBOR PESANAN -->
-        <div class="order-result" id="orderResult">
+  <div class="total">
+    <span>Jumlah</span>
+    <span id="cartTotal">RM0.00</span>
+  </div>
 
-            <h3>✅ Pesanan Berjaya Dihantar!</h3>
+  <label for="customerName">Nama Pelanggan</label>
+  <input id="customerName" class="field"
+    maxlength="80" placeholder="Nama anda">
 
-            <p>Nombor Pesanan Anda:</p>
+  <label for="tableNumber">Nombor Meja</label>
+  <input id="tableNumber" class="field"
+    maxlength="20" placeholder="Contoh: 5">
 
-            <h2 class="order-number" id="orderNumber"></h2>
+  <button id="checkoutBtn" class="checkout"
+    onclick="submitOrder()">
+    ✦ Hantar Pesanan
+  </button>
 
-            <p id="orderCustomer"></p>
-            <p id="orderTable"></p>
+  <div id="message" class="message" role="status"></div>
+</aside>
 
-            <p>Status: Baharu</p>
-
-            <p style="font-size:13px;margin-top:12px;">
-                Sila simpan nombor pesanan anda.
-            </p>
-
-        </div>
-    </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
-    <p>© 2026 Ruang Kopi Kita</p>
-    <p>Sistem Pesanan Digital</p>
+  ✦ RUANG KOPI KITA ✦
+  <p>Good Coffee • Good Memories • Good Company</p>
 </footer>
 
-<!-- SUPABASE LIBRARY -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-"use strict";
-
-/* =========================================
-   SAMBUNGAN SUPABASE
-========================================= */
-
 const SUPABASE_URL =
-    "https://ledcwlnyztcsvdedwmtq.supabase.co";
+"https://ledcwlnyztcsvdedwmtq.supabase.co";
 
 const SUPABASE_KEY =
-    "sb_publishable_a1sRyLibWsIpRThtxfUbUQ_-Ksjebvl";
+"sb_publishable_a1sRyLibWsIpRThtxfUbUQ_-Ksjebvl";
 
-const supabaseClient = window.supabase
-    ? window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    )
-    : null;
+const db=window.supabase.createClient(
+  SUPABASE_URL,SUPABASE_KEY
+);
 
-/* =========================================
-   SEMUA MENU RUANG KOPI KITA
-========================================= */
+/*
+ MENU ASAL RUANG KOPI KITA
+ Format:
+ [kategori, nama, emoji, {pilihan:harga}]
+*/
 
-const menu = [
+const rawMenu=[
 
-    // COFFEE
-    {category:"coffee",name:"Americano",icon:"☕",prices:{Hot:8,Cold:9}},
-    {category:"coffee",name:"Latte",icon:"☕",prices:{Hot:9,Cold:10}},
-    {category:"coffee",name:"Vanila Latte",icon:"☕",prices:{Hot:12,Cold:14}},
-    {category:"coffee",name:"Hazelnut Latte",icon:"☕",prices:{Hot:12,Cold:14}},
-    {category:"coffee",name:"Spanish Latte",icon:"☕",prices:{Hot:12,Cold:14}},
-    {category:"coffee",name:"Strawberry Latte",icon:"☕",prices:{Hot:12,Cold:14}},
-    {category:"coffee",name:"Mocha Latte",icon:"☕",prices:{Hot:12,Cold:14}},
-    {category:"coffee",name:"Butterscotch Latte",icon:"☕",prices:{Hot:13,Cold:15}},
-    {category:"coffee",name:"Caramel Macchiato",icon:"☕",prices:{Hot:13,Cold:15}},
-    {category:"coffee",name:"Butter Cookie Latte",icon:"☕",prices:{Hot:13,Cold:15}},
-    {category:"coffee",name:"Pistachio Latte",icon:"☕",prices:{Hot:13,Cold:15}},
-    {category:"coffee",name:"Ruang Kopi Kita Signature",icon:"☕",prices:{Regular:17}},
+["coffee","Americano","☕",{Hot:8,Cold:9}],
+["coffee","Latte","☕",{Hot:9,Cold:10}],
+["coffee","Vanila Latte","☕",{Hot:12,Cold:14}],
+["coffee","Hazelnut Latte","☕",{Hot:12,Cold:14}],
+["coffee","Spanish Latte","☕",{Hot:12,Cold:14}],
+["coffee","Strawberry Latte","🍓",{Hot:12,Cold:14}],
+["coffee","Mocha Latte","🍫",{Hot:12,Cold:14}],
+["coffee","Butterscotch Latte","☕",{Hot:13,Cold:15}],
+["coffee","Caramel Macchiato","☕",{Hot:13,Cold:15}],
+["coffee","Butter Cookie Latte","🍪",{Hot:13,Cold:15}],
+["coffee","Pistachio Latte","☕",{Hot:13,Cold:15}],
+["coffee","Ruang Kopi Kita Signature","☕",{Regular:17}],
 
-    // NON-COFFEE
-    {category:"noncoffee",name:"Chocolate",icon:"🍫",prices:{Hot:10,Cold:11}},
-    {category:"noncoffee",name:"Chocolate Hazelnut",icon:"🍫",prices:{Hot:11,Cold:13}},
-    {category:"noncoffee",name:"Chocolate Cookie",icon:"🍪",prices:{Hot:11,Cold:13}},
-    {category:"noncoffee",name:"Chocolate Caramel",icon:"🍫",prices:{Hot:11,Cold:13}},
-    {category:"noncoffee",name:"Chocolate Pistachio",icon:"🍵",prices:{Cold:14}},
-    {category:"noncoffee",name:"Black Forest",icon:"🍫",prices:{Cold:14}},
+["noncoffee","Chocolate","🍫",{Hot:10,Cold:11}],
+["noncoffee","Chocolate Hazelnut","🍫",{Hot:11,Cold:13}],
+["noncoffee","Chocolate Cookie","🍪",{Hot:11,Cold:13}],
+["noncoffee","Chocolate Caramel","🍫",{Hot:11,Cold:13}],
+["noncoffee","Chocolate Pistachio","🍫",{Cold:14}],
+["noncoffee","Black Forest","🍒",{Cold:14}],
 
-    // BITES
-    {category:"bites",name:"Shaker Fries",icon:"🍟",prices:{Regular:7}},
-    {category:"bites",name:"Chicken Nugget 5pcs",icon:"🍗",prices:{Regular:7}},
-    {category:"bites",name:"Wedges",icon:"🥔",prices:{Regular:10}},
-    {category:"bites",name:"Combo Set (Fries & Nugget)",icon:"🍟",prices:{Regular:12}},
-    {category:"bites",name:"Combo Set (Fries & Wedges)",icon:"🍟",prices:{Regular:15}},
-    {category:"bites",name:"Loaded Fries",icon:"🍟",prices:{Regular:12}},
-    {category:"bites",name:"Loaded Nachos",icon:"🌮",prices:{Regular:13}},
+["bites","Shaker Fries","🍟",{Regular:7}],
+["bites","Chicken Nugget 5pcs","🍗",{Regular:7}],
+["bites","Wedges","🥔",{Regular:10}],
+["bites","Combo Set (Fries & Nugget)","🍟",{Regular:12}],
+["bites","Combo Set (Fries & Wedges)","🍟",{Regular:15}],
+["bites","Loaded Fries","🍟",{Regular:12}],
+["bites","Loaded Nachos","🌮",{Regular:13}],
 
-    // PASTA
-    {category:"pasta",name:"Aglio Olio",icon:"🍝",prices:{Regular:13}},
-    {category:"pasta",name:"Carbonara",icon:"🍝",prices:{Regular:13}},
-    {category:"pasta",name:"Bolognese",icon:"🍝",prices:{Regular:13}},
-    {category:"pasta",name:"Creamy Tomyam",icon:"🍝",prices:{Regular:15}},
-    {category:"pasta",name:"Gigi Hadid",icon:"🍝",prices:{Regular:15}},
+["pasta","Aglio Olio","🍝",{Regular:13}],
+["pasta","Carbonara","🍝",{Regular:13}],
+["pasta","Bolognese","🍝",{Regular:13}],
+["pasta","Creamy Tomyam","🍝",{Regular:15}],
+["pasta","Gigi Hadid","🍝",{Regular:15}],
 
-    // RICE BOWL
-    {category:"rice",name:"Sukiya Maggie Bowl",icon:"🍚",prices:{Regular:15}},
-    {category:"rice",name:"Sukiya Rice Bowl",icon:"🍚",prices:{Regular:17}},
-    {category:"rice",name:"Cili Padi Beef Bowl",icon:"🍚",prices:{Regular:17}},
-    {category:"rice",name:"Sukiya Beef Bowl (150g)",icon:"🍚",prices:{Regular:19}},
+["rice","Sukiya Maggie Bowl","🍜",{Regular:15}],
+["rice","Sukiya Rice Bowl","🍚",{Regular:17}],
+["rice","Cili Padi Beef Bowl","🍚",{Regular:17}],
+["rice","Sukiya Beef Bowl (150g)","🍚",{Regular:19}],
 
-    // MILKY
-    {category:"milky",name:"Taro Milk",icon:"🥛",prices:{Cold:10}},
-    {category:"milky",name:"Strawberry Milk",icon:"🥛",prices:{Cold:10}},
-    {category:"milky",name:"Mango Milk",icon:"🥭",prices:{Cold:10}},
-    {category:"milky",name:"PineApple Milk",icon:"🍍",prices:{Cold:10}},
-    {category:"milky",name:"Brown Sugar Milk",icon:"🥛",prices:{Cold:10}},
+["milky","Taro Milk","🥛",{Cold:10}],
+["milky","Strawberry Milk","🍓",{Cold:10}],
+["milky","Mango Milk","🥭",{Cold:10}],
+["milky","PineApple Milk","🍍",{Cold:10}],
+["milky","Brown Sugar Milk","🥛",{Cold:10}],
 
-    // SPARKLING
-    {category:"sparkling",name:"Lychee Soda",icon:"🫧",prices:{Regular:8}},
-    {category:"sparkling",name:"Blackcurrant",icon:"🫐",prices:{Regular:8}},
-    {category:"sparkling",name:"Strawberry Sprite",icon:"🍓",prices:{Regular:8}},
-    {category:"sparkling",name:"Mango Unite",icon:"🥭",prices:{Regular:8}},
-    {category:"sparkling",name:"Blue Lagoon",icon:"🫧",prices:{Regular:8}},
-    {category:"sparkling",name:"PineApple Pine",icon:"🍍",prices:{Regular:8}},
+["sparkling","Lychee Soda","🍹",{Regular:8}],
+["sparkling","Blackcurrant","🫐",{Regular:8}],
+["sparkling","Strawberry Sprite","🍓",{Regular:8}],
+["sparkling","Mango Unite","🥭",{Regular:8}],
+["sparkling","Blue Lagoon","🍹",{Regular:8}],
+["sparkling","PineApple Pine","🍍",{Regular:8}],
 
-    // TEA
-    {category:"tea",name:"Lemon Tea",icon:"🍋",prices:{Hot:6,Cold:7}},
-    {category:"tea",name:"Peach Tea",icon:"🍑",prices:{Hot:6,Cold:7}},
-    {category:"tea",name:"Teh O",icon:"🍵",prices:{Hot:2,Cold:3}},
-    {category:"tea",name:"Teh Tarik",icon:"🫖",prices:{Hot:4,Cold:5}},
+["tea","Lemon Tea","🍋",{Hot:6,Cold:7}],
+["tea","Peach Tea","🍑",{Hot:6,Cold:7}],
+["tea","Teh O","🍵",{Hot:2,Cold:3}],
+["tea","Teh Tarik","🫖",{Hot:4,Cold:5}],
 
-    // MATCHA
-    {category:"matcha",name:"Matcha",icon:"🍃",prices:{Regular:11}},
-    {category:"matcha",name:"Matcha Strawberry",icon:"🍓",prices:{Regular:13}},
-    {category:"matcha",name:"Matcha Mango",icon:"🥭",prices:{Regular:13}},
-    {category:"matcha",name:"Matcha Caramel",icon:"🍃",prices:{Regular:13}},
-    {category:"matcha",name:"Matcha Butterscotch",icon:"🍃",prices:{Regular:13}},
-    {category:"matcha",name:"Matcha Chocolate",icon:"🍫",prices:{Regular:13}},
-    {category:"matcha",name:"Matcha Taro",icon:"🍃",prices:{Regular:13}},
-    {category:"matcha",name:"Matcha Biscoff",icon:"🍪",prices:{Regular:14.90}},
+["matcha","Matcha","🍃",{Regular:11}],
+["matcha","Matcha Strawberry","🍓",{Regular:13}],
+["matcha","Matcha Mango","🥭",{Regular:13}],
+["matcha","Matcha Caramel","🍃",{Regular:13}],
+["matcha","Matcha Butterscotch","🍃",{Regular:13}],
+["matcha","Matcha Chocolate","🍫",{Regular:13}],
+["matcha","Matcha Taro","🍃",{Regular:13}],
+["matcha","Matcha Biscoff","🍪",{Regular:14.90}],
 
-    // ADD ON
-    {category:"addon",name:"Shabu Shabu Beef (50g)",icon:"🥩",prices:{Regular:10}},
-    {category:"addon",name:"Chicken Slice",icon:"🍗",prices:{Regular:2}},
-    {category:"addon",name:"Prawn 2pcs",icon:"🍤",prices:{Regular:6}},
-    {category:"addon",name:"Spaghetti",icon:"🍝",prices:{Regular:4}},
-    {category:"addon",name:"Maggie",icon:"🍜",prices:{Regular:5}},
-    {category:"addon",name:"Rice",icon:"🍚",prices:{Regular:2}},
-    {category:"addon",name:"Sukiya Sauce",icon:"🥣",prices:{Regular:2}},
-    {category:"addon",name:"Cheese Sauce",icon:"🧀",prices:{Regular:3}},
-    {category:"addon",name:"Espresso Shot",icon:"☕",prices:{Regular:3}},
-    {category:"addon",name:"Oat Milk",icon:"🥛",prices:{Regular:3}},
-    {category:"addon",name:"Flavoured Syrup",icon:"🍯",prices:{Regular:2}},
-    {category:"addon",name:"Whipping Cream",icon:"🍦",prices:{Regular:2}},
-    {category:"addon",name:"Drizzle",icon:"🍫",prices:{Regular:1}},
-    {category:"addon",name:"Pure Matcha",icon:"🍃",prices:{Regular:1}}
+["addon","Shabu Shabu Beef (50g)","🥩",{Regular:10}],
+["addon","Chicken Slice","🍗",{Regular:2}],
+["addon","Prawn 2pcs","🍤",{Regular:6}],
+["addon","Spaghetti","🍝",{Regular:4}],
+["addon","Maggie","🍜",{Regular:5}],
+["addon","Rice","🍚",{Regular:2}],
+["addon","Sukiya Sauce","🥣",{Regular:2}],
+["addon","Cheese Sauce","🧀",{Regular:3}],
+["addon","Espresso Shot","☕",{Regular:3}],
+["addon","Oat Milk","🥛",{Regular:3}],
+["addon","Flavoured Syrup","🍯",{Regular:2}],
+["addon","Whipping Cream","🍦",{Regular:2}],
+["addon","Drizzle","🍫",{Regular:1}],
+["addon","Pure Matcha","🍃",{Regular:1}]
+
 ];
 
-/* =========================================
-   PAPAR MENU
-========================================= */
+const menu=rawMenu.map((row,id)=>({
+  id,
+  category:row[0],
+  name:row[1],
+  icon:row[2],
+  prices:row[3]
+}));
 
-const menuGrid = document.getElementById("menuGrid");
-const selectedOptions = {};
+const categories={
+  all:"✦ Semua",
+  coffee:"☕ Coffee",
+  noncoffee:"🍫 Non-Coffee",
+  bites:"🍟 Bites",
+  pasta:"🍝 Pasta",
+  rice:"🍚 Rice Bowl",
+  milky:"🥛 Milky",
+  sparkling:"🍹 Sparkling",
+  tea:"🍵 Tea",
+  matcha:"🍃 Matcha",
+  addon:"➕ Add On"
+};
 
-function displayMenu(category = "all") {
+let selectedCategory="all";
+let cart=[];
+let submitting=false;
 
-    menuGrid.innerHTML = "";
+const $=id=>document.getElementById(id);
+const money=n=>"RM"+Number(n).toFixed(2);
 
-    const filtered = category === "all"
-        ? menu
-        : menu.filter(item => item.category === category);
+/*
+ VINTAGE MENU ILLUSTRATION
+ Setiap menu menerima ilustrasi tersendiri
+ dengan nama dan simbol hidangan.
+ Tiada pautan gambar luaran diperlukan.
+*/
 
-    filtered.forEach(item => {
-
-        const index = menu.indexOf(item);
-        const types = Object.keys(item.prices);
-
-        const card = document.createElement("div");
-        card.className = "menu-card";
-
-        const image = document.createElement("div");
-        image.className = "menu-image";
-        image.textContent = item.icon;
-
-        const info = document.createElement("div");
-        info.className = "menu-info";
-
-        const heading = document.createElement("h3");
-        heading.textContent = item.name;
-
-        const description = document.createElement("p");
-        description.textContent = "Ruang Kopi Kita";
-
-        info.appendChild(heading);
-        info.appendChild(description);
-
-        if (types.length > 1) {
-
-            const options = document.createElement("div");
-            options.className = "price-options";
-
-            const selected = selectedOptions[index] || types[0];
-
-            types.forEach(type => {
-
-                const button = document.createElement("button");
-
-                button.textContent =
-                    type + " RM " + item.prices[type].toFixed(2);
-
-                if (type === selected) {
-                    button.classList.add("selected");
-                }
-
-                button.addEventListener("click", () => {
-
-                    selectedOptions[index] = type;
-
-                    options.querySelectorAll("button")
-                        .forEach(btn => btn.classList.remove("selected"));
-
-                    button.classList.add("selected");
-                });
-
-                options.appendChild(button);
-            });
-
-            info.appendChild(options);
-
-        } else {
-
-            const price = document.createElement("div");
-            price.className = "price";
-
-            price.textContent =
-                "RM " + item.prices[types[0]].toFixed(2);
-
-            info.appendChild(price);
-        }
-
-        const addButton = document.createElement("button");
-        addButton.className = "add-button";
-        addButton.textContent = "+ Tambah ke Cart";
-
-        addButton.addEventListener("click", () => {
-            addMenuItem(index);
-        });
-
-        info.appendChild(addButton);
-
-        card.appendChild(image);
-        card.appendChild(info);
-
-        menuGrid.appendChild(card);
-    });
+function svgEscape(s){
+  return String(s).replace(/[&<>"']/g,c=>({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&apos;"
+  }[c]));
 }
 
-/* =========================================
-   TROLI PELANGGAN
-========================================= */
+function vintageImage(item){
+  const palettes=[
+    ["#E8D5B5","#79563C"],
+    ["#D8DCC3","#596442"],
+    ["#E6C9B4","#815342"],
+    ["#DDD1BA","#6A6045"],
+    ["#E5D9C8","#67503B"],
+    ["#D4DABF","#576747"]
+  ];
 
-let cart = [];
+  const [bg,ink]=palettes[item.id%palettes.length];
 
-function addMenuItem(index) {
+  const name=svgEscape(item.name);
+  const category=svgEscape(
+    categories[item.category]||"CAFÉ MENU"
+  );
 
-    const item = menu[index];
-    const types = Object.keys(item.prices);
+  const words=item.name.split(" ");
+  let lines=[];
 
-    const selected = selectedOptions[index] || types[0];
-    const price = item.prices[selected];
+  if(item.name.length>24){
+    const midpoint=Math.ceil(words.length/2);
+    lines=[
+      words.slice(0,midpoint).join(" "),
+      words.slice(midpoint).join(" ")
+    ];
+  }else{
+    lines=[item.name];
+  }
 
-    const existing = cart.find(
-        entry => entry.name === item.name &&
-                 entry.option === selected
+  const title=lines.map((line,i)=>
+    `<text x="400" y="${442+i*35}"
+       text-anchor="middle"
+       font-family="Georgia,serif"
+       font-size="${line.length>25?23:29}"
+       font-weight="bold"
+       fill="${ink}">${svgEscape(line)}</text>`
+  ).join("");
+
+  const svg=`
+  <svg xmlns="http://www.w3.org/2000/svg"
+       width="800" height="600"
+       viewBox="0 0 800 600">
+
+    <rect width="800" height="600" fill="${bg}"/>
+
+    <rect x="25" y="25" width="750" height="550"
+      fill="none" stroke="${ink}" stroke-width="3"/>
+
+    <rect x="37" y="37" width="726" height="526"
+      fill="none" stroke="${ink}"
+      stroke-width="1" opacity=".5"/>
+
+    <circle cx="400" cy="245" r="155"
+      fill="#FFF8E8" stroke="${ink}" stroke-width="3"/>
+
+    <circle cx="400" cy="245" r="140"
+      fill="none" stroke="${ink}"
+      stroke-dasharray="3 9" opacity=".6"/>
+
+    <text x="400" y="91"
+      text-anchor="middle"
+      font-size="19"
+      letter-spacing="6"
+      font-family="Georgia,serif"
+      fill="${ink}">RUANG KOPI KITA</text>
+
+    <text x="400" y="315"
+      text-anchor="middle"
+      font-size="130">${item.icon}</text>
+
+    <text x="400" y="395"
+      text-anchor="middle"
+      font-size="15"
+      letter-spacing="4"
+      fill="${ink}"
+      font-family="Georgia,serif">${category}</text>
+
+    ${title}
+
+    <path d="M240 520 H350 M450 520 H560"
+      stroke="${ink}" stroke-width="2"/>
+
+    <text x="400" y="527"
+      text-anchor="middle"
+      font-size="27"
+      fill="${ink}">✦</text>
+  </svg>`;
+
+  return "data:image/svg+xml;charset=utf-8,"+
+    encodeURIComponent(svg);
+}
+
+/* CATEGORY */
+
+function renderCategories(){
+  const root=$("categories");
+  root.replaceChildren();
+
+  Object.entries(categories).forEach(([key,label])=>{
+    const btn=document.createElement("button");
+    btn.className="category-btn"+
+      (selectedCategory===key?" active":"");
+    btn.textContent=label;
+
+    btn.onclick=()=>{
+      selectedCategory=key;
+      renderCategories();
+      renderMenu();
+    };
+
+    root.appendChild(btn);
+  });
+}
+
+/* MENU */
+
+function renderMenu(){
+  const root=$("menuGrid");
+  root.replaceChildren();
+
+  const query=$("searchInput").value
+    .toLowerCase().trim();
+
+  const filtered=menu.filter(item=>
+    (selectedCategory==="all"||
+      item.category===selectedCategory) &&
+    item.name.toLowerCase().includes(query)
+  );
+
+  if(!filtered.length){
+    const p=document.createElement("p");
+    p.textContent="Tiada menu ditemui.";
+    root.appendChild(p);
+    return;
+  }
+
+  filtered.forEach(item=>{
+    const card=document.createElement("article");
+    card.className="menu-card";
+
+    const img=document.createElement("img");
+    img.className="menu-picture";
+    img.src=vintageImage(item);
+    img.alt="Ilustrasi vintage "+item.name;
+    img.loading="lazy";
+
+    const body=document.createElement("div");
+    body.className="menu-body";
+
+    const cat=document.createElement("div");
+    cat.className="menu-category";
+    cat.textContent=categories[item.category];
+
+    const name=document.createElement("h3");
+    name.textContent=item.name;
+
+    const select=document.createElement("select");
+    select.setAttribute("aria-label",
+      "Pilihan "+item.name);
+
+    Object.entries(item.prices).forEach(
+      ([variant,price])=>{
+        const opt=document.createElement("option");
+        opt.value=variant;
+        opt.textContent=variant+" — "+money(price);
+        select.appendChild(opt);
+      }
     );
 
-    if (existing) {
-        existing.quantity++;
-    } else {
-        cart.push({
-            name: item.name,
-            option: selected,
-            price: price,
-            quantity: 1
-        });
-    }
+    const bottom=document.createElement("div");
+    bottom.className="menu-bottom";
 
-    updateCart();
+    const price=document.createElement("span");
+    price.className="price";
 
-    document.getElementById("cart").scrollIntoView({
-        behavior: "smooth"
+    const updatePrice=()=>{
+      price.textContent=money(
+        item.prices[select.value]
+      );
+    };
+
+    select.onchange=updatePrice;
+    updatePrice();
+
+    const btn=document.createElement("button");
+    btn.className="add";
+    btn.textContent="+ Tambah";
+
+    btn.onclick=()=>addToCart(item.id,select.value);
+
+    bottom.append(price,btn);
+    body.append(cat,name,select,bottom);
+    card.append(img,body);
+    root.appendChild(card);
+  });
+}
+
+$("searchInput").addEventListener(
+  "input",renderMenu
+);
+
+/* CART */
+
+function addToCart(id,variant){
+  const item=menu.find(x=>x.id===id);
+  if(!item)return;
+
+  const key=id+"|"+variant;
+
+  const existing=cart.find(x=>x.key===key);
+
+  if(existing){
+    existing.quantity++;
+  }else{
+    cart.push({
+      key,
+      id,
+      name:item.name,
+      variant,
+      price:item.prices[variant],
+      quantity:1
     });
+  }
+
+  renderCart();
+  openCart();
 }
 
-function updateCart() {
+function changeQty(key,delta){
+  const item=cart.find(x=>x.key===key);
+  if(!item)return;
 
-    const cartItems = document.getElementById("cartItems");
-    const cartCount = document.getElementById("cartCount");
-    const totalElement = document.getElementById("total");
+  item.quantity+=delta;
 
-    cartItems.innerHTML = "";
+  if(item.quantity<=0){
+    cart=cart.filter(x=>x.key!==key);
+  }
 
-    if (cart.length === 0) {
-
-        cartItems.textContent = "Belum ada pesanan.";
-        cartCount.textContent = "0";
-        totalElement.textContent = "0.00";
-        return;
-    }
-
-    let total = 0;
-    let count = 0;
-
-    cart.forEach((item, index) => {
-
-        const subtotal = item.price * item.quantity;
-
-        total += subtotal;
-        count += item.quantity;
-
-        const row = document.createElement("div");
-        row.className = "cart-item";
-
-        const details = document.createElement("div");
-
-        const name = document.createElement("div");
-        name.className = "cart-name";
-        name.textContent = item.name;
-
-        const option = document.createElement("small");
-        option.textContent =
-            item.option + " - RM " + item.price.toFixed(2);
-
-        details.appendChild(name);
-        details.appendChild(option);
-
-        const quantity = document.createElement("div");
-        quantity.className = "quantity";
-
-        const minus = document.createElement("button");
-        minus.textContent = "−";
-
-        minus.addEventListener("click", () => {
-            changeQuantity(index, -1);
-        });
-
-        const number = document.createElement("span");
-        number.textContent = item.quantity;
-
-        const plus = document.createElement("button");
-        plus.textContent = "+";
-
-        plus.addEventListener("click", () => {
-            changeQuantity(index, 1);
-        });
-
-        quantity.appendChild(minus);
-        quantity.appendChild(number);
-        quantity.appendChild(plus);
-
-        const amount = document.createElement("strong");
-        amount.textContent = "RM " + subtotal.toFixed(2);
-
-        const remove = document.createElement("button");
-        remove.className = "remove";
-        remove.textContent = "Buang";
-
-        remove.addEventListener("click", () => {
-            removeItem(index);
-        });
-
-        row.appendChild(details);
-        row.appendChild(quantity);
-        row.appendChild(amount);
-        row.appendChild(remove);
-
-        cartItems.appendChild(row);
-    });
-
-    cartCount.textContent = count;
-    totalElement.textContent = total.toFixed(2);
+  renderCart();
 }
 
-function changeQuantity(index, amount) {
+function renderCart(){
+  const root=$("cartItems");
+  root.replaceChildren();
 
-    if (!cart[index]) return;
+  if(!cart.length){
+    const p=document.createElement("p");
+    p.textContent="Troli anda masih kosong.";
+    p.style.color="#897662";
+    p.style.padding="20px 0";
+    root.appendChild(p);
+  }
 
-    cart[index].quantity += amount;
+  cart.forEach(item=>{
+    const row=document.createElement("div");
+    row.className="cart-item";
 
-    if (cart[index].quantity <= 0) {
-        cart.splice(index, 1);
-    }
+    const info=document.createElement("div");
 
-    updateCart();
+    const name=document.createElement("strong");
+    name.textContent=item.name;
+
+    const variant=document.createElement("small");
+    variant.textContent=item.variant+
+      " • "+money(item.price);
+
+    const controls=document.createElement("div");
+    controls.className="qty";
+
+    const minus=document.createElement("button");
+    minus.textContent="−";
+    minus.onclick=()=>changeQty(item.key,-1);
+
+    const qty=document.createElement("span");
+    qty.textContent=item.quantity;
+
+    const plus=document.createElement("button");
+    plus.textContent="+";
+    plus.onclick=()=>changeQty(item.key,1);
+
+    controls.append(minus,qty,plus);
+    info.append(name,variant,controls);
+
+    const subtotal=document.createElement("strong");
+    subtotal.textContent=money(
+      item.price*item.quantity
+    );
+
+    row.append(info,subtotal);
+    root.appendChild(row);
+  });
+
+  $("cartCount").textContent=cart.reduce(
+    (sum,x)=>sum+x.quantity,0
+  );
+
+  $("cartTotal").textContent=money(
+    cart.reduce(
+      (sum,x)=>sum+x.price*x.quantity,0
+    )
+  );
+
+  $("checkoutBtn").disabled=
+    submitting||cart.length===0;
 }
 
-function removeItem(index) {
-    cart.splice(index, 1);
-    updateCart();
+function openCart(){
+  $("overlay").classList.add("show");
+  $("cartPanel").classList.add("show");
 }
 
-/* =========================================
-   KATEGORI DAN NAVIGASI
-========================================= */
-
-function filterMenu(category, button) {
-
-    document.querySelectorAll(".category-btn")
-        .forEach(btn => btn.classList.remove("active"));
-
-    button.classList.add("active");
-
-    displayMenu(category);
+function closeCart(){
+  $("overlay").classList.remove("show");
+  $("cartPanel").classList.remove("show");
 }
 
-function goToMenu() {
-
-    document.getElementById("menu").scrollIntoView({
-        behavior: "smooth"
-    });
+function showMessage(text){
+  $("message").textContent=text;
+  $("message").style.display="block";
 }
 
-/* =========================================
-   HANTAR PESANAN KE SUPABASE
-========================================= */
+/* SUPABASE CHECKOUT */
 
-let isSubmitting = false;
+async function submitOrder(){
+  if(submitting)return;
 
-async function submitOrder() {
+  const customer=$("customerName").value.trim();
+  const table=$("tableNumber").value.trim();
 
-    if (isSubmitting) return;
+  if(!customer||!table){
+    showMessage(
+      "Sila isi nama pelanggan dan nombor meja."
+    );
+    return;
+  }
 
-    if (cart.length === 0) {
-        alert("Sila pilih makanan atau minuman dahulu.");
-        return;
-    }
+  if(!cart.length){
+    showMessage("Troli masih kosong.");
+    return;
+  }
 
-    const name = document
-        .getElementById("customerName")
-        .value.trim();
+  submitting=true;
+  renderCart();
 
-    const table = document
-        .getElementById("tableNumber")
-        .value.trim();
+  showMessage("Sedang menghantar pesanan...");
 
-    if (!name || !table) {
-        alert("Sila masukkan nama pelanggan dan nombor meja.");
-        return;
-    }
+  try{
+    const total=cart.reduce(
+      (sum,x)=>sum+x.price*x.quantity,0
+    );
 
-    if (!supabaseClient) {
-        alert("Sambungan Supabase gagal dimuatkan. Sila refresh website.");
-        return;
-    }
+    const {data:order,error:orderError}=
+      await db.from("orders")
+        .insert({
+          customer_name:customer,
+          table_number:table,
+          total_amount:total,
+          status:"pending"
+        })
+        .select("id")
+        .single();
 
-    const items = cart.map(item => ({
-        name: item.name,
-        option: item.option,
-        quantity: item.quantity
+    if(orderError)throw orderError;
+
+    const items=cart.map(item=>({
+      order_id:order.id,
+      product_name:item.name+
+        (item.variant==="Regular"?
+          "":" ("+item.variant+")"),
+      quantity:item.quantity,
+      price:item.price,
+      subtotal:item.price*item.quantity
     }));
 
-    const button = document.getElementById("submitButton");
-    const result = document.getElementById("orderResult");
+    const {error:itemError}=
+      await db.from("order_items")
+        .insert(items);
 
-    isSubmitting = true;
-
-    button.disabled = true;
-    button.textContent = "⏳ Sedang menghantar...";
-
-    result.style.display = "none";
-
-    try {
-
-        const { data, error } = await supabaseClient.rpc(
-            "submit_customer_order",
-            {
-                p_customer_name: name,
-                p_table_number: table,
-                p_items: items
-            }
-        );
-
-        if (error) {
-            throw error;
-        }
-
-        if (typeof data !== "string" || !data.startsWith("RK-")) {
-            throw new Error("Nombor pesanan tidak diterima daripada Supabase.");
-        }
-
-        // PAPAR NOMBOR PESANAN DALAM KOTAK
-        document.getElementById("orderNumber").textContent = data;
-
-        document.getElementById("orderCustomer").textContent =
-            "Nama: " + name;
-
-        document.getElementById("orderTable").textContent =
-            "Meja: " + table;
-
-        result.style.display = "block";
-
-        // KOSONGKAN TROLI SELEPAS BERJAYA
-        cart = [];
-        updateCart();
-
-        document.getElementById("customerName").value = "";
-        document.getElementById("tableNumber").value = "";
-
-        result.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
-
-    } catch (error) {
-
-        console.error("Ralat Supabase:", error);
-
-        alert(
-            "Pesanan gagal dihantar.\n\n" +
-            (error.message || "Sila cuba lagi.")
-        );
-
-    } finally {
-
-        isSubmitting = false;
-
-        button.disabled = false;
-        button.textContent = "✅ Hantar Pesanan";
+    if(itemError){
+      throw new Error(
+        "Pesanan utama sudah direkodkan tetapi item "+
+        "gagal disimpan. Hubungi staf sebelum "+
+        "mencuba lagi. ID: "+order.id+
+        ". "+itemError.message
+      );
     }
+
+    cart=[];
+    renderCart();
+
+    showMessage(
+      "✓ Pesanan berjaya dihantar! "+
+      "Nombor pesanan: "+
+      String(order.id).slice(-8)+
+      ". Terima kasih kerana memilih Ruang Kopi Kita."
+    );
+
+  }catch(err){
+    showMessage("Ralat: "+err.message);
+  }finally{
+    submitting=false;
+    renderCart();
+  }
 }
 
-/* =========================================
-   MULA WEBSITE
-========================================= */
+/* INITIALIZE */
 
-displayMenu();
-updateCart();
+renderCategories();
+renderMenu();
+renderCart();
 
 </script>
-
 </body>
 </html>
