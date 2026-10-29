@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Retro Strawberry Café | Staff Panel</title>
+<title>Y2K Pop Café | Ruang Kopi Kita Staff</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,20 +12,21 @@
 
 <style>
 :root {
-  --strawberry:#E65B68;
-  --strawberry-dark:#AD354B;
-  --coral:#F58F82;
+  --pink:#F83F91;
+  --pink-dark:#B91E65;
+  --orange:#FF8C42;
+  --blue:#4C7CFF;
+  --yellow:#FFE36E;
+  --mint:#A7E9D0;
   --cream:#FFF9ED;
-  --vanilla:#FFE9BE;
-  --sage:#B8D5B3;
-  --sage-dark:#356D52;
-  --ink:#583E3B;
-  --muted:#856F69;
-  --line:#EBD9CB;
-  --white:#FFFEFA;
+  --ink:#392B46;
+  --muted:#756879;
+  --border:#392B46;
 }
 
-* { box-sizing:border-box; }
+* {
+  box-sizing:border-box;
+}
 
 body {
   margin:0;
@@ -33,19 +34,27 @@ body {
   font-family:'DM Sans',sans-serif;
   color:var(--ink);
   background:
-    radial-gradient(circle at 8% 12%,rgba(245,143,130,.16),transparent 28%),
-    radial-gradient(circle at 93% 80%,rgba(184,213,179,.22),transparent 30%),
-    #FFF9F0;
+    radial-gradient(circle at 12% 18%,rgba(248,63,145,.12),transparent 27%),
+    radial-gradient(circle at 90% 70%,rgba(76,124,255,.12),transparent 28%),
+    #FFF9F1;
 }
 
-button,input,select { font:inherit; }
-button { cursor:pointer; }
-.hidden { display:none!important; }
+button,input,select {
+  font:inherit;
+}
+
+button {
+  cursor:pointer;
+}
+
+.hidden {
+  display:none!important;
+}
 
 /* HEADER */
 header {
-  background:#F58F82;
-  border-bottom:6px solid #E65B68;
+  background:#FF9EC6;
+  border-bottom:5px solid var(--ink);
   padding:24px max(22px,calc((100vw - 1400px)/2));
   display:flex;
   justify-content:space-between;
@@ -59,38 +68,58 @@ header::before {
   content:"";
   position:absolute;
   inset:0;
-  background-image:
-    linear-gradient(45deg,rgba(255,255,255,.09) 25%,transparent 25%,transparent 75%,rgba(255,255,255,.09) 75%),
-    linear-gradient(45deg,rgba(255,255,255,.09) 25%,transparent 25%,transparent 75%,rgba(255,255,255,.09) 75%);
-  background-size:38px 38px;
-  background-position:0 0,19px 19px;
+  opacity:.2;
+  background:
+    conic-gradient(
+      #FFFFFF 25%,
+      transparent 0 50%,
+      #FFFFFF 0 75%,
+      transparent 0
+    );
+  background-size:46px 46px;
   pointer-events:none;
 }
 
-.brand,.header-actions { position:relative; z-index:1; }
+header::after {
+  content:"✿";
+  position:absolute;
+  right:18%;
+  top:-48px;
+  font-size:180px;
+  color:rgba(255,255,255,.45);
+  pointer-events:none;
+}
+
+.brand,
+.header-actions {
+  position:relative;
+  z-index:1;
+}
 
 .brand-small {
   display:inline-block;
-  background:#FFF6DF;
-  color:#A83C4C;
+  background:#FFE36E;
+  border:2px solid var(--ink);
   border-radius:30px;
   padding:7px 13px;
-  font-size:10px;
-  letter-spacing:2px;
+  font-size:11px;
   font-weight:800;
+  letter-spacing:2px;
+  box-shadow:3px 3px 0 var(--ink);
 }
 
 .brand h1 {
-  font:600 38px 'Fredoka',sans-serif;
-  color:#742D37;
-  margin:11px 0 4px;
+  font:700 40px 'Fredoka',sans-serif;
+  color:#3D2445;
+  margin:13px 0 5px;
+  letter-spacing:-1px;
 }
 
 .brand p {
   margin:0;
   font-size:13px;
-  color:#753F40;
-  font-weight:600;
+  font-weight:700;
+  color:#6C3659;
 }
 
 .header-actions {
@@ -102,68 +131,76 @@ header::before {
 
 #staffEmail {
   font-size:12px;
-  font-weight:700;
+  font-weight:800;
   overflow-wrap:anywhere;
 }
 
 /* BUTTONS */
 .btn {
-  border:0;
+  border:2px solid var(--ink);
   border-radius:13px;
-  padding:13px 18px;
+  padding:12px 18px;
   font-weight:800;
-  transition:transform .2s,background .2s;
+  box-shadow:4px 4px 0 var(--ink);
+  transition:transform .15s,box-shadow .15s;
 }
 
 .btn:hover:not(:disabled) {
-  transform:translateY(-2px);
+  transform:translate(2px,2px);
+  box-shadow:2px 2px 0 var(--ink);
 }
 
 .btn:disabled {
-  opacity:.6;
+  opacity:.55;
   cursor:not-allowed;
 }
 
 .btn-primary {
-  background:var(--strawberry);
+  background:var(--pink);
   color:white;
 }
 
-.btn-primary:hover:not(:disabled) {
-  background:var(--strawberry-dark);
-}
-
 .btn-outline {
-  background:#FFF8EA;
-  color:#A3394C;
-  border:2px solid #BD6570;
+  background:white;
+  color:var(--ink);
 }
 
 .btn-refresh {
-  background:#427D60;
+  background:var(--blue);
   color:white;
 }
 
 main {
   max-width:1440px;
   margin:auto;
-  padding:28px 22px 70px;
+  padding:30px 22px 75px;
 }
 
 /* LOGIN */
 .login-card {
   max-width:460px;
   margin:55px auto;
-  background:var(--white);
-  border:2px solid #E9C9B9;
+  background:white;
+  border:3px solid var(--ink);
   border-radius:25px;
   padding:32px;
-  box-shadow:0 15px 35px rgba(123,65,60,.09);
+  box-shadow:9px 9px 0 #FFB4D2;
+  position:relative;
+}
+
+.login-card::before {
+  content:"✿";
+  position:absolute;
+  top:-34px;
+  right:26px;
+  font-size:60px;
+  color:var(--orange);
+  text-shadow:2px 2px var(--ink);
 }
 
 .login-card h2 {
-  font:600 30px 'Fredoka',sans-serif;
-  color:#A73E4D;
+  font:700 32px 'Fredoka',sans-serif;
+  color:#C52C77;
   margin:0 0 10px;
 }
 
@@ -182,15 +219,14 @@ main {
 .login-card input {
   width:100%;
   padding:14px;
-  border:2px solid #E8D2C4;
+  border:2px solid var(--ink);
   border-radius:12px;
+  background:#FFF9F1;
   outline:none;
 }
 
-.login-card input:focus,
-.toolbar input:focus,
-.toolbar select:focus {
-  border-color:var(--strawberry);
+.login-card input:focus {
+  border-color:var(--pink);
 }
 
 .login-card .btn {
@@ -200,22 +236,22 @@ main {
 
 /* WELCOME */
 .welcome {
-  background:linear-gradient(110deg,#FFE3CD,#FFF2CF 55%,#DCEBCF);
-  border:2px solid #E7BEA5;
+  background:linear-gradient(115deg,#FFB5D1,#FFE59B 55%,#B8D2FF);
+  border:3px solid var(--ink);
   border-radius:25px;
-  padding:30px;
+  padding:31px;
   position:relative;
   overflow:hidden;
-  box-shadow:0 10px 25px rgba(120,70,50,.06);
+  box-shadow:7px 7px 0 #F3A7C6;
 }
 
 .welcome::after {
   content:"✿";
   position:absolute;
   right:35px;
-  top:-62px;
-  font-size:190px;
-  color:rgba(230,91,104,.12);
+  top:-67px;
+  font-size:200px;
+  color:rgba(255,255,255,.52);
   pointer-events:none;
 }
 
@@ -223,99 +259,100 @@ main {
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:16px;
   flex-wrap:wrap;
-  gap:15px;
   position:relative;
   z-index:1;
 }
 
 .eyebrow {
-  font-size:11px;
-  letter-spacing:2px;
-  color:#AD4B53;
+  display:inline-block;
+  background:#FFF9ED;
+  border:2px solid var(--ink);
+  border-radius:20px;
+  padding:6px 11px;
+  font-size:10px;
   font-weight:800;
+  letter-spacing:1.5px;
 }
 
 .welcome h2 {
-  font:600 36px 'Fredoka',sans-serif;
-  color:#803E3F;
-  margin:8px 0;
+  font:700 38px 'Fredoka',sans-serif;
+  color:#4E2D50;
+  margin:12px 0 8px;
 }
 
 .welcome p {
-  font-size:14px;
-  color:#82645C;
   margin:0;
+  font-size:14px;
+  font-weight:600;
+  color:#67465D;
 }
 
 .notice {
-  margin:19px 0;
+  margin:25px 0 20px;
   padding:14px 17px;
-  background:#FFF2D0;
-  border:1px solid #EBD29D;
-  border-left:5px solid #E99B60;
-  border-radius:12px;
-  color:#84633C;
+  background:#FFF1B6;
+  border:2px solid var(--ink);
+  border-radius:13px;
   font-size:13px;
-  font-weight:600;
+  font-weight:700;
 }
 
-/* STAT CARDS */
+/* STATISTICS */
 .stats {
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:17px;
-  margin:25px 0 33px;
+  gap:18px;
+  margin:25px 0 36px;
 }
 
 .stat {
+  min-height:160px;
+  padding:22px;
+  border:3px solid var(--ink);
   border-radius:22px;
-  padding:23px;
-  min-height:155px;
+  box-shadow:5px 5px 0 var(--ink);
   position:relative;
   overflow:hidden;
-  box-shadow:0 7px 19px rgba(110,60,50,.08);
 }
 
 .stat::after {
   content:"✿";
   position:absolute;
   right:-13px;
-  bottom:-45px;
+  bottom:-43px;
   font-size:116px;
-  color:rgba(255,255,255,.28);
+  color:rgba(255,255,255,.38);
   pointer-events:none;
 }
 
 .stat:nth-child(1) {
-  background:#FFB7AF;
-  border:2px solid #ED827F;
+  background:#FF8CBD;
 }
 
 .stat:nth-child(2) {
-  background:#FFE39B;
-  border:2px solid #E9BE60;
+  background:#FFE36E;
 }
 
 .stat:nth-child(3) {
-  background:#CFC1E9;
-  border:2px solid #AFA0D1;
+  background:#A9C2FF;
 }
 
 .stat:nth-child(4) {
-  background:#B8DDB8;
-  border:2px solid #83BA8A;
+  background:#A7E9D0;
 }
 
 .stat-icon {
-  width:46px;
-  height:46px;
+  width:47px;
+  height:47px;
+  background:rgba(255,255,255,.85);
+  border:2px solid var(--ink);
+  border-radius:50%;
   display:grid;
   place-items:center;
-  background:rgba(255,255,255,.66);
-  border-radius:50%;
-  font-size:24px;
-  margin-bottom:13px;
+  font-size:23px;
+  margin-bottom:12px;
 }
 
 .stat span {
@@ -326,34 +363,34 @@ main {
 
 .stat strong {
   display:block;
-  font:600 39px 'Fredoka',sans-serif;
-  margin-top:4px;
+  font:700 42px 'Fredoka',sans-serif;
+  margin-top:5px;
 }
 
-.stat:nth-child(1) strong { color:#9A3444; }
-.stat:nth-child(2) strong { color:#8A5A13; }
-.stat:nth-child(3) strong { color:#634A8B; }
-.stat:nth-child(4) strong { color:#326B46; }
+.stat:nth-child(1) strong { color:#8C164F; }
+.stat:nth-child(2) strong { color:#805300; }
+.stat:nth-child(3) strong { color:#254BB4; }
+.stat:nth-child(4) strong { color:#19684F; }
 
-/* ORDER SECTION */
+/* SECTION */
 .section-heading {
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
   flex-wrap:wrap;
-  margin-bottom:17px;
+  gap:12px;
+  margin-bottom:18px;
 }
 
 .section-heading h3 {
-  font:600 29px 'Fredoka',sans-serif;
-  color:#A53D4D;
+  font:700 30px 'Fredoka',sans-serif;
+  color:#B6276C;
   margin:0;
 }
 
 .section-heading span {
-  background:#DCEACF;
-  color:#4C7850;
+  background:#FFE36E;
+  border:2px solid var(--ink);
   border-radius:30px;
   padding:9px 14px;
   font-size:11px;
@@ -363,13 +400,13 @@ main {
 .toolbar {
   display:flex;
   gap:12px;
-  margin-bottom:22px;
+  margin-bottom:24px;
 }
 
 .toolbar input,
 .toolbar select {
-  background:#FFFEFA;
-  border:2px solid #E9CBBE;
+  background:white;
+  border:2px solid var(--ink);
   border-radius:13px;
   padding:15px;
   outline:none;
@@ -381,24 +418,31 @@ main {
   min-width:0;
 }
 
-.toolbar select { width:205px; }
+.toolbar select {
+  width:210px;
+}
 
-/* ORDER CARDS */
+.toolbar input:focus,
+.toolbar select:focus {
+  border-color:var(--pink);
+}
+
+/* ORDERS */
 .orders-grid {
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:20px;
+  gap:23px;
 }
 
 .order-card {
   min-width:0;
-  background:#FFFEFA;
-  border:2px solid #E9CCBF;
-  border-radius:22px;
-  padding:23px;
+  background:#FFFFFF;
+  border:3px solid var(--ink);
+  border-radius:23px;
+  padding:24px;
   position:relative;
   overflow:hidden;
-  box-shadow:0 8px 22px rgba(100,60,50,.07);
+  box-shadow:6px 6px 0 #FFB7D1;
 }
 
 .order-card::before {
@@ -407,13 +451,14 @@ main {
   top:0;
   left:0;
   right:0;
-  height:7px;
+  height:9px;
   background:repeating-linear-gradient(
     90deg,
-    #E65B68 0 28px,
-    #FFF1D6 28px 56px,
-    #8BBF93 56px 84px,
-    #FFF1D6 84px 112px
+    #F83F91 0 32px,
+    #FFF9ED 32px 64px,
+    #4C7CFF 64px 96px,
+    #FFF9ED 96px 128px,
+    #FF8C42 128px 160px
   );
 }
 
@@ -424,22 +469,23 @@ main {
   gap:10px;
   padding-bottom:16px;
   margin-bottom:17px;
-  border-bottom:1px dashed #E8CFC3;
+  border-bottom:2px dashed #EAC6D6;
 }
 
 .order-number {
-  font:600 21px 'Fredoka',sans-serif;
-  color:#AD3D50;
+  font:700 22px 'Fredoka',sans-serif;
+  color:#BD286F;
   overflow-wrap:anywhere;
 }
 
 .order-date {
-  font-size:11px;
-  color:#947A71;
   margin-top:5px;
+  color:#857185;
+  font-size:11px;
 }
 
 .status {
+  border:2px solid var(--ink);
   border-radius:30px;
   padding:8px 12px;
   font-size:11px;
@@ -447,10 +493,25 @@ main {
   white-space:nowrap;
 }
 
-.status-new { background:#FFD9D9; color:#A13C50; }
-.status-progress { background:#FFF0B6; color:#835E17; }
-.status-ready { background:#D5EED7; color:#2E7049; }
-.status-done { background:#E5DDF5; color:#66508C; }
+.status-new {
+  background:#FFD3E7;
+  color:#98235C;
+}
+
+.status-progress {
+  background:#FFE994;
+  color:#805600;
+}
+
+.status-ready {
+  background:#C4F0DB;
+  color:#176A4C;
+}
+
+.status-done {
+  background:#D9D3FF;
+  color:#5D4197;
+}
 
 .order-content {
   display:grid;
@@ -459,19 +520,21 @@ main {
 }
 
 .customer {
-  background:#FFF0E7;
-  border:1px solid #F0D4C4;
+  background:#FFF0F7;
+  border:2px solid #F4B8D4;
   border-radius:15px;
-  padding:17px;
+  padding:16px;
   font-size:13px;
   line-height:1.9;
   overflow-wrap:anywhere;
 }
 
-.customer strong { color:#A94353; }
+.customer strong {
+  color:#A82B6A;
+}
 
 .items-title {
-  color:#A94353;
+  color:#B42C71;
   font-size:13px;
   font-weight:800;
   margin-bottom:10px;
@@ -481,8 +544,8 @@ main {
   display:flex;
   justify-content:space-between;
   gap:10px;
-  border-bottom:1px dashed #E9D8CB;
   padding:10px 0;
+  border-bottom:1px dashed #E7D0DD;
   font-size:13px;
 }
 
@@ -495,54 +558,54 @@ main {
   display:flex;
   justify-content:space-between;
   gap:10px;
-  border-top:2px solid #E9D1C5;
-  margin-top:12px;
+  border-top:2px solid #E9C5D8;
   padding-top:14px;
-  font-size:19px;
+  margin-top:12px;
+  font-size:20px;
   font-weight:800;
-  color:#B23D51;
+  color:#BA266D;
 }
 
 .status-control {
   display:flex;
-  gap:10px;
-  background:#F2F7E9;
-  border:1px solid #D7E4C8;
-  border-radius:15px;
-  padding:12px;
+  gap:11px;
   margin-top:20px;
+  padding:12px;
+  background:#E9F0FF;
+  border:2px solid #A9C2FF;
+  border-radius:15px;
 }
 
 .status-control select {
   flex:1;
   min-width:0;
-  padding:12px;
   background:white;
-  border:1px solid #C7D9BB;
+  border:2px solid #C2C9E8;
   border-radius:10px;
+  padding:11px;
   color:var(--ink);
 }
 
 .message {
-  padding:14px;
   margin:14px 0;
+  padding:14px;
+  background:#FFF1B6;
+  border:2px solid #E8D087;
   border-radius:12px;
-  background:#FFF0CB;
-  color:#805A22;
   font-size:13px;
 }
 
 .empty-state {
   grid-column:1/-1;
-  background:#FFFEFA;
-  border:2px dashed #E6B8AC;
-  border-radius:20px;
+  background:white;
+  border:3px dashed #F4A2C7;
+  border-radius:21px;
   padding:50px 20px;
   text-align:center;
-  color:#92746B;
+  color:#866B80;
 }
 
-/* MOBILE */
+/* RESPONSIVE */
 @media(max-width:1000px) {
   .stats {
     grid-template-columns:repeat(2,minmax(0,1fr));
@@ -554,20 +617,63 @@ main {
 }
 
 @media(max-width:620px) {
-  header { padding:20px 16px; }
-  .brand h1 { font-size:29px; }
-  main { padding:18px 13px 45px; }
-  .welcome { padding:22px; }
-  .welcome h2 { font-size:27px; }
-  .welcome::after { display:none; }
-  .stat { padding:16px; min-height:140px; }
-  .stat strong { font-size:32px; }
-  .toolbar { flex-direction:column; }
-  .toolbar select { width:100%; }
-  .order-content { grid-template-columns:1fr; }
-  .order-card { padding:19px 15px; }
-  .status-control { flex-direction:column; }
-  .section-heading h3 { font-size:24px; }
+  header {
+    padding:20px 16px;
+  }
+
+  .brand h1 {
+    font-size:29px;
+  }
+
+  main {
+    padding:18px 13px 45px;
+  }
+
+  .welcome {
+    padding:22px;
+  }
+
+  .welcome h2 {
+    font-size:28px;
+  }
+
+  .welcome::after,
+  header::after {
+    display:none;
+  }
+
+  .stat {
+    padding:16px;
+    min-height:145px;
+  }
+
+  .stat strong {
+    font-size:34px;
+  }
+
+  .toolbar {
+    flex-direction:column;
+  }
+
+  .toolbar select {
+    width:100%;
+  }
+
+  .order-content {
+    grid-template-columns:1fr;
+  }
+
+  .order-card {
+    padding:19px 15px;
+  }
+
+  .status-control {
+    flex-direction:column;
+  }
+
+  .section-heading h3 {
+    font-size:25px;
+  }
 }
 </style>
 </head>
@@ -576,16 +682,19 @@ main {
 
 <header>
   <div class="brand">
-    <div class="brand-small">🍓 RUANG KOPI KITA</div>
-    <h1>Retro Strawberry Staff</h1>
-    <p>Sweet orders, happy customers & good coffee ♡</p>
+    <div class="brand-small">✿ RUANG KOPI KITA ✿</div>
+    <h1>Y2K Pop Staff ★</h1>
+    <p>Good coffee, funky vibes & happy orders!</p>
   </div>
 
   <div class="header-actions">
     <span id="staffEmail"></span>
-    <button id="logoutButton"
+    <button
+      id="logoutButton"
       class="btn btn-outline hidden"
-      onclick="logout()">Log Keluar</button>
+      onclick="logout()">
+      Log Keluar
+    </button>
   </div>
 </header>
 
@@ -593,27 +702,32 @@ main {
 
 <!-- LOGIN -->
 <section id="loginSection" class="login-card">
-  <h2>Hello, Strawberry! 🍓</h2>
+  <h2>Hey, Superstar! ★</h2>
   <p>Log masuk untuk mengurus pesanan café.</p>
 
   <form id="loginForm">
     <label for="emailInput">Email</label>
-    <input type="email" id="emailInput"
+    <input
+      type="email"
+      id="emailInput"
       placeholder="staff@email.com"
-      autocomplete="username" required>
+      autocomplete="username"
+      required>
 
     <label for="passwordInput">Kata Laluan</label>
-    <input type="password" id="passwordInput"
+    <input
+      type="password"
+      id="passwordInput"
       placeholder="Masukkan kata laluan"
-      autocomplete="current-password" required>
+      autocomplete="current-password"
+      required>
 
-    <button type="submit" class="btn btn-primary">
-      Log Masuk ♡
+    <button class="btn btn-primary" type="submit">
+      Let's Go! ♡
     </button>
   </form>
 
-  <div id="loginMessage"
-    class="message hidden" role="alert"></div>
+  <div id="loginMessage" class="message hidden" role="alert"></div>
 </section>
 
 <!-- DASHBOARD -->
@@ -622,9 +736,9 @@ main {
   <div class="welcome">
     <div class="welcome-top">
       <div>
-        <div class="eyebrow">✿ RETRO CAFE WORKSPACE ✿</div>
-        <h2>Dashboard Pesanan 🍰</h2>
-        <p>Urus pesanan pelanggan dengan mudah dan teratur.</p>
+        <div class="eyebrow">★ YOUR DAILY CAFE SPACE ★</div>
+        <h2>Dashboard Pesanan ✿</h2>
+        <p>Keep the orders flowing and the good vibes going!</p>
       </div>
 
       <button class="btn btn-refresh" onclick="loadOrders()">
@@ -634,7 +748,7 @@ main {
   </div>
 
   <div class="notice">
-    ♡ Pesanan disemak secara automatik setiap 10 saat apabila halaman ini aktif.
+    ★ Pesanan disemak secara automatik setiap 10 saat apabila halaman ini aktif.
   </div>
 
   <div class="stats">
@@ -645,7 +759,7 @@ main {
     </div>
 
     <div class="stat">
-      <div class="stat-icon">🍓</div>
+      <div class="stat-icon">💗</div>
       <span>Pesanan Baharu</span>
       <strong id="statNew">0</strong>
     </div>
@@ -657,19 +771,21 @@ main {
     </div>
 
     <div class="stat">
-      <div class="stat-icon">🌿</div>
+      <div class="stat-icon">🌈</div>
       <span>Sedia Dihidangkan</span>
       <strong id="statReady">0</strong>
     </div>
   </div>
 
   <div class="section-heading">
-    <h3>🍰 Senarai Pesanan</h3>
+    <h3>★ Senarai Pesanan</h3>
     <span>ORDER MANAGEMENT</span>
   </div>
 
   <div class="toolbar">
-    <input type="search" id="searchInput"
+    <input
+      type="search"
+      id="searchInput"
       placeholder="🔎 Cari nama, meja atau makanan...">
 
     <select id="filterStatus">
@@ -681,9 +797,7 @@ main {
     </select>
   </div>
 
-  <div id="dashboardMessage"
-    class="message hidden" role="alert"></div>
-
+  <div id="dashboardMessage" class="message hidden" role="alert"></div>
   <div id="ordersGrid" class="orders-grid"></div>
 
 </section>
@@ -709,10 +823,10 @@ let authorizedUserId = null;
 
 const $ = id => document.getElementById(id);
 
-function showMessage(id, message) {
+function showMessage(id,message) {
   const el = $(id);
   el.textContent = message;
-  el.classList.toggle("hidden", !message);
+  el.classList.toggle("hidden",!message);
 }
 
 function escapeHTML(value) {
@@ -743,9 +857,9 @@ function normalizeStatus(status) {
 
 function statusLabel(status) {
   return {
-    new:"🍓 Baharu",
+    new:"💗 Baharu",
     progress:"☕ Sedang Disediakan",
-    ready:"🌿 Sedia Dihidangkan",
+    ready:"🌈 Sedia Dihidangkan",
     done:"✓ Selesai"
   }[normalizeStatus(status)] || String(status || "Tidak diketahui");
 }
@@ -753,8 +867,7 @@ function statusLabel(status) {
 function statusClass(status) {
   const s = normalizeStatus(status);
   return ["new","progress","ready","done"].includes(s)
-    ? "status-" + s
-    : "";
+    ? "status-" + s : "";
 }
 
 function formatDate(value) {
@@ -789,7 +902,7 @@ function itemTotal(item) {
   const price = Number(item.price ?? item.unit_price ?? 0);
 
   return Number(
-    item.subtotal ?? item.total_price ?? (qty * price)
+    item.subtotal ?? item.total_price ?? qty * price
   ) || 0;
 }
 
@@ -992,7 +1105,7 @@ function renderOrders() {
   if (!filtered.length) {
     grid.innerHTML = `
       <div class="empty-state">
-        <div style="font-size:40px">🍓</div>
+        <div style="font-size:40px">★</div>
         <h3>Tiada pesanan ditemui</h3>
         <p>Pesanan akan dipaparkan di sini apabila tersedia.</p>
       </div>
@@ -1040,7 +1153,7 @@ function renderOrders() {
       <div class="order-top">
         <div>
           <div class="order-number">
-            🍓 Pesanan #${escapeHTML(String(id).slice(-8))}
+            ★ Pesanan #${escapeHTML(String(id).slice(-8))}
           </div>
           <div class="order-date">
             ${escapeHTML(formatDate(order.created_at))}
@@ -1053,7 +1166,7 @@ function renderOrders() {
 
       <div class="order-content">
         <div class="customer">
-          <strong>♡ Maklumat Pelanggan</strong>
+          <strong>★ Maklumat Pelanggan</strong>
           <div>Nama: ${escapeHTML(customerName(order))}</div>
           <div>Meja: ${escapeHTML(tableNumber(order))}</div>
         </div>
@@ -1075,7 +1188,7 @@ function renderOrders() {
           ${statusOptions}
         </select>
         <button class="btn btn-primary">
-          ♡ Simpan Status
+          ★ Simpan Status
         </button>
       </div>
     `;
@@ -1121,7 +1234,7 @@ async function updateOrderStatus(id,newStatus,button) {
     );
   } finally {
     button.disabled = false;
-    button.textContent = "♡ Simpan Status";
+    button.textContent = "★ Simpan Status";
   }
 }
 
