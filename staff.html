@@ -4,73 +4,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ruang Kopi Kita | Staff Panel</title>
+<title>Staff Dashboard | Ruang Kopi Kita</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --bg:#FCF8F6;
+  --pink:#FF168A;
+  --purple:#853BFF;
+  --turquoise:#00BFB4;
+  --yellow:#FFCC00;
+  --orange:#FF783E;
+  --dark:#54234F;
+  --muted:#85677F;
   --white:#FFFFFF;
-  --pink:#CF8297;
-  --pink-dark:#A95570;
-  --pink-light:#F8E6EA;
-  --cream:#FFF9F5;
-  --brown:#593D39;
-  --muted:#8D7776;
-  --border:#EEDDDD;
-  --shadow:0 7px 25px rgba(95,55,60,.055);
 }
 
-* {
-  box-sizing:border-box;
-}
+* { box-sizing:border-box; }
 
 body {
   margin:0;
-  font-family:'DM Sans',Arial,sans-serif;
-  background:var(--bg);
-  color:var(--brown);
-  line-height:1.55;
+  font-family:'DM Sans',sans-serif;
+  color:var(--dark);
+  background:
+    radial-gradient(circle at 8% 20%,rgba(255,22,138,.13),transparent 30%),
+    radial-gradient(circle at 95% 65%,rgba(133,59,255,.12),transparent 32%),
+    #FFF7FC;
+  min-height:100vh;
 }
 
-button,input,select {
-  font:inherit;
-}
-
-button {
-  cursor:pointer;
-}
-
-button:disabled {
-  opacity:.55;
-  cursor:not-allowed;
-}
-
-button:focus-visible,
-input:focus-visible,
-select:focus-visible {
-  outline:3px solid var(--pink);
-  outline-offset:2px;
-}
-
-.hidden {
-  display:none!important;
-}
+button,input,select { font:inherit; }
+button { cursor:pointer; }
+.hidden { display:none !important; }
 
 /* HEADER */
-
 header {
-  background:linear-gradient(110deg,#FFF9F6,#F5E5E3);
-  border-bottom:1px solid #EAD7D5;
-  padding:23px 5%;
+  background:linear-gradient(110deg,#FF77B9,#C5A2FF,#FFD78C);
+  border-bottom:5px solid var(--pink);
+  padding:22px max(22px,calc((100vw - 1380px)/2));
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:15px;
-  flex-wrap:wrap;
+  gap:20px;
   position:relative;
   overflow:hidden;
 }
@@ -78,69 +55,65 @@ header {
 header::after {
   content:"✿";
   position:absolute;
-  right:28%;
-  top:-52px;
-  font-size:145px;
-  color:rgba(185,112,131,.06);
+  right:25%;
+  top:-60px;
+  font-size:190px;
+  color:rgba(255,255,255,.18);
   pointer-events:none;
 }
 
-.brand {
-  position:relative;
-  z-index:1;
-}
-
+.brand { position:relative; z-index:1; }
 .brand-small {
   font-size:11px;
+  font-weight:800;
   letter-spacing:3px;
-  color:#A66E7B;
-  font-weight:700;
-  text-transform:uppercase;
+  color:#7C205E;
 }
 
 .brand h1 {
-  margin:2px 0;
-  font-family:'Playfair Display',Georgia,serif;
-  font-size:clamp(26px,3vw,35px);
-  font-weight:600;
-  color:var(--brown);
+  font-family:'Fredoka',sans-serif;
+  font-size:36px;
+  margin:5px 0;
+  color:#63205B;
 }
 
 .brand p {
-  margin:4px 0 0;
-  color:var(--muted);
+  margin:0;
+  color:#6F3769;
   font-size:13px;
 }
 
 .header-actions {
   display:flex;
   align-items:center;
-  gap:12px;
   flex-wrap:wrap;
+  gap:12px;
   position:relative;
   z-index:1;
 }
 
 #staffEmail {
-  color:#795C5B;
   font-size:12px;
+  font-weight:700;
   overflow-wrap:anywhere;
 }
 
-/* BUTTON */
-
+/* BUTTONS */
 .btn {
-  border:none;
-  border-radius:11px;
+  border:0;
+  border-radius:13px;
   padding:12px 18px;
-  font-weight:700;
-  font-size:13px;
-  min-height:45px;
-  transition:background .2s,transform .2s;
+  font-weight:800;
+  transition:transform .2s,background .2s;
 }
 
 .btn:hover:not(:disabled) {
-  transform:translateY(-1px);
+  transform:translateY(-2px);
+}
+
+.btn:disabled {
+  opacity:.6;
+  cursor:not-allowed;
 }
 
 .btn-primary {
@@ -149,124 +122,88 @@ header::after {
 }
 
 .btn-primary:hover:not(:disabled) {
-  background:var(--pink-dark);
+  background:#D90070;
 }
 
 .btn-outline {
   background:white;
-  color:var(--pink-dark);
-  border:1px solid #E6C3CD;
-}
-
-.btn-outline:hover:not(:disabled) {
-  background:#FFF0F4;
+  color:#9C216B;
+  border:2px solid #F1B1D2;
 }
 
 .btn-refresh {
-  background:#F2E4DF;
-  color:#79534D;
+  background:var(--purple);
+  color:white;
 }
-
-.btn-refresh:hover:not(:disabled) {
-  background:#EAD4CD;
-}
-
-/* MAIN */
 
 main {
-  max-width:1370px;
+  max-width:1420px;
   margin:auto;
-  padding:32px 22px 65px;
+  padding:28px 22px 70px;
 }
 
 /* LOGIN */
-
 .login-card {
-  max-width:450px;
+  max-width:440px;
   margin:55px auto;
-  padding:35px;
   background:white;
-  border:1px solid var(--border);
-  border-radius:20px;
-  box-shadow:var(--shadow);
-  position:relative;
-  overflow:hidden;
-}
-
-.login-card::before {
-  content:"✿";
-  position:absolute;
-  top:-38px;
-  right:10px;
-  font-size:110px;
-  color:rgba(185,112,131,.07);
-  pointer-events:none;
+  border:2px solid #F6B5D8;
+  border-radius:25px;
+  padding:32px;
+  box-shadow:0 15px 40px rgba(255,22,138,.10);
 }
 
 .login-card h2 {
-  font-family:'Playfair Display',Georgia,serif;
-  font-size:29px;
-  font-weight:600;
-  text-align:center;
-  margin:0;
+  font-family:'Fredoka',sans-serif;
+  font-size:30px;
+  color:#A71976;
+  margin:0 0 10px;
 }
 
 .login-card p {
   color:var(--muted);
-  text-align:center;
-  font-size:13px;
-  margin:10px 0 25px;
+  font-size:14px;
 }
 
-.field {
-  margin-bottom:18px;
-}
-
-.field label {
+.login-card label {
   display:block;
-  font-size:13px;
   font-weight:700;
-  margin-bottom:8px;
+  font-size:13px;
+  margin:17px 0 7px;
 }
 
-.field input {
+.login-card input {
   width:100%;
-  background:#FFFCFB;
-  border:1px solid #E7D6D5;
-  border-radius:10px;
   padding:14px;
-  color:var(--brown);
+  border:2px solid #F2C4DD;
+  border-radius:12px;
+  outline:none;
 }
 
-.field input:focus {
-  border-color:var(--pink);
+.login-card input:focus {
+  border-color:var(--purple);
 }
 
-.login-card .btn {
-  width:100%;
-  margin-top:5px;
-}
+.login-card .btn { width:100%; margin-top:20px; }
 
-/* DASHBOARD INTRO */
-
+/* WELCOME */
 .welcome {
+  background:linear-gradient(115deg,#FFB8DC,#D9B9FF,#FFE19B);
+  border:3px solid #F67DB9;
+  border-radius:25px;
+  padding:30px;
   position:relative;
-  background:linear-gradient(120deg,#FFFFFF,#FFF9F7);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:27px 28px;
-  margin-bottom:22px;
-  box-shadow:var(--shadow);
   overflow:hidden;
+  box-shadow:0 10px 28px rgba(180,65,145,.10);
 }
 
 .welcome::after {
   content:"✿";
   position:absolute;
-  right:30px;
-  top:-37px;
-  font-size:140px;
-  color:rgba(185,112,131,.075);
+  right:35px;
+  top:-55px;
+  font-size:190px;
+  color:rgba(255,255,255,.30);
   pointer-events:none;
 }
 
@@ -274,390 +211,352 @@ main {
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:15px;
   flex-wrap:wrap;
+  gap:15px;
   position:relative;
   z-index:1;
 }
 
 .eyebrow {
-  color:var(--pink-dark);
-  font-size:11px;
-  letter-spacing:2px;
+  color:#A11D70;
   font-weight:800;
-  margin-bottom:6px;
+  font-size:11px;
+  letter-spacing:2.5px;
 }
 
 .welcome h2 {
-  margin:0;
-  font-family:'Playfair Display',Georgia,serif;
-  font-weight:600;
-  font-size:clamp(26px,3vw,33px);
+  font-family:'Fredoka',sans-serif;
+  font-size:35px;
+  color:#70205F;
+  margin:8px 0;
 }
 
 .welcome p {
-  margin:8px 0 0;
+  color:#754368;
   font-size:14px;
-  color:var(--muted);
+  margin:0;
 }
 
 /* NOTICE */
-
 .notice {
-  padding:13px 16px;
-  background:#FFF9F4;
-  border:1px solid #EADFD5;
-  border-left:3px solid #D7A3B0;
-  border-radius:11px;
-  font-size:12px;
-  color:#866B65;
-  margin-bottom:22px;
+  background:#FFF3C9;
+  color:#805500;
+  border:2px solid #FFD760;
+  border-radius:13px;
+  padding:14px 17px;
+  margin:19px 0;
+  font-size:13px;
+  font-weight:600;
 }
 
 /* STATISTICS */
-
 .stats {
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:16px;
-  margin-bottom:25px;
+  gap:17px;
+  margin:25px 0 32px;
 }
 
 .stat {
+  border-radius:22px;
+  padding:23px;
+  min-height:155px;
   position:relative;
   overflow:hidden;
-  padding:22px;
-  border:1px solid var(--border);
-  border-radius:17px;
-  box-shadow:var(--shadow);
+  box-shadow:0 8px 22px rgba(120,40,90,.08);
 }
 
 .stat::after {
   content:"✿";
   position:absolute;
-  bottom:-20px;
-  right:10px;
-  font-size:70px;
-  opacity:.09;
+  right:-10px;
+  bottom:-35px;
+  font-size:110px;
+  color:rgba(255,255,255,.23);
   pointer-events:none;
 }
 
 .stat:nth-child(1) {
-  background:#F9E8EC;
+  background:#FF91C8;
+  border:2px solid #F23B99;
 }
 
 .stat:nth-child(2) {
-  background:#FBF0E8;
+  background:#FFE16B;
+  border:2px solid #F5B900;
 }
 
 .stat:nth-child(3) {
-  background:#EAF0F7;
+  background:#B89AFF;
+  border:2px solid #853BFF;
 }
 
 .stat:nth-child(4) {
-  background:#E8F1E8;
+  background:#78E5D0;
+  border:2px solid #00BFAF;
 }
 
 .stat-icon {
-  font-size:22px;
-  margin-bottom:9px;
+  width:44px;
+  height:44px;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,.65);
+  border-radius:14px;
+  font-size:23px;
+  margin-bottom:13px;
 }
 
 .stat span {
   display:block;
-  font-size:12px;
-  font-weight:700;
-  color:#725756;
+  font-weight:800;
+  font-size:13px;
+  color:#4D2D49;
 }
 
 .stat strong {
   display:block;
-  font-size:34px;
-  margin-top:7px;
-  font-weight:800;
-  color:#9C4D66;
+  font-family:'Fredoka',sans-serif;
+  font-size:39px;
+  margin-top:4px;
 }
 
-.stat:nth-child(2) strong {
-  color:#95603B;
-}
+.stat:nth-child(1) strong { color:#8B0954; }
+.stat:nth-child(2) strong { color:#785000; }
+.stat:nth-child(3) strong { color:#42159C; }
+.stat:nth-child(4) strong { color:#075F54; }
 
-.stat:nth-child(3) strong {
-  color:#476B92;
-}
-
-.stat:nth-child(4) strong {
-  color:#427650;
-}
-
-/* TOOLBAR */
-
+/* ORDER SECTION */
 .section-heading {
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  margin-bottom:15px;
-  gap:12px;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:17px;
 }
 
 .section-heading h3 {
-  font-family:'Playfair Display',Georgia,serif;
-  font-size:23px;
-  font-weight:600;
+  font-family:'Fredoka',sans-serif;
+  font-size:28px;
+  color:#9A146B;
   margin:0;
 }
 
 .section-heading span {
-  color:var(--muted);
-  font-size:12px;
+  background:#E6D3FF;
+  color:#6526AD;
+  border-radius:30px;
+  padding:9px 15px;
+  font-size:11px;
+  font-weight:800;
 }
 
+/* TOOLBAR */
 .toolbar {
   display:flex;
-  flex-wrap:wrap;
   gap:12px;
   margin-bottom:22px;
 }
 
 .toolbar input,
 .toolbar select {
+  padding:15px;
+  border:2px solid #ED9DCD;
+  border-radius:14px;
   background:white;
-  border:1px solid #E8DADA;
-  border-radius:11px;
-  padding:13px 15px;
-  min-height:48px;
-  color:var(--brown);
+  outline:none;
+  color:var(--dark);
 }
 
 .toolbar input {
   flex:1;
-  min-width:220px;
+  min-width:0;
 }
 
 .toolbar select {
-  min-width:195px;
-}
-
-.toolbar input::placeholder {
-  color:#A18D8C;
+  width:205px;
 }
 
 .toolbar input:focus,
 .toolbar select:focus {
-  border-color:var(--pink);
+  border-color:var(--purple);
 }
 
-/* ORDER GRID */
-
+/* ORDERS */
 .orders-grid {
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:19px;
+  gap:20px;
 }
 
 .order-card {
+  min-width:0;
   background:white;
-  border:1px solid var(--border);
-  border-radius:17px;
+  border:2px solid #FF94C6;
+  border-radius:23px;
   padding:23px;
-  box-shadow:var(--shadow);
   position:relative;
   overflow:hidden;
-  transition:transform .2s,box-shadow .2s;
+  box-shadow:0 9px 26px rgba(255,22,138,.09);
 }
 
 .order-card::before {
   content:"";
   position:absolute;
-  left:0;
   top:0;
+  left:0;
   right:0;
-  height:3px;
-  background:#DCA5B1;
-}
-
-.order-card:hover {
-  transform:translateY(-2px);
-  box-shadow:0 10px 27px rgba(95,55,60,.09);
+  height:7px;
+  background:linear-gradient(90deg,#FF168A,#853BFF,#00C9C2,#FFCC00,#FF783E);
 }
 
 .order-top {
   display:flex;
-  justify-content:space-between;
   align-items:flex-start;
-  gap:12px;
+  justify-content:space-between;
+  gap:10px;
+  padding-bottom:16px;
+  margin-bottom:17px;
+  border-bottom:1px dashed #F2C4DE;
 }
 
 .order-number {
-  font-size:18px;
-  font-weight:800;
-  color:#704744;
-  overflow-wrap:anywhere;
+  font-family:'Fredoka',sans-serif;
+  font-size:21px;
+  font-weight:600;
+  color:#B81D7D;
 }
 
 .order-date {
-  color:#9B8583;
-  font-size:12px;
+  font-size:11px;
+  color:#92768C;
   margin-top:5px;
 }
 
-/* STATUS */
-
 .status {
-  display:inline-block;
-  border-radius:999px;
-  padding:7px 12px;
+  border-radius:30px;
+  padding:8px 12px;
   font-size:11px;
   font-weight:800;
   white-space:nowrap;
 }
 
 .status-new {
-  background:#F8DFE6;
-  color:#A04462;
+  background:#FFD0E8;
+  color:#A91F6B;
 }
 
 .status-progress {
-  background:#FFF0D9;
-  color:#996125;
+  background:#FFE99D;
+  color:#805300;
 }
 
 .status-ready {
-  background:#E0F0E2;
-  color:#39774C;
+  background:#BDF3D8;
+  color:#167B50;
 }
 
 .status-done {
-  background:#E4ECF6;
-  color:#466B98;
+  background:#E2CEFF;
+  color:#7138B8;
 }
 
-.status-cancel {
-  background:#F7E3E4;
-  color:#A54E54;
+.order-content {
+  display:grid;
+  grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+  gap:16px;
 }
-
-/* CUSTOMER */
 
 .customer {
-  background:#FCF7F5;
-  border:1px solid #F0E5E1;
-  padding:14px 15px;
-  border-radius:11px;
-  margin:16px 0;
-  color:#765B58;
+  background:linear-gradient(135deg,#FFE6F2,#F3E9FF);
+  border:2px solid #F6C2E2;
+  border-radius:15px;
+  padding:17px;
   font-size:13px;
   line-height:1.9;
+  overflow-wrap:anywhere;
 }
 
-/* ITEMS */
+.customer strong {
+  color:#8B2869;
+}
 
 .items-title {
-  font-weight:800;
-  color:#8E5263;
   font-size:13px;
-  margin-bottom:9px;
+  font-weight:800;
+  color:#A92379;
+  margin-bottom:10px;
 }
 
 .item-row {
   display:flex;
   justify-content:space-between;
-  align-items:flex-start;
   gap:10px;
+  border-bottom:1px dashed #F1D6E6;
   padding:10px 0;
-  border-bottom:1px dashed #E9DBD8;
   font-size:13px;
 }
 
-.item-row small {
-  display:block;
-  font-size:11px;
-  color:var(--muted);
-  margin-top:3px;
-}
-
 .item-price {
+  font-weight:800;
   white-space:nowrap;
-  font-weight:700;
-  color:#795451;
 }
 
 .total {
   display:flex;
   justify-content:space-between;
   align-items:center;
-  border-top:1px solid #E6C8D0;
+  gap:10px;
   padding-top:15px;
-  margin-top:17px;
-  font-size:18px;
+  margin-top:12px;
+  border-top:2px solid #F3C5DF;
   font-weight:800;
-  color:#9C4D66;
+  color:#B91D7D;
+  font-size:19px;
 }
-
-/* STATUS CONTROL */
 
 .status-control {
   display:flex;
   gap:10px;
-  margin-top:19px;
+  background:#F8E8FF;
+  border:1px solid #C89AFF;
+  padding:12px;
+  border-radius:15px;
+  margin-top:20px;
 }
 
 .status-control select {
   flex:1;
   min-width:0;
-  padding:11px;
-  border:1px solid #E6D5D4;
-  background:#FFFCFB;
-  color:var(--brown);
+  padding:12px;
+  background:white;
+  border:1px solid #D6B5EF;
   border-radius:10px;
-  min-height:46px;
+  color:var(--dark);
 }
-
-.status-control .btn {
-  min-height:46px;
-}
-
-/* MESSAGES */
 
 .message {
-  padding:14px 16px;
-  border-radius:11px;
-  margin:15px 0;
-  background:#FCE9E9;
-  color:#A04B55;
-  border:1px solid #F0D2D2;
+  padding:14px;
+  border-radius:12px;
+  margin:14px 0;
+  background:#FFF0C9;
+  color:#805300;
   font-size:13px;
 }
 
-.message.success {
-  background:#E8F3EA;
-  color:#357347;
-  border-color:#C9E4CF;
-}
-
-.empty {
+.empty-state {
   grid-column:1/-1;
-  padding:45px 20px;
+  padding:50px 20px;
   background:white;
-  border:1px dashed #DEC3CB;
-  border-radius:16px;
+  border:2px dashed #EFA9D1;
+  border-radius:20px;
   text-align:center;
-  color:var(--muted);
+  color:#986A87;
 }
 
-/* FOOTER */
-
-footer {
-  text-align:center;
-  padding:25px;
-  color:#9B8583;
-  font-size:12px;
-  border-top:1px solid #EEE1DE;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:900px) {
+/* MOBILE */
+@media(max-width:1000px) {
   .stats {
     grid-template-columns:repeat(2,minmax(0,1fr));
   }
@@ -667,905 +566,75 @@ footer {
   }
 }
 
-@media(max-width:520px) {
+@media(max-width:620px) {
   header {
     padding:20px 16px;
   }
 
-  main {
-    padding:22px 13px 45px;
-  }
-
-  .welcome {
-    padding:22px 18px;
-  }
-
-  .login-card {
-    margin:25px auto;
-    padding:25px 19px;
-  }
-
-  .stats {
-    gap:10px;
-  }
-
-  .stat {
-    padding:17px 13px;
-  }
-
-  .stat strong {
+  .brand h1 {
     font-size:29px;
   }
 
-  .stat span {
-    font-size:11px;
+  main {
+    padding:18px 13px 45px;
+  }
+
+  .welcome {
+    padding:22px;
+  }
+
+  .welcome h2 {
+    font-size:27px;
+  }
+
+  .welcome::after,
+  header::after {
+    display:none;
+  }
+
+  .stat {
+    padding:16px;
+    min-height:145px;
+  }
+
+  .stat strong {
+    font-size:32px;
+  }
+
+  .toolbar {
+    flex-direction:column;
+  }
+
+  .toolbar select {
+    width:100%;
+  }
+
+  .order-content {
+    grid-template-columns:1fr;
   }
 
   .order-card {
     padding:19px 15px;
-  }
-
-  .order-top {
-    flex-wrap:wrap;
-  }
-
-  .toolbar input,
-  .toolbar select {
-    width:100%;
-    min-width:0;
   }
 
   .status-control {
     flex-direction:column;
   }
 
-  .status-control select,
-  .status-control .btn {
-    width:100%;
-  }
-}
-
-@media(prefers-reduced-motion:reduce) {
-  *,
-  *::before,
-  *::after {
-    transition:none!important;
-  }
-}
-</style><style id="staffDesignFix">
-/* MODERN SOFT PINK CAFE */
-
-body {
-  font-family:'DM Sans',Arial,sans-serif;
-  background:#FFF9FA;
-  color:#513E43;
-}
-
-header {
-  padding:15px 4%;
-  background:#FFF1F4;
-  border-bottom:1px solid #F1DCE2;
-}
-
-header::after,
-.welcome::after,
-.stat::after {
-  display:none!important;
-}
-
-.brand-small {
-  color:#B76682;
-  letter-spacing:2px;
-}
-
-.brand h1 {
-  font-family:'DM Sans',Arial,sans-serif;
-  font-size:24px;
-  font-weight:800;
-  color:#633F4D;
-}
-
-.brand p {
-  font-size:12px;
-  margin-top:2px;
-}
-
-main {
-  padding:22px 18px 50px;
-}
-
-.welcome {
-  padding:20px 24px;
-  margin-bottom:15px;
-  border-radius:15px;
-  background:#FFFFFF;
-}
-
-.welcome h2 {
-  font-family:'DM Sans',Arial,sans-serif;
-  font-size:25px;
-  font-weight:800;
-}
-
-.welcome p {
-  margin-top:4px;
-}
-
-.eyebrow {
-  font-size:10px;
-  letter-spacing:1.5px;
-}
-
-.notice {
-  padding:10px 14px;
-  margin-bottom:16px;
-  background:#FFF7F1;
-}
-
-.stats {
-  gap:12px;
-  margin-bottom:20px;
-}
-
-.stat {
-  padding:17px 19px;
-  border-radius:14px;
-  box-shadow:none;
-}
-
-.stat-icon {
-  font-size:19px;
-  margin-bottom:5px;
-}
-
-.stat strong {
-  font-size:30px;
-  margin-top:3px;
-}
-
-.stat:nth-child(1) { background:#FBE7EE; }
-.stat:nth-child(2) { background:#FFF0E7; }
-.stat:nth-child(3) { background:#EAF1FA; }
-.stat:nth-child(4) { background:#EAF5EC; }
-
-.section-heading h3 {
-  font-family:'DM Sans',Arial,sans-serif;
-  font-size:20px;
-  font-weight:800;
-}
-
-.order-card {
-  border-radius:14px;
-  padding:20px;
-  box-shadow:0 3px 12px rgba(80,40,50,.05);
-}
-
-.order-card::before {
-  height:3px;
-  background:#D992A8;
-}
-
-.btn-primary {
-  background:#CF8297;
-}
-
-.btn-refresh {
-  background:#F7E3E9;
-  color:#98536B;
-}
-
-@media(max-width:520px) {
-  header { padding:15px; }
-  main { padding:15px 12px; }
-  .welcome { padding:17px; }
-  .welcome h2 { font-size:22px; }
-  .stat { padding:14px 12px; }
-}
-</style>
-<!-- PREMIUM BLUSH CAFE - FINAL POLISH -->
-<style id="premiumBlushCafePolish">
-
-/* IDENTITI WARNA */
-:root {
-  --pink:#C87B93;
-  --pink-dark:#A95570;
-  --pink-light:#F8E8ED;
-}
-
-/* LATAR LEMBUT */
-body {
-  background:#FFFAFB;
-}
-
-/* HEADER PREMIUM */
-header {
-  background:linear-gradient(
-    110deg,
-    #FFF5F7 0%,
-    #F9EBED 100%
-  );
-  border-bottom:1px solid #EEDBE0;
-}
-
-.brand h1 {
-  font-size:25px;
-  letter-spacing:-.6px;
-}
-
-.brand-small {
-  color:#B4647E;
-}
-
-/* KAD WELCOME */
-.welcome {
-  background:linear-gradient(
-    110deg,
-    #FFFFFF 0%,
-    #FFF8FA 100%
-  );
-  border:1px solid #F0DDE3;
-  box-shadow:0 5px 20px rgba(120,60,80,.04);
-}
-
-.eyebrow {
-  color:#B4647E;
-}
-
-.welcome h2 {
-  color:#563A46;
-  letter-spacing:-.7px;
-}
-
-/* STATISTIK */
-.stat {
-  border:1px solid rgba(160,100,120,.10);
-  box-shadow:0 4px 16px rgba(110,65,75,.035);
-}
-
-.stat:nth-child(1) {
-  background:#F9E8EF;
-}
-
-.stat:nth-child(2) {
-  background:#FFF0E7;
-}
-
-.stat:nth-child(3) {
-  background:#EAF1FA;
-}
-
-.stat:nth-child(4) {
-  background:#EAF4EB;
-}
-
-.stat-icon {
-  display:inline-flex;
-  width:34px;
-  height:34px;
-  align-items:center;
-  justify-content:center;
-  border-radius:10px;
-  background:rgba(255,255,255,.55);
-  color:#A95570;
-  font-size:20px;
-  font-weight:700;
-}
-
-/* KAD PESANAN */
-.order-card {
-  border:1px solid #EEDDE2;
-  border-radius:16px;
-  background:#FFFFFF;
-  padding:22px;
-  box-shadow:0 5px 20px rgba(100,60,75,.05);
-}
-
-.order-card::before {
-  background:#D9A0B1;
-  height:3px;
-}
-
-.order-number {
-  color:#68424E;
-  font-size:18px;
-  letter-spacing:-.3px;
-}
-
-.order-date {
-  color:#9B858B;
-}
-
-/* MAKLUMAT PELANGGAN */
-.customer {
-  background:#FFF9FA;
-  border:1px solid #F2E5E9;
-  border-radius:11px;
-  padding:13px 15px;
-  font-weight:500;
-}
-
-/* SENARAI MENU */
-.items-title {
-  color:#A35C73;
-  font-size:13px;
-  letter-spacing:.2px;
-}
-
-.item-row {
-  padding:12px 0;
-  border-color:#F1E6E9;
-}
-
-.item-price {
-  color:#67464E;
-}
-
-/* JUMLAH */
-.total {
-  border-top:1px solid #EACDD6;
-  color:#A95570;
-  font-size:19px;
-}
-
-/* STATUS */
-.status {
-  font-size:11px;
-  letter-spacing:.1px;
-  border-radius:999px;
-}
-
-.status-new {
-  background:#FBE4EB;
-  color:#A74B69;
-}
-
-.status-progress {
-  background:#FFF0DA;
-  color:#916020;
-}
-
-.status-ready {
-  background:#E5F3E8;
-  color:#35764C;
-}
-
-.status-done {
-  background:#E7EFF8;
-  color:#466B98;
-}
-
-.status-cancel {
-  background:#FBE7E7;
-  color:#A84F55;
-}
-
-/* INPUT & BUTANG */
-.toolbar input,
-.toolbar select,
-.status-control select {
-  border:1px solid #EAD8DE;
-  background:#FFFFFF;
-}
-
-.btn-primary {
-  background:#C87B93;
-  color:#FFFFFF;
-}
-
-.btn-primary:hover:not(:disabled) {
-  background:#A95570;
-}
-
-.btn-refresh {
-  background:#F8E6EC;
-  color:#9C526B;
-}
-
-.btn-refresh:hover:not(:disabled) {
-  background:#F2D7E1;
-}
-
-/* SENTUHAN RESPONSIF */
-@media(max-width:520px) {
-  .order-card {
-    padding:18px 15px;
-  }
-
-  .welcome h2 {
-    font-size:22px;
-  }
-
-  .stat-icon {
-    width:30px;
-    height:30px;
-  }
-}
-</style>
-
-<script>
-/*
-  Tukar ikon statistik sahaja.
-  Tidak mengubah ID, data atau fungsi Supabase.
-*/
-document.addEventListener("DOMContentLoaded", function () {
-  const icons = [
-    "▤",
-    "◷",
-    "♨",
-    "✓"
-  ];
-
-  document.querySelectorAll(".stat-icon").forEach(
-    function(element, index) {
-      if (icons[index]) {
-        element.textContent = icons[index];
-      }
-    }
-  );
-});
-</script>
-<!-- END PREMIUM BLUSH CAFE -->
-
-</head>
-<!-- ========================================
-     PINK BOUTIQUE CAFE — STAFF DESIGN
-     Visual upgrade only
-========================================= -->
-<style id="pinkBoutiqueCafe">
-:root {
-  --boutique-rose:#B85E7B;
-  --boutique-dark:#543945;
-  --boutique-blush:#F8E6EC;
-  --boutique-border:#EDD9E0;
-}
-
-/* BACKGROUND */
-body {
-  background:
-    radial-gradient(circle at 100% 0%,
-      rgba(242,210,222,.25),transparent 35%),
-    #FFFBFC;
-  color:var(--boutique-dark);
-}
-
-/* HEADER */
-header {
-  background:#FFFFFF;
-  border-bottom:1px solid #F0E2E6;
-  padding:17px 4%;
-  box-shadow:0 2px 14px rgba(88,51,66,.035);
-}
-
-header::after {
-  display:none!important;
-}
-
-.brand-small {
-  color:#B85E7B;
-  font-size:10px;
-  letter-spacing:2.5px;
-}
-
-.brand h1 {
-  font-family:'DM Sans',Arial,sans-serif;
-  font-size:25px;
-  font-weight:800;
-  letter-spacing:-.9px;
-  color:#543945;
-}
-
-.brand p {
-  color:#9E828B;
-  font-size:12px;
-}
-
-/* DASHBOARD */
-main {
-  max-width:1450px;
-  padding:25px 25px 65px;
-}
-
-.welcome {
-  background:
-    linear-gradient(115deg,#FCEAF0,#FFF8FA);
-  border:1px solid #F2DCE4;
-  border-radius:20px;
-  padding:25px 30px;
-  margin-bottom:17px;
-  box-shadow:none;
-}
-
-.welcome::after {
-  content:"";
-  display:block!important;
-  position:absolute;
-  width:160px;
-  height:160px;
-  top:-55px;
-  right:35px;
-  border:1px solid rgba(184,94,123,.11);
-  border-radius:50%;
-  background:transparent;
-}
-
-.welcome::before {
-  content:"";
-  position:absolute;
-  width:110px;
-  height:110px;
-  right:60px;
-  bottom:-60px;
-  border:1px solid rgba(184,94,123,.11);
-  border-radius:50%;
-  pointer-events:none;
-}
-
-.eyebrow {
-  color:#A65370;
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:2.4px;
-}
-
-.welcome h2 {
-  font-family:'DM Sans',Arial,sans-serif;
-  color:#543945;
-  font-size:29px;
-  font-weight:800;
-  letter-spacing:-1px;
-}
-
-.welcome p {
-  color:#927781;
-}
-
-/* REFRESH BUTTON */
-.btn-refresh {
-  background:#FFFFFF;
-  color:#A65370;
-  border:1px solid #EBCAD6;
-  border-radius:12px;
-  box-shadow:0 4px 12px rgba(145,71,99,.05);
-}
-
-.btn-refresh:hover:not(:disabled) {
-  background:#FFF1F6;
-}
-
-/* INFO NOTICE */
-.notice {
-  background:#FFFFFF;
-  border:1px solid #F0E2E6;
-  border-left:3px solid #D99BB0;
-  border-radius:12px;
-  color:#967982;
-  padding:12px 17px;
-  margin-bottom:20px;
-}
-
-/* STAT CARDS */
-.stats {
-  gap:15px;
-  margin-bottom:29px;
-}
-
-.stat {
-  min-height:150px;
-  padding:22px;
-  border-radius:18px;
-  border:1px solid rgba(173,109,133,.12);
-  box-shadow:0 5px 18px rgba(100,54,72,.045);
-  transition:transform .2s,box-shadow .2s;
-}
-
-.stat:hover {
-  transform:translateY(-3px);
-  box-shadow:0 9px 22px rgba(100,54,72,.085);
-}
-
-.stat::after {
-  display:none!important;
-}
-
-.stat:nth-child(1) {
-  background:#FFFFFF;
-}
-
-.stat:nth-child(2) {
-  background:#FCE7EF;
-}
-
-.stat:nth-child(3) {
-  background:#FFF0E5;
-}
-
-.stat:nth-child(4) {
-  background:#E8F3ED;
-}
-
-.stat-icon {
-  width:36px;
-  height:36px;
-  border-radius:11px;
-  background:rgba(255,255,255,.75);
-  color:#B85E7B;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:20px;
-  margin-bottom:12px;
-}
-
-.stat span {
-  color:#806671;
-  font-size:12px;
-  font-weight:700;
-}
-
-.stat strong {
-  font-size:36px;
-  font-weight:800;
-  letter-spacing:-1.2px;
-  margin-top:5px;
-}
-
-.stat:nth-child(1) strong {color:#543945;}
-.stat:nth-child(2) strong {color:#B85E7B;}
-.stat:nth-child(3) strong {color:#A36C39;}
-.stat:nth-child(4) strong {color:#3C8061;}
-
-/* SECTION TITLE */
-.section-heading {
-  margin-bottom:17px;
-}
-
-.section-heading h3 {
-  font-family:'DM Sans',Arial,sans-serif;
-  font-size:22px;
-  font-weight:800;
-  letter-spacing:-.7px;
-  color:#543945;
-}
-
-.section-heading span {
-  background:#F8E6EC;
-  color:#A65370;
-  border-radius:999px;
-  padding:6px 12px;
-  font-size:11px;
-  font-weight:700;
-}
-
-/* SEARCH */
-.toolbar {
-  gap:12px;
-  margin-bottom:23px;
-}
-
-.toolbar input,
-.toolbar select {
-  min-height:52px;
-  border:1px solid #EAD9E0;
-  border-radius:13px;
-  background:#FFFFFF;
-  color:#543945;
-  box-shadow:0 3px 12px rgba(100,54,72,.025);
-}
-
-.toolbar input:focus,
-.toolbar select:focus {
-  border-color:#C87E99;
-  outline:3px solid rgba(200,126,153,.13);
-}
-
-/* ORDER GRID */
-.orders-grid {
-  gap:20px;
-}
-
-.order-card {
-  background:#FFFFFF;
-  border:1px solid #EEDCE3;
-  border-radius:20px;
-  padding:24px;
-  box-shadow:0 6px 22px rgba(100,54,72,.055);
-}
-
-.order-card::before {
-  height:4px;
-  background:linear-gradient(90deg,#D98EA8,#F1C5D3);
-}
-
-.order-card:hover {
-  box-shadow:0 13px 32px rgba(100,54,72,.10);
-}
-
-.order-number {
-  font-size:19px;
-  color:#8D4561;
-  letter-spacing:-.4px;
-}
-
-.order-date {
-  font-size:12px;
-  color:#9D858E;
-}
-
-/* CUSTOMER INFO */
-.customer {
-  background:#FCF6F8;
-  border:1px solid #F2E5EA;
-  border-radius:13px;
-  padding:16px;
-  color:#70545F;
-}
-
-/* ORDER ITEMS */
-.items-title {
-  color:#A65370;
-  font-weight:800;
-  margin-top:5px;
-}
-
-.item-row {
-  padding:13px 0;
-  border-color:#F0E4E9;
-}
-
-.item-price {
-  color:#76505F;
-  font-weight:800;
-}
-
-.total {
-  margin-top:20px;
-  padding-top:17px;
-  color:#A65370;
-  font-size:21px;
-  border-top:1px solid #EED1DB;
-}
-
-/* STATUS */
-.status {
-  padding:8px 13px;
-  border-radius:999px;
-  font-size:11px;
-  font-weight:800;
-}
-
-.status-new {
-  background:#FCE3EC;
-  color:#A74465;
-}
-
-.status-progress {
-  background:#FFF0D9;
-  color:#916020;
-}
-
-.status-ready {
-  background:#E2F3E9;
-  color:#30744E;
-}
-
-.status-done {
-  background:#E5EDF8;
-  color:#426B9C;
-}
-
-.status-cancel {
-  background:#FBE7E7;
-  color:#A84F55;
-}
-
-/* STATUS ACTION */
-.status-control {
-  background:#FFFAFC;
-  border:1px solid #F1E4E9;
-  border-radius:14px;
-  padding:12px;
-  margin-top:19px;
-}
-
-.status-control select {
-  background:white;
-  border:1px solid #EAD8E0;
-  border-radius:10px;
-  min-height:47px;
-}
-
-.status-control .btn-primary {
-  background:#B85E7B;
-  border-radius:10px;
-  min-height:47px;
-  padding:12px 19px;
-}
-
-.status-control .btn-primary:hover:not(:disabled) {
-  background:#9F4B68;
-}
-
-/* LOGIN */
-.login-card {
-  background:white;
-  border:1px solid #F0DDE4;
-  border-radius:22px;
-  box-shadow:0 16px 40px rgba(100,54,72,.08);
-}
-
-.login-card::before {
-  display:none;
-}
-
-.login-card h2 {
-  font-family:'DM Sans',Arial,sans-serif;
-  font-weight:800;
-  letter-spacing:-1px;
-}
-
-/* FOOTER */
-footer {
-  background:#FFFFFF;
-  border-top:1px solid #F0E2E6;
-}
-
-/* MOBILE */
-@media(max-width:900px) {
-  .orders-grid {
-    grid-template-columns:1fr;
-  }
-}
-
-@media(max-width:520px) {
-  header {
-    padding:16px;
-  }
-
-  main {
-    padding:17px 12px 45px;
-  }
-
-  .welcome {
-    padding:20px;
-  }
-
-  .welcome h2 {
+  .section-heading h3 {
     font-size:24px;
   }
-
-  .welcome::before,
-  .welcome::after {
-    display:none!important;
-  }
-
-  .stat {
-    padding:17px 13px;
-    min-height:135px;
-  }
-
-  .stat strong {
-    font-size:30px;
-  }
-
-  .order-card {
-    padding:19px 15px;
-  }
-
-  .status-control {
-    padding:10px;
-  }
 }
 </style>
-<!-- END PINK BOUTIQUE CAFE -->
-
+</head>
 
 <body>
 
 <header>
   <div class="brand">
-    <div class="brand-small">☕ RUANG KOPI KITA</div>
-    <h1>Staff Panel</h1>
-    <p>Good coffee, better days ♡</p>
+    <div class="brand-small">✿ RUANG KOPI KITA ✿</div>
+    <h1>Staff Dashboard ♡</h1>
+    <p>Good coffee, happy orders & sweet moments ☕</p>
   </div>
 
   <div class="header-actions">
@@ -1583,35 +652,28 @@ footer {
 
   <!-- LOGIN -->
   <section id="loginSection" class="login-card">
-    <h2>Welcome Back ♡</h2>
-    <p>Log masuk untuk mengurus pesanan pelanggan.</p>
+    <h2>Welcome Back! 🍓</h2>
+    <p>Log masuk untuk mengurus pesanan café.</p>
 
     <form id="loginForm">
-      <div class="field">
-        <label for="email">Email Staf</label>
-        <input
-          type="email"
-          id="email"
-          autocomplete="username"
-          placeholder="Masukkan email staf"
-          required>
-      </div>
+      <label for="emailInput">Email</label>
+      <input
+        type="email"
+        id="emailInput"
+        required
+        autocomplete="username"
+        placeholder="staff@email.com">
 
-      <div class="field">
-        <label for="password">Kata Laluan</label>
-        <input
-          type="password"
-          id="password"
-          autocomplete="current-password"
-          placeholder="Masukkan kata laluan"
-          required>
-      </div>
+      <label for="passwordInput">Kata Laluan</label>
+      <input
+        type="password"
+        id="passwordInput"
+        required
+        autocomplete="current-password"
+        placeholder="Masukkan kata laluan">
 
-      <button
-        id="loginButton"
-        type="submit"
-        class="btn btn-primary">
-        Masuk Sistem Staf
+      <button class="btn btn-primary" type="submit">
+        Log Masuk ♡
       </button>
     </form>
 
@@ -1624,33 +686,30 @@ footer {
     <div class="welcome">
       <div class="welcome-top">
         <div>
-          <div class="eyebrow">DAILY WORKSPACE ✿</div>
-          <h2>Dashboard Pesanan</h2>
-          <p>Urus pesanan pelanggan dengan mudah dan pantas.</p>
+          <div class="eyebrow">✿ DAILY CAFE WORKSPACE ✿</div>
+          <h2>Dashboard Pesanan 🌈</h2>
+          <p>Urus setiap pesanan dengan mudah dan ceria!</p>
         </div>
 
-        <button
-          class="btn btn-refresh"
-          onclick="loadOrders()">
+        <button class="btn btn-refresh" onclick="loadOrders()">
           ↻ Refresh Pesanan
         </button>
       </div>
     </div>
 
     <div class="notice">
-      ♡ Pesanan disemak secara automatik setiap 10 saat
-      apabila halaman ini aktif.
+      ♡ Pesanan disemak secara automatik setiap 10 saat apabila halaman ini aktif.
     </div>
 
     <div class="stats">
       <div class="stat">
-        <div class="stat-icon">▤</div>
+        <div class="stat-icon">🧾</div>
         <span>Jumlah Pesanan</span>
         <strong id="statTotal">0</strong>
       </div>
 
       <div class="stat">
-        <div class="stat-icon">◷</div>
+        <div class="stat-icon">🔔</div>
         <span>Pesanan Baharu</span>
         <strong id="statNew">0</strong>
       </div>
@@ -1662,1951 +721,510 @@ footer {
       </div>
 
       <div class="stat">
-        <div class="stat-icon">✓</div>
+        <div class="stat-icon">🌷</div>
         <span>Sedia Dihidangkan</span>
         <strong id="statReady">0</strong>
       </div>
     </div>
 
     <div class="section-heading">
-      <h3>Senarai Pesanan</h3>
-      <span>Order Management</span>
+      <h3>🍓 Senarai Pesanan</h3>
+      <span>ORDER MANAGEMENT</span>
     </div>
 
     <div class="toolbar">
       <input
         type="search"
         id="searchInput"
-        placeholder="Cari pelanggan, meja atau nombor pesanan...">
+        placeholder="🔎 Cari nama pelanggan, meja atau pesanan...">
 
       <select id="filterStatus">
         <option value="all">Semua Status</option>
-        <option value="Baharu">Baharu</option>
-        <option value="Sedang Disediakan">Sedang Disediakan</option>
-        <option value="Sedia Dihidangkan">Sedia Dihidangkan</option>
-        <option value="Selesai">Selesai</option>
-        <option value="Dibatalkan">Dibatalkan</option>
+        <option value="new">Pesanan Baharu</option>
+        <option value="progress">Sedang Disediakan</option>
+        <option value="ready">Sedia Dihidangkan</option>
+        <option value="done">Selesai</option>
       </select>
     </div>
 
     <div id="dashboardMessage" class="message hidden"></div>
 
-    <div id="ordersGrid" class="orders-grid">
-      <div class="empty">Memuatkan pesanan...</div>
-    </div>
+    <div id="ordersGrid" class="orders-grid"></div>
 
   </section>
-</main>
 
-<footer>
-  © 2026 Ruang Kopi Kita · Made with ♡
-</footer>
+</main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-"use strict";
-
-/* SUPABASE */
-
 const SUPABASE_URL =
   "https://ledcwlnyztcsvdedwmtq.supabase.co";
 
 const SUPABASE_KEY =
   "sb_publishable_a1sRyLibWsIpRThtxfUbUQ_-Ksjebvl";
 
-const client = window.supabase
-  ? window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    )
-  : null;
-
-/* SETTINGS */
-
-const STAFF_ROLES = ["staff", "admin"];
-
-const STATUSES = [
-  "Baharu",
-  "Sedang Disediakan",
-  "Sedia Dihidangkan",
-  "Selesai",
-  "Dibatalkan"
-];
+const client = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
 let allOrders = [];
-let refreshTimer = null;
-let loadingOrders = false;
-let activeStaffId = null;
+let isLoadingOrders = false;
+let authorizedUserId = null;
 
-/* HELPERS */
+const $ = id => document.getElementById(id);
 
-function showMessage(id, message, success = false) {
-  const box = document.getElementById(id);
-
-  if (!box) return;
-
-  box.textContent = message;
-  box.classList.remove("hidden");
-  box.classList.toggle("success", success);
+function showMessage(id, text) {
+  const element = $(id);
+  element.textContent = text;
+  element.classList.toggle("hidden", !text);
 }
 
-function hideMessage(id) {
-  document.getElementById(id)?.classList.add("hidden");
+function escapeHTML(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 function money(value) {
-  return "RM " + Number(value || 0).toFixed(2);
+  return "RM" + Number(value || 0).toFixed(2);
+}
+
+function normalizeStatus(status) {
+  const s = String(status || "").toLowerCase();
+
+  if (["new","pending","baharu"].includes(s)) return "new";
+  if (["progress","preparing","processing","in_progress"].includes(s)) return "progress";
+  if (["ready","siap"].includes(s)) return "ready";
+  if (["done","completed","complete","served"].includes(s)) return "done";
+
+  return s || "new";
+}
+
+function statusLabel(status) {
+  const s = normalizeStatus(status);
+
+  return {
+    new:"🔔 Baharu",
+    progress:"☕ Sedang Disediakan",
+    ready:"🌷 Sedia Dihidangkan",
+    done:"✓ Selesai"
+  }[s] || String(status || "Tidak diketahui");
+}
+
+function statusClass(status) {
+  const s = normalizeStatus(status);
+  return ["new","progress","ready","done"].includes(s)
+    ? "status-" + s
+    : "";
 }
 
 function formatDate(value) {
   if (!value) return "-";
-
-  return new Date(value).toLocaleString("ms-MY", {
-    timeZone:"Asia/Kuala_Lumpur",
-    day:"2-digit",
-    month:"short",
-    year:"numeric",
-    hour:"2-digit",
-    minute:"2-digit"
-  });
+  const d = new Date(value);
+  return Number.isNaN(d.getTime())
+    ? "-"
+    : d.toLocaleString("ms-MY", {
+        day:"2-digit",
+        month:"short",
+        year:"numeric",
+        hour:"2-digit",
+        minute:"2-digit"
+      });
 }
 
-function displayStatus(status) {
-  return status || "Baharu";
+function getOrderId(order) {
+  return order.id;
 }
 
-function statusClass(status) {
-  switch (status) {
-    case "Baharu":
-      return "status-new";
-
-    case "Sedang Disediakan":
-      return "status-progress";
-
-    case "Sedia Dihidangkan":
-      return "status-ready";
-
-    case "Selesai":
-      return "status-done";
-
-    case "Dibatalkan":
-      return "status-cancel";
-
-    default:
-      return "status-new";
-  }
+function getCustomerName(order) {
+  return order.customer_name
+    || order.name
+    || "Pelanggan";
 }
 
-function el(tag, className = "", text) {
-  const node = document.createElement(tag);
-
-  if (className) node.className = className;
-
-  if (text !== undefined) {
-    node.textContent = String(text);
-  }
-
-  return node;
+function getTableNumber(order) {
+  return order.table_number
+    ?? order.table_no
+    ?? order.table
+    ?? "-";
 }
 
-/* LOGIN / DASHBOARD */
+function getOrderTotal(order) {
+  const value =
+    order.total_amount
+    ?? order.total
+    ?? order.grand_total;
 
-function showLogin() {
-  activeStaffId = null;
-  allOrders = [];
+  if (value != null) return Number(value) || 0;
 
-  document.getElementById("loginSection")
-    .classList.remove("hidden");
+  return (order.items || []).reduce(
+    (sum, item) => sum + itemTotal(item), 0
+  );
+}
 
-  document.getElementById("dashboardSection")
-    .classList.add("hidden");
+function itemTotal(item) {
+  const qty = Number(item.quantity ?? item.qty ?? 1);
+  const price = Number(item.price ?? item.unit_price ?? 0);
+  return Number(item.subtotal ?? item.total_price ?? (qty * price)) || 0;
+}
 
-  document.getElementById("logoutButton")
-    .classList.add("hidden");
-
-  document.getElementById("staffEmail").textContent = "";
-
-  stopAutoRefresh();
+function itemName(item) {
+  return item.product_name
+    || item.item_name
+    || item.name
+    || "Item";
 }
 
 function showDashboard(user) {
-  activeStaffId = user.id;
-
-  document.getElementById("loginSection")
-    .classList.add("hidden");
-
-  document.getElementById("dashboardSection")
-    .classList.remove("hidden");
-
-  document.getElementById("logoutButton")
-    .classList.remove("hidden");
-
-  document.getElementById("staffEmail").textContent =
-    user.email || "Staf";
-
-  hideMessage("loginMessage");
-
-  loadOrders();
-  startAutoRefresh();
+  $("loginSection").classList.add("hidden");
+  $("dashboardSection").classList.remove("hidden");
+  $("logoutButton").classList.remove("hidden");
+  $("staffEmail").textContent = user.email || "";
 }
 
-/* STAFF ROLE */
+function showLogin() {
+  authorizedUserId = null;
+  allOrders = [];
+  $("dashboardSection").classList.add("hidden");
+  $("loginSection").classList.remove("hidden");
+  $("logoutButton").classList.add("hidden");
+  $("staffEmail").textContent = "";
+}
 
-async function checkStaffRole(userId) {
+async function checkStaffRole(user) {
   const { data, error } = await client
     .from("user_roles")
     .select("role")
-    .eq("user_id", userId)
+    .eq("user_id", user.id)
     .maybeSingle();
 
   if (error) throw error;
 
-  return Boolean(
-    data && STAFF_ROLES.includes(data.role)
+  return ["staff","admin"].includes(
+    String(data?.role || "").toLowerCase()
   );
 }
 
-/* LOGIN */
+async function checkSession() {
+  const { data, error } = await client.auth.getUser();
 
-document.getElementById("loginForm")
-  .addEventListener("submit", async function(event) {
-    event.preventDefault();
+  if (error || !data?.user) {
+    showLogin();
+    return;
+  }
 
-    if (!client) {
+  try {
+    const allowed = await checkStaffRole(data.user);
+
+    if (!allowed) {
+      showLogin();
       showMessage(
         "loginMessage",
-        "Supabase gagal dimuatkan. Sila refresh."
+        "Akaun ini tidak mempunyai akses staf."
       );
       return;
     }
 
-    const email = document.getElementById("email")
-      .value.trim();
+    authorizedUserId = data.user.id;
+    showMessage("loginMessage", "");
+    showDashboard(data.user);
+    await loadOrders();
 
-    const password = document.getElementById("password")
-      .value;
-
-    const button = document.getElementById("loginButton");
-
-    button.disabled = true;
-    button.textContent = "Sedang login...";
-
-    hideMessage("loginMessage");
-
-    try {
-      const { data, error } =
-        await client.auth.signInWithPassword({
-          email,
-          password
-        });
-
-      if (error) throw error;
-
-      if (!data.user) {
-        throw new Error("Akaun tidak ditemui.");
-      }
-
-      const allowed = await checkStaffRole(data.user.id);
-
-      if (!allowed) {
-        await client.auth.signOut();
-        throw new Error(
-          "Akaun ini tidak mempunyai kebenaran staf."
-        );
-      }
-
-      document.getElementById("password").value = "";
-
-      showDashboard(data.user);
-
-    } catch (error) {
-      showLogin();
-
-      showMessage(
-        "loginMessage",
-        error.message || "Login gagal."
-      );
-
-    } finally {
-      button.disabled = false;
-      button.textContent = "Masuk Sistem Staf";
-    }
-  });
-
-/* LOGOUT */
-
-async function logout() {
-  stopAutoRefresh();
-
-  try {
-    if (client) {
-      const { error } = await client.auth.signOut();
-      if (error) throw error;
-    }
-
+  } catch (err) {
     showLogin();
-
-  } catch (error) {
     showMessage(
-      "dashboardMessage",
-      "Gagal log keluar: " + error.message
+      "loginMessage",
+      "Tidak dapat menyemak akses: " + err.message
     );
   }
 }
 
-/* LOAD ORDERS */
+$("loginForm").addEventListener("submit", async event => {
+  event.preventDefault();
 
-async function loadOrders() {
-  if (!client || !activeStaffId || loadingOrders) {
-    return;
-  }
+  const email = $("emailInput").value.trim();
+  const password = $("passwordInput").value;
+  const button = $("loginForm").querySelector("button");
 
-  loadingOrders = true;
+  button.disabled = true;
+  showMessage("loginMessage", "");
 
   try {
-    const { data: orders, error: ordersError } =
-      await client
-        .from("orders")
-        .select("*")
-        .order("created_at", { ascending:false })
-        .limit(200);
+    const { error } = await client.auth.signInWithPassword({
+      email,
+      password
+    });
 
-    if (ordersError) throw ordersError;
+    if (error) throw error;
 
-    const orderIds = (orders || []).map(
-      order => order.id
-    );
+    await checkSession();
+
+  } catch (err) {
+    showMessage("loginMessage", err.message);
+  } finally {
+    button.disabled = false;
+  }
+});
+
+async function logout() {
+  await client.auth.signOut();
+  showLogin();
+}
+
+async function loadOrders() {
+  if (!authorizedUserId || isLoadingOrders) return;
+
+  isLoadingOrders = true;
+
+  try {
+    const { data: orders, error } = await client
+      .from("orders")
+      .select("*")
+      .order("created_at", { ascending:false })
+      .limit(200);
+
+    if (error) throw error;
+
+    const rows = orders || [];
+    const ids = rows.map(order => order.id);
 
     let items = [];
 
-    if (orderIds.length > 0) {
-      const { data: orderItems, error: itemsError } =
-        await client
-          .from("order_items")
-          .select("*")
-          .in("order_id", orderIds);
+    if (ids.length) {
+      const result = await client
+        .from("order_items")
+        .select("*")
+        .in("order_id", ids);
 
-      if (itemsError) throw itemsError;
-
-      items = orderItems || [];
+      if (result.error) throw result.error;
+      items = result.data || [];
     }
 
-    allOrders = (orders || []).map(order => ({
+    const grouped = {};
+
+    items.forEach(item => {
+      const id = String(item.order_id);
+
+      if (!grouped[id]) grouped[id] = [];
+      grouped[id].push(item);
+    });
+
+    allOrders = rows.map(order => ({
       ...order,
-      items:items.filter(
-        item => item.order_id === order.id
-      )
+      items: grouped[String(order.id)] || []
     }));
 
-    hideMessage("dashboardMessage");
-
+    showMessage("dashboardMessage", "");
     updateStats();
     renderOrders();
 
-  } catch (error) {
-    console.error("Gagal memuatkan pesanan:", error);
-
+  } catch (err) {
     showMessage(
       "dashboardMessage",
-      "Gagal memuatkan pesanan: " + error.message
+      "Gagal memuatkan pesanan: " + err.message
     );
-
   } finally {
-    loadingOrders = false;
+    isLoadingOrders = false;
   }
 }
 
-/* STATISTICS */
-
 function updateStats() {
-  document.getElementById("statTotal").textContent =
-    allOrders.length;
+  $("statTotal").textContent = allOrders.length;
 
-  document.getElementById("statNew").textContent =
-    allOrders.filter(
-      order => displayStatus(order.status) === "Baharu"
-    ).length;
+  $("statNew").textContent = allOrders.filter(
+    order => normalizeStatus(order.status) === "new"
+  ).length;
 
-  document.getElementById("statProgress").textContent =
-    allOrders.filter(
-      order => order.status === "Sedang Disediakan"
-    ).length;
+  $("statProgress").textContent = allOrders.filter(
+    order => normalizeStatus(order.status) === "progress"
+  ).length;
 
-  document.getElementById("statReady").textContent =
-    allOrders.filter(
-      order => order.status === "Sedia Dihidangkan"
-    ).length;
+  $("statReady").textContent = allOrders.filter(
+    order => normalizeStatus(order.status) === "ready"
+  ).length;
 }
 
-/* RENDER ORDERS */
-
 function renderOrders() {
-  const grid = document.getElementById("ordersGrid");
-
-  const keyword = document.getElementById("searchInput")
-    .value.trim().toLowerCase();
-
-  const filter = document.getElementById("filterStatus")
-    .value;
-
-  grid.replaceChildren();
+  const query = $("searchInput").value.toLowerCase().trim();
+  const filter = $("filterStatus").value;
 
   const filtered = allOrders.filter(order => {
     const searchable = [
-      order.order_number,
-      order.customer_name,
-      order.table_number,
-      order.id
+      getOrderId(order),
+      getCustomerName(order),
+      getTableNumber(order),
+      ...(order.items || []).map(itemName)
     ].join(" ").toLowerCase();
 
-    const matchSearch = searchable.includes(keyword);
+    const matchesSearch = searchable.includes(query);
+    const matchesStatus =
+      filter === "all"
+      || normalizeStatus(order.status) === filter;
 
-    const matchStatus =
-      filter === "all" ||
-      displayStatus(order.status) === filter;
-
-    return matchSearch && matchStatus;
+    return matchesSearch && matchesStatus;
   });
 
-  if (filtered.length === 0) {
-    grid.appendChild(
-      el("div", "empty", "Tiada pesanan untuk dipaparkan.")
-    );
+  const grid = $("ordersGrid");
+  grid.innerHTML = "";
+
+  if (!filtered.length) {
+    grid.innerHTML = `
+      <div class="empty-state">
+        <div style="font-size:40px">🍓</div>
+        <h3>Tiada pesanan ditemui</h3>
+        <p>Pesanan akan dipaparkan di sini apabila tersedia.</p>
+      </div>
+    `;
     return;
   }
 
   filtered.forEach(order => {
-    const card = el("article", "order-card");
+    const id = getOrderId(order);
+    const currentStatus = normalizeStatus(order.status);
+    const allowedStatuses = ["new","progress","ready","done"];
 
-    const top = el("div", "order-top");
-    const titleWrap = el("div");
+    const statusOptions = allowedStatuses.map(status => `
+      <option
+        value="${status}"
+        ${currentStatus === status ? "selected" : ""}>
+        ${escapeHTML(statusLabel(status))}
+      </option>
+    `).join("");
 
-    const number = el(
-      "div",
-      "order-number",
-      order.order_number || ("Pesanan #" + order.id)
-    );
-
-    const date = el(
-      "div",
-      "order-date",
-      formatDate(order.created_at)
-    );
-
-    titleWrap.append(number, date);
-
-    const badge = el(
-      "span",
-      "status " + statusClass(displayStatus(order.status)),
-      displayStatus(order.status)
-    );
-
-    top.append(titleWrap, badge);
-
-    /* CUSTOMER DETAILS */
-
-    const customer = el("div", "customer");
-
-    customer.appendChild(
-      el(
-        "div",
-        "",
-        "Nama Pelanggan: " + (order.customer_name || "-")
-      )
-    );
-
-    customer.appendChild(
-      el(
-        "div",
-        "",
-        "Nombor Meja: " + (order.table_number || "-")
-      )
-    );
-
-    /* ORDER ITEMS */
-
-    const itemsTitle = el(
-      "div",
-      "items-title",
-      "Senarai Pesanan"
-    );
-
-    const itemsContainer = el("div");
-
-    if (!order.items || order.items.length === 0) {
-      itemsContainer.appendChild(
-        el("p", "", "Tiada butiran item.")
-      );
-    } else {
-      order.items.forEach(item => {
-        const row = el("div", "item-row");
-        const details = el("div");
-
-        details.appendChild(
-          el(
-            "div",
-            "",
-            (item.quantity || 0) + " × " +
-            (item.item_name || "Item")
-          )
-        );
-
-        if (item.option_name) {
-          details.appendChild(
-            el("small", "", item.option_name)
-          );
-        }
-
-        const itemTotal =
-          item.subtotal ??
-          (
-            Number(item.unit_price || 0) *
-            Number(item.quantity || 0)
-          );
-
-        const price = el(
-          "div",
-          "item-price",
-          money(itemTotal)
-        );
-
-        row.append(details, price);
-        itemsContainer.appendChild(row);
-      });
+    if (!allowedStatuses.includes(currentStatus)) {
+      statusOptions.concat("");
     }
 
-    /* TOTAL */
+    const itemsHTML = (order.items || []).length
+      ? order.items.map(item => {
+          const qty = Number(item.quantity ?? item.qty ?? 1);
+          return `
+            <div class="item-row">
+              <span>
+                ${escapeHTML(qty)}×
+                ${escapeHTML(itemName(item))}
+              </span>
+              <span class="item-price">
+                ${money(itemTotal(item))}
+              </span>
+            </div>
+          `;
+        }).join("")
+      : `<div class="item-row">Tiada butiran item</div>`;
 
-    const total = el("div", "total");
+    const card = document.createElement("article");
+    card.className = "order-card";
 
-    total.appendChild(
-      el("span", "", "Jumlah")
-    );
+    card.innerHTML = `
+      <div class="order-top">
+        <div>
+          <div class="order-number">
+            🍓 Pesanan #${escapeHTML(String(id).slice(-8))}
+          </div>
+          <div class="order-date">
+            ${escapeHTML(formatDate(order.created_at))}
+          </div>
+        </div>
+        <span class="status ${statusClass(order.status)}">
+          ${escapeHTML(statusLabel(order.status))}
+        </span>
+      </div>
 
-    total.appendChild(
-      el("span", "", money(order.total_amount))
-    );
+      <div class="order-content">
+        <div class="customer">
+          <strong>♡ Maklumat Pelanggan</strong>
+          <div>Nama: ${escapeHTML(getCustomerName(order))}</div>
+          <div>Meja: ${escapeHTML(getTableNumber(order))}</div>
+        </div>
 
-    /* STATUS */
+        <div class="order-items-panel">
+          <div class="items-title">☕ Senarai Makanan & Minuman</div>
+          ${itemsHTML}
 
-    const controls = el("div", "status-control");
+          <div class="total">
+            <span>Jumlah</span>
+            <span>${money(getOrderTotal(order))}</span>
+          </div>
+        </div>
+      </div>
 
-    const select = document.createElement("select");
-    select.setAttribute(
-      "aria-label",
-      "Status pesanan " + (order.order_number || order.id)
-    );
+      <div class="status-control">
+        <select aria-label="Status pesanan">
+          ${statusOptions}
+        </select>
+        <button class="btn btn-primary">
+          ♡ Simpan Status
+        </button>
+      </div>
+    `;
 
-    STATUSES.forEach(status => {
-      const option = document.createElement("option");
+    const select = card.querySelector(".status-control select");
+    const button = card.querySelector(".status-control button");
 
-      option.value = status;
-      option.textContent = status;
-
-      if (displayStatus(order.status) === status) {
-        option.selected = true;
-      }
-
-      select.appendChild(option);
+    button.addEventListener("click", async () => {
+      await updateOrderStatus(id, select.value, button);
     });
-
-    const save = el(
-      "button",
-      "btn btn-primary",
-      "Simpan Status"
-    );
-
-    save.addEventListener("click", async () => {
-      save.disabled = true;
-      select.disabled = true;
-      save.textContent = "Menyimpan...";
-
-      try {
-        await updateOrderStatus(
-          order.id,
-          select.value
-        );
-      } finally {
-        save.disabled = false;
-        select.disabled = false;
-        save.textContent = "Simpan Status";
-      }
-    });
-
-    controls.append(select, save);
-
-    card.append(
-      top,
-      customer,
-      itemsTitle,
-      itemsContainer,
-      total,
-      controls
-    );
 
     grid.appendChild(card);
   });
 }
 
-/* UPDATE ORDER STATUS */
+async function updateOrderStatus(id, newStatus, button) {
+  if (!authorizedUserId) return;
 
-async function updateOrderStatus(orderId, newStatus) {
-  if (!STATUSES.includes(newStatus)) {
-    alert("Status tidak sah.");
-    return;
-  }
+  button.disabled = true;
+  button.textContent = "Menyimpan...";
 
   try {
     const { data, error } = await client
       .from("orders")
       .update({ status:newStatus })
-      .eq("id", orderId)
-      .select("id, status");
+      .eq("id", id)
+      .select("id");
 
     if (error) throw error;
 
-    if (!data || data.length !== 1) {
+    if (!data || !data.length) {
       throw new Error(
-        "Status tidak dikemas kini. Semak kebenaran staf."
+        "Status tidak dikemaskini. Semak kebenaran akses Supabase."
       );
     }
 
-    // Kemas kini paparan serta-merta.
-    const existing = allOrders.find(
-      order => order.id === orderId
-    );
-
-    if (existing) {
-      existing.status = newStatus;
-    }
-
-    updateStats();
-    renderOrders();
-
-    // Dapatkan semula data terkini.
     await loadOrders();
 
+  } catch (err) {
     showMessage(
       "dashboardMessage",
-      "Status pesanan berjaya dikemas kini kepada: " +
-      newStatus,
-      true
+      "Gagal menyimpan status: " + err.message
     );
-
-  } catch (error) {
-    console.error("Gagal kemas kini status:", error);
-
-    showMessage(
-      "dashboardMessage",
-      "Gagal mengemas kini status: " + error.message
-    );
-
-    await loadOrders();
+  } finally {
+    button.disabled = false;
+    button.textContent = "♡ Simpan Status";
   }
 }
 
-/* SEARCH AND FILTER */
+$("searchInput").addEventListener("input", renderOrders);
+$("filterStatus").addEventListener("change", renderOrders);
 
-document.getElementById("searchInput")
-  .addEventListener("input", renderOrders);
-
-document.getElementById("filterStatus")
-  .addEventListener("change", renderOrders);
-
-/* AUTO REFRESH */
-
-function startAutoRefresh() {
-  stopAutoRefresh();
-
-  refreshTimer = setInterval(() => {
-    if (!document.hidden && activeStaffId) {
-      loadOrders();
-    }
-  }, 10000);
-}
-
-function stopAutoRefresh() {
-  if (refreshTimer !== null) {
-    clearInterval(refreshTimer);
-    refreshTimer = null;
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden && authorizedUserId) {
+    loadOrders();
   }
-}
+});
 
-/* CHECK EXISTING LOGIN */
-
-async function initialize() {
-  if (!client) {
-    showMessage(
-      "loginMessage",
-      "Supabase gagal dimuatkan. Sila refresh halaman."
-    );
-    return;
+setInterval(() => {
+  if (!document.hidden && authorizedUserId) {
+    loadOrders();
   }
+}, 10000);
 
-  try {
-    const { data, error } = await client.auth.getUser();
-
-    if (error || !data.user) {
-      showLogin();
-      return;
-    }
-
-    const allowed = await checkStaffRole(data.user.id);
-
-    if (!allowed) {
-      await client.auth.signOut();
-
-      showLogin();
-
-      showMessage(
-        "loginMessage",
-        "Akaun ini tidak mempunyai kebenaran staf."
-      );
-
-      return;
-    }
-
-    showDashboard(data.user);
-
-  } catch (error) {
-    console.error("Ralat semakan login:", error);
-
-    showLogin();
-
-    showMessage(
-      "loginMessage",
-      "Gagal menyemak akaun: " + error.message
-    );
-  }
-}
-
-initialize();
+checkSession();
 </script>
 
 </body>
-<!-- RAINBOW POP CAFE - BOLD COLOR THEME -->
-<style id="rainbowPopCafe">
-
-/* BACKGROUND */
-body {
-  background:
-    radial-gradient(circle at 10% 15%,#FFD0E9 0%,transparent 33%),
-    radial-gradient(circle at 90% 80%,#DCD0FF 0%,transparent 35%),
-    #FFF5FB !important;
-}
-
-/* HEADER - BRIGHT GRADIENT */
-header {
-  background:linear-gradient(
-    110deg,
-    #FF77B9,
-    #B58AFF,
-    #FFB575
-  ) !important;
-  border-bottom:4px solid #FF168A !important;
-}
-
-.brand h1 {
-  color:#5C1655 !important;
-}
-
-.brand-small {
-  color:#721B5C !important;
-}
-
-.brand p {
-  color:#65325E !important;
-}
-
-/* WELCOME */
-.welcome {
-  background:linear-gradient(
-    115deg,
-    #FFC2E0,
-    #DCC3FF,
-    #FFE2A6
-  ) !important;
-  border:2px solid #F778B8 !important;
-}
-
-.welcome h2 {
-  color:#691C62 !important;
-}
-
-.eyebrow {
-  color:#A71B75 !important;
-}
-
-/* STAT CARDS - SATURATED COLORS */
-.stat:nth-child(1) {
-  background:#FF91C8 !important;
-  border:2px solid #F23B99 !important;
-}
-
-.stat:nth-child(2) {
-  background:#FFE16B !important;
-  border:2px solid #F5B900 !important;
-}
-
-.stat:nth-child(3) {
-  background:#B89AFF !important;
-  border:2px solid #853BFF !important;
-}
-
-.stat:nth-child(4) {
-  background:#78E5D0 !important;
-  border:2px solid #00BFAF !important;
-}
-
-.stat span {
-  color:#502C4B !important;
-  font-weight:800 !important;
-}
-
-.stat:nth-child(1) strong {color:#8B0954 !important;}
-.stat:nth-child(2) strong {color:#785000 !important;}
-.stat:nth-child(3) strong {color:#42159C !important;}
-.stat:nth-child(4) strong {color:#075F54 !important;}
-
-/* ORDER CARDS */
-.order-card {
-  background:#FFFFFF !important;
-  border:2px solid #FF94C6 !important;
-  box-shadow:0 9px 25px rgba(255,22,138,.13) !important;
-}
-
-.order-card::before {
-  background:linear-gradient(
-    90deg,
-    #FF168A,
-    #853BFF,
-    #00C9C2,
-    #FFCC00,
-    #FF783E
-  ) !important;
-  height:7px !important;
-}
-
-.order-number {
-  color:#CF0873 !important;
-}
-
-/* CUSTOMER DETAILS */
-.customer {
-  background:#FFE5F2 !important;
-  border:2px solid #FFB3D8 !important;
-}
-
-/* STATUS PANEL */
-.status-control {
-  background:#F8E8FF !important;
-  border:1px solid #C89AFF !important;
-}
-
-/* BUTTONS */
-.btn-primary,
-.status-control .btn-primary {
-  background:#E91586 !important;
-  color:white !important;
-  border:0 !important;
-  font-weight:800 !important;
-}
-
-.btn-primary:hover:not(:disabled),
-.status-control .btn-primary:hover:not(:disabled) {
-  background:#B80068 !important;
-}
-
-.btn-refresh {
-  background:#853BFF !important;
-  color:#FFFFFF !important;
-  border:0 !important;
-}
-
-/* SEARCH */
-.toolbar input,
-.toolbar select {
-  background:#FFFFFF !important;
-  border:2px solid #E87CB7 !important;
-}
-
-.toolbar input:focus,
-.toolbar select:focus {
-  border-color:#853BFF !important;
-}
-
-/* SECTION */
-.section-heading h3 {
-  color:#8D1768 !important;
-}
-
-.section-heading span {
-  background:#E5D4FF !important;
-  color:#6323AD !important;
-}
-
-/* DECORATIVE FLOWERS */
-.section-heading::before {
-  color:#FF168A !important;
-  opacity:.8 !important;
-}
-
-</style>
-<!-- END RAINBOW POP CAFE -->
-
-<!-- VIBRANT CANDY POP CAFE -->
-<style id="vibrantCandyPop">
-
-/* BACKGROUND */
-body {
-  background:
-    radial-gradient(circle at 10% 12%,
-      rgba(255,79,163,.16),transparent 32%),
-    radial-gradient(circle at 90% 80%,
-      rgba(168,121,255,.15),transparent 32%),
-    #FFF7FC !important;
-}
-
-/* HEADER */
-header {
-  background:linear-gradient(
-    110deg,
-    #FFB9DC,
-    #E3C8FF,
-    #FFE5B8
-  ) !important;
-  border-bottom:3px solid #FF8CC5 !important;
-}
-
-.brand h1 {
-  color:#8F225E !important;
-}
-
-.brand-small {
-  color:#A72871 !important;
-}
-
-.brand p {
-  color:#78416A !important;
-}
-
-/* WELCOME */
-.welcome {
-  background:linear-gradient(
-    110deg,
-    #FFE0F0,
-    #F0DFFF,
-    #FFF0CE
-  ) !important;
-  border:2px solid #F6B4DB !important;
-}
-
-.welcome h2 {
-  color:#8F225E !important;
-}
-
-.eyebrow {
-  color:#B92E80 !important;
-}
-
-/* STATISTICS */
-.stat:nth-child(1) {
-  background:#FFD0E8 !important;
-  border-color:#FF9CCC !important;
-}
-
-.stat:nth-child(2) {
-  background:#FFE99D !important;
-  border-color:#FFD35C !important;
-}
-
-.stat:nth-child(3) {
-  background:#E2CEFF !important;
-  border-color:#BE9BFF !important;
-}
-
-.stat:nth-child(4) {
-  background:#BDF3D8 !important;
-  border-color:#75DEAB !important;
-}
-
-.stat:nth-child(1) strong {
-  color:#AD236E !important;
-}
-
-.stat:nth-child(2) strong {
-  color:#8A5900 !important;
-}
-
-.stat:nth-child(3) strong {
-  color:#7138B8 !important;
-}
-
-.stat:nth-child(4) strong {
-  color:#167B50 !important;
-}
-
-/* ORDER CARDS */
-.order-card {
-  background:#FFFFFF !important;
-  border:2px solid #F5C4E0 !important;
-  box-shadow:0 7px 22px rgba(190,66,133,.10) !important;
-}
-
-.order-card::before {
-  background:linear-gradient(
-    90deg,
-    #FF4FA3,
-    #A879FF,
-    #FFD84D,
-    #68DEAF
-  ) !important;
-  height:6px !important;
-}
-
-.order-number {
-  color:#B72879 !important;
-}
-
-/* CUSTOMER */
-.customer {
-  background:#FFF0F8 !important;
-  border:1px solid #FFC5E1 !important;
-}
-
-/* BUTTONS */
-.btn-primary,
-.status-control .btn-primary {
-  background:#F04496 !important;
-  color:white !important;
-}
-
-.btn-primary:hover:not(:disabled),
-.status-control .btn-primary:hover:not(:disabled) {
-  background:#D82D80 !important;
-}
-
-.btn-refresh {
-  background:#E7D0FF !important;
-  color:#7035A9 !important;
-  border:1px solid #CBA7FF !important;
-}
-
-/* SEARCH */
-.toolbar input,
-.toolbar select {
-  border:2px solid #F2C3DF !important;
-}
-
-.toolbar input:focus,
-.toolbar select:focus {
-  border-color:#FF4FA3 !important;
-}
-
-/* STATUS COLORS */
-.status-new {
-  background:#FFD0E8 !important;
-  color:#A91F6B !important;
-}
-
-.status-progress {
-  background:#FFE99D !important;
-  color:#805300 !important;
-}
-
-.status-ready {
-  background:#BDF3D8 !important;
-  color:#167B50 !important;
-}
-
-.status-done {
-  background:#E2CEFF !important;
-  color:#7138B8 !important;
-}
-
-/* DECORATIVE FLOWERS */
-header::after,
-.welcome::before {
-  color:rgba(255,55,149,.13) !important;
-}
-
-</style>
-<!-- END VIBRANT CANDY POP -->
-
-<!-- BLUSH ROSE AESTHETIC CAFE -->
-<style id="blushRoseAesthetic">
-
-:root {
-  --rose:#C77F98;
-  --dusty:#D9A4B3;
-  --blush:#F7E9E6;
-  --vanilla:#FFF8F0;
-  --sage:#DCE8DF;
-  --mocha:#6C4A55;
-}
-
-/* BACKGROUND - CORAK SANGAT SAMAR */
-body {
-  background-color:#FFFAF9 !important;
-  background-image:
-    radial-gradient(
-      circle at 8% 12%,
-      rgba(221,169,188,.12),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 94% 85%,
-      rgba(214,229,217,.18),
-      transparent 28%
-    ) !important;
-  color:var(--mocha);
-}
-
-/* HEADER */
-header {
-  background:linear-gradient(
-    110deg,
-    #FFF6F5,
-    #F8E7E9,
-    #FFF9F6
-  ) !important;
-  border-bottom:1px solid #EDD8DD !important;
-}
-
-header::after {
-  content:"✿";
-  display:block !important;
-  position:absolute;
-  right:22%;
-  top:-34px;
-  font-size:115px;
-  color:rgba(178,112,139,.055);
-  pointer-events:none;
-}
-
-.brand h1 {
-  color:#67434F !important;
-}
-
-.brand-small {
-  color:#B16B83 !important;
-}
-
-/* WELCOME */
-.welcome {
-  background:linear-gradient(
-    120deg,
-    #FFFFFF,
-    #FFF4F4
-  ) !important;
-  border:1px solid #F0DFE2 !important;
-}
-
-.welcome::before {
-  content:"✿" !important;
-  right:30px !important;
-  top:-25px !important;
-  font-size:115px !important;
-  color:rgba(184,113,141,.065) !important;
-}
-
-.welcome h2 {
-  color:#67434F !important;
-}
-
-.eyebrow {
-  color:#B16B83 !important;
-}
-
-/* STATISTIC CARDS */
-.stat {
-  border:1px solid #EFDFE2 !important;
-  box-shadow:0 5px 20px rgba(112,70,84,.04) !important;
-}
-
-.stat:nth-child(1) {
-  background:#F9E9EF !important;
-}
-
-.stat:nth-child(2) {
-  background:#FFF1E6 !important;
-}
-
-.stat:nth-child(3) {
-  background:#EAF0F6 !important;
-}
-
-.stat:nth-child(4) {
-  background:#E8F1E9 !important;
-}
-
-.stat-icon {
-  background:rgba(255,255,255,.65) !important;
-  color:#B16B83 !important;
-}
-
-.stat strong {
-  color:#A95673;
-}
-
-/* ORDER CARDS */
-.order-card {
-  background:#FFFFFF !important;
-  border:1px solid #EFDEE3 !important;
-  box-shadow:0 7px 24px rgba(110,65,85,.045) !important;
-}
-
-.order-card::before {
-  background:linear-gradient(
-    90deg,
-    #C77F98,
-    #E8BAC9,
-    #F6DCE4
-  ) !important;
-}
-
-.order-number {
-  color:#A95472 !important;
-}
-
-/* CUSTOMER DETAILS */
-.customer {
-  background:linear-gradient(
-    135deg,
-    #FFF2F5,
-    #FFF9F8
-  ) !important;
-  border-color:#F0DFE5 !important;
-}
-
-/* STATUS BUTTON */
-.status-control {
-  background:#FFF7F8 !important;
-  border-color:#EFDEE3 !important;
-}
-
-.status-control .btn-primary {
-  background:#C77F98 !important;
-  color:white !important;
-}
-
-.status-control .btn-primary:hover:not(:disabled) {
-  background:#AD627F !important;
-}
-
-/* REFRESH */
-.btn-refresh {
-  background:#F5DFE7 !important;
-  color:#96546D !important;
-}
-
-/* SEARCH */
-.toolbar input,
-.toolbar select {
-  border-color:#EAD9DF !important;
-}
-
-.toolbar input:focus,
-.toolbar select:focus {
-  border-color:#C77F98 !important;
-}
-
-/* SOFT DECORATIVE FLOWER */
-.section-heading {
-  position:relative;
-}
-
-.section-heading::before {
-  content:"✿";
-  color:#D9A4B3;
-  opacity:.55;
-  font-size:20px;
-  margin-right:7px;
-}
-
-/* MOBILE */
-@media(max-width:540px) {
-  header::after,
-  .welcome::before {
-    display:none !important;
-  }
-}
-
-</style>
-<!-- END BLUSH ROSE AESTHETIC -->
-
-<!-- ==========================================
- RUANG KOPI KITA
- PINK CAFE SHOWCASE DESIGN
- Tampal SEBELUM </body>
-========================================== -->
-
-<style id="rkkPinkCafeShowcase">
-/* GENERAL */
-body {
-  background:
-    radial-gradient(circle at 90% 10%,rgba(246,209,221,.25),transparent 35%),
-    #FFF9FB !important;
-  color:#4C2C39;
-}
-
-header {
-  background:linear-gradient(110deg,#FFF0F4,#FFF9FA) !important;
-  border-bottom:1px solid #F0D5DE !important;
-  padding:22px 4% !important;
-}
-
-header::after {
-  display:none !important;
-}
-
-.brand h1 {
-  font-family:'DM Sans',Arial,sans-serif !important;
-  font-size:31px !important;
-  font-weight:800 !important;
-  letter-spacing:-1px;
-  color:#4D2537 !important;
-}
-
-.brand-small {
-  color:#A95170 !important;
-  letter-spacing:2.7px;
-}
-
-.brand p {
-  color:#926B7B !important;
-}
-
-main {
-  max-width:1500px !important;
-  padding:25px 24px 60px !important;
-}
-
-/* WELCOME */
-.welcome {
-  background:linear-gradient(115deg,#FFFFFF,#FFF1F5) !important;
-  border:1px solid #F2D8E1 !important;
-  border-radius:21px !important;
-  padding:29px 32px !important;
-  box-shadow:0 8px 24px rgba(130,60,90,.045) !important;
-  overflow:hidden;
-}
-
-.welcome::before {
-  content:"♡";
-  position:absolute;
-  right:43px;
-  top:-36px;
-  font-size:140px;
-  line-height:1;
-  color:rgba(193,99,133,.10);
-  pointer-events:none;
-}
-
-.welcome::after {
-  display:none !important;
-}
-
-.welcome h2 {
-  font-family:'DM Sans',Arial,sans-serif !important;
-  font-size:32px !important;
-  font-weight:800 !important;
-  color:#4D2537 !important;
-  letter-spacing:-1px;
-}
-
-.eyebrow {
-  color:#B45D7C !important;
-  letter-spacing:2.5px;
-  font-size:11px;
-}
-
-.btn-refresh {
-  background:#F7D6E1 !important;
-  color:#8F3C5C !important;
-  border:0 !important;
-  padding:14px 20px !important;
-  font-weight:800;
-  border-radius:12px !important;
-}
-
-.notice {
-  background:#FFF9FB !important;
-  border:1px solid #F1D7E0 !important;
-  border-left:4px solid #E7A0B7 !important;
-  border-radius:11px !important;
-  padding:14px 18px !important;
-  color:#815A6B !important;
-}
-
-/* STATISTICS */
-.stats {
-  gap:18px !important;
-  margin-bottom:28px !important;
-}
-
-.stat {
-  min-height:145px;
-  border-radius:19px !important;
-  padding:23px 25px !important;
-  box-shadow:0 5px 18px rgba(120,60,80,.045) !important;
-  position:relative;
-  display:grid;
-  grid-template-columns:55px 1fr;
-  grid-template-rows:auto auto;
-  align-content:center;
-  column-gap:13px;
-}
-
-.stat::after {
-  display:none !important;
-}
-
-.stat:nth-child(1) {
-  background:#FDEBF1 !important;
-}
-
-.stat:nth-child(2) {
-  background:#FFF1E9 !important;
-}
-
-.stat:nth-child(3) {
-  background:#EAF1FB !important;
-}
-
-.stat:nth-child(4) {
-  background:#E8F4EC !important;
-}
-
-.stat-icon {
-  grid-column:1;
-  grid-row:1/3;
-  display:flex !important;
-  justify-content:center;
-  align-items:center;
-  width:52px !important;
-  height:52px !important;
-  background:rgba(255,255,255,.75) !important;
-  border-radius:50% !important;
-  color:#A64D6E !important;
-  font-size:24px !important;
-  margin:0 !important;
-}
-
-.stat span {
-  grid-column:2;
-  grid-row:1;
-  font-size:13px !important;
-  color:#624552 !important;
-  font-weight:600;
-}
-
-.stat strong {
-  grid-column:2;
-  grid-row:2;
-  font-size:38px !important;
-  margin:0 !important;
-  line-height:1.2;
-  letter-spacing:-1px;
-}
-
-.stat:nth-child(1) strong {color:#B14B70 !important;}
-.stat:nth-child(2) strong {color:#B76B37 !important;}
-.stat:nth-child(3) strong {color:#345D99 !important;}
-.stat:nth-child(4) strong {color:#28765B !important;}
-
-/* SECTION */
-.section-heading h3 {
-  font-family:'DM Sans',Arial,sans-serif !important;
-  font-size:25px !important;
-  font-weight:800 !important;
-  color:#4D2537 !important;
-}
-
-.section-heading span {
-  background:#FCE5EC;
-  color:#A34D6C;
-  border-radius:30px;
-  padding:7px 14px;
-  font-weight:700;
-}
-
-/* SEARCH */
-.toolbar input,
-.toolbar select {
-  min-height:55px !important;
-  background:#FFFFFF !important;
-  border:1px solid #EED3DE !important;
-  border-radius:13px !important;
-  font-size:14px;
-}
-
-/* ORDER CARDS */
-.orders-grid {
-  gap:20px !important;
-}
-
-.order-card {
-  background:#FFFFFF !important;
-  border:1px solid #F0D8E1 !important;
-  border-radius:19px !important;
-  padding:24px !important;
-  box-shadow:0 8px 25px rgba(120,60,80,.055) !important;
-}
-
-.order-card::before {
-  height:5px !important;
-  background:linear-gradient(90deg,#D76B96,#F4B9CE) !important;
-}
-
-.order-number {
-  color:#A83262 !important;
-  font-size:19px !important;
-}
-
-.order-date {
-  font-size:12px !important;
-}
-
-.order-top {
-  padding-bottom:15px;
-  border-bottom:1px dashed #EED6DF;
-  margin-bottom:16px;
-}
-
-/* CUSTOMER DETAILS */
-.customer {
-  background:linear-gradient(135deg,#FFF0F5,#FFF9FA) !important;
-  border:1px solid #F5DFE7 !important;
-  border-radius:13px !important;
-  padding:17px !important;
-  margin:0 !important;
-  color:#684557 !important;
-  font-size:13px;
-  line-height:2;
-}
-
-/* ORDER ITEM DETAILS */
-.items-title {
-  color:#9B4164 !important;
-  font-size:14px !important;
-  margin:0 0 9px !important;
-}
-
-.item-row {
-  padding:11px 0 !important;
-  font-size:13px;
-}
-
-.item-price {
-  color:#61394B !important;
-}
-
-.total {
-  color:#B13F6A !important;
-  font-size:21px !important;
-  margin-top:13px !important;
-  padding-top:12px !important;
-}
-
-/* CUSTOMER LEFT, ITEMS RIGHT */
-.order-content {
-  display:grid;
-  grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
-  gap:18px;
-  align-items:start;
-}
-
-.order-content > * {
-  min-width:0;
-}
-
-.order-items-panel {
-  min-width:0;
-}
-
-/* STATUS ACTION */
-.status-control {
-  background:#FFF4F7 !important;
-  border:1px solid #F0DCE3 !important;
-  padding:11px !important;
-  border-radius:12px !important;
-  margin-top:19px !important;
-}
-
-.status-control select {
-  background:#FFFFFF !important;
-  border-radius:10px !important;
-}
-
-.status-control .btn-primary {
-  background:#D26C93 !important;
-  color:#FFFFFF !important;
-  border-radius:10px !important;
-  font-weight:800 !important;
-}
-
-.status-control .btn-primary:hover:not(:disabled) {
-  background:#B84F79 !important;
-}
-
-/* RESPONSIVE */
-@media(max-width:1100px) {
-  .order-content {
-    grid-template-columns:1fr;
-  }
-}
-
-@media(max-width:850px) {
-  .stats {
-    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-  }
-
-  .orders-grid {
-    grid-template-columns:1fr !important;
-  }
-
-  .order-content {
-    grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
-  }
-}
-
-@media(max-width:540px) {
-  main {
-    padding:17px 12px 45px !important;
-  }
-
-  .welcome {
-    padding:20px !important;
-  }
-
-  .welcome h2 {
-    font-size:24px !important;
-  }
-
-  .welcome::before {
-    display:none;
-  }
-
-  .stat {
-    padding:15px 12px !important;
-    grid-template-columns:1fr;
-    min-height:145px;
-  }
-
-  .stat-icon {
-    grid-column:1;
-    grid-row:auto;
-    width:37px !important;
-    height:37px !important;
-    font-size:18px !important;
-    margin-bottom:7px !important;
-  }
-
-  .stat span,
-  .stat strong {
-    grid-column:1;
-    grid-row:auto;
-  }
-
-  .stat strong {
-    font-size:30px !important;
-  }
-
-  .order-card {
-    padding:18px 14px !important;
-  }
-
-  .order-content {
-    grid-template-columns:1fr;
-  }
-}
-</style>
-
-<script>
-/*
- Reorganize order cards visually.
- Keeps existing order IDs, status controls,
- event handlers and Supabase logic.
-*/
-(function () {
-  function upgradeCards() {
-    document.querySelectorAll(".order-card").forEach(card => {
-      if (card.dataset.cafeUpgraded === "1") return;
-
-      const customer = card.querySelector(".customer");
-      const itemsTitle = card.querySelector(".items-title");
-
-      if (!customer || !itemsTitle) return;
-
-      const itemsContainer = itemsTitle.nextElementSibling;
-
-      if (!itemsContainer) return;
-
-      const layout = document.createElement("div");
-      layout.className = "order-content";
-
-      const itemsPanel = document.createElement("div");
-      itemsPanel.className = "order-items-panel";
-
-      card.insertBefore(layout, customer);
-
-      layout.appendChild(customer);
-      layout.appendChild(itemsPanel);
-
-      itemsPanel.appendChild(itemsTitle);
-      itemsPanel.appendChild(itemsContainer);
-
-      const total = card.querySelector(".total");
-
-      if (total) {
-        itemsPanel.appendChild(total);
-      }
-
-      card.dataset.cafeUpgraded = "1";
-    });
-  }
-
-  function upgradeIcons() {
-    const icons = ["▤", "◷", "☕", "✓"];
-
-    document.querySelectorAll(".stat-icon").forEach(
-      (element, index) => {
-        if (icons[index]) {
-          element.textContent = icons[index];
-        }
-      }
-    );
-  }
-
-  function start() {
-    upgradeCards();
-    upgradeIcons();
-
-    const grid = document.getElementById("ordersGrid");
-
-    if (!grid) return;
-
-    const observer = new MutationObserver(() => {
-      upgradeCards();
-    });
-
-    observer.observe(grid, {
-      childList:true
-    });
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", start);
-  } else {
-    start();
-  }
-})();
-</script>
-
-<!-- END RKK PINK CAFE SHOWCASE -->
-
 </html>
-<!-- BLUSH ROSE AESTHETIC CAFE -->
-<style id="blushRoseAesthetic">
-
-:root {
-  --rose:#C77F98;
-  --dusty:#D9A4B3;
-  --blush:#F7E9E6;
-  --vanilla:#FFF8F0;
-  --sage:#DCE8DF;
-  --mocha:#6C4A55;
-}
-
-/* BACKGROUND - CORAK SANGAT SAMAR */
-body {
-  background-color:#FFFAF9 !important;
-  background-image:
-    radial-gradient(
-      circle at 8% 12%,
-      rgba(221,169,188,.12),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 94% 85%,
-      rgba(214,229,217,.18),
-      transparent 28%
-    ) !important;
-  color:var(--mocha);
-}
-
-/* HEADER */
-header {
-  background:linear-gradient(
-    110deg,
-    #FFF6F5,
-    #F8E7E9,
-    #FFF9F6
-  ) !important;
-  border-bottom:1px solid #EDD8DD !important;
-}
-
-header::after {
-  content:"✿";
-  display:block !important;
-  position:absolute;
-  right:22%;
-  top:-34px;
-  font-size:115px;
-  color:rgba(178,112,139,.055);
-  pointer-events:none;
-}
-
-.brand h1 {
-  color:#67434F !important;
-}
-
-.brand-small {
-  color:#B16B83 !important;
-}
-
-/* WELCOME */
-.welcome {
-  background:linear-gradient(
-    120deg,
-    #FFFFFF,
-    #FFF4F4
-  ) !important;
-  border:1px solid #F0DFE2 !important;
-}
-
-.welcome::before {
-  content:"✿" !important;
-  right:30px !important;
-  top:-25px !important;
-  font-size:115px !important;
-  color:rgba(184,113,141,.065) !important;
-}
-
-.welcome h2 {
-  color:#67434F !important;
-}
-
-.eyebrow {
-  color:#B16B83 !important;
-}
-
-/* STATISTIC CARDS */
-.stat {
-  border:1px solid #EFDFE2 !important;
-  box-shadow:0 5px 20px rgba(112,70,84,.04) !important;
-}
-
-.stat:nth-child(1) {
-  background:#F9E9EF !important;
-}
-
-.stat:nth-child(2) {
-  background:#FFF1E6 !important;
-}
-
-.stat:nth-child(3) {
-  background:#EAF0F6 !important;
-}
-
-.stat:nth-child(4) {
-  background:#E8F1E9 !important;
-}
-
-.stat-icon {
-  background:rgba(255,255,255,.65) !important;
-  color:#B16B83 !important;
-}
-
-.stat strong {
-  color:#A95673;
-}
-
-/* ORDER CARDS */
-.order-card {
-  background:#FFFFFF !important;
-  border:1px solid #EFDEE3 !important;
-  box-shadow:0 7px 24px rgba(110,65,85,.045) !important;
-}
-
-.order-card::before {
-  background:linear-gradient(
-    90deg,
-    #C77F98,
-    #E8BAC9,
-    #F6DCE4
-  ) !important;
-}
-
-.order-number {
-  color:#A95472 !important;
-}
-
-/* CUSTOMER DETAILS */
-.customer {
-  background:linear-gradient(
-    135deg,
-    #FFF2F5,
-    #FFF9F8
-  ) !important;
-  border-color:#F0DFE5 !important;
-}
-
-/* STATUS BUTTON */
-.status-control {
-  background:#FFF7F8 !important;
-  border-color:#EFDEE3 !important;
-}
-
-.status-control .btn-primary {
-  background:#C77F98 !important;
-  color:white !important;
-}
-
-.status-control .btn-primary:hover:not(:disabled) {
-  background:#AD627F !important;
-}
-
-/* REFRESH */
-.btn-refresh {
-  background:#F5DFE7 !important;
-  color:#96546D !important;
-}
-
-/* SEARCH */
-.toolbar input,
-.toolbar select {
-  border-color:#EAD9DF !important;
-}
-
-.toolbar input:focus,
-.toolbar select:focus {
-  border-color:#C77F98 !important;
-}
-
-/* SOFT DECORATIVE FLOWER */
-.section-heading {
-  position:relative;
-}
-
-.section-heading::before {
-  content:"✿";
-  color:#D9A4B3;
-  opacity:.55;
-  font-size:20px;
-  margin-right:7px;
-}
-
-/* MOBILE */
-@media(max-width:540px) {
-  header::after,
-  .welcome::before {
-    display:none !important;
-  }
-}
-
-</style>
-<!-- END BLUSH ROSE AESTHETIC -->
-
