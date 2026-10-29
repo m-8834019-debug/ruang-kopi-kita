@@ -4,1405 +4,463 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ruang Kopi Kita | Panel Staf</title>
+<title>Ruang Kopi Kita | Staff Panel</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
-    --dark: #382318;
-    --brown: #684630;
-    --gold: #c49a6c;
-    --cream: #f7f0e7;
-    --white: #ffffff;
-    --muted: #786b61;
-    --line: #e6d8ca;
-}
-* {
-    box-sizing: border-box;
-}
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: var(--cream);
-    color: var(--dark);
-}
-button, input, select {
-    font: inherit;
-}
-button {
-    cursor: pointer;
-}
-.hidden {
-    display: none !important;
-}
-header {
-    background: var(--dark);
-    color: white;
-    padding: 17px 5%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-header h1 {
-    margin: 0;
-    font-size: 22px;
-}
-header p {
-    margin: 5px 0 0;
-    color: #e5c9aa;
-    font-size: 13px;
-}
-.header-actions {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    flex-wrap: wrap;
-}
-.btn {
-    border: none;
-    border-radius: 9px;
-    padding: 11px 15px;
-    font-weight: bold;
-}
-.btn-primary {
-    background: var(--brown);
-    color: white;
-}
-.btn-gold {
-    background: var(--gold);
-    color: var(--dark);
-}
-.btn-outline {
-    background: white;
-    color: var(--brown);
-    border: 1px solid var(--gold);
-}
-.btn-danger {
-    background: #9c3939;
-    color: white;
-}
-.btn:disabled {
-    opacity: .55;
-    cursor: not-allowed;
-}
-main {
-    max-width: 1250px;
-    padding: 28px 18px 60px;
-    margin: auto;
-}
-.login-card {
-    max-width: 440px;
-    margin: 55px auto;
-    background: white;
-    padding: 30px;
-    border-radius: 17px;
-    box-shadow: 0 8px 30px #38231816;
-}
-.login-card h2 {
-    margin-top: 0;
-    text-align: center;
-}
-.login-card p {
-    text-align: center;
-    color: var(--muted);
-    font-size: 14px;
-}
-.field {
-    margin: 18px 0;
-}
-.field label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-.field input {
-    width: 100%;
-    padding: 13px;
-    border: 1px solid #d6c8ba;
-    border-radius: 9px;
-}
-.login-card .btn {
-    width: 100%;
-}
-.message {
-    padding: 12px 14px;
-    border-radius: 9px;
-    margin-top: 15px;
-    font-size: 14px;
-    background: #f7e8e4;
-    color: #963d35;
-}
-.message.success {
-    background: #e4f3e8;
-    color: #236b40;
-}
-.dashboard-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 20px;
-}
-.dashboard-title h2 {
-    margin: 0;
-}
-.dashboard-title p {
-    color: var(--muted);
-    margin: 7px 0 0;
-}
-.stats {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 14px;
-    margin-bottom: 24px;
-}
-.stat {
-    background: white;
-    border-radius: 13px;
-    padding: 19px;
-    border: 1px solid var(--line);
-}
-.stat span {
-    color: var(--muted);
-    font-size: 13px;
-}
-.stat strong {
-    display: block;
-    font-size: 30px;
-    margin-top: 9px;
-}
-.toolbar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 20px;
-}
-.toolbar input,
-.toolbar select {
-    background: white;
-    border: 1px solid var(--line);
-    border-radius: 9px;
-    padding: 12px;
-}
-.toolbar input {
-    flex: 1;
-    min-width: 210px;
-}
-.orders-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-}
-.order-card {
-    background: white;
-    border-radius: 15px;
-    padding: 22px;
-    border: 1px solid var(--line);
-    box-shadow: 0 4px 14px #3823180c;
-}
-.order-top {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    align-items: flex-start;
-}
-.order-number {
-    font-size: 18px;
-    font-weight: bold;
-    overflow-wrap: anywhere;
-}
-.order-date {
-    color: var(--muted);
-    font-size: 12px;
-    margin-top: 6px;
-}
-.status {
-    display: inline-block;
-    padding: 7px 11px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
-    white-space: nowrap;
-}
-.status-new {
-    background: #fff0c8;
-    color: #8d5700;
-}
-.status-progress {
-    background: #dfeeff;
-    color: #245c99;
-}
-.status-ready {
-    background: #e3f5df;
-    color: #327039;
-}
-.status-done {
-    background: #ececec;
-    color: #555;
-}
-.status-cancel {
-    background: #ffe0df;
-    color: #9a3737;
-}
-.customer {
-    background: #f9f3ec;
-    padding: 13px;
-    border-radius: 9px;
-    margin: 16px 0;
-    line-height: 1.8;
-}
-.items-title {
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-.item-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 9px 0;
-    border-bottom: 1px solid #eee6dd;
-}
-.item-row small {
-    color: var(--muted);
-}
-.item-price {
-    white-space: nowrap;
-    font-weight: bold;
-}
-.total {
-    display: flex;
-    justify-content: space-between;
-    border-top: 2px solid var(--brown);
-    padding-top: 15px;
-    margin-top: 17px;
-    font-size: 19px;
-    font-weight: bold;
-}
-.status-control {
-    display: flex;
-    gap: 9px;
-    margin-top: 20px;
-}
-.status-control select {
-    min-width: 0;
-    flex: 1;
-    padding: 10px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: white;
-}
-.empty {
-    grid-column: 1 / -1;
-    background: white;
-    border-radius: 13px;
-    padding: 35px;
-    text-align: center;
-    color: var(--muted);
-}
-.notice {
-    background: #fff9e9;
-    border: 1px solid #ead7a3;
-    border-radius: 9px;
-    padding: 12px 15px;
-    margin-bottom: 18px;
-    font-size: 13px;
-}
-footer {
-    padding: 25px;
-    text-align: center;
-    color: var(--muted);
-    font-size: 13px;
-}
-@media (max-width: 850px) {
-    .stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .orders-grid {
-        grid-template-columns: 1fr;
-    }
-}
-@media (max-width: 500px) {
-    .login-card {
-        margin: 25px auto;
-        padding: 22px;
-    }
-    .order-card {
-        padding: 16px;
-    }
-    .order-top {
-        flex-wrap: wrap;
-    }
-    .status-control {
-        flex-direction: column;
-    }
-}
-</style>
-</head>
-
-<body>
-
-<header>
-    <div>
-        <h1>☕ Ruang Kopi Kita</h1>
-        <p>Sistem Pengurusan Pesanan Staf</p>
-    </div>
-
-    <div class="header-actions">
-        <span id="staffEmail"></span>
-        <button
-            id="logoutButton"
-            class="btn btn-danger hidden"
-            onclick="logout()"
-        >
-            Log Keluar
-        </button>
-    </div>
-</header>
-
-<main>
-
-    <!-- LOGIN STAF -->
-    <section id="loginSection" class="login-card">
-        <h2>🔐 Login Staf</h2>
-        <p>Masukkan akaun staf yang didaftarkan dalam Supabase.</p>
-
-        <form id="loginForm">
-            <div class="field">
-                <label for="email">Email Staf</label>
-                <input
-                    type="email"
-                    id="email"
-                    autocomplete="username"
-                    placeholder="Email staf"
-                    required
-                >
-            </div>
-
-            <div class="field">
-                <label for="password">Kata Laluan</label>
-                <input
-                    type="password"
-                    id="password"
-                    autocomplete="current-password"
-                    placeholder="Kata laluan"
-                    required
-                >
-            </div>
-
-            <button
-                id="loginButton"
-                class="btn btn-primary"
-                type="submit"
-            >
-                Masuk Sistem Staf
-            </button>
-        </form>
-
-        <div id="loginMessage" class="message hidden"></div>
-    </section>
-
-    <!-- DASHBOARD STAF -->
-    <section id="dashboardSection" class="hidden">
-
-        <div class="dashboard-title">
-            <div>
-                <h2>📋 Pesanan Pelanggan</h2>
-                <p>Semua pesanan yang diterima melalui website.</p>
-            </div>
-
-            <button class="btn btn-gold" onclick="loadOrders()">
-                🔄 Refresh Pesanan
-            </button>
-        </div>
-
-        <div class="notice">
-            Pesanan disemak secara automatik setiap 10 saat
-            apabila halaman ini aktif. Awak juga boleh tekan Refresh.
-        </div>
-
-        <div class="stats">
-            <div class="stat">
-                <span>Jumlah Pesanan</span>
-                <strong id="statTotal">0</strong>
-            </div>
-
-            <div class="stat">
-                <span>Pesanan Baharu</span>
-                <strong id="statNew">0</strong>
-            </div>
-
-            <div class="stat">
-                <span>Sedang Disediakan</span>
-                <strong id="statProgress">0</strong>
-            </div>
-
-            <div class="stat">
-                <span>Sedia Dihidangkan</span>
-                <strong id="statReady">0</strong>
-            </div>
-        </div>
-
-        <div class="toolbar">
-            <input
-                type="search"
-                id="searchInput"
-                placeholder="Cari nama pelanggan, meja atau nombor pesanan..."
-            >
-
-            <select id="filterStatus">
-                <option value="all">Semua Status</option>
-                <option value="Baharu">Baharu</option>
-                <option value="Sedang Disediakan">Sedang Disediakan</option>
-                <option value="Sedia Dihidangkan">Sedia Dihidangkan</option>
-                <option value="Selesai">Selesai</option>
-                <option value="Dibatalkan">Dibatalkan</option>
-            </select>
-        </div>
-
-        <div id="dashboardMessage" class="message hidden"></div>
-
-        <div id="ordersGrid" class="orders-grid">
-            <div class="empty">Memuatkan pesanan...</div>
-        </div>
-
-    </section>
-
-</main>
-
-<footer>
-    © 2026 Ruang Kopi Kita | Panel Khas Staf
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-"use strict";
-
-/* ==========================================
-   SUPABASE
-========================================== */
-
-const SUPABASE_URL =
-    "https://ledcwlnyztcsvdedwmtq.supabase.co";
-
-const SUPABASE_KEY =
-    "sb_publishable_a1sRyLibWsIpRThtxfUbUQ_-Ksjebvl";
-
-const client = window.supabase
-    ? window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    )
-    : null;
-
-/* ==========================================
-   TETAPAN
-========================================== */
-
-const STAFF_ROLES = ["staff", "admin"];
-
-const STATUSES = [
-    "Baharu",
-    "Sedang Disediakan",
-    "Sedia Dihidangkan",
-    "Selesai",
-    "Dibatalkan"
-];
-
-let allOrders = [];
-let refreshTimer = null;
-let loadingOrders = false;
-let activeStaffId = null;
-
-/* ==========================================
-   FUNGSI BANTUAN
-========================================== */
-
-function showMessage(elementId, message, success = false) {
-    const el = document.getElementById(elementId);
-    el.textContent = message;
-    el.classList.remove("hidden");
-    el.classList.toggle("success", success);
-}
-
-function hideMessage(elementId) {
-    document.getElementById(elementId).classList.add("hidden");
-}
-
-function money(value) {
-    return "RM " + Number(value || 0).toFixed(2);
-}
-
-function formatDate(value) {
-    if (!value) return "-";
-
-    return new Date(value).toLocaleString("ms-MY", {
-        timeZone: "Asia/Kuala_Lumpur",
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit"
-    });
-}
-
-function displayStatus(status) {
-    return status || "Baharu";
-}
-
-function statusClass(status) {
-    switch (status) {
-        case "Baharu":
-            return "status-new";
-        case "Sedang Disediakan":
-            return "status-progress";
-        case "Sedia Dihidangkan":
-            return "status-ready";
-        case "Selesai":
-            return "status-done";
-        case "Dibatalkan":
-            return "status-cancel";
-        default:
-            return "status-new";
-    }
-}
-
-function el(tag, className, text) {
-    const node = document.createElement(tag);
-
-    if (className) node.className = className;
-    if (text !== undefined) node.textContent = String(text);
-
-    return node;
-}
-
-/* ==========================================
-   PAPAR LOGIN / DASHBOARD
-========================================== */
-
-function showLogin() {
-    activeStaffId = null;
-    allOrders = [];
-
-    document.getElementById("loginSection")
-        .classList.remove("hidden");
-
-    document.getElementById("dashboardSection")
-        .classList.add("hidden");
-
-    document.getElementById("logoutButton")
-        .classList.add("hidden");
-
-    document.getElementById("staffEmail").textContent = "";
-
-    stopAutoRefresh();
-}
-
-function showDashboard(user) {
-    activeStaffId = user.id;
-
-    document.getElementById("loginSection")
-        .classList.add("hidden");
-
-    document.getElementById("dashboardSection")
-        .classList.remove("hidden");
-
-    document.getElementById("logoutButton")
-        .classList.remove("hidden");
-
-    document.getElementById("staffEmail").textContent =
-        user.email || "Staf";
-
-    hideMessage("loginMessage");
-
-    loadOrders();
-    startAutoRefresh();
-}
-
-/* ==========================================
-   SEMAK PERANAN STAF
-========================================== */
-
-async function checkStaffRole(userId) {
-
-    const { data, error } = await client
-        .from("user_roles")
-        .select("role")
-        .eq("user_id", userId)
-        .maybeSingle();
-
-    if (error) throw error;
-
-    return data && STAFF_ROLES.includes(data.role);
-}
-
-/* ==========================================
-   LOGIN STAF
-========================================== */
-
-document.getElementById("loginForm")
-    .addEventListener("submit", async function(event) {
-
-        event.preventDefault();
-
-        if (!client) {
-            showMessage(
-                "loginMessage",
-                "Supabase gagal dimuatkan. Sila refresh website."
-            );
-            return;
-        }
-
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
-        const button = document.getElementById("loginButton");
-
-        button.disabled = true;
-        button.textContent = "Sedang login...";
-
-        hideMessage("loginMessage");
-
-        try {
-            const { data, error } =
-                await client.auth.signInWithPassword({
-                    email,
-                    password
-                });
-
-            if (error) throw error;
-
-            if (!data.user) {
-                throw new Error("Akaun tidak ditemui.");
-            }
-
-            const allowed = await checkStaffRole(data.user.id);
-
-            if (!allowed) {
-                await client.auth.signOut();
-                throw new Error(
-                    "Akaun ini tidak mempunyai kebenaran staf."
-                );
-            }
-
-            document.getElementById("password").value = "";
-
-            showDashboard(data.user);
-
-        } catch (error) {
-            showLogin();
-
-            showMessage(
-                "loginMessage",
-                error.message || "Login gagal."
-            );
-
-        } finally {
-            button.disabled = false;
-            button.textContent = "Masuk Sistem Staf";
-        }
-    });
-
-/* ==========================================
-   LOGOUT
-========================================== */
-
-async function logout() {
-
-    stopAutoRefresh();
-
-    if (client) {
-        await client.auth.signOut();
-    }
-
-    showLogin();
-}
-
-/* ==========================================
-   AMBIL PESANAN SUPABASE
-========================================== */
-
-async function loadOrders() {
-
-    if (!client || !activeStaffId || loadingOrders) return;
-
-    loadingOrders = true;
-
-    try {
-
-        const { data: orders, error: ordersError } =
-            await client
-                .from("orders")
-                .select("*")
-                .order("created_at", { ascending: false })
-                .limit(200);
-
-        if (ordersError) throw ordersError;
-
-        const orderIds = (orders || []).map(order => order.id);
-
-        let items = [];
-
-        if (orderIds.length > 0) {
-
-            const { data: orderItems, error: itemsError } =
-                await client
-                    .from("order_items")
-                    .select("*")
-                    .in("order_id", orderIds);
-
-            if (itemsError) throw itemsError;
-
-            items = orderItems || [];
-        }
-
-        allOrders = (orders || []).map(order => ({
-            ...order,
-            items: items.filter(item => item.order_id === order.id)
-        }));
-
-        hideMessage("dashboardMessage");
-
-        updateStats();
-        renderOrders();
-
-    } catch (error) {
-
-        console.error("Ralat memuatkan pesanan:", error);
-
-        showMessage(
-            "dashboardMessage",
-            "Gagal memuatkan pesanan: " + error.message
-        );
-
-    } finally {
-        loadingOrders = false;
-    }
-}
-
-/* ==========================================
-   STATISTIK PESANAN
-========================================== */
-
-function updateStats() {
-
-    document.getElementById("statTotal").textContent =
-        allOrders.length;
-
-    document.getElementById("statNew").textContent =
-        allOrders.filter(order =>
-            displayStatus(order.status) === "Baharu"
-        ).length;
-
-    document.getElementById("statProgress").textContent =
-        allOrders.filter(order =>
-            order.status === "Sedang Disediakan"
-        ).length;
-
-    document.getElementById("statReady").textContent =
-        allOrders.filter(order =>
-            order.status === "Sedia Dihidangkan"
-        ).length;
-}
-
-/* ==========================================
-   PAPAR SENARAI PESANAN
-========================================== */
-
-function renderOrders() {
-
-    const grid = document.getElementById("ordersGrid");
-    const keyword = document.getElementById("searchInput")
-        .value.trim().toLowerCase();
-
-    const filter = document.getElementById("filterStatus").value;
-
-    grid.replaceChildren();
-
-    const filtered = allOrders.filter(order => {
-
-        const searchable = [
-            order.order_number,
-            order.customer_name,
-            order.table_number,
-            order.id
-        ].join(" ").toLowerCase();
-
-        const matchSearch = searchable.includes(keyword);
-
-        const matchStatus =
-            filter === "all" ||
-            displayStatus(order.status) === filter;
-
-        return matchSearch && matchStatus;
-    });
-
-    if (filtered.length === 0) {
-        grid.appendChild(
-            el("div", "empty", "Tiada pesanan untuk dipaparkan.")
-        );
-        return;
-    }
-
-    filtered.forEach(order => {
-
-        const card = el("article", "order-card");
-
-        const top = el("div", "order-top");
-
-        const titleWrap = el("div");
-
-        const number = el(
-            "div",
-            "order-number",
-            order.order_number || ("Pesanan #" + order.id)
-        );
-
-        const date = el(
-            "div",
-            "order-date",
-            formatDate(order.created_at)
-        );
-
-        titleWrap.append(number, date);
-
-        const badge = el(
-            "span",
-            "status " + statusClass(displayStatus(order.status)),
-            displayStatus(order.status)
-        );
-
-        top.append(titleWrap, badge);
-
-        const customer = el("div", "customer");
-
-        customer.appendChild(
-            el("div", "", "👤 Nama: " + (order.customer_name || "-"))
-        );
-
-        customer.appendChild(
-            el("div", "", "🪑 Meja: " + (order.table_number || "-"))
-        );
-
-        const itemsTitle = el("div", "items-title", "🍽️ Senarai Pesanan");
-
-        const itemsContainer = el("div");
-
-        if (!order.items || order.items.length === 0) {
-
-            itemsContainer.appendChild(
-                el("p", "", "Tiada butiran item.")
-            );
-
-        } else {
-
-            order.items.forEach(item => {
-
-                const row = el("div", "item-row");
-
-                const details = el("div");
-
-                const itemName = el(
-                    "div",
-                    "",
-                    (item.quantity || 0) + " × " +
-                    (item.item_name || "Item")
-                );
-
-                details.appendChild(itemName);
-
-                if (item.option_name) {
-                    details.appendChild(
-                        el("small", "", item.option_name)
-                    );
-                }
-
-                const itemTotal =
-                    item.subtotal ??
-                    (
-                        Number(item.unit_price || 0) *
-                        Number(item.quantity || 0)
-                    );
-
-                const price = el(
-                    "div",
-                    "item-price",
-                    money(itemTotal)
-                );
-
-                row.append(details, price);
-                itemsContainer.appendChild(row);
-            });
-        }
-
-        const total = el("div", "total");
-
-        total.appendChild(el("span", "", "Jumlah"));
-        total.appendChild(
-            el("span", "", money(order.total_amount))
-        );
-
-        const controls = el("div", "status-control");
-
-        const select = document.createElement("select");
-
-        STATUSES.forEach(status => {
-
-            const option = document.createElement("option");
-            option.value = status;
-            option.textContent = status;
-
-            if (displayStatus(order.status) === status) {
-                option.selected = true;
-            }
-
-            select.appendChild(option);
-        });
-
-        const save = el("button", "btn btn-primary", "Simpan Status");
-
-        save.addEventListener("click", async () => {
-
-            save.disabled = true;
-            save.textContent = "Menyimpan...";
-
-            try {
-                await updateOrderStatus(order.id, select.value);
-            } finally {
-                save.disabled = false;
-                save.textContent = "Simpan Status";
-            }
-        });
-
-        controls.append(select, save);
-
-        card.append(
-            top,
-            customer,
-            itemsTitle,
-            itemsContainer,
-            total,
-            controls
-        );
-
-        grid.appendChild(card);
-    });
-}
-
-/* ==========================================
-   KEMAS KINI STATUS PESANAN
-========================================== */
-
-async function updateOrderStatus(orderId, newStatus) {
-
-    if (!STATUSES.includes(newStatus)) {
-        alert("Status tidak sah.");
-        return;
-    }
-
-    try {
-
-        const { data, error } = await client
-            .from("orders")
-            .update({ status: newStatus })
-            .eq("id", orderId)
-            .select("id, status");
-
-        if (error) throw error;
-
-        if (!data || data.length !== 1) {
-            throw new Error(
-                "Status tidak dikemas kini. Semak kebenaran staf."
-            );
-        }
-
-        await loadOrders();
-
-        showMessage(
-            "dashboardMessage",
-            "Status pesanan berjaya dikemas kini kepada: " +
-            newStatus,
-            true
-        );
-
-    } catch (error) {
-
-        console.error("Ralat status:", error);
-
-        showMessage(
-            "dashboardMessage",
-            "Gagal mengemas kini status: " + error.message
-        );
-
-        await loadOrders();
-    }
-}
-
-/* ==========================================
-   CARI DAN TAPIS PESANAN
-========================================== */
-
-document.getElementById("searchInput")
-    .addEventListener("input", renderOrders);
-
-document.getElementById("filterStatus")
-    .addEventListener("change", renderOrders);
-
-/* ==========================================
-   AUTO REFRESH
-========================================== */
-
-function startAutoRefresh() {
-
-    stopAutoRefresh();
-
-    refreshTimer = setInterval(() => {
-
-        if (!document.hidden && activeStaffId) {
-            loadOrders();
-        }
-
-    }, 10000);
-}
-
-function stopAutoRefresh() {
-
-    if (refreshTimer !== null) {
-        clearInterval(refreshTimer);
-        refreshTimer = null;
-    }
-}
-
-/* ==========================================
-   SEMAK LOGIN SEDIA ADA
-========================================== */
-
-async function initialize() {
-
-    if (!client) {
-        showMessage(
-            "loginMessage",
-            "Supabase gagal dimuatkan. Sila refresh halaman."
-        );
-        return;
-    }
-
-    try {
-
-        const { data, error } = await client.auth.getUser();
-
-        if (error || !data.user) {
-            showLogin();
-            return;
-        }
-
-        const allowed = await checkStaffRole(data.user.id);
-
-        if (!allowed) {
-            await client.auth.signOut();
-            showLogin();
-
-            showMessage(
-                "loginMessage",
-                "Akaun ini tidak mempunyai kebenaran staf."
-            );
-            return;
-        }
-
-        showDashboard(data.user);
-
-    } catch (error) {
-
-        console.error("Ralat semakan login:", error);
-        showLogin();
-
-        showMessage(
-            "loginMessage",
-            "Gagal menyemak akaun: " + error.message
-        );
-    }
-}
-
-initialize();
-
-</script>
-<!-- =========================================
-     PINK STRAWBERRY CAFE - STAFF EDITION
-     RUANG KOPI KITA
-     Tampal sebelum </body>
-========================================= -->
-<style id="pinkStrawberryStaffTheme">
-:root {
-  --dark:#623449;
-  --brown:#C13E79;
-  --gold:#F7B8D0;
-  --cream:#FFF5F8;
+  --bg:#FCF8F6;
   --white:#FFFFFF;
-  --muted:#896678;
-  --line:#F1CDDC;
-  --pink:#E86A9C;
-  --pink-dark:#B82F6B;
-  --pink-light:#FFE0ED;
+  --pink:#CF8297;
+  --pink-dark:#A95570;
+  --pink-light:#F8E6EA;
+  --cream:#FFF9F5;
+  --brown:#593D39;
+  --muted:#8D7776;
+  --border:#EEDDDD;
+  --shadow:0 7px 25px rgba(95,55,60,.055);
 }
 
-html {
-  scroll-behavior:smooth;
-  color-scheme:light;
+* {
+  box-sizing:border-box;
 }
 
 body {
-  background:
-    radial-gradient(circle at 95% 4%,#FFDCEB 0%,transparent 30%),
-    radial-gradient(circle at 0% 45%,#FFF0C9 0%,transparent 32%),
-    #FFF7FA;
-  color:#623449;
-  font-family:Arial,Helvetica,sans-serif;
+  margin:0;
+  font-family:'DM Sans',Arial,sans-serif;
+  background:var(--bg);
+  color:var(--brown);
   line-height:1.55;
 }
 
-/* HEADER */
-header {
-  background:linear-gradient(115deg,#E86A9C,#C13E79);
-  color:#FFFFFF;
-  padding:23px 5%;
-  border-bottom:4px solid #FFD7E7;
-  box-shadow:0 7px 24px #D94E8824;
+button,input,select {
+  font:inherit;
 }
 
-header h1 {
-  font-size:clamp(23px,3vw,30px);
-  font-weight:800;
-  letter-spacing:.2px;
+button {
+  cursor:pointer;
 }
 
-header p {
-  color:#FFF0F6;
-  font-size:14px;
-}
-
-#staffEmail {
-  color:#FFFFFF;
-  font-size:13px;
-  overflow-wrap:anywhere;
-}
-
-/* BUTTONS */
-.btn {
-  border-radius:13px;
-  padding:13px 19px;
-  font-size:14px;
-  font-weight:800;
-  transition:background .2s,transform .2s,box-shadow .2s;
-}
-
-.btn:hover:not(:disabled) {
-  transform:translateY(-2px);
-  box-shadow:0 6px 15px #B82F6B24;
-}
-
-.btn-primary {
-  background:#C13E79;
-  color:white;
-}
-
-.btn-primary:hover:not(:disabled) {
-  background:#A92F67;
-}
-
-.btn-gold {
-  background:#FFE2A9;
-  color:#70471C;
-}
-
-.btn-gold:hover:not(:disabled) {
-  background:#FFD58A;
-}
-
-.btn-outline {
-  background:white;
-  color:#B82F6B;
-  border:2px solid #EAA1BE;
-}
-
-.btn-danger {
-  background:#FFFFFF;
-  color:#A62859;
-  border:1px solid #FFE0ED;
-}
-
-.btn-danger:hover:not(:disabled) {
-  background:#FFF0F6;
+button:disabled {
+  opacity:.55;
+  cursor:not-allowed;
 }
 
 button:focus-visible,
 input:focus-visible,
 select:focus-visible {
-  outline:3px solid #B82F6B;
-  outline-offset:3px;
+  outline:3px solid var(--pink);
+  outline-offset:2px;
+}
+
+.hidden {
+  display:none!important;
+}
+
+/* HEADER */
+
+header {
+  background:linear-gradient(110deg,#FFF9F6,#F5E5E3);
+  border-bottom:1px solid #EAD7D5;
+  padding:23px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+  position:relative;
+  overflow:hidden;
+}
+
+header::after {
+  content:"✿";
+  position:absolute;
+  right:28%;
+  top:-52px;
+  font-size:145px;
+  color:rgba(185,112,131,.06);
+  pointer-events:none;
+}
+
+.brand {
+  position:relative;
+  z-index:1;
+}
+
+.brand-small {
+  font-size:11px;
+  letter-spacing:3px;
+  color:#A66E7B;
+  font-weight:700;
+  text-transform:uppercase;
+}
+
+.brand h1 {
+  margin:2px 0;
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(26px,3vw,35px);
+  font-weight:600;
+  color:var(--brown);
+}
+
+.brand p {
+  margin:4px 0 0;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.header-actions {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  position:relative;
+  z-index:1;
+}
+
+#staffEmail {
+  color:#795C5B;
+  font-size:12px;
+  overflow-wrap:anywhere;
+}
+
+/* BUTTON */
+
+.btn {
+  border:none;
+  border-radius:11px;
+  padding:12px 18px;
+  font-weight:700;
+  font-size:13px;
+  min-height:45px;
+  transition:background .2s,transform .2s;
+}
+
+.btn:hover:not(:disabled) {
+  transform:translateY(-1px);
+}
+
+.btn-primary {
+  background:var(--pink);
+  color:white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background:var(--pink-dark);
+}
+
+.btn-outline {
+  background:white;
+  color:var(--pink-dark);
+  border:1px solid #E6C3CD;
+}
+
+.btn-outline:hover:not(:disabled) {
+  background:#FFF0F4;
+}
+
+.btn-refresh {
+  background:#F2E4DF;
+  color:#79534D;
+}
+
+.btn-refresh:hover:not(:disabled) {
+  background:#EAD4CD;
 }
 
 /* MAIN */
+
 main {
-  max-width:1350px;
-  padding:32px 20px 65px;
-}
-
-.dashboard-title {
-  margin-bottom:24px;
-}
-
-.dashboard-title h2 {
-  color:#623449;
-  font-size:clamp(25px,3vw,33px);
-  font-weight:800;
-}
-
-.dashboard-title p {
-  color:#896678;
-  font-size:15px;
+  max-width:1370px;
+  margin:auto;
+  padding:32px 22px 65px;
 }
 
 /* LOGIN */
+
 .login-card {
+  max-width:450px;
+  margin:55px auto;
+  padding:35px;
   background:white;
-  border:1px solid #F1CDDC;
-  border-radius:24px;
-  box-shadow:0 14px 40px #D94E881C;
-  padding:36px;
-  max-width:460px;
+  border:1px solid var(--border);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+
+.login-card::before {
+  content:"✿";
+  position:absolute;
+  top:-38px;
+  right:10px;
+  font-size:110px;
+  color:rgba(185,112,131,.07);
+  pointer-events:none;
 }
 
 .login-card h2 {
-  color:#B82F6B;
-  font-size:25px;
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:29px;
+  font-weight:600;
+  text-align:center;
+  margin:0;
 }
 
 .login-card p {
-  color:#896678;
+  color:var(--muted);
+  text-align:center;
+  font-size:13px;
+  margin:10px 0 25px;
+}
+
+.field {
+  margin-bottom:18px;
 }
 
 .field label {
-  color:#623449;
+  display:block;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:8px;
 }
 
 .field input {
-  background:#FFF9FB;
-  border:1px solid #E7B7CC;
-  color:#623449;
-  border-radius:12px;
+  width:100%;
+  background:#FFFCFB;
+  border:1px solid #E7D6D5;
+  border-radius:10px;
   padding:14px;
+  color:var(--brown);
 }
 
 .field input:focus {
-  border-color:#C13E79;
+  border-color:var(--pink);
 }
 
 .login-card .btn {
-  min-height:49px;
+  width:100%;
+  margin-top:5px;
+}
+
+/* DASHBOARD INTRO */
+
+.welcome {
+  position:relative;
+  background:linear-gradient(120deg,#FFFFFF,#FFF9F7);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:27px 28px;
+  margin-bottom:22px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+.welcome::after {
+  content:"✿";
+  position:absolute;
+  right:30px;
+  top:-37px;
+  font-size:140px;
+  color:rgba(185,112,131,.075);
+  pointer-events:none;
+}
+
+.welcome-top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
+  position:relative;
+  z-index:1;
+}
+
+.eyebrow {
+  color:var(--pink-dark);
+  font-size:11px;
+  letter-spacing:2px;
+  font-weight:800;
+  margin-bottom:6px;
+}
+
+.welcome h2 {
+  margin:0;
+  font-family:'Playfair Display',Georgia,serif;
+  font-weight:600;
+  font-size:clamp(26px,3vw,33px);
+}
+
+.welcome p {
+  margin:8px 0 0;
+  font-size:14px;
+  color:var(--muted);
+}
+
+/* NOTICE */
+
+.notice {
+  padding:13px 16px;
+  background:#FFF9F4;
+  border:1px solid #EADFD5;
+  border-left:3px solid #D7A3B0;
+  border-radius:11px;
+  font-size:12px;
+  color:#866B65;
+  margin-bottom:22px;
 }
 
 /* STATISTICS */
+
 .stats {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
   gap:16px;
-  margin-bottom:26px;
+  margin-bottom:25px;
 }
 
 .stat {
-  border-radius:19px;
-  border:1px solid #F1CDDC;
-  box-shadow:0 5px 16px #D94E880C;
+  position:relative;
+  overflow:hidden;
   padding:22px;
-  transition:transform .2s;
+  border:1px solid var(--border);
+  border-radius:17px;
+  box-shadow:var(--shadow);
 }
 
-.stat:hover {
-  transform:translateY(-3px);
+.stat::after {
+  content:"✿";
+  position:absolute;
+  bottom:-20px;
+  right:10px;
+  font-size:70px;
+  opacity:.09;
+  pointer-events:none;
 }
 
 .stat:nth-child(1) {
-  background:#FFFFFF;
-  border-color:#EEC8D8;
+  background:#F9E8EC;
 }
 
 .stat:nth-child(2) {
-  background:#FFE0ED;
-  border-color:#F6B3CF;
+  background:#FBF0E8;
 }
 
 .stat:nth-child(3) {
-  background:#FFF0BE;
-  border-color:#F1D98D;
+  background:#EAF0F7;
 }
 
 .stat:nth-child(4) {
-  background:#DCF5E4;
-  border-color:#A8DFC0;
+  background:#E8F1E8;
+}
+
+.stat-icon {
+  font-size:22px;
+  margin-bottom:9px;
 }
 
 .stat span {
-  color:#694B5B;
+  display:block;
+  font-size:12px;
   font-weight:700;
-  font-size:14px;
+  color:#725756;
 }
 
 .stat strong {
-  font-size:35px;
-  color:#623449;
+  display:block;
+  font-size:34px;
+  margin-top:7px;
+  font-weight:800;
+  color:#9C4D66;
 }
 
 .stat:nth-child(2) strong {
-  color:#AE326A;
+  color:#95603B;
 }
 
 .stat:nth-child(3) strong {
-  color:#876014;
+  color:#476B92;
 }
 
 .stat:nth-child(4) strong {
-  color:#277B4B;
+  color:#427650;
 }
 
-/* SEARCH AND FILTER */
-.toolbar {
+/* TOOLBAR */
+
+.section-heading {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:15px;
   gap:12px;
-  margin-bottom:23px;
+}
+
+.section-heading h3 {
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:23px;
+  font-weight:600;
+  margin:0;
+}
+
+.section-heading span {
+  color:var(--muted);
+  font-size:12px;
+}
+
+.toolbar {
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:22px;
 }
 
 .toolbar input,
 .toolbar select {
-  background:#FFFFFF;
-  border:1px solid #E9B9CE;
-  border-radius:13px;
-  padding:14px;
-  color:#623449;
-  min-height:49px;
+  background:white;
+  border:1px solid #E8DADA;
+  border-radius:11px;
+  padding:13px 15px;
+  min-height:48px;
+  color:var(--brown);
+}
+
+.toolbar input {
+  flex:1;
+  min-width:220px;
+}
+
+.toolbar select {
+  min-width:195px;
 }
 
 .toolbar input::placeholder {
-  color:#98798A;
+  color:#A18D8C;
 }
 
 .toolbar input:focus,
 .toolbar select:focus {
-  border-color:#C13E79;
+  border-color:var(--pink);
 }
 
-.toolbar select {
-  min-width:190px;
-}
+/* ORDER GRID */
 
-/* ORDER CARDS */
 .orders-grid {
-  gap:20px;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:19px;
 }
 
 .order-card {
-  background:#FFFFFF;
-  border:1px solid #F0CADB;
-  border-radius:22px;
-  padding:24px;
-  box-shadow:0 8px 25px #D94E8812;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:23px;
+  box-shadow:var(--shadow);
   position:relative;
   overflow:hidden;
   transition:transform .2s,box-shadow .2s;
@@ -1410,165 +468,196 @@ main {
 
 .order-card::before {
   content:"";
-  display:block;
   position:absolute;
-  top:0;
   left:0;
+  top:0;
   right:0;
-  height:6px;
-  background:#E86A9C;
+  height:3px;
+  background:#DCA5B1;
 }
 
 .order-card:hover {
   transform:translateY(-2px);
-  box-shadow:0 12px 30px #D94E881C;
+  box-shadow:0 10px 27px rgba(95,55,60,.09);
+}
+
+.order-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
 }
 
 .order-number {
-  color:#9D2E62;
-  font-size:20px;
+  font-size:18px;
   font-weight:800;
+  color:#704744;
+  overflow-wrap:anywhere;
 }
 
 .order-date {
-  color:#927184;
-  font-size:13px;
+  color:#9B8583;
+  font-size:12px;
+  margin-top:5px;
 }
+
+/* STATUS */
 
 .status {
-  padding:8px 13px;
+  display:inline-block;
   border-radius:999px;
-  font-size:12px;
+  padding:7px 12px;
+  font-size:11px;
   font-weight:800;
-}
-
-.status-new {
-  background:#FFE0ED;
-  color:#A52A60;
-}
-
-.status-progress {
-  background:#FFF0BE;
-  color:#876014;
-}
-
-.status-ready {
-  background:#DCF5E4;
-  color:#267747;
-}
-
-.status-done {
-  background:#E7E8FA;
-  color:#55539B;
-}
-
-.status-cancel {
-  background:#FFE1E1;
-  color:#A13A48;
-}
-
-/* CUSTOMER DETAILS */
-.customer {
-  background:#FFF1F6;
-  border:1px solid #F6D5E3;
-  color:#694558;
-  border-radius:14px;
-  padding:15px;
-  margin:18px 0;
-  font-size:14px;
-}
-
-.items-title {
-  color:#A52A60;
-  font-size:15px;
-  font-weight:800;
-  margin-bottom:13px;
-}
-
-.item-row {
-  padding:12px 0;
-  border-bottom:1px dashed #EBC9D8;
-  color:#623449;
-}
-
-.item-row small {
-  color:#896678;
-}
-
-.item-price {
-  color:#B82F6B;
-  font-weight:800;
-}
-
-.total {
-  border-top:2px solid #EAA1BE;
-  color:#A52A60;
-  font-size:21px;
-  padding-top:16px;
-}
-
-/* STATUS ACTION */
-.status-control {
-  gap:10px;
-  margin-top:20px;
-}
-
-.status-control select {
-  background:#FFF8FB;
-  border:1px solid #E7B7CC;
-  border-radius:12px;
-  color:#623449;
-  padding:13px;
-  min-height:49px;
-}
-
-.status-control .btn {
-  min-height:49px;
   white-space:nowrap;
 }
 
-/* NOTIFICATIONS */
-.notice {
-  background:#FFF0BE;
-  color:#73521B;
-  border:1px solid #EED18B;
-  border-radius:13px;
-  padding:15px 17px;
-  font-size:14px;
-  line-height:1.6;
+.status-new {
+  background:#F8DFE6;
+  color:#A04462;
 }
 
+.status-progress {
+  background:#FFF0D9;
+  color:#996125;
+}
+
+.status-ready {
+  background:#E0F0E2;
+  color:#39774C;
+}
+
+.status-done {
+  background:#E4ECF6;
+  color:#466B98;
+}
+
+.status-cancel {
+  background:#F7E3E4;
+  color:#A54E54;
+}
+
+/* CUSTOMER */
+
+.customer {
+  background:#FCF7F5;
+  border:1px solid #F0E5E1;
+  padding:14px 15px;
+  border-radius:11px;
+  margin:16px 0;
+  color:#765B58;
+  font-size:13px;
+  line-height:1.9;
+}
+
+/* ITEMS */
+
+.items-title {
+  font-weight:800;
+  color:#8E5263;
+  font-size:13px;
+  margin-bottom:9px;
+}
+
+.item-row {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:10px;
+  padding:10px 0;
+  border-bottom:1px dashed #E9DBD8;
+  font-size:13px;
+}
+
+.item-row small {
+  display:block;
+  font-size:11px;
+  color:var(--muted);
+  margin-top:3px;
+}
+
+.item-price {
+  white-space:nowrap;
+  font-weight:700;
+  color:#795451;
+}
+
+.total {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-top:1px solid #E6C8D0;
+  padding-top:15px;
+  margin-top:17px;
+  font-size:18px;
+  font-weight:800;
+  color:#9C4D66;
+}
+
+/* STATUS CONTROL */
+
+.status-control {
+  display:flex;
+  gap:10px;
+  margin-top:19px;
+}
+
+.status-control select {
+  flex:1;
+  min-width:0;
+  padding:11px;
+  border:1px solid #E6D5D4;
+  background:#FFFCFB;
+  color:var(--brown);
+  border-radius:10px;
+  min-height:46px;
+}
+
+.status-control .btn {
+  min-height:46px;
+}
+
+/* MESSAGES */
+
 .message {
-  background:#FFE3E7;
-  color:#9B304A;
-  border:1px solid #F3B8C6;
-  border-radius:13px;
-  padding:15px;
+  padding:14px 16px;
+  border-radius:11px;
+  margin:15px 0;
+  background:#FCE9E9;
+  color:#A04B55;
+  border:1px solid #F0D2D2;
+  font-size:13px;
 }
 
 .message.success {
-  background:#DCF5E4;
-  color:#267747;
-  border-color:#A8DFC0;
+  background:#E8F3EA;
+  color:#357347;
+  border-color:#C9E4CF;
 }
 
 .empty {
-  background:#FFFFFF;
-  border:2px dashed #EAA1BE;
-  color:#896678;
-  border-radius:20px;
+  grid-column:1/-1;
   padding:45px 20px;
+  background:white;
+  border:1px dashed #DEC3CB;
+  border-radius:16px;
+  text-align:center;
+  color:var(--muted);
 }
 
 /* FOOTER */
+
 footer {
-  background:#FFEAF2;
-  border-top:1px solid #F1CDDC;
-  color:#896678;
+  text-align:center;
+  padding:25px;
+  color:#9B8583;
+  font-size:12px;
+  border-top:1px solid #EEE1DE;
 }
 
-/* PHONE / TABLET */
-@media(max-width:850px) {
+/* RESPONSIVE */
+
+@media(max-width:900px) {
   .stats {
     grid-template-columns:repeat(2,minmax(0,1fr));
   }
@@ -1578,24 +667,21 @@ footer {
   }
 }
 
-@media(max-width:500px) {
+@media(max-width:520px) {
   header {
-    padding:19px 17px;
+    padding:20px 16px;
   }
 
   main {
-    padding:22px 13px 50px;
+    padding:22px 13px 45px;
   }
 
-  .dashboard-title {
-    align-items:stretch;
-  }
-
-  .dashboard-title .btn {
-    width:100%;
+  .welcome {
+    padding:22px 18px;
   }
 
   .login-card {
+    margin:25px auto;
     padding:25px 19px;
   }
 
@@ -1604,24 +690,23 @@ footer {
   }
 
   .stat {
-    padding:16px 13px;
-    border-radius:15px;
-  }
-
-  .stat span {
-    font-size:12px;
+    padding:17px 13px;
   }
 
   .stat strong {
-    font-size:30px;
+    font-size:29px;
+  }
+
+  .stat span {
+    font-size:11px;
   }
 
   .order-card {
     padding:19px 15px;
   }
 
-  .order-number {
-    font-size:18px;
+  .order-top {
+    flex-wrap:wrap;
   }
 
   .toolbar input,
@@ -1645,12 +730,835 @@ footer {
   *::before,
   *::after {
     transition:none!important;
-    animation:none!important;
   }
 }
 </style>
-<!-- END PINK STRAWBERRY STAFF THEME -->
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    <div class="brand-small">☕ RUANG KOPI KITA</div>
+    <h1>Staff Panel</h1>
+    <p>Good coffee, better days ♡</p>
+  </div>
+
+  <div class="header-actions">
+    <span id="staffEmail"></span>
+    <button
+      id="logoutButton"
+      class="btn btn-outline hidden"
+      onclick="logout()">
+      Log Keluar
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- LOGIN -->
+  <section id="loginSection" class="login-card">
+    <h2>Welcome Back ♡</h2>
+    <p>Log masuk untuk mengurus pesanan pelanggan.</p>
+
+    <form id="loginForm">
+      <div class="field">
+        <label for="email">Email Staf</label>
+        <input
+          type="email"
+          id="email"
+          autocomplete="username"
+          placeholder="Masukkan email staf"
+          required>
+      </div>
+
+      <div class="field">
+        <label for="password">Kata Laluan</label>
+        <input
+          type="password"
+          id="password"
+          autocomplete="current-password"
+          placeholder="Masukkan kata laluan"
+          required>
+      </div>
+
+      <button
+        id="loginButton"
+        type="submit"
+        class="btn btn-primary">
+        Masuk Sistem Staf
+      </button>
+    </form>
+
+    <div id="loginMessage" class="message hidden"></div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section id="dashboardSection" class="hidden">
+
+    <div class="welcome">
+      <div class="welcome-top">
+        <div>
+          <div class="eyebrow">DAILY WORKSPACE ✿</div>
+          <h2>Dashboard Pesanan</h2>
+          <p>Urus pesanan pelanggan dengan mudah dan pantas.</p>
+        </div>
+
+        <button
+          class="btn btn-refresh"
+          onclick="loadOrders()">
+          ↻ Refresh Pesanan
+        </button>
+      </div>
+    </div>
+
+    <div class="notice">
+      ♡ Pesanan disemak secara automatik setiap 10 saat
+      apabila halaman ini aktif.
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-icon">▤</div>
+        <span>Jumlah Pesanan</span>
+        <strong id="statTotal">0</strong>
+      </div>
+
+      <div class="stat">
+        <div class="stat-icon">◷</div>
+        <span>Pesanan Baharu</span>
+        <strong id="statNew">0</strong>
+      </div>
+
+      <div class="stat">
+        <div class="stat-icon">☕</div>
+        <span>Sedang Disediakan</span>
+        <strong id="statProgress">0</strong>
+      </div>
+
+      <div class="stat">
+        <div class="stat-icon">✓</div>
+        <span>Sedia Dihidangkan</span>
+        <strong id="statReady">0</strong>
+      </div>
+    </div>
+
+    <div class="section-heading">
+      <h3>Senarai Pesanan</h3>
+      <span>Order Management</span>
+    </div>
+
+    <div class="toolbar">
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="Cari pelanggan, meja atau nombor pesanan...">
+
+      <select id="filterStatus">
+        <option value="all">Semua Status</option>
+        <option value="Baharu">Baharu</option>
+        <option value="Sedang Disediakan">Sedang Disediakan</option>
+        <option value="Sedia Dihidangkan">Sedia Dihidangkan</option>
+        <option value="Selesai">Selesai</option>
+        <option value="Dibatalkan">Dibatalkan</option>
+      </select>
+    </div>
+
+    <div id="dashboardMessage" class="message hidden"></div>
+
+    <div id="ordersGrid" class="orders-grid">
+      <div class="empty">Memuatkan pesanan...</div>
+    </div>
+
+  </section>
+</main>
+
+<footer>
+  © 2026 Ruang Kopi Kita · Made with ♡
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+"use strict";
+
+/* SUPABASE */
+
+const SUPABASE_URL =
+  "https://ledcwlnyztcsvdedwmtq.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_a1sRyLibWsIpRThtxfUbUQ_-Ksjebvl";
+
+const client = window.supabase
+  ? window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    )
+  : null;
+
+/* SETTINGS */
+
+const STAFF_ROLES = ["staff", "admin"];
+
+const STATUSES = [
+  "Baharu",
+  "Sedang Disediakan",
+  "Sedia Dihidangkan",
+  "Selesai",
+  "Dibatalkan"
+];
+
+let allOrders = [];
+let refreshTimer = null;
+let loadingOrders = false;
+let activeStaffId = null;
+
+/* HELPERS */
+
+function showMessage(id, message, success = false) {
+  const box = document.getElementById(id);
+
+  if (!box) return;
+
+  box.textContent = message;
+  box.classList.remove("hidden");
+  box.classList.toggle("success", success);
+}
+
+function hideMessage(id) {
+  document.getElementById(id)?.classList.add("hidden");
+}
+
+function money(value) {
+  return "RM " + Number(value || 0).toFixed(2);
+}
+
+function formatDate(value) {
+  if (!value) return "-";
+
+  return new Date(value).toLocaleString("ms-MY", {
+    timeZone:"Asia/Kuala_Lumpur",
+    day:"2-digit",
+    month:"short",
+    year:"numeric",
+    hour:"2-digit",
+    minute:"2-digit"
+  });
+}
+
+function displayStatus(status) {
+  return status || "Baharu";
+}
+
+function statusClass(status) {
+  switch (status) {
+    case "Baharu":
+      return "status-new";
+
+    case "Sedang Disediakan":
+      return "status-progress";
+
+    case "Sedia Dihidangkan":
+      return "status-ready";
+
+    case "Selesai":
+      return "status-done";
+
+    case "Dibatalkan":
+      return "status-cancel";
+
+    default:
+      return "status-new";
+  }
+}
+
+function el(tag, className = "", text) {
+  const node = document.createElement(tag);
+
+  if (className) node.className = className;
+
+  if (text !== undefined) {
+    node.textContent = String(text);
+  }
+
+  return node;
+}
+
+/* LOGIN / DASHBOARD */
+
+function showLogin() {
+  activeStaffId = null;
+  allOrders = [];
+
+  document.getElementById("loginSection")
+    .classList.remove("hidden");
+
+  document.getElementById("dashboardSection")
+    .classList.add("hidden");
+
+  document.getElementById("logoutButton")
+    .classList.add("hidden");
+
+  document.getElementById("staffEmail").textContent = "";
+
+  stopAutoRefresh();
+}
+
+function showDashboard(user) {
+  activeStaffId = user.id;
+
+  document.getElementById("loginSection")
+    .classList.add("hidden");
+
+  document.getElementById("dashboardSection")
+    .classList.remove("hidden");
+
+  document.getElementById("logoutButton")
+    .classList.remove("hidden");
+
+  document.getElementById("staffEmail").textContent =
+    user.email || "Staf";
+
+  hideMessage("loginMessage");
+
+  loadOrders();
+  startAutoRefresh();
+}
+
+/* STAFF ROLE */
+
+async function checkStaffRole(userId) {
+  const { data, error } = await client
+    .from("user_roles")
+    .select("role")
+    .eq("user_id", userId)
+    .maybeSingle();
+
+  if (error) throw error;
+
+  return Boolean(
+    data && STAFF_ROLES.includes(data.role)
+  );
+}
+
+/* LOGIN */
+
+document.getElementById("loginForm")
+  .addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    if (!client) {
+      showMessage(
+        "loginMessage",
+        "Supabase gagal dimuatkan. Sila refresh."
+      );
+      return;
+    }
+
+    const email = document.getElementById("email")
+      .value.trim();
+
+    const password = document.getElementById("password")
+      .value;
+
+    const button = document.getElementById("loginButton");
+
+    button.disabled = true;
+    button.textContent = "Sedang login...";
+
+    hideMessage("loginMessage");
+
+    try {
+      const { data, error } =
+        await client.auth.signInWithPassword({
+          email,
+          password
+        });
+
+      if (error) throw error;
+
+      if (!data.user) {
+        throw new Error("Akaun tidak ditemui.");
+      }
+
+      const allowed = await checkStaffRole(data.user.id);
+
+      if (!allowed) {
+        await client.auth.signOut();
+        throw new Error(
+          "Akaun ini tidak mempunyai kebenaran staf."
+        );
+      }
+
+      document.getElementById("password").value = "";
+
+      showDashboard(data.user);
+
+    } catch (error) {
+      showLogin();
+
+      showMessage(
+        "loginMessage",
+        error.message || "Login gagal."
+      );
+
+    } finally {
+      button.disabled = false;
+      button.textContent = "Masuk Sistem Staf";
+    }
+  });
+
+/* LOGOUT */
+
+async function logout() {
+  stopAutoRefresh();
+
+  try {
+    if (client) {
+      const { error } = await client.auth.signOut();
+      if (error) throw error;
+    }
+
+    showLogin();
+
+  } catch (error) {
+    showMessage(
+      "dashboardMessage",
+      "Gagal log keluar: " + error.message
+    );
+  }
+}
+
+/* LOAD ORDERS */
+
+async function loadOrders() {
+  if (!client || !activeStaffId || loadingOrders) {
+    return;
+  }
+
+  loadingOrders = true;
+
+  try {
+    const { data: orders, error: ordersError } =
+      await client
+        .from("orders")
+        .select("*")
+        .order("created_at", { ascending:false })
+        .limit(200);
+
+    if (ordersError) throw ordersError;
+
+    const orderIds = (orders || []).map(
+      order => order.id
+    );
+
+    let items = [];
+
+    if (orderIds.length > 0) {
+      const { data: orderItems, error: itemsError } =
+        await client
+          .from("order_items")
+          .select("*")
+          .in("order_id", orderIds);
+
+      if (itemsError) throw itemsError;
+
+      items = orderItems || [];
+    }
+
+    allOrders = (orders || []).map(order => ({
+      ...order,
+      items:items.filter(
+        item => item.order_id === order.id
+      )
+    }));
+
+    hideMessage("dashboardMessage");
+
+    updateStats();
+    renderOrders();
+
+  } catch (error) {
+    console.error("Gagal memuatkan pesanan:", error);
+
+    showMessage(
+      "dashboardMessage",
+      "Gagal memuatkan pesanan: " + error.message
+    );
+
+  } finally {
+    loadingOrders = false;
+  }
+}
+
+/* STATISTICS */
+
+function updateStats() {
+  document.getElementById("statTotal").textContent =
+    allOrders.length;
+
+  document.getElementById("statNew").textContent =
+    allOrders.filter(
+      order => displayStatus(order.status) === "Baharu"
+    ).length;
+
+  document.getElementById("statProgress").textContent =
+    allOrders.filter(
+      order => order.status === "Sedang Disediakan"
+    ).length;
+
+  document.getElementById("statReady").textContent =
+    allOrders.filter(
+      order => order.status === "Sedia Dihidangkan"
+    ).length;
+}
+
+/* RENDER ORDERS */
+
+function renderOrders() {
+  const grid = document.getElementById("ordersGrid");
+
+  const keyword = document.getElementById("searchInput")
+    .value.trim().toLowerCase();
+
+  const filter = document.getElementById("filterStatus")
+    .value;
+
+  grid.replaceChildren();
+
+  const filtered = allOrders.filter(order => {
+    const searchable = [
+      order.order_number,
+      order.customer_name,
+      order.table_number,
+      order.id
+    ].join(" ").toLowerCase();
+
+    const matchSearch = searchable.includes(keyword);
+
+    const matchStatus =
+      filter === "all" ||
+      displayStatus(order.status) === filter;
+
+    return matchSearch && matchStatus;
+  });
+
+  if (filtered.length === 0) {
+    grid.appendChild(
+      el("div", "empty", "Tiada pesanan untuk dipaparkan.")
+    );
+    return;
+  }
+
+  filtered.forEach(order => {
+    const card = el("article", "order-card");
+
+    const top = el("div", "order-top");
+    const titleWrap = el("div");
+
+    const number = el(
+      "div",
+      "order-number",
+      order.order_number || ("Pesanan #" + order.id)
+    );
+
+    const date = el(
+      "div",
+      "order-date",
+      formatDate(order.created_at)
+    );
+
+    titleWrap.append(number, date);
+
+    const badge = el(
+      "span",
+      "status " + statusClass(displayStatus(order.status)),
+      displayStatus(order.status)
+    );
+
+    top.append(titleWrap, badge);
+
+    /* CUSTOMER DETAILS */
+
+    const customer = el("div", "customer");
+
+    customer.appendChild(
+      el(
+        "div",
+        "",
+        "Nama Pelanggan: " + (order.customer_name || "-")
+      )
+    );
+
+    customer.appendChild(
+      el(
+        "div",
+        "",
+        "Nombor Meja: " + (order.table_number || "-")
+      )
+    );
+
+    /* ORDER ITEMS */
+
+    const itemsTitle = el(
+      "div",
+      "items-title",
+      "Senarai Pesanan"
+    );
+
+    const itemsContainer = el("div");
+
+    if (!order.items || order.items.length === 0) {
+      itemsContainer.appendChild(
+        el("p", "", "Tiada butiran item.")
+      );
+    } else {
+      order.items.forEach(item => {
+        const row = el("div", "item-row");
+        const details = el("div");
+
+        details.appendChild(
+          el(
+            "div",
+            "",
+            (item.quantity || 0) + " × " +
+            (item.item_name || "Item")
+          )
+        );
+
+        if (item.option_name) {
+          details.appendChild(
+            el("small", "", item.option_name)
+          );
+        }
+
+        const itemTotal =
+          item.subtotal ??
+          (
+            Number(item.unit_price || 0) *
+            Number(item.quantity || 0)
+          );
+
+        const price = el(
+          "div",
+          "item-price",
+          money(itemTotal)
+        );
+
+        row.append(details, price);
+        itemsContainer.appendChild(row);
+      });
+    }
+
+    /* TOTAL */
+
+    const total = el("div", "total");
+
+    total.appendChild(
+      el("span", "", "Jumlah")
+    );
+
+    total.appendChild(
+      el("span", "", money(order.total_amount))
+    );
+
+    /* STATUS */
+
+    const controls = el("div", "status-control");
+
+    const select = document.createElement("select");
+    select.setAttribute(
+      "aria-label",
+      "Status pesanan " + (order.order_number || order.id)
+    );
+
+    STATUSES.forEach(status => {
+      const option = document.createElement("option");
+
+      option.value = status;
+      option.textContent = status;
+
+      if (displayStatus(order.status) === status) {
+        option.selected = true;
+      }
+
+      select.appendChild(option);
+    });
+
+    const save = el(
+      "button",
+      "btn btn-primary",
+      "Simpan Status"
+    );
+
+    save.addEventListener("click", async () => {
+      save.disabled = true;
+      select.disabled = true;
+      save.textContent = "Menyimpan...";
+
+      try {
+        await updateOrderStatus(
+          order.id,
+          select.value
+        );
+      } finally {
+        save.disabled = false;
+        select.disabled = false;
+        save.textContent = "Simpan Status";
+      }
+    });
+
+    controls.append(select, save);
+
+    card.append(
+      top,
+      customer,
+      itemsTitle,
+      itemsContainer,
+      total,
+      controls
+    );
+
+    grid.appendChild(card);
+  });
+}
+
+/* UPDATE ORDER STATUS */
+
+async function updateOrderStatus(orderId, newStatus) {
+  if (!STATUSES.includes(newStatus)) {
+    alert("Status tidak sah.");
+    return;
+  }
+
+  try {
+    const { data, error } = await client
+      .from("orders")
+      .update({ status:newStatus })
+      .eq("id", orderId)
+      .select("id, status");
+
+    if (error) throw error;
+
+    if (!data || data.length !== 1) {
+      throw new Error(
+        "Status tidak dikemas kini. Semak kebenaran staf."
+      );
+    }
+
+    // Kemas kini paparan serta-merta.
+    const existing = allOrders.find(
+      order => order.id === orderId
+    );
+
+    if (existing) {
+      existing.status = newStatus;
+    }
+
+    updateStats();
+    renderOrders();
+
+    // Dapatkan semula data terkini.
+    await loadOrders();
+
+    showMessage(
+      "dashboardMessage",
+      "Status pesanan berjaya dikemas kini kepada: " +
+      newStatus,
+      true
+    );
+
+  } catch (error) {
+    console.error("Gagal kemas kini status:", error);
+
+    showMessage(
+      "dashboardMessage",
+      "Gagal mengemas kini status: " + error.message
+    );
+
+    await loadOrders();
+  }
+}
+
+/* SEARCH AND FILTER */
+
+document.getElementById("searchInput")
+  .addEventListener("input", renderOrders);
+
+document.getElementById("filterStatus")
+  .addEventListener("change", renderOrders);
+
+/* AUTO REFRESH */
+
+function startAutoRefresh() {
+  stopAutoRefresh();
+
+  refreshTimer = setInterval(() => {
+    if (!document.hidden && activeStaffId) {
+      loadOrders();
+    }
+  }, 10000);
+}
+
+function stopAutoRefresh() {
+  if (refreshTimer !== null) {
+    clearInterval(refreshTimer);
+    refreshTimer = null;
+  }
+}
+
+/* CHECK EXISTING LOGIN */
+
+async function initialize() {
+  if (!client) {
+    showMessage(
+      "loginMessage",
+      "Supabase gagal dimuatkan. Sila refresh halaman."
+    );
+    return;
+  }
+
+  try {
+    const { data, error } = await client.auth.getUser();
+
+    if (error || !data.user) {
+      showLogin();
+      return;
+    }
+
+    const allowed = await checkStaffRole(data.user.id);
+
+    if (!allowed) {
+      await client.auth.signOut();
+
+      showLogin();
+
+      showMessage(
+        "loginMessage",
+        "Akaun ini tidak mempunyai kebenaran staf."
+      );
+
+      return;
+    }
+
+    showDashboard(data.user);
+
+  } catch (error) {
+    console.error("Ralat semakan login:", error);
+
+    showLogin();
+
+    showMessage(
+      "loginMessage",
+      "Gagal menyemak akaun: " + error.message
+    );
+  }
+}
+
+initialize();
+</script>
 
 </body>
 </html>
-
