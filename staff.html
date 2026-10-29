@@ -862,6 +862,250 @@ main {
   .stat { padding:14px 12px; }
 }
 </style>
+<!-- PREMIUM BLUSH CAFE - FINAL POLISH -->
+<style id="premiumBlushCafePolish">
+
+/* IDENTITI WARNA */
+:root {
+  --pink:#C87B93;
+  --pink-dark:#A95570;
+  --pink-light:#F8E8ED;
+}
+
+/* LATAR LEMBUT */
+body {
+  background:#FFFAFB;
+}
+
+/* HEADER PREMIUM */
+header {
+  background:linear-gradient(
+    110deg,
+    #FFF5F7 0%,
+    #F9EBED 100%
+  );
+  border-bottom:1px solid #EEDBE0;
+}
+
+.brand h1 {
+  font-size:25px;
+  letter-spacing:-.6px;
+}
+
+.brand-small {
+  color:#B4647E;
+}
+
+/* KAD WELCOME */
+.welcome {
+  background:linear-gradient(
+    110deg,
+    #FFFFFF 0%,
+    #FFF8FA 100%
+  );
+  border:1px solid #F0DDE3;
+  box-shadow:0 5px 20px rgba(120,60,80,.04);
+}
+
+.eyebrow {
+  color:#B4647E;
+}
+
+.welcome h2 {
+  color:#563A46;
+  letter-spacing:-.7px;
+}
+
+/* STATISTIK */
+.stat {
+  border:1px solid rgba(160,100,120,.10);
+  box-shadow:0 4px 16px rgba(110,65,75,.035);
+}
+
+.stat:nth-child(1) {
+  background:#F9E8EF;
+}
+
+.stat:nth-child(2) {
+  background:#FFF0E7;
+}
+
+.stat:nth-child(3) {
+  background:#EAF1FA;
+}
+
+.stat:nth-child(4) {
+  background:#EAF4EB;
+}
+
+.stat-icon {
+  display:inline-flex;
+  width:34px;
+  height:34px;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+  background:rgba(255,255,255,.55);
+  color:#A95570;
+  font-size:20px;
+  font-weight:700;
+}
+
+/* KAD PESANAN */
+.order-card {
+  border:1px solid #EEDDE2;
+  border-radius:16px;
+  background:#FFFFFF;
+  padding:22px;
+  box-shadow:0 5px 20px rgba(100,60,75,.05);
+}
+
+.order-card::before {
+  background:#D9A0B1;
+  height:3px;
+}
+
+.order-number {
+  color:#68424E;
+  font-size:18px;
+  letter-spacing:-.3px;
+}
+
+.order-date {
+  color:#9B858B;
+}
+
+/* MAKLUMAT PELANGGAN */
+.customer {
+  background:#FFF9FA;
+  border:1px solid #F2E5E9;
+  border-radius:11px;
+  padding:13px 15px;
+  font-weight:500;
+}
+
+/* SENARAI MENU */
+.items-title {
+  color:#A35C73;
+  font-size:13px;
+  letter-spacing:.2px;
+}
+
+.item-row {
+  padding:12px 0;
+  border-color:#F1E6E9;
+}
+
+.item-price {
+  color:#67464E;
+}
+
+/* JUMLAH */
+.total {
+  border-top:1px solid #EACDD6;
+  color:#A95570;
+  font-size:19px;
+}
+
+/* STATUS */
+.status {
+  font-size:11px;
+  letter-spacing:.1px;
+  border-radius:999px;
+}
+
+.status-new {
+  background:#FBE4EB;
+  color:#A74B69;
+}
+
+.status-progress {
+  background:#FFF0DA;
+  color:#916020;
+}
+
+.status-ready {
+  background:#E5F3E8;
+  color:#35764C;
+}
+
+.status-done {
+  background:#E7EFF8;
+  color:#466B98;
+}
+
+.status-cancel {
+  background:#FBE7E7;
+  color:#A84F55;
+}
+
+/* INPUT & BUTANG */
+.toolbar input,
+.toolbar select,
+.status-control select {
+  border:1px solid #EAD8DE;
+  background:#FFFFFF;
+}
+
+.btn-primary {
+  background:#C87B93;
+  color:#FFFFFF;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background:#A95570;
+}
+
+.btn-refresh {
+  background:#F8E6EC;
+  color:#9C526B;
+}
+
+.btn-refresh:hover:not(:disabled) {
+  background:#F2D7E1;
+}
+
+/* SENTUHAN RESPONSIF */
+@media(max-width:520px) {
+  .order-card {
+    padding:18px 15px;
+  }
+
+  .welcome h2 {
+    font-size:22px;
+  }
+
+  .stat-icon {
+    width:30px;
+    height:30px;
+  }
+}
+</style>
+
+<script>
+/*
+  Tukar ikon statistik sahaja.
+  Tidak mengubah ID, data atau fungsi Supabase.
+*/
+document.addEventListener("DOMContentLoaded", function () {
+  const icons = [
+    "▤",
+    "◷",
+    "♨",
+    "✓"
+  ];
+
+  document.querySelectorAll(".stat-icon").forEach(
+    function(element, index) {
+      if (icons[index]) {
+        element.textContent = icons[index];
+      }
+    }
+  );
+});
+</script>
+<!-- END PREMIUM BLUSH CAFE -->
+
 </head>
 
 <body>
