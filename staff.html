@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Y2K Pop Café | Ruang Kopi Kita Staff</title>
+<title>Ruang Kopi Kita | Staff Dashboard</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,16 +12,19 @@
 
 <style>
 :root {
-  --pink:#F83F91;
-  --pink-dark:#B91E65;
-  --orange:#FF8C42;
-  --blue:#4C7CFF;
-  --yellow:#FFE36E;
-  --mint:#A7E9D0;
+  --sage:#C5D8BF;
+  --sage-light:#E9F1E4;
+  --sage-dark:#317553;
+  --forest:#244B38;
+  --pink:#F6A9C6;
+  --peach:#FFD2B5;
+  --yellow:#FFE5A0;
+  --blue:#C5D7F5;
   --cream:#FFF9ED;
-  --ink:#392B46;
-  --muted:#756879;
-  --border:#392B46;
+  --white:#FFFEFA;
+  --ink:#34483B;
+  --muted:#708074;
+  --border:#315440;
 }
 
 * {
@@ -33,10 +36,7 @@ body {
   min-height:100vh;
   font-family:'DM Sans',sans-serif;
   color:var(--ink);
-  background:
-    radial-gradient(circle at 12% 18%,rgba(248,63,145,.12),transparent 27%),
-    radial-gradient(circle at 90% 70%,rgba(76,124,255,.12),transparent 28%),
-    #FFF9F1;
+  background:#FFF9F1;
 }
 
 button,input,select {
@@ -51,11 +51,14 @@ button {
   display:none!important;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
+
 header {
-  background:#FF9EC6;
-  border-bottom:5px solid var(--ink);
-  padding:24px max(22px,calc((100vw - 1400px)/2));
+  background:#E3EEDB;
+  border-bottom:4px solid var(--forest);
+  padding:23px max(22px,calc((100vw - 1400px)/2));
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -68,7 +71,7 @@ header::before {
   content:"";
   position:absolute;
   inset:0;
-  opacity:.2;
+  opacity:.28;
   background:
     conic-gradient(
       #FFFFFF 25%,
@@ -76,17 +79,7 @@ header::before {
       #FFFFFF 0 75%,
       transparent 0
     );
-  background-size:46px 46px;
-  pointer-events:none;
-}
-
-header::after {
-  content:"✿";
-  position:absolute;
-  right:18%;
-  top:-48px;
-  font-size:180px;
-  color:rgba(255,255,255,.45);
+  background-size:44px 44px;
   pointer-events:none;
 }
 
@@ -98,35 +91,35 @@ header::after {
 
 .brand-small {
   display:inline-block;
-  background:#FFE36E;
-  border:2px solid var(--ink);
+  background:#FFF9E9;
+  border:2px solid var(--forest);
   border-radius:30px;
   padding:7px 13px;
   font-size:11px;
   font-weight:800;
   letter-spacing:2px;
-  box-shadow:3px 3px 0 var(--ink);
+  color:var(--forest);
+  box-shadow:3px 3px 0 #92B28E;
 }
 
 .brand h1 {
-  font:700 40px 'Fredoka',sans-serif;
-  color:#3D2445;
+  font:700 39px 'Fredoka',sans-serif;
+  color:#244B38;
   margin:13px 0 5px;
-  letter-spacing:-1px;
 }
 
 .brand p {
   margin:0;
   font-size:13px;
   font-weight:700;
-  color:#6C3659;
+  color:#52745C;
 }
 
 .header-actions {
   display:flex;
   align-items:center;
-  flex-wrap:wrap;
   gap:12px;
+  flex-wrap:wrap;
 }
 
 #staffEmail {
@@ -135,40 +128,51 @@ header::after {
   overflow-wrap:anywhere;
 }
 
-/* BUTTONS */
+/* =========================
+   BUTTONS
+========================= */
+
 .btn {
-  border:2px solid var(--ink);
+  border:2px solid var(--forest);
   border-radius:13px;
   padding:12px 18px;
   font-weight:800;
-  box-shadow:4px 4px 0 var(--ink);
+  box-shadow:4px 4px 0 var(--forest);
   transition:transform .15s,box-shadow .15s;
 }
 
 .btn:hover:not(:disabled) {
   transform:translate(2px,2px);
-  box-shadow:2px 2px 0 var(--ink);
+  box-shadow:2px 2px 0 var(--forest);
 }
 
 .btn:disabled {
-  opacity:.55;
+  opacity:.6;
   cursor:not-allowed;
 }
 
 .btn-primary {
-  background:var(--pink);
-  color:white;
+  background:#E77D9D;
+  color:#FFFFFF;
 }
 
 .btn-outline {
-  background:white;
-  color:var(--ink);
+  background:#FFF9E9;
+  color:var(--forest);
 }
 
 .btn-refresh {
-  background:var(--blue);
-  color:white;
+  background:#317553;
+  color:#FFFFFF;
 }
+
+.btn-refresh:hover:not(:disabled) {
+  background:#245D42;
+}
+
+/* =========================
+   MAIN
+========================= */
 
 main {
   max-width:1440px;
@@ -176,31 +180,33 @@ main {
   padding:30px 22px 75px;
 }
 
-/* LOGIN */
+/* =========================
+   LOGIN
+========================= */
+
 .login-card {
   max-width:460px;
   margin:55px auto;
-  background:white;
-  border:3px solid var(--ink);
+  background:#FFFEFA;
+  border:3px solid var(--forest);
   border-radius:25px;
   padding:32px;
-  box-shadow:9px 9px 0 #FFB4D2;
+  box-shadow:9px 9px 0 #A8C7A2;
   position:relative;
 }
 
 .login-card::before {
   content:"✿";
   position:absolute;
-  top:-34px;
+  top:-35px;
   right:26px;
   font-size:60px;
-  color:var(--orange);
-  text-shadow:2px 2px var(--ink);
+  color:#ECA5B8;
 }
 
 .login-card h2 {
   font:700 32px 'Fredoka',sans-serif;
-  color:#C52C77;
+  color:var(--forest);
   margin:0 0 10px;
 }
 
@@ -219,14 +225,14 @@ main {
 .login-card input {
   width:100%;
   padding:14px;
-  border:2px solid var(--ink);
+  border:2px solid #A7C4A2;
   border-radius:12px;
-  background:#FFF9F1;
+  background:#FFFDF7;
   outline:none;
 }
 
 .login-card input:focus {
-  border-color:var(--pink);
+  border-color:#317553;
 }
 
 .login-card .btn {
@@ -234,24 +240,29 @@ main {
   margin-top:20px;
 }
 
-/* WELCOME */
+/* =========================
+   SAGE GREEN DASHBOARD
+   NO OMBRE
+========================= */
+
 .welcome {
-  background:linear-gradient(115deg,#FFB5D1,#FFE59B 55%,#B8D2FF);
-  border:3px solid var(--ink);
+  background:#C5D8BF;
+  border:3px solid #244B38;
   border-radius:25px;
   padding:31px;
   position:relative;
   overflow:hidden;
-  box-shadow:7px 7px 0 #F3A7C6;
+  box-shadow:7px 7px 0 #91B58C;
 }
 
 .welcome::after {
   content:"✿";
   position:absolute;
   right:35px;
-  top:-67px;
+  top:-65px;
   font-size:200px;
-  color:rgba(255,255,255,.52);
+  color:#FFF9E9;
+  opacity:.85;
   pointer-events:none;
 }
 
@@ -267,18 +278,19 @@ main {
 
 .eyebrow {
   display:inline-block;
-  background:#FFF9ED;
-  border:2px solid var(--ink);
-  border-radius:20px;
-  padding:6px 11px;
+  background:#FFF9E9;
+  border:2px solid #244B38;
+  border-radius:25px;
+  padding:7px 13px;
   font-size:10px;
   font-weight:800;
   letter-spacing:1.5px;
+  color:#244B38;
 }
 
 .welcome h2 {
   font:700 38px 'Fredoka',sans-serif;
-  color:#4E2D50;
+  color:#173F2B;
   margin:12px 0 8px;
 }
 
@@ -286,20 +298,29 @@ main {
   margin:0;
   font-size:14px;
   font-weight:600;
-  color:#67465D;
+  color:#35664B;
 }
+
+/* =========================
+   NOTICE
+========================= */
 
 .notice {
   margin:25px 0 20px;
   padding:14px 17px;
-  background:#FFF1B6;
-  border:2px solid var(--ink);
+  background:#FFF3D0;
+  border:2px solid #D7C39A;
+  border-left:6px solid #7EA783;
   border-radius:13px;
   font-size:13px;
   font-weight:700;
+  color:#5C664D;
 }
 
-/* STATISTICS */
+/* =========================
+   STATISTICS
+========================= */
+
 .stats {
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
@@ -310,9 +331,9 @@ main {
 .stat {
   min-height:160px;
   padding:22px;
-  border:3px solid var(--ink);
+  border:3px solid var(--forest);
   border-radius:22px;
-  box-shadow:5px 5px 0 var(--ink);
+  box-shadow:5px 5px 0 var(--forest);
   position:relative;
   overflow:hidden;
 }
@@ -328,26 +349,26 @@ main {
 }
 
 .stat:nth-child(1) {
-  background:#FF8CBD;
+  background:#C5D8BF;
 }
 
 .stat:nth-child(2) {
-  background:#FFE36E;
+  background:#F6B6C8;
 }
 
 .stat:nth-child(3) {
-  background:#A9C2FF;
+  background:#FFE5A0;
 }
 
 .stat:nth-child(4) {
-  background:#A7E9D0;
+  background:#B9D9CE;
 }
 
 .stat-icon {
   width:47px;
   height:47px;
-  background:rgba(255,255,255,.85);
-  border:2px solid var(--ink);
+  background:#FFF9ED;
+  border:2px solid var(--forest);
   border-radius:50%;
   display:grid;
   place-items:center;
@@ -365,14 +386,13 @@ main {
   display:block;
   font:700 42px 'Fredoka',sans-serif;
   margin-top:5px;
+  color:#244B38;
 }
 
-.stat:nth-child(1) strong { color:#8C164F; }
-.stat:nth-child(2) strong { color:#805300; }
-.stat:nth-child(3) strong { color:#254BB4; }
-.stat:nth-child(4) strong { color:#19684F; }
+/* =========================
+   ORDER SECTION
+========================= */
 
-/* SECTION */
 .section-heading {
   display:flex;
   align-items:center;
@@ -384,13 +404,13 @@ main {
 
 .section-heading h3 {
   font:700 30px 'Fredoka',sans-serif;
-  color:#B6276C;
+  color:#244B38;
   margin:0;
 }
 
 .section-heading span {
-  background:#FFE36E;
-  border:2px solid var(--ink);
+  background:#DCE9D5;
+  border:2px solid var(--forest);
   border-radius:30px;
   padding:9px 14px;
   font-size:11px;
@@ -405,8 +425,8 @@ main {
 
 .toolbar input,
 .toolbar select {
-  background:white;
-  border:2px solid var(--ink);
+  background:#FFFEFA;
+  border:2px solid var(--forest);
   border-radius:13px;
   padding:15px;
   outline:none;
@@ -424,10 +444,13 @@ main {
 
 .toolbar input:focus,
 .toolbar select:focus {
-  border-color:var(--pink);
+  border-color:#6CA47A;
 }
 
-/* ORDERS */
+/* =========================
+   ORDER CARDS
+========================= */
+
 .orders-grid {
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -436,13 +459,13 @@ main {
 
 .order-card {
   min-width:0;
-  background:#FFFFFF;
-  border:3px solid var(--ink);
+  background:#FFFEFA;
+  border:3px solid var(--forest);
   border-radius:23px;
   padding:24px;
   position:relative;
   overflow:hidden;
-  box-shadow:6px 6px 0 #FFB7D1;
+  box-shadow:6px 6px 0 #B4CDAE;
 }
 
 .order-card::before {
@@ -454,11 +477,10 @@ main {
   height:9px;
   background:repeating-linear-gradient(
     90deg,
-    #F83F91 0 32px,
+    #A9C9A2 0 32px,
     #FFF9ED 32px 64px,
-    #4C7CFF 64px 96px,
-    #FFF9ED 96px 128px,
-    #FF8C42 128px 160px
+    #F6B6C8 64px 96px,
+    #FFF9ED 96px 128px
   );
 }
 
@@ -469,23 +491,23 @@ main {
   gap:10px;
   padding-bottom:16px;
   margin-bottom:17px;
-  border-bottom:2px dashed #EAC6D6;
+  border-bottom:2px dashed #C9D8C5;
 }
 
 .order-number {
   font:700 22px 'Fredoka',sans-serif;
-  color:#BD286F;
+  color:#317553;
   overflow-wrap:anywhere;
 }
 
 .order-date {
   margin-top:5px;
-  color:#857185;
+  color:#778477;
   font-size:11px;
 }
 
 .status {
-  border:2px solid var(--ink);
+  border:2px solid var(--forest);
   border-radius:30px;
   padding:8px 12px;
   font-size:11px;
@@ -494,23 +516,23 @@ main {
 }
 
 .status-new {
-  background:#FFD3E7;
-  color:#98235C;
+  background:#F8D5E0;
+  color:#9E3C62;
 }
 
 .status-progress {
-  background:#FFE994;
-  color:#805600;
+  background:#FFF0B6;
+  color:#80601B;
 }
 
 .status-ready {
-  background:#C4F0DB;
-  color:#176A4C;
+  background:#D2EBD3;
+  color:#286846;
 }
 
 .status-done {
-  background:#D9D3FF;
-  color:#5D4197;
+  background:#E3DEF4;
+  color:#66508B;
 }
 
 .order-content {
@@ -520,8 +542,8 @@ main {
 }
 
 .customer {
-  background:#FFF0F7;
-  border:2px solid #F4B8D4;
+  background:#EFF5E9;
+  border:2px solid #C7DCC3;
   border-radius:15px;
   padding:16px;
   font-size:13px;
@@ -530,11 +552,11 @@ main {
 }
 
 .customer strong {
-  color:#A82B6A;
+  color:#317553;
 }
 
 .items-title {
-  color:#B42C71;
+  color:#317553;
   font-size:13px;
   font-weight:800;
   margin-bottom:10px;
@@ -545,7 +567,7 @@ main {
   justify-content:space-between;
   gap:10px;
   padding:10px 0;
-  border-bottom:1px dashed #E7D0DD;
+  border-bottom:1px dashed #D5DED0;
   font-size:13px;
 }
 
@@ -558,12 +580,12 @@ main {
   display:flex;
   justify-content:space-between;
   gap:10px;
-  border-top:2px solid #E9C5D8;
+  border-top:2px solid #C8DCC5;
   padding-top:14px;
   margin-top:12px;
   font-size:20px;
   font-weight:800;
-  color:#BA266D;
+  color:#286847;
 }
 
 .status-control {
@@ -571,8 +593,8 @@ main {
   gap:11px;
   margin-top:20px;
   padding:12px;
-  background:#E9F0FF;
-  border:2px solid #A9C2FF;
+  background:#EDF5E9;
+  border:2px solid #C5DCC0;
   border-radius:15px;
 }
 
@@ -580,7 +602,7 @@ main {
   flex:1;
   min-width:0;
   background:white;
-  border:2px solid #C2C9E8;
+  border:2px solid #B4CDB1;
   border-radius:10px;
   padding:11px;
   color:var(--ink);
@@ -589,23 +611,26 @@ main {
 .message {
   margin:14px 0;
   padding:14px;
-  background:#FFF1B6;
-  border:2px solid #E8D087;
+  background:#FFF1C8;
+  border:2px solid #E2CE94;
   border-radius:12px;
   font-size:13px;
 }
 
 .empty-state {
   grid-column:1/-1;
-  background:white;
-  border:3px dashed #F4A2C7;
+  background:#FFFEFA;
+  border:3px dashed #A8C8A3;
   border-radius:21px;
   padding:50px 20px;
   text-align:center;
-  color:#866B80;
+  color:#718171;
 }
 
-/* RESPONSIVE */
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
 @media(max-width:1000px) {
   .stats {
     grid-template-columns:repeat(2,minmax(0,1fr));
@@ -637,9 +662,11 @@ main {
     font-size:28px;
   }
 
-  .welcome::after,
-  header::after {
-    display:none;
+  .welcome::after {
+    right:-15px;
+    top:-30px;
+    font-size:130px;
+    opacity:.35;
   }
 
   .stat {
@@ -680,15 +707,24 @@ main {
 
 <body>
 
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
   <div class="brand">
-    <div class="brand-small">✿ RUANG KOPI KITA ✿</div>
-    <h1>Y2K Pop Staff ★</h1>
-    <p>Good coffee, funky vibes & happy orders!</p>
+    <div class="brand-small">
+      ✿ RUANG KOPI KITA ✿
+    </div>
+
+    <h1>Y2K Sage Staff ✿</h1>
+
+    <p>Good coffee, cozy vibes & happy orders!</p>
   </div>
 
   <div class="header-actions">
     <span id="staffEmail"></span>
+
     <button
       id="logoutButton"
       class="btn btn-outline hidden"
@@ -700,13 +736,20 @@ main {
 
 <main>
 
-<!-- LOGIN -->
+<!-- =========================
+     LOGIN
+========================= -->
+
 <section id="loginSection" class="login-card">
-  <h2>Hey, Superstar! ★</h2>
+
+  <h2>Hello, Staff! ✿</h2>
+
   <p>Log masuk untuk mengurus pesanan café.</p>
 
   <form id="loginForm">
+
     <label for="emailInput">Email</label>
+
     <input
       type="email"
       id="emailInput"
@@ -715,6 +758,7 @@ main {
       required>
 
     <label for="passwordInput">Kata Laluan</label>
+
     <input
       type="password"
       id="passwordInput"
@@ -722,36 +766,61 @@ main {
       autocomplete="current-password"
       required>
 
-    <button class="btn btn-primary" type="submit">
-      Let's Go! ♡
+    <button
+      type="submit"
+      class="btn btn-primary">
+      Log Masuk ♡
     </button>
+
   </form>
 
-  <div id="loginMessage" class="message hidden" role="alert"></div>
+  <div
+    id="loginMessage"
+    class="message hidden"
+    role="alert">
+  </div>
+
 </section>
 
-<!-- DASHBOARD -->
+<!-- =========================
+     DASHBOARD
+========================= -->
+
 <section id="dashboardSection" class="hidden">
 
+  <!-- SAGE GREEN BANNER -->
   <div class="welcome">
+
     <div class="welcome-top">
+
       <div>
-        <div class="eyebrow">★ YOUR DAILY CAFE SPACE ★</div>
+        <div class="eyebrow">
+          ✿ YOUR DAILY CAFE SPACE ✿
+        </div>
+
         <h2>Dashboard Pesanan ✿</h2>
-        <p>Keep the orders flowing and the good vibes going!</p>
+
+        <p>
+          Keep the orders flowing and the good vibes going!
+        </p>
       </div>
 
-      <button class="btn btn-refresh" onclick="loadOrders()">
+      <button
+        class="btn btn-refresh"
+        onclick="loadOrders()">
         ↻ Refresh Pesanan
       </button>
+
     </div>
   </div>
 
   <div class="notice">
-    ★ Pesanan disemak secara automatik setiap 10 saat apabila halaman ini aktif.
+    🌿 Pesanan disemak secara automatik setiap 10 saat apabila halaman ini aktif.
   </div>
 
+  <!-- STATISTICS -->
   <div class="stats">
+
     <div class="stat">
       <div class="stat-icon">🧾</div>
       <span>Jumlah Pesanan</span>
@@ -759,7 +828,7 @@ main {
     </div>
 
     <div class="stat">
-      <div class="stat-icon">💗</div>
+      <div class="stat-icon">🌸</div>
       <span>Pesanan Baharu</span>
       <strong id="statNew">0</strong>
     </div>
@@ -771,18 +840,21 @@ main {
     </div>
 
     <div class="stat">
-      <div class="stat-icon">🌈</div>
+      <div class="stat-icon">🌿</div>
       <span>Sedia Dihidangkan</span>
       <strong id="statReady">0</strong>
     </div>
+
   </div>
 
+  <!-- ORDER LIST -->
   <div class="section-heading">
-    <h3>★ Senarai Pesanan</h3>
+    <h3>✿ Senarai Pesanan</h3>
     <span>ORDER MANAGEMENT</span>
   </div>
 
   <div class="toolbar">
+
     <input
       type="search"
       id="searchInput"
@@ -795,17 +867,29 @@ main {
       <option value="ready">Sedia Dihidangkan</option>
       <option value="done">Selesai</option>
     </select>
+
   </div>
 
-  <div id="dashboardMessage" class="message hidden" role="alert"></div>
+  <div
+    id="dashboardMessage"
+    class="message hidden"
+    role="alert">
+  </div>
+
   <div id="ordersGrid" class="orders-grid"></div>
 
 </section>
+
 </main>
+
+<!-- =========================
+     SUPABASE
+========================= -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+
 const SUPABASE_URL =
   "https://ledcwlnyztcsvdedwmtq.supabase.co";
 
@@ -823,11 +907,15 @@ let authorizedUserId = null;
 
 const $ = id => document.getElementById(id);
 
+/* MESSAGES */
+
 function showMessage(id,message) {
   const el = $(id);
   el.textContent = message;
   el.classList.toggle("hidden",!message);
 }
+
+/* SECURITY */
 
 function escapeHTML(value) {
   return String(value ?? "")
@@ -838,18 +926,37 @@ function escapeHTML(value) {
     .replace(/'/g,"&#39;");
 }
 
+/* CURRENCY */
+
 function money(value) {
   return "RM" + (Number(value) || 0).toFixed(2);
 }
 
+/* STATUS */
+
 function normalizeStatus(status) {
   const s = String(status || "").toLowerCase();
 
-  if (["new","pending","baharu"].includes(s)) return "new";
-  if (["progress","preparing","processing","in_progress"].includes(s))
+  if (["new","pending","baharu"].includes(s))
+    return "new";
+
+  if ([
+    "progress",
+    "preparing",
+    "processing",
+    "in_progress"
+  ].includes(s))
     return "progress";
-  if (["ready","siap"].includes(s)) return "ready";
-  if (["done","completed","complete","served"].includes(s))
+
+  if (["ready","siap"].includes(s))
+    return "ready";
+
+  if ([
+    "done",
+    "completed",
+    "complete",
+    "served"
+  ].includes(s))
     return "done";
 
   return s || "new";
@@ -857,65 +964,93 @@ function normalizeStatus(status) {
 
 function statusLabel(status) {
   return {
-    new:"💗 Baharu",
+    new:"🌸 Baharu",
     progress:"☕ Sedang Disediakan",
-    ready:"🌈 Sedia Dihidangkan",
+    ready:"🌿 Sedia Dihidangkan",
     done:"✓ Selesai"
-  }[normalizeStatus(status)] || String(status || "Tidak diketahui");
+  }[normalizeStatus(status)] ||
+    String(status || "Tidak diketahui");
 }
 
 function statusClass(status) {
   const s = normalizeStatus(status);
+
   return ["new","progress","ready","done"].includes(s)
-    ? "status-" + s : "";
+    ? "status-" + s
+    : "";
 }
+
+/* DATE */
 
 function formatDate(value) {
   if (!value) return "-";
 
   const d = new Date(value);
 
-  return Number.isNaN(d.getTime()) ? "-" :
-    d.toLocaleString("ms-MY",{
-      day:"2-digit",
-      month:"short",
-      year:"numeric",
-      hour:"2-digit",
-      minute:"2-digit"
-    });
+  return Number.isNaN(d.getTime())
+    ? "-"
+    : d.toLocaleString("ms-MY",{
+        day:"2-digit",
+        month:"short",
+        year:"numeric",
+        hour:"2-digit",
+        minute:"2-digit"
+      });
 }
 
+/* ORDER HELPERS */
+
 function customerName(order) {
-  return order.customer_name || order.name || "Pelanggan";
+  return order.customer_name ||
+    order.name ||
+    "Pelanggan";
 }
 
 function tableNumber(order) {
-  return order.table_number ?? order.table_no ?? order.table ?? "-";
+  return order.table_number ??
+    order.table_no ??
+    order.table ??
+    "-";
 }
 
 function itemName(item) {
-  return item.product_name || item.item_name || item.name || "Item";
+  return item.product_name ||
+    item.item_name ||
+    item.name ||
+    "Item";
 }
 
 function itemTotal(item) {
-  const qty = Number(item.quantity ?? item.qty ?? 1);
-  const price = Number(item.price ?? item.unit_price ?? 0);
+  const qty = Number(
+    item.quantity ?? item.qty ?? 1
+  );
+
+  const price = Number(
+    item.price ?? item.unit_price ?? 0
+  );
 
   return Number(
-    item.subtotal ?? item.total_price ?? qty * price
+    item.subtotal ??
+    item.total_price ??
+    qty * price
   ) || 0;
 }
 
 function orderTotal(order) {
   const val =
-    order.total_amount ?? order.total ?? order.grand_total;
+    order.total_amount ??
+    order.total ??
+    order.grand_total;
 
   return val != null
     ? Number(val) || 0
     : (order.items || []).reduce(
-        (sum,item) => sum + itemTotal(item),0
+        (sum,item) => sum + itemTotal(item),
+        0
       );
 }
+
+/* LOGIN VIEW */
 
 function showDashboard(user) {
   $("loginSection").classList.add("hidden");
@@ -934,6 +1069,8 @@ function showLogin() {
   $("staffEmail").textContent = "";
 }
 
+/* ROLE CHECK */
+
 async function checkStaffRole(user) {
   const {data,error} = await client
     .from("user_roles")
@@ -948,6 +1085,8 @@ async function checkStaffRole(user) {
   );
 }
 
+/* SESSION */
+
 async function checkSession() {
   const {data,error} = await client.auth.getUser();
 
@@ -961,20 +1100,26 @@ async function checkSession() {
 
     if (!allowed) {
       showLogin();
+
       showMessage(
         "loginMessage",
         "Akaun ini tidak mempunyai akses staf."
       );
+
       return;
     }
 
     authorizedUserId = data.user.id;
+
     showMessage("loginMessage","");
+
     showDashboard(data.user);
+
     await loadOrders();
 
   } catch(err) {
     showLogin();
+
     showMessage(
       "loginMessage",
       "Tidak dapat menyemak akses: " + err.message
@@ -982,38 +1127,52 @@ async function checkSession() {
   }
 }
 
-$("loginForm").addEventListener("submit",async event => {
-  event.preventDefault();
+/* LOGIN SUBMIT */
 
-  const email = $("emailInput").value.trim();
-  const password = $("passwordInput").value;
-  const button = $("loginForm").querySelector("button");
+$("loginForm").addEventListener(
+  "submit",
+  async event => {
+    event.preventDefault();
 
-  button.disabled = true;
-  showMessage("loginMessage","");
+    const email = $("emailInput").value.trim();
+    const password = $("passwordInput").value;
+    const button = $("loginForm").querySelector("button");
 
-  try {
-    const {error} = await client.auth.signInWithPassword({
-      email,password
-    });
+    button.disabled = true;
 
-    if (error) throw error;
-    await checkSession();
+    showMessage("loginMessage","");
 
-  } catch(err) {
-    showMessage("loginMessage",err.message);
-  } finally {
-    button.disabled = false;
+    try {
+      const {error} =
+        await client.auth.signInWithPassword({
+          email,
+          password
+        });
+
+      if (error) throw error;
+
+      await checkSession();
+
+    } catch(err) {
+      showMessage("loginMessage",err.message);
+    } finally {
+      button.disabled = false;
+    }
   }
-});
+);
+
+/* LOGOUT */
 
 async function logout() {
   await client.auth.signOut();
   showLogin();
 }
 
+/* LOAD ORDERS */
+
 async function loadOrders() {
-  if (!authorizedUserId || isLoadingOrders) return;
+  if (!authorizedUserId || isLoadingOrders)
+    return;
 
   isLoadingOrders = true;
 
@@ -1021,13 +1180,17 @@ async function loadOrders() {
     const {data:orders,error} = await client
       .from("orders")
       .select("*")
-      .order("created_at",{ascending:false})
+      .order("created_at",{
+        ascending:false
+      })
       .limit(200);
 
     if (error) throw error;
 
     const rows = orders || [];
+
     const ids = rows.map(o => o.id);
+
     let items = [];
 
     if (ids.length) {
@@ -1036,7 +1199,9 @@ async function loadOrders() {
         .select("*")
         .in("order_id",ids);
 
-      if (result.error) throw result.error;
+      if (result.error)
+        throw result.error;
+
       items = result.data || [];
     }
 
@@ -1044,6 +1209,7 @@ async function loadOrders() {
 
     items.forEach(item => {
       const id = String(item.order_id);
+
       (grouped[id] ??= []).push(item);
     });
 
@@ -1053,6 +1219,7 @@ async function loadOrders() {
     }));
 
     showMessage("dashboardMessage","");
+
     updateStats();
     renderOrders();
 
@@ -1066,25 +1233,36 @@ async function loadOrders() {
   }
 }
 
+/* STATISTICS */
+
 function updateStats() {
-  $("statTotal").textContent = allOrders.length;
+  $("statTotal").textContent =
+    allOrders.length;
 
-  $("statNew").textContent = allOrders.filter(
-    o => normalizeStatus(o.status) === "new"
-  ).length;
+  $("statNew").textContent =
+    allOrders.filter(
+      o => normalizeStatus(o.status) === "new"
+    ).length;
 
-  $("statProgress").textContent = allOrders.filter(
-    o => normalizeStatus(o.status) === "progress"
-  ).length;
+  $("statProgress").textContent =
+    allOrders.filter(
+      o => normalizeStatus(o.status) === "progress"
+    ).length;
 
-  $("statReady").textContent = allOrders.filter(
-    o => normalizeStatus(o.status) === "ready"
-  ).length;
+  $("statReady").textContent =
+    allOrders.filter(
+      o => normalizeStatus(o.status) === "ready"
+    ).length;
 }
 
+/* RENDER ORDERS */
+
 function renderOrders() {
-  const query = $("searchInput").value.toLowerCase().trim();
-  const filter = $("filterStatus").value;
+  const query =
+    $("searchInput").value.toLowerCase().trim();
+
+  const filter =
+    $("filterStatus").value;
 
   const filtered = allOrders.filter(order => {
     const searchable = [
@@ -1095,50 +1273,73 @@ function renderOrders() {
     ].join(" ").toLowerCase();
 
     return searchable.includes(query) &&
-      (filter === "all" ||
-       normalizeStatus(order.status) === filter);
+      (
+        filter === "all" ||
+        normalizeStatus(order.status) === filter
+      );
   });
 
   const grid = $("ordersGrid");
+
   grid.replaceChildren();
 
   if (!filtered.length) {
     grid.innerHTML = `
       <div class="empty-state">
-        <div style="font-size:40px">★</div>
+        <div style="font-size:40px">🌿</div>
         <h3>Tiada pesanan ditemui</h3>
-        <p>Pesanan akan dipaparkan di sini apabila tersedia.</p>
+        <p>
+          Pesanan akan dipaparkan di sini
+          apabila tersedia.
+        </p>
       </div>
     `;
+
     return;
   }
 
   filtered.forEach(order => {
     const id = order.id;
-    const currentStatus = normalizeStatus(order.status);
-    const statuses = ["new","progress","ready","done"];
+
+    const currentStatus =
+      normalizeStatus(order.status);
+
+    const statuses = [
+      "new",
+      "progress",
+      "ready",
+      "done"
+    ];
 
     let statusOptions = statuses.map(s => `
-      <option value="${s}" ${currentStatus === s ? "selected" : ""}>
+      <option
+        value="${s}"
+        ${currentStatus === s ? "selected" : ""}>
         ${escapeHTML(statusLabel(s))}
       </option>
     `).join("");
 
     if (!statuses.includes(currentStatus)) {
       statusOptions = `
-        <option value="${escapeHTML(String(order.status ?? ""))}" selected>
+        <option
+          value="${escapeHTML(String(order.status ?? ""))}"
+          selected>
           ${escapeHTML(statusLabel(order.status))}
         </option>
       ` + statusOptions;
     }
 
-    const itemsHTML = (order.items || []).length
+    const itemsHTML =
+      (order.items || []).length
       ? order.items.map(item => `
           <div class="item-row">
             <span>
-              ${escapeHTML(item.quantity ?? item.qty ?? 1)}×
+              ${escapeHTML(
+                item.quantity ?? item.qty ?? 1
+              )}×
               ${escapeHTML(itemName(item))}
             </span>
+
             <span class="item-price">
               ${money(itemTotal(item))}
             </span>
@@ -1146,65 +1347,106 @@ function renderOrders() {
         `).join("")
       : '<div class="item-row">Tiada butiran item</div>';
 
-    const card = document.createElement("article");
+    const card =
+      document.createElement("article");
+
     card.className = "order-card";
 
     card.innerHTML = `
       <div class="order-top">
+
         <div>
           <div class="order-number">
-            ★ Pesanan #${escapeHTML(String(id).slice(-8))}
+            🌿 Pesanan #${escapeHTML(
+              String(id).slice(-8)
+            )}
           </div>
+
           <div class="order-date">
-            ${escapeHTML(formatDate(order.created_at))}
+            ${escapeHTML(
+              formatDate(order.created_at)
+            )}
           </div>
         </div>
+
         <span class="status ${statusClass(order.status)}">
-          ${escapeHTML(statusLabel(order.status))}
+          ${escapeHTML(
+            statusLabel(order.status)
+          )}
         </span>
+
       </div>
 
       <div class="order-content">
+
         <div class="customer">
-          <strong>★ Maklumat Pelanggan</strong>
-          <div>Nama: ${escapeHTML(customerName(order))}</div>
-          <div>Meja: ${escapeHTML(tableNumber(order))}</div>
+          <strong>✿ Maklumat Pelanggan</strong>
+
+          <div>
+            Nama:
+            ${escapeHTML(customerName(order))}
+          </div>
+
+          <div>
+            Meja:
+            ${escapeHTML(tableNumber(order))}
+          </div>
         </div>
 
         <div class="order-items-panel">
+
           <div class="items-title">
             ☕ Senarai Makanan & Minuman
           </div>
+
           ${itemsHTML}
+
           <div class="total">
             <span>Jumlah</span>
             <span>${money(orderTotal(order))}</span>
           </div>
+
         </div>
       </div>
 
       <div class="status-control">
+
         <select aria-label="Status pesanan">
           ${statusOptions}
         </select>
+
         <button class="btn btn-primary">
-          ★ Simpan Status
+          ♡ Simpan Status
         </button>
+
       </div>
     `;
 
-    const select = card.querySelector(".status-control select");
-    const button = card.querySelector(".status-control button");
+    const select =
+      card.querySelector(".status-control select");
+
+    const button =
+      card.querySelector(".status-control button");
 
     button.addEventListener("click",() => {
-      updateOrderStatus(id,select.value,button);
+      updateOrderStatus(
+        id,
+        select.value,
+        button
+      );
     });
 
     grid.appendChild(card);
   });
 }
 
-async function updateOrderStatus(id,newStatus,button) {
+/* UPDATE ORDER STATUS */
+
+async function updateOrderStatus(
+  id,
+  newStatus,
+  button
+) {
   if (!authorizedUserId) return;
 
   button.disabled = true;
@@ -1213,7 +1455,9 @@ async function updateOrderStatus(id,newStatus,button) {
   try {
     const {data,error} = await client
       .from("orders")
-      .update({status:newStatus})
+      .update({
+        status:newStatus
+      })
       .eq("id",id)
       .select("id");
 
@@ -1234,18 +1478,32 @@ async function updateOrderStatus(id,newStatus,button) {
     );
   } finally {
     button.disabled = false;
-    button.textContent = "★ Simpan Status";
+    button.textContent = "♡ Simpan Status";
   }
 }
 
-$("searchInput").addEventListener("input",renderOrders);
-$("filterStatus").addEventListener("change",renderOrders);
+/* SEARCH AND FILTER */
 
-document.addEventListener("visibilitychange",() => {
-  if (!document.hidden && authorizedUserId) {
-    loadOrders();
+$("searchInput").addEventListener(
+  "input",
+  renderOrders
+);
+
+$("filterStatus").addEventListener(
+  "change",
+  renderOrders
+);
+
+/* AUTO REFRESH */
+
+document.addEventListener(
+  "visibilitychange",
+  () => {
+    if (!document.hidden && authorizedUserId) {
+      loadOrders();
+    }
   }
-});
+);
 
 setInterval(() => {
   if (!document.hidden && authorizedUserId) {
@@ -1253,7 +1511,10 @@ setInterval(() => {
   }
 },10000);
 
+/* START */
+
 checkSession();
+
 </script>
 
 </body>
