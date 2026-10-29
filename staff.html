@@ -1107,6 +1107,457 @@ document.addEventListener("DOMContentLoaded", function () {
 <!-- END PREMIUM BLUSH CAFE -->
 
 </head>
+<!-- ========================================
+     PINK BOUTIQUE CAFE — STAFF DESIGN
+     Visual upgrade only
+========================================= -->
+<style id="pinkBoutiqueCafe">
+:root {
+  --boutique-rose:#B85E7B;
+  --boutique-dark:#543945;
+  --boutique-blush:#F8E6EC;
+  --boutique-border:#EDD9E0;
+}
+
+/* BACKGROUND */
+body {
+  background:
+    radial-gradient(circle at 100% 0%,
+      rgba(242,210,222,.25),transparent 35%),
+    #FFFBFC;
+  color:var(--boutique-dark);
+}
+
+/* HEADER */
+header {
+  background:#FFFFFF;
+  border-bottom:1px solid #F0E2E6;
+  padding:17px 4%;
+  box-shadow:0 2px 14px rgba(88,51,66,.035);
+}
+
+header::after {
+  display:none!important;
+}
+
+.brand-small {
+  color:#B85E7B;
+  font-size:10px;
+  letter-spacing:2.5px;
+}
+
+.brand h1 {
+  font-family:'DM Sans',Arial,sans-serif;
+  font-size:25px;
+  font-weight:800;
+  letter-spacing:-.9px;
+  color:#543945;
+}
+
+.brand p {
+  color:#9E828B;
+  font-size:12px;
+}
+
+/* DASHBOARD */
+main {
+  max-width:1450px;
+  padding:25px 25px 65px;
+}
+
+.welcome {
+  background:
+    linear-gradient(115deg,#FCEAF0,#FFF8FA);
+  border:1px solid #F2DCE4;
+  border-radius:20px;
+  padding:25px 30px;
+  margin-bottom:17px;
+  box-shadow:none;
+}
+
+.welcome::after {
+  content:"";
+  display:block!important;
+  position:absolute;
+  width:160px;
+  height:160px;
+  top:-55px;
+  right:35px;
+  border:1px solid rgba(184,94,123,.11);
+  border-radius:50%;
+  background:transparent;
+}
+
+.welcome::before {
+  content:"";
+  position:absolute;
+  width:110px;
+  height:110px;
+  right:60px;
+  bottom:-60px;
+  border:1px solid rgba(184,94,123,.11);
+  border-radius:50%;
+  pointer-events:none;
+}
+
+.eyebrow {
+  color:#A65370;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:2.4px;
+}
+
+.welcome h2 {
+  font-family:'DM Sans',Arial,sans-serif;
+  color:#543945;
+  font-size:29px;
+  font-weight:800;
+  letter-spacing:-1px;
+}
+
+.welcome p {
+  color:#927781;
+}
+
+/* REFRESH BUTTON */
+.btn-refresh {
+  background:#FFFFFF;
+  color:#A65370;
+  border:1px solid #EBCAD6;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(145,71,99,.05);
+}
+
+.btn-refresh:hover:not(:disabled) {
+  background:#FFF1F6;
+}
+
+/* INFO NOTICE */
+.notice {
+  background:#FFFFFF;
+  border:1px solid #F0E2E6;
+  border-left:3px solid #D99BB0;
+  border-radius:12px;
+  color:#967982;
+  padding:12px 17px;
+  margin-bottom:20px;
+}
+
+/* STAT CARDS */
+.stats {
+  gap:15px;
+  margin-bottom:29px;
+}
+
+.stat {
+  min-height:150px;
+  padding:22px;
+  border-radius:18px;
+  border:1px solid rgba(173,109,133,.12);
+  box-shadow:0 5px 18px rgba(100,54,72,.045);
+  transition:transform .2s,box-shadow .2s;
+}
+
+.stat:hover {
+  transform:translateY(-3px);
+  box-shadow:0 9px 22px rgba(100,54,72,.085);
+}
+
+.stat::after {
+  display:none!important;
+}
+
+.stat:nth-child(1) {
+  background:#FFFFFF;
+}
+
+.stat:nth-child(2) {
+  background:#FCE7EF;
+}
+
+.stat:nth-child(3) {
+  background:#FFF0E5;
+}
+
+.stat:nth-child(4) {
+  background:#E8F3ED;
+}
+
+.stat-icon {
+  width:36px;
+  height:36px;
+  border-radius:11px;
+  background:rgba(255,255,255,.75);
+  color:#B85E7B;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  margin-bottom:12px;
+}
+
+.stat span {
+  color:#806671;
+  font-size:12px;
+  font-weight:700;
+}
+
+.stat strong {
+  font-size:36px;
+  font-weight:800;
+  letter-spacing:-1.2px;
+  margin-top:5px;
+}
+
+.stat:nth-child(1) strong {color:#543945;}
+.stat:nth-child(2) strong {color:#B85E7B;}
+.stat:nth-child(3) strong {color:#A36C39;}
+.stat:nth-child(4) strong {color:#3C8061;}
+
+/* SECTION TITLE */
+.section-heading {
+  margin-bottom:17px;
+}
+
+.section-heading h3 {
+  font-family:'DM Sans',Arial,sans-serif;
+  font-size:22px;
+  font-weight:800;
+  letter-spacing:-.7px;
+  color:#543945;
+}
+
+.section-heading span {
+  background:#F8E6EC;
+  color:#A65370;
+  border-radius:999px;
+  padding:6px 12px;
+  font-size:11px;
+  font-weight:700;
+}
+
+/* SEARCH */
+.toolbar {
+  gap:12px;
+  margin-bottom:23px;
+}
+
+.toolbar input,
+.toolbar select {
+  min-height:52px;
+  border:1px solid #EAD9E0;
+  border-radius:13px;
+  background:#FFFFFF;
+  color:#543945;
+  box-shadow:0 3px 12px rgba(100,54,72,.025);
+}
+
+.toolbar input:focus,
+.toolbar select:focus {
+  border-color:#C87E99;
+  outline:3px solid rgba(200,126,153,.13);
+}
+
+/* ORDER GRID */
+.orders-grid {
+  gap:20px;
+}
+
+.order-card {
+  background:#FFFFFF;
+  border:1px solid #EEDCE3;
+  border-radius:20px;
+  padding:24px;
+  box-shadow:0 6px 22px rgba(100,54,72,.055);
+}
+
+.order-card::before {
+  height:4px;
+  background:linear-gradient(90deg,#D98EA8,#F1C5D3);
+}
+
+.order-card:hover {
+  box-shadow:0 13px 32px rgba(100,54,72,.10);
+}
+
+.order-number {
+  font-size:19px;
+  color:#8D4561;
+  letter-spacing:-.4px;
+}
+
+.order-date {
+  font-size:12px;
+  color:#9D858E;
+}
+
+/* CUSTOMER INFO */
+.customer {
+  background:#FCF6F8;
+  border:1px solid #F2E5EA;
+  border-radius:13px;
+  padding:16px;
+  color:#70545F;
+}
+
+/* ORDER ITEMS */
+.items-title {
+  color:#A65370;
+  font-weight:800;
+  margin-top:5px;
+}
+
+.item-row {
+  padding:13px 0;
+  border-color:#F0E4E9;
+}
+
+.item-price {
+  color:#76505F;
+  font-weight:800;
+}
+
+.total {
+  margin-top:20px;
+  padding-top:17px;
+  color:#A65370;
+  font-size:21px;
+  border-top:1px solid #EED1DB;
+}
+
+/* STATUS */
+.status {
+  padding:8px 13px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:800;
+}
+
+.status-new {
+  background:#FCE3EC;
+  color:#A74465;
+}
+
+.status-progress {
+  background:#FFF0D9;
+  color:#916020;
+}
+
+.status-ready {
+  background:#E2F3E9;
+  color:#30744E;
+}
+
+.status-done {
+  background:#E5EDF8;
+  color:#426B9C;
+}
+
+.status-cancel {
+  background:#FBE7E7;
+  color:#A84F55;
+}
+
+/* STATUS ACTION */
+.status-control {
+  background:#FFFAFC;
+  border:1px solid #F1E4E9;
+  border-radius:14px;
+  padding:12px;
+  margin-top:19px;
+}
+
+.status-control select {
+  background:white;
+  border:1px solid #EAD8E0;
+  border-radius:10px;
+  min-height:47px;
+}
+
+.status-control .btn-primary {
+  background:#B85E7B;
+  border-radius:10px;
+  min-height:47px;
+  padding:12px 19px;
+}
+
+.status-control .btn-primary:hover:not(:disabled) {
+  background:#9F4B68;
+}
+
+/* LOGIN */
+.login-card {
+  background:white;
+  border:1px solid #F0DDE4;
+  border-radius:22px;
+  box-shadow:0 16px 40px rgba(100,54,72,.08);
+}
+
+.login-card::before {
+  display:none;
+}
+
+.login-card h2 {
+  font-family:'DM Sans',Arial,sans-serif;
+  font-weight:800;
+  letter-spacing:-1px;
+}
+
+/* FOOTER */
+footer {
+  background:#FFFFFF;
+  border-top:1px solid #F0E2E6;
+}
+
+/* MOBILE */
+@media(max-width:900px) {
+  .orders-grid {
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:520px) {
+  header {
+    padding:16px;
+  }
+
+  main {
+    padding:17px 12px 45px;
+  }
+
+  .welcome {
+    padding:20px;
+  }
+
+  .welcome h2 {
+    font-size:24px;
+  }
+
+  .welcome::before,
+  .welcome::after {
+    display:none!important;
+  }
+
+  .stat {
+    padding:17px 13px;
+    min-height:135px;
+  }
+
+  .stat strong {
+    font-size:30px;
+  }
+
+  .order-card {
+    padding:19px 15px;
+  }
+
+  .status-control {
+    padding:10px;
+  }
+}
+</style>
+<!-- END PINK BOUTIQUE CAFE -->
+
 
 <body>
 
