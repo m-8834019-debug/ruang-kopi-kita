@@ -2385,4 +2385,475 @@ initialize();
 </script>
 
 </body>
+<!-- ==========================================
+ RUANG KOPI KITA
+ PINK CAFE SHOWCASE DESIGN
+ Tampal SEBELUM </body>
+========================================== -->
+
+<style id="rkkPinkCafeShowcase">
+/* GENERAL */
+body {
+  background:
+    radial-gradient(circle at 90% 10%,rgba(246,209,221,.25),transparent 35%),
+    #FFF9FB !important;
+  color:#4C2C39;
+}
+
+header {
+  background:linear-gradient(110deg,#FFF0F4,#FFF9FA) !important;
+  border-bottom:1px solid #F0D5DE !important;
+  padding:22px 4% !important;
+}
+
+header::after {
+  display:none !important;
+}
+
+.brand h1 {
+  font-family:'DM Sans',Arial,sans-serif !important;
+  font-size:31px !important;
+  font-weight:800 !important;
+  letter-spacing:-1px;
+  color:#4D2537 !important;
+}
+
+.brand-small {
+  color:#A95170 !important;
+  letter-spacing:2.7px;
+}
+
+.brand p {
+  color:#926B7B !important;
+}
+
+main {
+  max-width:1500px !important;
+  padding:25px 24px 60px !important;
+}
+
+/* WELCOME */
+.welcome {
+  background:linear-gradient(115deg,#FFFFFF,#FFF1F5) !important;
+  border:1px solid #F2D8E1 !important;
+  border-radius:21px !important;
+  padding:29px 32px !important;
+  box-shadow:0 8px 24px rgba(130,60,90,.045) !important;
+  overflow:hidden;
+}
+
+.welcome::before {
+  content:"♡";
+  position:absolute;
+  right:43px;
+  top:-36px;
+  font-size:140px;
+  line-height:1;
+  color:rgba(193,99,133,.10);
+  pointer-events:none;
+}
+
+.welcome::after {
+  display:none !important;
+}
+
+.welcome h2 {
+  font-family:'DM Sans',Arial,sans-serif !important;
+  font-size:32px !important;
+  font-weight:800 !important;
+  color:#4D2537 !important;
+  letter-spacing:-1px;
+}
+
+.eyebrow {
+  color:#B45D7C !important;
+  letter-spacing:2.5px;
+  font-size:11px;
+}
+
+.btn-refresh {
+  background:#F7D6E1 !important;
+  color:#8F3C5C !important;
+  border:0 !important;
+  padding:14px 20px !important;
+  font-weight:800;
+  border-radius:12px !important;
+}
+
+.notice {
+  background:#FFF9FB !important;
+  border:1px solid #F1D7E0 !important;
+  border-left:4px solid #E7A0B7 !important;
+  border-radius:11px !important;
+  padding:14px 18px !important;
+  color:#815A6B !important;
+}
+
+/* STATISTICS */
+.stats {
+  gap:18px !important;
+  margin-bottom:28px !important;
+}
+
+.stat {
+  min-height:145px;
+  border-radius:19px !important;
+  padding:23px 25px !important;
+  box-shadow:0 5px 18px rgba(120,60,80,.045) !important;
+  position:relative;
+  display:grid;
+  grid-template-columns:55px 1fr;
+  grid-template-rows:auto auto;
+  align-content:center;
+  column-gap:13px;
+}
+
+.stat::after {
+  display:none !important;
+}
+
+.stat:nth-child(1) {
+  background:#FDEBF1 !important;
+}
+
+.stat:nth-child(2) {
+  background:#FFF1E9 !important;
+}
+
+.stat:nth-child(3) {
+  background:#EAF1FB !important;
+}
+
+.stat:nth-child(4) {
+  background:#E8F4EC !important;
+}
+
+.stat-icon {
+  grid-column:1;
+  grid-row:1/3;
+  display:flex !important;
+  justify-content:center;
+  align-items:center;
+  width:52px !important;
+  height:52px !important;
+  background:rgba(255,255,255,.75) !important;
+  border-radius:50% !important;
+  color:#A64D6E !important;
+  font-size:24px !important;
+  margin:0 !important;
+}
+
+.stat span {
+  grid-column:2;
+  grid-row:1;
+  font-size:13px !important;
+  color:#624552 !important;
+  font-weight:600;
+}
+
+.stat strong {
+  grid-column:2;
+  grid-row:2;
+  font-size:38px !important;
+  margin:0 !important;
+  line-height:1.2;
+  letter-spacing:-1px;
+}
+
+.stat:nth-child(1) strong {color:#B14B70 !important;}
+.stat:nth-child(2) strong {color:#B76B37 !important;}
+.stat:nth-child(3) strong {color:#345D99 !important;}
+.stat:nth-child(4) strong {color:#28765B !important;}
+
+/* SECTION */
+.section-heading h3 {
+  font-family:'DM Sans',Arial,sans-serif !important;
+  font-size:25px !important;
+  font-weight:800 !important;
+  color:#4D2537 !important;
+}
+
+.section-heading span {
+  background:#FCE5EC;
+  color:#A34D6C;
+  border-radius:30px;
+  padding:7px 14px;
+  font-weight:700;
+}
+
+/* SEARCH */
+.toolbar input,
+.toolbar select {
+  min-height:55px !important;
+  background:#FFFFFF !important;
+  border:1px solid #EED3DE !important;
+  border-radius:13px !important;
+  font-size:14px;
+}
+
+/* ORDER CARDS */
+.orders-grid {
+  gap:20px !important;
+}
+
+.order-card {
+  background:#FFFFFF !important;
+  border:1px solid #F0D8E1 !important;
+  border-radius:19px !important;
+  padding:24px !important;
+  box-shadow:0 8px 25px rgba(120,60,80,.055) !important;
+}
+
+.order-card::before {
+  height:5px !important;
+  background:linear-gradient(90deg,#D76B96,#F4B9CE) !important;
+}
+
+.order-number {
+  color:#A83262 !important;
+  font-size:19px !important;
+}
+
+.order-date {
+  font-size:12px !important;
+}
+
+.order-top {
+  padding-bottom:15px;
+  border-bottom:1px dashed #EED6DF;
+  margin-bottom:16px;
+}
+
+/* CUSTOMER DETAILS */
+.customer {
+  background:linear-gradient(135deg,#FFF0F5,#FFF9FA) !important;
+  border:1px solid #F5DFE7 !important;
+  border-radius:13px !important;
+  padding:17px !important;
+  margin:0 !important;
+  color:#684557 !important;
+  font-size:13px;
+  line-height:2;
+}
+
+/* ORDER ITEM DETAILS */
+.items-title {
+  color:#9B4164 !important;
+  font-size:14px !important;
+  margin:0 0 9px !important;
+}
+
+.item-row {
+  padding:11px 0 !important;
+  font-size:13px;
+}
+
+.item-price {
+  color:#61394B !important;
+}
+
+.total {
+  color:#B13F6A !important;
+  font-size:21px !important;
+  margin-top:13px !important;
+  padding-top:12px !important;
+}
+
+/* CUSTOMER LEFT, ITEMS RIGHT */
+.order-content {
+  display:grid;
+  grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+  gap:18px;
+  align-items:start;
+}
+
+.order-content > * {
+  min-width:0;
+}
+
+.order-items-panel {
+  min-width:0;
+}
+
+/* STATUS ACTION */
+.status-control {
+  background:#FFF4F7 !important;
+  border:1px solid #F0DCE3 !important;
+  padding:11px !important;
+  border-radius:12px !important;
+  margin-top:19px !important;
+}
+
+.status-control select {
+  background:#FFFFFF !important;
+  border-radius:10px !important;
+}
+
+.status-control .btn-primary {
+  background:#D26C93 !important;
+  color:#FFFFFF !important;
+  border-radius:10px !important;
+  font-weight:800 !important;
+}
+
+.status-control .btn-primary:hover:not(:disabled) {
+  background:#B84F79 !important;
+}
+
+/* RESPONSIVE */
+@media(max-width:1100px) {
+  .order-content {
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:850px) {
+  .stats {
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+
+  .orders-grid {
+    grid-template-columns:1fr !important;
+  }
+
+  .order-content {
+    grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+  }
+}
+
+@media(max-width:540px) {
+  main {
+    padding:17px 12px 45px !important;
+  }
+
+  .welcome {
+    padding:20px !important;
+  }
+
+  .welcome h2 {
+    font-size:24px !important;
+  }
+
+  .welcome::before {
+    display:none;
+  }
+
+  .stat {
+    padding:15px 12px !important;
+    grid-template-columns:1fr;
+    min-height:145px;
+  }
+
+  .stat-icon {
+    grid-column:1;
+    grid-row:auto;
+    width:37px !important;
+    height:37px !important;
+    font-size:18px !important;
+    margin-bottom:7px !important;
+  }
+
+  .stat span,
+  .stat strong {
+    grid-column:1;
+    grid-row:auto;
+  }
+
+  .stat strong {
+    font-size:30px !important;
+  }
+
+  .order-card {
+    padding:18px 14px !important;
+  }
+
+  .order-content {
+    grid-template-columns:1fr;
+  }
+}
+</style>
+
+<script>
+/*
+ Reorganize order cards visually.
+ Keeps existing order IDs, status controls,
+ event handlers and Supabase logic.
+*/
+(function () {
+  function upgradeCards() {
+    document.querySelectorAll(".order-card").forEach(card => {
+      if (card.dataset.cafeUpgraded === "1") return;
+
+      const customer = card.querySelector(".customer");
+      const itemsTitle = card.querySelector(".items-title");
+
+      if (!customer || !itemsTitle) return;
+
+      const itemsContainer = itemsTitle.nextElementSibling;
+
+      if (!itemsContainer) return;
+
+      const layout = document.createElement("div");
+      layout.className = "order-content";
+
+      const itemsPanel = document.createElement("div");
+      itemsPanel.className = "order-items-panel";
+
+      card.insertBefore(layout, customer);
+
+      layout.appendChild(customer);
+      layout.appendChild(itemsPanel);
+
+      itemsPanel.appendChild(itemsTitle);
+      itemsPanel.appendChild(itemsContainer);
+
+      const total = card.querySelector(".total");
+
+      if (total) {
+        itemsPanel.appendChild(total);
+      }
+
+      card.dataset.cafeUpgraded = "1";
+    });
+  }
+
+  function upgradeIcons() {
+    const icons = ["▤", "◷", "☕", "✓"];
+
+    document.querySelectorAll(".stat-icon").forEach(
+      (element, index) => {
+        if (icons[index]) {
+          element.textContent = icons[index];
+        }
+      }
+    );
+  }
+
+  function start() {
+    upgradeCards();
+    upgradeIcons();
+
+    const grid = document.getElementById("ordersGrid");
+
+    if (!grid) return;
+
+    const observer = new MutationObserver(() => {
+      upgradeCards();
+    });
+
+    observer.observe(grid, {
+      childList:true
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", start);
+  } else {
+    start();
+  }
+})();
+</script>
+
+<!-- END RKK PINK CAFE SHOWCASE -->
+
 </html>
