@@ -3,23 +3,18 @@
 <html lang="ms">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Staff Dashboard | Ruang Kopi Kita</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Floral Garden | Ruang Kopi Kita Staff</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --pink:#FF168A;
-  --purple:#853BFF;
-  --turquoise:#00BFB4;
-  --yellow:#FFCC00;
-  --orange:#FF783E;
-  --dark:#54234F;
-  --muted:#85677F;
-  --white:#FFFFFF;
+  --pink:#DD668D;
+  --coral:#F28A79;
+  --green:#4B9275;
+  --cream:#FFFAF2;
+  --dark:#563D46;
 }
 
 * { box-sizing:border-box; }
@@ -28,68 +23,67 @@ body {
   margin:0;
   font-family:'DM Sans',sans-serif;
   color:var(--dark);
-  background:
-    radial-gradient(circle at 8% 20%,rgba(255,22,138,.13),transparent 30%),
-    radial-gradient(circle at 95% 65%,rgba(133,59,255,.12),transparent 32%),
-    #FFF7FC;
-  min-height:100vh;
+  background-color:#FFFAF5;
+  background-image:
+    radial-gradient(circle at 15% 10%,#FFD9E2AA,transparent 29%),
+    radial-gradient(circle at 95% 40%,#E0EACB99,transparent 31%),
+    radial-gradient(#EEB8C377 1.1px,transparent 1.1px);
+  background-size:auto,auto,29px 29px;
 }
 
 button,input,select { font:inherit; }
 button { cursor:pointer; }
-.hidden { display:none !important; }
+.hidden { display:none!important; }
 
 /* HEADER */
 header {
-  background:linear-gradient(110deg,#FF77B9,#C5A2FF,#FFD78C);
-  border-bottom:5px solid var(--pink);
-  padding:22px max(22px,calc((100vw - 1380px)/2));
+  background:linear-gradient(105deg,#FFB7C9,#FFE0AD 55%,#C8E5BD);
+  border-bottom:4px solid #E77895;
+  padding:22px 5%;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:20px;
+  gap:16px;
   position:relative;
   overflow:hidden;
 }
 
 header::after {
-  content:"✿";
+  content:"✿ ✾ ✿";
   position:absolute;
-  right:25%;
-  top:-60px;
-  font-size:190px;
-  color:rgba(255,255,255,.18);
+  right:12%;
+  top:-35px;
+  color:#FFFFFF80;
+  font-size:100px;
   pointer-events:none;
 }
 
-.brand { position:relative; z-index:1; }
+.brand,.header-actions { position:relative; z-index:1; }
+
 .brand-small {
-  font-size:11px;
   font-weight:800;
-  letter-spacing:3px;
-  color:#7C205E;
+  letter-spacing:2px;
+  color:#9C365E;
+  font-size:11px;
 }
 
 .brand h1 {
-  font-family:'Fredoka',sans-serif;
-  font-size:36px;
+  font:600 37px 'Fredoka',sans-serif;
+  color:#803956;
   margin:5px 0;
-  color:#63205B;
 }
 
 .brand p {
   margin:0;
-  color:#6F3769;
+  color:#7E5661;
   font-size:13px;
 }
 
 .header-actions {
   display:flex;
   align-items:center;
+  gap:10px;
   flex-wrap:wrap;
-  gap:12px;
-  position:relative;
-  z-index:1;
 }
 
 #staffEmail {
@@ -102,39 +96,20 @@ header::after {
 .btn {
   border:0;
   border-radius:13px;
-  padding:12px 18px;
+  padding:12px 17px;
   font-weight:800;
-  transition:transform .2s,background .2s;
+  transition:.15s;
 }
 
 .btn:hover:not(:disabled) {
   transform:translateY(-2px);
+  filter:brightness(.97);
 }
 
-.btn:disabled {
-  opacity:.6;
-  cursor:not-allowed;
-}
-
-.btn-primary {
-  background:var(--pink);
-  color:white;
-}
-
-.btn-primary:hover:not(:disabled) {
-  background:#D90070;
-}
-
-.btn-outline {
-  background:white;
-  color:#9C216B;
-  border:2px solid #F1B1D2;
-}
-
-.btn-refresh {
-  background:var(--purple);
-  color:white;
-}
+.btn:disabled { opacity:.55; cursor:wait; }
+.btn-primary { background:#DC5C87; color:white; }
+.btn-outline { background:white; color:#963C61; border:2px solid #E7A2B8; }
+.btn-refresh { background:#408B70; color:white; }
 
 main {
   max-width:1420px;
@@ -144,109 +119,114 @@ main {
 
 /* LOGIN */
 .login-card {
-  max-width:440px;
+  max-width:460px;
   margin:55px auto;
-  background:white;
-  border:2px solid #F6B5D8;
+  background:#FFFEFB;
+  border:2px solid #F3C1CB;
   border-radius:25px;
   padding:32px;
-  box-shadow:0 15px 40px rgba(255,22,138,.10);
+  box-shadow:0 14px 35px #A65B6D1C;
+}
+
+.login-card h2,
+.welcome h2,
+.section-heading h3 {
+  font-family:'Fredoka',sans-serif;
 }
 
 .login-card h2 {
-  font-family:'Fredoka',sans-serif;
+  color:#AD426A;
   font-size:30px;
-  color:#A71976;
   margin:0 0 10px;
 }
 
-.login-card p {
-  color:var(--muted);
-  font-size:14px;
-}
+.login-card p { color:#8A6D75; }
 
 .login-card label {
   display:block;
+  margin:17px 0 7px;
   font-weight:700;
   font-size:13px;
-  margin:17px 0 7px;
 }
 
 .login-card input {
   width:100%;
   padding:14px;
-  border:2px solid #F2C4DD;
+  border:2px solid #EFD3D9;
   border-radius:12px;
-  outline:none;
+  outline:0;
 }
 
-.login-card input:focus {
-  border-color:var(--purple);
+.login-card input:focus,
+.toolbar input:focus,
+.toolbar select:focus {
+  border-color:#D45D89;
 }
 
-.login-card .btn { width:100%; margin-top:20px; }
+.login-card .btn {
+  width:100%;
+  margin-top:20px;
+}
 
 /* WELCOME */
 .welcome {
-  background:linear-gradient(115deg,#FFB8DC,#D9B9FF,#FFE19B);
-  border:3px solid #F67DB9;
+  background:linear-gradient(115deg,#FFE0E7,#FFF1CE 52%,#E2F0D6);
+  border:2px solid #F2B5BD;
   border-radius:25px;
   padding:30px;
   position:relative;
   overflow:hidden;
-  box-shadow:0 10px 28px rgba(180,65,145,.10);
+  box-shadow:0 10px 25px #B8757714;
 }
 
 .welcome::after {
   content:"✿";
-  position:absolute;
-  right:35px;
-  top:-55px;
   font-size:190px;
-  color:rgba(255,255,255,.30);
+  position:absolute;
+  right:45px;
+  top:-66px;
+  color:#FFFFFF8C;
   pointer-events:none;
 }
 
 .welcome-top {
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  flex-wrap:wrap;
+  align-items:center;
   gap:15px;
+  flex-wrap:wrap;
   position:relative;
   z-index:1;
 }
 
 .eyebrow {
-  color:#A11D70;
-  font-weight:800;
   font-size:11px;
-  letter-spacing:2.5px;
+  letter-spacing:2px;
+  color:#AE4D6C;
+  font-weight:800;
 }
 
 .welcome h2 {
-  font-family:'Fredoka',sans-serif;
-  font-size:35px;
-  color:#70205F;
-  margin:8px 0;
+  font-size:36px;
+  color:#85405B;
+  margin:7px 0;
 }
 
 .welcome p {
-  color:#754368;
-  font-size:14px;
   margin:0;
+  font-size:14px;
+  color:#805D68;
 }
 
-/* NOTICE */
 .notice {
-  background:#FFF3C9;
-  color:#805500;
-  border:2px solid #FFD760;
-  border-radius:13px;
-  padding:14px 17px;
   margin:19px 0;
+  padding:13px 16px;
+  background:#FFF7DC;
+  border:1px solid #EDDAA4;
+  border-left:5px solid #F0AD63;
+  border-radius:12px;
   font-size:13px;
-  font-weight:600;
+  color:#846438;
 }
 
 /* STATISTICS */
@@ -258,101 +238,97 @@ main {
 }
 
 .stat {
-  border-radius:22px;
-  padding:23px;
-  min-height:155px;
+  border-radius:21px;
+  padding:22px;
+  min-height:151px;
   position:relative;
   overflow:hidden;
-  box-shadow:0 8px 22px rgba(120,40,90,.08);
+  box-shadow:0 7px 18px #9D6A6A15;
 }
 
 .stat::after {
   content:"✿";
   position:absolute;
-  right:-10px;
-  bottom:-35px;
-  font-size:110px;
-  color:rgba(255,255,255,.23);
+  right:-12px;
+  bottom:-44px;
+  font-size:115px;
+  color:#FFFFFF66;
   pointer-events:none;
 }
 
 .stat:nth-child(1) {
-  background:#FF91C8;
-  border:2px solid #F23B99;
+  background:#FFC3D4;
+  border:2px solid #EF8EAA;
 }
 
 .stat:nth-child(2) {
-  background:#FFE16B;
-  border:2px solid #F5B900;
+  background:#FFE5A0;
+  border:2px solid #F0C767;
 }
 
 .stat:nth-child(3) {
-  background:#B89AFF;
-  border:2px solid #853BFF;
+  background:#D9CEFF;
+  border:2px solid #B5A0E8;
 }
 
 .stat:nth-child(4) {
-  background:#78E5D0;
-  border:2px solid #00BFAF;
+  background:#BFE9C9;
+  border:2px solid #85C99C;
 }
 
 .stat-icon {
-  width:44px;
-  height:44px;
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:#FFFFFFA8;
   display:grid;
   place-items:center;
-  background:rgba(255,255,255,.65);
-  border-radius:14px;
   font-size:23px;
-  margin-bottom:13px;
+  margin-bottom:12px;
 }
 
 .stat span {
   display:block;
   font-weight:800;
   font-size:13px;
-  color:#4D2D49;
 }
 
 .stat strong {
+  font:600 39px 'Fredoka',sans-serif;
   display:block;
-  font-family:'Fredoka',sans-serif;
-  font-size:39px;
-  margin-top:4px;
+  margin-top:5px;
 }
 
-.stat:nth-child(1) strong { color:#8B0954; }
-.stat:nth-child(2) strong { color:#785000; }
-.stat:nth-child(3) strong { color:#42159C; }
-.stat:nth-child(4) strong { color:#075F54; }
+.stat:nth-child(1) strong { color:#9D2C5A; }
+.stat:nth-child(2) strong { color:#91630F; }
+.stat:nth-child(3) strong { color:#6746A7; }
+.stat:nth-child(4) strong { color:#27734B; }
 
 /* ORDER SECTION */
 .section-heading {
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
   flex-wrap:wrap;
   gap:10px;
   margin-bottom:17px;
 }
 
 .section-heading h3 {
-  font-family:'Fredoka',sans-serif;
-  font-size:28px;
-  color:#9A146B;
+  font-size:29px;
+  color:#A43F68;
   margin:0;
 }
 
 .section-heading span {
-  background:#E6D3FF;
-  color:#6526AD;
-  border-radius:30px;
-  padding:9px 15px;
   font-size:11px;
+  background:#E5F0D9;
+  color:#4B7752;
+  padding:9px 14px;
+  border-radius:20px;
   font-weight:800;
 }
 
-/* TOOLBAR */
 .toolbar {
   display:flex;
   gap:12px;
@@ -361,29 +337,18 @@ main {
 
 .toolbar input,
 .toolbar select {
-  padding:15px;
-  border:2px solid #ED9DCD;
-  border-radius:14px;
-  background:white;
-  outline:none;
+  background:#FFFEFA;
+  border:2px solid #EAC6CF;
+  border-radius:13px;
+  padding:14px;
   color:var(--dark);
+  outline:none;
 }
 
-.toolbar input {
-  flex:1;
-  min-width:0;
-}
+.toolbar input { flex:1; min-width:0; }
+.toolbar select { width:205px; }
 
-.toolbar select {
-  width:205px;
-}
-
-.toolbar input:focus,
-.toolbar select:focus {
-  border-color:var(--purple);
-}
-
-/* ORDERS */
+/* ORDER CARDS */
 .orders-grid {
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -392,45 +357,44 @@ main {
 
 .order-card {
   min-width:0;
-  background:white;
-  border:2px solid #FF94C6;
-  border-radius:23px;
+  background:#FFFEFB;
+  border:2px solid #F1D3D9;
+  border-radius:22px;
   padding:23px;
   position:relative;
   overflow:hidden;
-  box-shadow:0 9px 26px rgba(255,22,138,.09);
+  box-shadow:0 8px 22px #9F6C7714;
 }
 
 .order-card::before {
   content:"";
   position:absolute;
-  top:0;
-  left:0;
-  right:0;
+  inset:0 0 auto;
   height:7px;
-  background:linear-gradient(90deg,#FF168A,#853BFF,#00C9C2,#FFCC00,#FF783E);
+  background:linear-gradient(
+    90deg,#ED7FA0,#F5BB75,#9FCDA1,#B9A1E6
+  );
 }
 
 .order-top {
   display:flex;
-  align-items:flex-start;
   justify-content:space-between;
+  align-items:flex-start;
   gap:10px;
+  border-bottom:1px dashed #E9C8D0;
   padding-bottom:16px;
   margin-bottom:17px;
-  border-bottom:1px dashed #F2C4DE;
 }
 
 .order-number {
-  font-family:'Fredoka',sans-serif;
-  font-size:21px;
-  font-weight:600;
-  color:#B81D7D;
+  font:600 21px 'Fredoka',sans-serif;
+  color:#A73D67;
+  overflow-wrap:anywhere;
 }
 
 .order-date {
   font-size:11px;
-  color:#92768C;
+  color:#907681;
   margin-top:5px;
 }
 
@@ -442,25 +406,10 @@ main {
   white-space:nowrap;
 }
 
-.status-new {
-  background:#FFD0E8;
-  color:#A91F6B;
-}
-
-.status-progress {
-  background:#FFE99D;
-  color:#805300;
-}
-
-.status-ready {
-  background:#BDF3D8;
-  color:#167B50;
-}
-
-.status-done {
-  background:#E2CEFF;
-  color:#7138B8;
-}
+.status-new { background:#FFD6E2; color:#96325D; }
+.status-progress { background:#FFF0B7; color:#825D12; }
+.status-ready { background:#CDEED8; color:#286B46; }
+.status-done { background:#E3D7F8; color:#67469A; }
 
 .order-content {
   display:grid;
@@ -469,23 +418,21 @@ main {
 }
 
 .customer {
-  background:linear-gradient(135deg,#FFE6F2,#F3E9FF);
-  border:2px solid #F6C2E2;
+  background:#FFF0F3;
+  border:1px solid #F3CCD6;
   border-radius:15px;
-  padding:17px;
+  padding:16px;
   font-size:13px;
   line-height:1.9;
   overflow-wrap:anywhere;
 }
 
-.customer strong {
-  color:#8B2869;
-}
+.customer strong { color:#A14168; }
 
 .items-title {
   font-size:13px;
   font-weight:800;
-  color:#A92379;
+  color:#A14168;
   margin-bottom:10px;
 }
 
@@ -493,7 +440,7 @@ main {
   display:flex;
   justify-content:space-between;
   gap:10px;
-  border-bottom:1px dashed #F1D6E6;
+  border-bottom:1px dashed #EAD9D8;
   padding:10px 0;
   font-size:13px;
 }
@@ -506,21 +453,20 @@ main {
 .total {
   display:flex;
   justify-content:space-between;
-  align-items:center;
   gap:10px;
-  padding-top:15px;
+  padding-top:14px;
   margin-top:12px;
-  border-top:2px solid #F3C5DF;
-  font-weight:800;
-  color:#B91D7D;
+  border-top:2px solid #EFD2D8;
   font-size:19px;
+  font-weight:800;
+  color:#AD416D;
 }
 
 .status-control {
   display:flex;
   gap:10px;
-  background:#F8E8FF;
-  border:1px solid #C89AFF;
+  background:#F4F8EB;
+  border:1px solid #D5E5C8;
   padding:12px;
   border-radius:15px;
   margin-top:20px;
@@ -529,101 +475,52 @@ main {
 .status-control select {
   flex:1;
   min-width:0;
-  padding:12px;
+  border:1px solid #C9DABB;
   background:white;
-  border:1px solid #D6B5EF;
   border-radius:10px;
-  color:var(--dark);
+  padding:11px;
 }
 
 .message {
   padding:14px;
   border-radius:12px;
+  background:#FFF0CF;
+  color:#805820;
   margin:14px 0;
-  background:#FFF0C9;
-  color:#805300;
   font-size:13px;
 }
 
 .empty-state {
   grid-column:1/-1;
   padding:50px 20px;
-  background:white;
-  border:2px dashed #EFA9D1;
+  background:#FFFEFB;
+  border:2px dashed #EDB9C7;
   border-radius:20px;
   text-align:center;
-  color:#986A87;
+  color:#92727E;
 }
 
 /* MOBILE */
 @media(max-width:1000px) {
-  .stats {
-    grid-template-columns:repeat(2,minmax(0,1fr));
-  }
-
-  .orders-grid {
-    grid-template-columns:1fr;
-  }
+  .stats { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .orders-grid { grid-template-columns:1fr; }
 }
 
 @media(max-width:620px) {
-  header {
-    padding:20px 16px;
-  }
-
-  .brand h1 {
-    font-size:29px;
-  }
-
-  main {
-    padding:18px 13px 45px;
-  }
-
-  .welcome {
-    padding:22px;
-  }
-
-  .welcome h2 {
-    font-size:27px;
-  }
-
-  .welcome::after,
-  header::after {
-    display:none;
-  }
-
-  .stat {
-    padding:16px;
-    min-height:145px;
-  }
-
-  .stat strong {
-    font-size:32px;
-  }
-
-  .toolbar {
-    flex-direction:column;
-  }
-
-  .toolbar select {
-    width:100%;
-  }
-
-  .order-content {
-    grid-template-columns:1fr;
-  }
-
-  .order-card {
-    padding:19px 15px;
-  }
-
-  .status-control {
-    flex-direction:column;
-  }
-
-  .section-heading h3 {
-    font-size:24px;
-  }
+  header { padding:20px 16px; }
+  .brand h1 { font-size:29px; }
+  main { padding:18px 13px 45px; }
+  .welcome { padding:22px; }
+  .welcome h2 { font-size:27px; }
+  .welcome::after,header::after { display:none; }
+  .stat { padding:16px; min-height:140px; }
+  .stat strong { font-size:32px; }
+  .toolbar { flex-direction:column; }
+  .toolbar select { width:100%; }
+  .order-content { grid-template-columns:1fr; }
+  .order-card { padding:19px 15px; }
+  .status-control { flex-direction:column; }
+  .section-heading h3 { font-size:24px; }
 }
 </style>
 </head>
@@ -633,140 +530,117 @@ main {
 <header>
   <div class="brand">
     <div class="brand-small">✿ RUANG KOPI KITA ✿</div>
-    <h1>Staff Dashboard ♡</h1>
-    <p>Good coffee, happy orders & sweet moments ☕</p>
+    <h1>Floral Garden Staff 🌷</h1>
+    <p>Every order blooms with care ♡</p>
   </div>
 
   <div class="header-actions">
     <span id="staffEmail"></span>
-    <button
-      id="logoutButton"
-      class="btn btn-outline hidden"
-      onclick="logout()">
-      Log Keluar
-    </button>
+    <button id="logoutButton" class="btn btn-outline hidden"
+      onclick="logout()">Log Keluar</button>
   </div>
 </header>
 
 <main>
 
-  <!-- LOGIN -->
-  <section id="loginSection" class="login-card">
-    <h2>Welcome Back! 🍓</h2>
-    <p>Log masuk untuk mengurus pesanan café.</p>
+<section id="loginSection" class="login-card">
+  <h2>Welcome to the Garden 🌸</h2>
+  <p>Log masuk untuk mengurus pesanan café.</p>
 
-    <form id="loginForm">
-      <label for="emailInput">Email</label>
-      <input
-        type="email"
-        id="emailInput"
-        required
-        autocomplete="username"
-        placeholder="staff@email.com">
+  <form id="loginForm">
+    <label for="emailInput">Email</label>
+    <input type="email" id="emailInput" required
+      autocomplete="username" placeholder="staff@email.com">
 
-      <label for="passwordInput">Kata Laluan</label>
-      <input
-        type="password"
-        id="passwordInput"
-        required
-        autocomplete="current-password"
-        placeholder="Masukkan kata laluan">
+    <label for="passwordInput">Kata Laluan</label>
+    <input type="password" id="passwordInput" required
+      autocomplete="current-password" placeholder="Masukkan kata laluan">
 
-      <button class="btn btn-primary" type="submit">
-        Log Masuk ♡
+    <button class="btn btn-primary" type="submit">
+      Log Masuk ♡
+    </button>
+  </form>
+
+  <div id="loginMessage" class="message hidden" role="alert"></div>
+</section>
+
+<section id="dashboardSection" class="hidden">
+
+  <div class="welcome">
+    <div class="welcome-top">
+      <div>
+        <div class="eyebrow">✿ DAILY GARDEN WORKSPACE ✿</div>
+        <h2>Dashboard Pesanan 🌼</h2>
+        <p>Urus setiap pesanan dengan mudah, ceria dan teratur.</p>
+      </div>
+      <button class="btn btn-refresh" onclick="loadOrders()">
+        ↻ Refresh Pesanan
       </button>
-    </form>
-
-    <div id="loginMessage" class="message hidden"></div>
-  </section>
-
-  <!-- DASHBOARD -->
-  <section id="dashboardSection" class="hidden">
-
-    <div class="welcome">
-      <div class="welcome-top">
-        <div>
-          <div class="eyebrow">✿ DAILY CAFE WORKSPACE ✿</div>
-          <h2>Dashboard Pesanan 🌈</h2>
-          <p>Urus setiap pesanan dengan mudah dan ceria!</p>
-        </div>
-
-        <button class="btn btn-refresh" onclick="loadOrders()">
-          ↻ Refresh Pesanan
-        </button>
-      </div>
     </div>
+  </div>
 
-    <div class="notice">
-      ♡ Pesanan disemak secara automatik setiap 10 saat apabila halaman ini aktif.
+  <div class="notice">
+    🌿 Pesanan disemak secara automatik setiap 10 saat apabila halaman ini aktif.
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-icon">🧾</div>
+      <span>Jumlah Pesanan</span>
+      <strong id="statTotal">0</strong>
     </div>
-
-    <div class="stats">
-      <div class="stat">
-        <div class="stat-icon">🧾</div>
-        <span>Jumlah Pesanan</span>
-        <strong id="statTotal">0</strong>
-      </div>
-
-      <div class="stat">
-        <div class="stat-icon">🔔</div>
-        <span>Pesanan Baharu</span>
-        <strong id="statNew">0</strong>
-      </div>
-
-      <div class="stat">
-        <div class="stat-icon">☕</div>
-        <span>Sedang Disediakan</span>
-        <strong id="statProgress">0</strong>
-      </div>
-
-      <div class="stat">
-        <div class="stat-icon">🌷</div>
-        <span>Sedia Dihidangkan</span>
-        <strong id="statReady">0</strong>
-      </div>
+    <div class="stat">
+      <div class="stat-icon">🌸</div>
+      <span>Pesanan Baharu</span>
+      <strong id="statNew">0</strong>
     </div>
-
-    <div class="section-heading">
-      <h3>🍓 Senarai Pesanan</h3>
-      <span>ORDER MANAGEMENT</span>
+    <div class="stat">
+      <div class="stat-icon">☕</div>
+      <span>Sedang Disediakan</span>
+      <strong id="statProgress">0</strong>
     </div>
-
-    <div class="toolbar">
-      <input
-        type="search"
-        id="searchInput"
-        placeholder="🔎 Cari nama pelanggan, meja atau pesanan...">
-
-      <select id="filterStatus">
-        <option value="all">Semua Status</option>
-        <option value="new">Pesanan Baharu</option>
-        <option value="progress">Sedang Disediakan</option>
-        <option value="ready">Sedia Dihidangkan</option>
-        <option value="done">Selesai</option>
-      </select>
+    <div class="stat">
+      <div class="stat-icon">🌿</div>
+      <span>Sedia Dihidangkan</span>
+      <strong id="statReady">0</strong>
     </div>
+  </div>
 
-    <div id="dashboardMessage" class="message hidden"></div>
+  <div class="section-heading">
+    <h3>🌷 Senarai Pesanan</h3>
+    <span>ORDER MANAGEMENT</span>
+  </div>
 
-    <div id="ordersGrid" class="orders-grid"></div>
+  <div class="toolbar">
+    <input type="search" id="searchInput"
+      placeholder="🔎 Cari nama, meja atau makanan...">
 
-  </section>
+    <select id="filterStatus">
+      <option value="all">Semua Status</option>
+      <option value="new">Pesanan Baharu</option>
+      <option value="progress">Sedang Disediakan</option>
+      <option value="ready">Sedia Dihidangkan</option>
+      <option value="done">Selesai</option>
+    </select>
+  </div>
 
+  <div id="dashboardMessage" class="message hidden" role="alert"></div>
+  <div id="ordersGrid" class="orders-grid"></div>
+
+</section>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 const SUPABASE_URL =
-  "https://ledcwlnyztcsvdedwmtq.supabase.co";
+  'https://ledcwlnyztcsvdedwmtq.supabase.co';
 
 const SUPABASE_KEY =
-  "sb_publishable_a1sRyLibWsIpRThtxfUbUQ_-Ksjebvl";
+  'sb_publishable_a1sRyLibWsIpRThtxfUbUQ_-Ksjebvl';
 
 const client = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
+  SUPABASE_URL, SUPABASE_KEY
 );
 
 let allOrders = [];
@@ -775,143 +649,128 @@ let authorizedUserId = null;
 
 const $ = id => document.getElementById(id);
 
-function showMessage(id, text) {
-  const element = $(id);
-  element.textContent = text;
-  element.classList.toggle("hidden", !text);
+function showMessage(id,msg) {
+  const el = $(id);
+  el.textContent = msg;
+  el.classList.toggle('hidden',!msg);
 }
 
 function escapeHTML(value) {
-  return String(value ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
+  return String(value ?? '')
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#39;');
 }
 
 function money(value) {
-  return "RM" + Number(value || 0).toFixed(2);
+  return 'RM' + (Number(value) || 0).toFixed(2);
 }
 
 function normalizeStatus(status) {
-  const s = String(status || "").toLowerCase();
+  const s = String(status || '').toLowerCase();
 
-  if (["new","pending","baharu"].includes(s)) return "new";
-  if (["progress","preparing","processing","in_progress"].includes(s)) return "progress";
-  if (["ready","siap"].includes(s)) return "ready";
-  if (["done","completed","complete","served"].includes(s)) return "done";
+  if (['new','pending','baharu'].includes(s)) return 'new';
+  if (['progress','preparing','processing','in_progress'].includes(s))
+    return 'progress';
+  if (['ready','siap'].includes(s)) return 'ready';
+  if (['done','completed','complete','served'].includes(s))
+    return 'done';
 
-  return s || "new";
+  return s || 'new';
 }
 
 function statusLabel(status) {
-  const s = normalizeStatus(status);
-
   return {
-    new:"🔔 Baharu",
-    progress:"☕ Sedang Disediakan",
-    ready:"🌷 Sedia Dihidangkan",
-    done:"✓ Selesai"
-  }[s] || String(status || "Tidak diketahui");
+    new:'🌸 Baharu',
+    progress:'☕ Sedang Disediakan',
+    ready:'🌿 Sedia Dihidangkan',
+    done:'✓ Selesai'
+  }[normalizeStatus(status)] || String(status || 'Tidak diketahui');
 }
 
 function statusClass(status) {
   const s = normalizeStatus(status);
-  return ["new","progress","ready","done"].includes(s)
-    ? "status-" + s
-    : "";
+  return ['new','progress','ready','done'].includes(s)
+    ? 'status-' + s : '';
 }
 
 function formatDate(value) {
-  if (!value) return "-";
+  if (!value) return '-';
+
   const d = new Date(value);
-  return Number.isNaN(d.getTime())
-    ? "-"
-    : d.toLocaleString("ms-MY", {
-        day:"2-digit",
-        month:"short",
-        year:"numeric",
-        hour:"2-digit",
-        minute:"2-digit"
-      });
+  return Number.isNaN(d.getTime()) ? '-' :
+    d.toLocaleString('ms-MY',{
+      day:'2-digit',
+      month:'short',
+      year:'numeric',
+      hour:'2-digit',
+      minute:'2-digit'
+    });
 }
 
-function getOrderId(order) {
-  return order.id;
+function customerName(order) {
+  return order.customer_name || order.name || 'Pelanggan';
 }
 
-function getCustomerName(order) {
-  return order.customer_name
-    || order.name
-    || "Pelanggan";
+function tableNumber(order) {
+  return order.table_number ?? order.table_no ?? order.table ?? '-';
 }
 
-function getTableNumber(order) {
-  return order.table_number
-    ?? order.table_no
-    ?? order.table
-    ?? "-";
-}
-
-function getOrderTotal(order) {
-  const value =
-    order.total_amount
-    ?? order.total
-    ?? order.grand_total;
-
-  if (value != null) return Number(value) || 0;
-
-  return (order.items || []).reduce(
-    (sum, item) => sum + itemTotal(item), 0
-  );
+function itemName(item) {
+  return item.product_name || item.item_name || item.name || 'Item';
 }
 
 function itemTotal(item) {
   const qty = Number(item.quantity ?? item.qty ?? 1);
   const price = Number(item.price ?? item.unit_price ?? 0);
-  return Number(item.subtotal ?? item.total_price ?? (qty * price)) || 0;
+  return Number(item.subtotal ?? item.total_price ?? qty*price) || 0;
 }
 
-function itemName(item) {
-  return item.product_name
-    || item.item_name
-    || item.name
-    || "Item";
+function orderTotal(order) {
+  const val = order.total_amount ?? order.total ?? order.grand_total;
+
+  return val != null
+    ? Number(val) || 0
+    : (order.items || []).reduce(
+        (sum,item) => sum + itemTotal(item),0
+      );
 }
 
 function showDashboard(user) {
-  $("loginSection").classList.add("hidden");
-  $("dashboardSection").classList.remove("hidden");
-  $("logoutButton").classList.remove("hidden");
-  $("staffEmail").textContent = user.email || "";
+  $('loginSection').classList.add('hidden');
+  $('dashboardSection').classList.remove('hidden');
+  $('logoutButton').classList.remove('hidden');
+  $('staffEmail').textContent = user.email || '';
 }
 
 function showLogin() {
   authorizedUserId = null;
   allOrders = [];
-  $("dashboardSection").classList.add("hidden");
-  $("loginSection").classList.remove("hidden");
-  $("logoutButton").classList.add("hidden");
-  $("staffEmail").textContent = "";
+
+  $('dashboardSection').classList.add('hidden');
+  $('loginSection').classList.remove('hidden');
+  $('logoutButton').classList.add('hidden');
+  $('staffEmail').textContent = '';
 }
 
 async function checkStaffRole(user) {
-  const { data, error } = await client
-    .from("user_roles")
-    .select("role")
-    .eq("user_id", user.id)
+  const {data,error} = await client
+    .from('user_roles')
+    .select('role')
+    .eq('user_id',user.id)
     .maybeSingle();
 
   if (error) throw error;
 
-  return ["staff","admin"].includes(
-    String(data?.role || "").toLowerCase()
+  return ['staff','admin'].includes(
+    String(data?.role || '').toLowerCase()
   );
 }
 
 async function checkSession() {
-  const { data, error } = await client.auth.getUser();
+  const {data,error} = await client.auth.getUser();
 
   if (error || !data?.user) {
     showLogin();
@@ -923,49 +782,43 @@ async function checkSession() {
 
     if (!allowed) {
       showLogin();
-      showMessage(
-        "loginMessage",
-        "Akaun ini tidak mempunyai akses staf."
-      );
+      showMessage('loginMessage',
+        'Akaun ini tidak mempunyai akses staf.');
       return;
     }
 
     authorizedUserId = data.user.id;
-    showMessage("loginMessage", "");
+    showMessage('loginMessage','');
     showDashboard(data.user);
     await loadOrders();
 
-  } catch (err) {
+  } catch(err) {
     showLogin();
-    showMessage(
-      "loginMessage",
-      "Tidak dapat menyemak akses: " + err.message
-    );
+    showMessage('loginMessage',
+      'Tidak dapat menyemak akses: ' + err.message);
   }
 }
 
-$("loginForm").addEventListener("submit", async event => {
-  event.preventDefault();
+$('loginForm').addEventListener('submit',async e => {
+  e.preventDefault();
 
-  const email = $("emailInput").value.trim();
-  const password = $("passwordInput").value;
-  const button = $("loginForm").querySelector("button");
+  const email = $('emailInput').value.trim();
+  const password = $('passwordInput').value;
+  const button = $('loginForm').querySelector('button');
 
   button.disabled = true;
-  showMessage("loginMessage", "");
+  showMessage('loginMessage','');
 
   try {
-    const { error } = await client.auth.signInWithPassword({
-      email,
-      password
+    const {error} = await client.auth.signInWithPassword({
+      email,password
     });
 
     if (error) throw error;
-
     await checkSession();
 
-  } catch (err) {
-    showMessage("loginMessage", err.message);
+  } catch(err) {
+    showMessage('loginMessage',err.message);
   } finally {
     button.disabled = false;
   }
@@ -982,24 +835,23 @@ async function loadOrders() {
   isLoadingOrders = true;
 
   try {
-    const { data: orders, error } = await client
-      .from("orders")
-      .select("*")
-      .order("created_at", { ascending:false })
+    const {data:orders,error} = await client
+      .from('orders')
+      .select('*')
+      .order('created_at',{ascending:false})
       .limit(200);
 
     if (error) throw error;
 
     const rows = orders || [];
-    const ids = rows.map(order => order.id);
-
+    const ids = rows.map(o => o.id);
     let items = [];
 
     if (ids.length) {
       const result = await client
-        .from("order_items")
-        .select("*")
-        .in("order_id", ids);
+        .from('order_items')
+        .select('*')
+        .in('order_id',ids);
 
       if (result.error) throw result.error;
       items = result.data || [];
@@ -1009,122 +861,111 @@ async function loadOrders() {
 
     items.forEach(item => {
       const id = String(item.order_id);
-
-      if (!grouped[id]) grouped[id] = [];
-      grouped[id].push(item);
+      (grouped[id] ??= []).push(item);
     });
 
     allOrders = rows.map(order => ({
       ...order,
-      items: grouped[String(order.id)] || []
+      items:grouped[String(order.id)] || []
     }));
 
-    showMessage("dashboardMessage", "");
+    showMessage('dashboardMessage','');
     updateStats();
     renderOrders();
 
-  } catch (err) {
-    showMessage(
-      "dashboardMessage",
-      "Gagal memuatkan pesanan: " + err.message
-    );
+  } catch(err) {
+    showMessage('dashboardMessage',
+      'Gagal memuatkan pesanan: ' + err.message);
   } finally {
     isLoadingOrders = false;
   }
 }
 
 function updateStats() {
-  $("statTotal").textContent = allOrders.length;
+  $('statTotal').textContent = allOrders.length;
 
-  $("statNew").textContent = allOrders.filter(
-    order => normalizeStatus(order.status) === "new"
+  $('statNew').textContent = allOrders.filter(
+    o => normalizeStatus(o.status) === 'new'
   ).length;
 
-  $("statProgress").textContent = allOrders.filter(
-    order => normalizeStatus(order.status) === "progress"
+  $('statProgress').textContent = allOrders.filter(
+    o => normalizeStatus(o.status) === 'progress'
   ).length;
 
-  $("statReady").textContent = allOrders.filter(
-    order => normalizeStatus(order.status) === "ready"
+  $('statReady').textContent = allOrders.filter(
+    o => normalizeStatus(o.status) === 'ready'
   ).length;
 }
 
 function renderOrders() {
-  const query = $("searchInput").value.toLowerCase().trim();
-  const filter = $("filterStatus").value;
+  const query = $('searchInput').value.toLowerCase().trim();
+  const filter = $('filterStatus').value;
 
   const filtered = allOrders.filter(order => {
     const searchable = [
-      getOrderId(order),
-      getCustomerName(order),
-      getTableNumber(order),
+      order.id,
+      customerName(order),
+      tableNumber(order),
       ...(order.items || []).map(itemName)
-    ].join(" ").toLowerCase();
+    ].join(' ').toLowerCase();
 
-    const matchesSearch = searchable.includes(query);
-    const matchesStatus =
-      filter === "all"
-      || normalizeStatus(order.status) === filter;
-
-    return matchesSearch && matchesStatus;
+    return searchable.includes(query) &&
+      (filter === 'all' ||
+       normalizeStatus(order.status) === filter);
   });
 
-  const grid = $("ordersGrid");
-  grid.innerHTML = "";
+  const grid = $('ordersGrid');
+  grid.replaceChildren();
 
   if (!filtered.length) {
     grid.innerHTML = `
       <div class="empty-state">
-        <div style="font-size:40px">🍓</div>
+        <div style="font-size:40px">🌼</div>
         <h3>Tiada pesanan ditemui</h3>
         <p>Pesanan akan dipaparkan di sini apabila tersedia.</p>
-      </div>
-    `;
+      </div>`;
     return;
   }
 
   filtered.forEach(order => {
-    const id = getOrderId(order);
+    const id = order.id;
     const currentStatus = normalizeStatus(order.status);
-    const allowedStatuses = ["new","progress","ready","done"];
+    const statuses = ['new','progress','ready','done'];
 
-    const statusOptions = allowedStatuses.map(status => `
-      <option
-        value="${status}"
-        ${currentStatus === status ? "selected" : ""}>
-        ${escapeHTML(statusLabel(status))}
+    let statusOptions = statuses.map(s => `
+      <option value="${s}" ${currentStatus === s ? 'selected' : ''}>
+        ${escapeHTML(statusLabel(s))}
       </option>
-    `).join("");
+    `).join('');
 
-    if (!allowedStatuses.includes(currentStatus)) {
-      statusOptions.concat("");
+    if (!statuses.includes(currentStatus)) {
+      statusOptions = `
+        <option value="${escapeHTML(String(order.status ?? ''))}" selected>
+          ${escapeHTML(statusLabel(order.status))}
+        </option>
+      ` + statusOptions;
     }
 
     const itemsHTML = (order.items || []).length
-      ? order.items.map(item => {
-          const qty = Number(item.quantity ?? item.qty ?? 1);
-          return `
-            <div class="item-row">
-              <span>
-                ${escapeHTML(qty)}×
-                ${escapeHTML(itemName(item))}
-              </span>
-              <span class="item-price">
-                ${money(itemTotal(item))}
-              </span>
-            </div>
-          `;
-        }).join("")
-      : `<div class="item-row">Tiada butiran item</div>`;
+      ? order.items.map(item => `
+        <div class="item-row">
+          <span>
+            ${escapeHTML(item.quantity ?? item.qty ?? 1)}×
+            ${escapeHTML(itemName(item))}
+          </span>
+          <span class="item-price">${money(itemTotal(item))}</span>
+        </div>
+      `).join('')
+      : '<div class="item-row">Tiada butiran item</div>';
 
-    const card = document.createElement("article");
-    card.className = "order-card";
+    const card = document.createElement('article');
+    card.className = 'order-card';
 
     card.innerHTML = `
       <div class="order-top">
         <div>
           <div class="order-number">
-            🍓 Pesanan #${escapeHTML(String(id).slice(-8))}
+            🌷 Pesanan #${escapeHTML(String(id).slice(-8))}
           </div>
           <div class="order-date">
             ${escapeHTML(formatDate(order.created_at))}
@@ -1138,17 +979,18 @@ function renderOrders() {
       <div class="order-content">
         <div class="customer">
           <strong>♡ Maklumat Pelanggan</strong>
-          <div>Nama: ${escapeHTML(getCustomerName(order))}</div>
-          <div>Meja: ${escapeHTML(getTableNumber(order))}</div>
+          <div>Nama: ${escapeHTML(customerName(order))}</div>
+          <div>Meja: ${escapeHTML(tableNumber(order))}</div>
         </div>
 
         <div class="order-items-panel">
-          <div class="items-title">☕ Senarai Makanan & Minuman</div>
+          <div class="items-title">
+            ☕ Senarai Makanan & Minuman
+          </div>
           ${itemsHTML}
-
           <div class="total">
             <span>Jumlah</span>
-            <span>${money(getOrderTotal(order))}</span>
+            <span>${money(orderTotal(order))}</span>
           </div>
         </div>
       </div>
@@ -1163,65 +1005,59 @@ function renderOrders() {
       </div>
     `;
 
-    const select = card.querySelector(".status-control select");
-    const button = card.querySelector(".status-control button");
+    const select = card.querySelector('.status-control select');
+    const button = card.querySelector('.status-control button');
 
-    button.addEventListener("click", async () => {
-      await updateOrderStatus(id, select.value, button);
-    });
+    button.addEventListener('click',() =>
+      updateOrderStatus(id,select.value,button)
+    );
 
     grid.appendChild(card);
   });
 }
 
-async function updateOrderStatus(id, newStatus, button) {
+async function updateOrderStatus(id,newStatus,button) {
   if (!authorizedUserId) return;
 
   button.disabled = true;
-  button.textContent = "Menyimpan...";
+  button.textContent = 'Menyimpan...';
 
   try {
-    const { data, error } = await client
-      .from("orders")
-      .update({ status:newStatus })
-      .eq("id", id)
-      .select("id");
+    const {data,error} = await client
+      .from('orders')
+      .update({status:newStatus})
+      .eq('id',id)
+      .select('id');
 
     if (error) throw error;
 
-    if (!data || !data.length) {
+    if (!data?.length) {
       throw new Error(
-        "Status tidak dikemaskini. Semak kebenaran akses Supabase."
+        'Status tidak dikemaskini. Semak polisi akses Supabase.'
       );
     }
 
     await loadOrders();
 
-  } catch (err) {
-    showMessage(
-      "dashboardMessage",
-      "Gagal menyimpan status: " + err.message
-    );
+  } catch(err) {
+    showMessage('dashboardMessage',
+      'Gagal menyimpan status: ' + err.message);
   } finally {
     button.disabled = false;
-    button.textContent = "♡ Simpan Status";
+    button.textContent = '♡ Simpan Status';
   }
 }
 
-$("searchInput").addEventListener("input", renderOrders);
-$("filterStatus").addEventListener("change", renderOrders);
+$('searchInput').addEventListener('input',renderOrders);
+$('filterStatus').addEventListener('change',renderOrders);
 
-document.addEventListener("visibilitychange", () => {
-  if (!document.hidden && authorizedUserId) {
-    loadOrders();
-  }
+document.addEventListener('visibilitychange',() => {
+  if (!document.hidden && authorizedUserId) loadOrders();
 });
 
 setInterval(() => {
-  if (!document.hidden && authorizedUserId) {
-    loadOrders();
-  }
-}, 10000);
+  if (!document.hidden && authorizedUserId) loadOrders();
+},10000);
 
 checkSession();
 </script>
