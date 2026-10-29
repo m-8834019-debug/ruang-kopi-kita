@@ -31,15 +31,16 @@ body{
 button,input,select{font:inherit}
 button{cursor:pointer}
 button:disabled{opacity:.5;cursor:not-allowed}
+
 header{
   background:var(--dark);
   color:var(--paper);
   text-align:center;
-  padding:26px 15px;
+  padding:29px 15px;
   border-bottom:6px double var(--gold);
 }
 .brand{
-  font:700 clamp(29px,5vw,43px) "Playfair Display",serif;
+  font:700 clamp(30px,5vw,44px) "Playfair Display",serif;
 }
 header p{
   color:#D7BE98;
@@ -59,7 +60,7 @@ header p{
 .hero{
   max-width:1240px;
   margin:28px auto;
-  padding:55px 25px;
+  padding:57px 25px;
   background:#E8D9BD;
   border:2px solid var(--brown);
   outline:5px solid #E8D9BD;
@@ -109,7 +110,7 @@ header p{
 }
 .section-title{
   text-align:center;
-  font:700 34px "Playfair Display",serif;
+  font:700 35px "Playfair Display",serif;
   margin:25px 0 10px;
 }
 .ornament{
@@ -131,7 +132,7 @@ header p{
   flex-wrap:wrap;
   gap:9px;
   justify-content:center;
-  margin-bottom:28px;
+  margin-bottom:30px;
 }
 .category-btn{
   background:#EDE1CF;
@@ -148,7 +149,7 @@ header p{
 .menu-grid{
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:22px;
+  gap:23px;
 }
 .menu-card{
   background:var(--paper);
@@ -156,13 +157,38 @@ header p{
   padding:9px;
   box-shadow:4px 4px 0 #DFD0B8;
   min-width:0;
+  transition:transform .2s;
+}
+.menu-card:hover{
+  transform:translateY(-4px);
+}
+.photo-wrap{
+  position:relative;
+  overflow:hidden;
+  background:#E6D7C1;
+  aspect-ratio:4/3;
 }
 .menu-picture{
   display:block;
   width:100%;
-  aspect-ratio:4/3;
+  height:100%;
   object-fit:cover;
-  background:#E8D9BD;
+  transition:transform .3s;
+}
+.menu-card:hover .menu-picture{
+  transform:scale(1.05);
+}
+.photo-label{
+  position:absolute;
+  bottom:9px;
+  left:9px;
+  background:#FFFAEDEA;
+  color:var(--brown);
+  padding:6px 9px;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:1px;
+  border:1px solid #D8C8AA;
 }
 .menu-body{padding:15px 9px 10px}
 .menu-category{
@@ -324,7 +350,7 @@ footer{
 }
 @media(max-width:500px){
   .menu-grid{grid-template-columns:1fr}
-  .menu-picture{aspect-ratio:5/3}
+  .photo-wrap{aspect-ratio:5/3}
   .menu-body h3{min-height:0}
   .hero{margin:24px 15px;padding:38px 16px}
   .container{padding:18px 15px 100px}
@@ -356,9 +382,7 @@ footer{
   <h2 class="section-title">Our Vintage Menu</h2>
   <div class="ornament">❧ ───── ✦ ───── ❧</div>
 
-  <input
-    id="searchInput"
-    class="search"
+  <input id="searchInput" class="search"
     type="search"
     placeholder="Cari kopi, makanan atau minuman...">
 
@@ -420,102 +444,98 @@ const db=window.supabase.createClient(
 );
 
 /*
- MENU ASAL RUANG KOPI KITA
- Format:
- [kategori, nama, emoji, {pilihan:harga}]
+ 71 MENU RUANG KOPI KITA
+ [kategori, nama, pilihan harga]
 */
 
 const rawMenu=[
+["coffee","Americano",{Hot:8,Cold:9}],
+["coffee","Latte",{Hot:9,Cold:10}],
+["coffee","Vanila Latte",{Hot:12,Cold:14}],
+["coffee","Hazelnut Latte",{Hot:12,Cold:14}],
+["coffee","Spanish Latte",{Hot:12,Cold:14}],
+["coffee","Strawberry Latte",{Hot:12,Cold:14}],
+["coffee","Mocha Latte",{Hot:12,Cold:14}],
+["coffee","Butterscotch Latte",{Hot:13,Cold:15}],
+["coffee","Caramel Macchiato",{Hot:13,Cold:15}],
+["coffee","Butter Cookie Latte",{Hot:13,Cold:15}],
+["coffee","Pistachio Latte",{Hot:13,Cold:15}],
+["coffee","Ruang Kopi Kita Signature",{Regular:17}],
 
-["coffee","Americano","☕",{Hot:8,Cold:9}],
-["coffee","Latte","☕",{Hot:9,Cold:10}],
-["coffee","Vanila Latte","☕",{Hot:12,Cold:14}],
-["coffee","Hazelnut Latte","☕",{Hot:12,Cold:14}],
-["coffee","Spanish Latte","☕",{Hot:12,Cold:14}],
-["coffee","Strawberry Latte","🍓",{Hot:12,Cold:14}],
-["coffee","Mocha Latte","🍫",{Hot:12,Cold:14}],
-["coffee","Butterscotch Latte","☕",{Hot:13,Cold:15}],
-["coffee","Caramel Macchiato","☕",{Hot:13,Cold:15}],
-["coffee","Butter Cookie Latte","🍪",{Hot:13,Cold:15}],
-["coffee","Pistachio Latte","☕",{Hot:13,Cold:15}],
-["coffee","Ruang Kopi Kita Signature","☕",{Regular:17}],
+["noncoffee","Chocolate",{Hot:10,Cold:11}],
+["noncoffee","Chocolate Hazelnut",{Hot:11,Cold:13}],
+["noncoffee","Chocolate Cookie",{Hot:11,Cold:13}],
+["noncoffee","Chocolate Caramel",{Hot:11,Cold:13}],
+["noncoffee","Chocolate Pistachio",{Cold:14}],
+["noncoffee","Black Forest",{Cold:14}],
 
-["noncoffee","Chocolate","🍫",{Hot:10,Cold:11}],
-["noncoffee","Chocolate Hazelnut","🍫",{Hot:11,Cold:13}],
-["noncoffee","Chocolate Cookie","🍪",{Hot:11,Cold:13}],
-["noncoffee","Chocolate Caramel","🍫",{Hot:11,Cold:13}],
-["noncoffee","Chocolate Pistachio","🍫",{Cold:14}],
-["noncoffee","Black Forest","🍒",{Cold:14}],
+["bites","Shaker Fries",{Regular:7}],
+["bites","Chicken Nugget 5pcs",{Regular:7}],
+["bites","Wedges",{Regular:10}],
+["bites","Combo Set (Fries & Nugget)",{Regular:12}],
+["bites","Combo Set (Fries & Wedges)",{Regular:15}],
+["bites","Loaded Fries",{Regular:12}],
+["bites","Loaded Nachos",{Regular:13}],
 
-["bites","Shaker Fries","🍟",{Regular:7}],
-["bites","Chicken Nugget 5pcs","🍗",{Regular:7}],
-["bites","Wedges","🥔",{Regular:10}],
-["bites","Combo Set (Fries & Nugget)","🍟",{Regular:12}],
-["bites","Combo Set (Fries & Wedges)","🍟",{Regular:15}],
-["bites","Loaded Fries","🍟",{Regular:12}],
-["bites","Loaded Nachos","🌮",{Regular:13}],
+["pasta","Aglio Olio",{Regular:13}],
+["pasta","Carbonara",{Regular:13}],
+["pasta","Bolognese",{Regular:13}],
+["pasta","Creamy Tomyam",{Regular:15}],
+["pasta","Gigi Hadid",{Regular:15}],
 
-["pasta","Aglio Olio","🍝",{Regular:13}],
-["pasta","Carbonara","🍝",{Regular:13}],
-["pasta","Bolognese","🍝",{Regular:13}],
-["pasta","Creamy Tomyam","🍝",{Regular:15}],
-["pasta","Gigi Hadid","🍝",{Regular:15}],
+["rice","Sukiya Maggie Bowl",{Regular:15}],
+["rice","Sukiya Rice Bowl",{Regular:17}],
+["rice","Cili Padi Beef Bowl",{Regular:17}],
+["rice","Sukiya Beef Bowl (150g)",{Regular:19}],
 
-["rice","Sukiya Maggie Bowl","🍜",{Regular:15}],
-["rice","Sukiya Rice Bowl","🍚",{Regular:17}],
-["rice","Cili Padi Beef Bowl","🍚",{Regular:17}],
-["rice","Sukiya Beef Bowl (150g)","🍚",{Regular:19}],
+["milky","Taro Milk",{Cold:10}],
+["milky","Strawberry Milk",{Cold:10}],
+["milky","Mango Milk",{Cold:10}],
+["milky","PineApple Milk",{Cold:10}],
+["milky","Brown Sugar Milk",{Cold:10}],
 
-["milky","Taro Milk","🥛",{Cold:10}],
-["milky","Strawberry Milk","🍓",{Cold:10}],
-["milky","Mango Milk","🥭",{Cold:10}],
-["milky","PineApple Milk","🍍",{Cold:10}],
-["milky","Brown Sugar Milk","🥛",{Cold:10}],
+["sparkling","Lychee Soda",{Regular:8}],
+["sparkling","Blackcurrant",{Regular:8}],
+["sparkling","Strawberry Sprite",{Regular:8}],
+["sparkling","Mango Unite",{Regular:8}],
+["sparkling","Blue Lagoon",{Regular:8}],
+["sparkling","PineApple Pine",{Regular:8}],
 
-["sparkling","Lychee Soda","🍹",{Regular:8}],
-["sparkling","Blackcurrant","🫐",{Regular:8}],
-["sparkling","Strawberry Sprite","🍓",{Regular:8}],
-["sparkling","Mango Unite","🥭",{Regular:8}],
-["sparkling","Blue Lagoon","🍹",{Regular:8}],
-["sparkling","PineApple Pine","🍍",{Regular:8}],
+["tea","Lemon Tea",{Hot:6,Cold:7}],
+["tea","Peach Tea",{Hot:6,Cold:7}],
+["tea","Teh O",{Hot:2,Cold:3}],
+["tea","Teh Tarik",{Hot:4,Cold:5}],
 
-["tea","Lemon Tea","🍋",{Hot:6,Cold:7}],
-["tea","Peach Tea","🍑",{Hot:6,Cold:7}],
-["tea","Teh O","🍵",{Hot:2,Cold:3}],
-["tea","Teh Tarik","🫖",{Hot:4,Cold:5}],
+["matcha","Matcha",{Regular:11}],
+["matcha","Matcha Strawberry",{Regular:13}],
+["matcha","Matcha Mango",{Regular:13}],
+["matcha","Matcha Caramel",{Regular:13}],
+["matcha","Matcha Butterscotch",{Regular:13}],
+["matcha","Matcha Chocolate",{Regular:13}],
+["matcha","Matcha Taro",{Regular:13}],
+["matcha","Matcha Biscoff",{Regular:14.90}],
 
-["matcha","Matcha","🍃",{Regular:11}],
-["matcha","Matcha Strawberry","🍓",{Regular:13}],
-["matcha","Matcha Mango","🥭",{Regular:13}],
-["matcha","Matcha Caramel","🍃",{Regular:13}],
-["matcha","Matcha Butterscotch","🍃",{Regular:13}],
-["matcha","Matcha Chocolate","🍫",{Regular:13}],
-["matcha","Matcha Taro","🍃",{Regular:13}],
-["matcha","Matcha Biscoff","🍪",{Regular:14.90}],
-
-["addon","Shabu Shabu Beef (50g)","🥩",{Regular:10}],
-["addon","Chicken Slice","🍗",{Regular:2}],
-["addon","Prawn 2pcs","🍤",{Regular:6}],
-["addon","Spaghetti","🍝",{Regular:4}],
-["addon","Maggie","🍜",{Regular:5}],
-["addon","Rice","🍚",{Regular:2}],
-["addon","Sukiya Sauce","🥣",{Regular:2}],
-["addon","Cheese Sauce","🧀",{Regular:3}],
-["addon","Espresso Shot","☕",{Regular:3}],
-["addon","Oat Milk","🥛",{Regular:3}],
-["addon","Flavoured Syrup","🍯",{Regular:2}],
-["addon","Whipping Cream","🍦",{Regular:2}],
-["addon","Drizzle","🍫",{Regular:1}],
-["addon","Pure Matcha","🍃",{Regular:1}]
-
+["addon","Shabu Shabu Beef (50g)",{Regular:10}],
+["addon","Chicken Slice",{Regular:2}],
+["addon","Prawn 2pcs",{Regular:6}],
+["addon","Spaghetti",{Regular:4}],
+["addon","Maggie",{Regular:5}],
+["addon","Rice",{Regular:2}],
+["addon","Sukiya Sauce",{Regular:2}],
+["addon","Cheese Sauce",{Regular:3}],
+["addon","Espresso Shot",{Regular:3}],
+["addon","Oat Milk",{Regular:3}],
+["addon","Flavoured Syrup",{Regular:2}],
+["addon","Whipping Cream",{Regular:2}],
+["addon","Drizzle",{Regular:1}],
+["addon","Pure Matcha",{Regular:1}]
 ];
 
-const menu=rawMenu.map((row,id)=>({
+const menu=rawMenu.map((r,id)=>({
   id,
-  category:row[0],
-  name:row[1],
-  icon:row[2],
-  prices:row[3]
+  category:r[0],
+  name:r[1],
+  prices:r[2]
 }));
 
 const categories={
@@ -532,122 +552,124 @@ const categories={
   addon:"➕ Add On"
 };
 
+/*
+ FOTO RUJUKAN DARIPADA UNSPLASH
+
+ Nota:
+ Foto ini ialah gambar stok/rujukan.
+ Beberapa menu menggunakan gambar yang
+ sama kategori, bukan foto hidangan sebenar.
+
+ Gambar AI khas boleh diletakkan di
+ folder images/ dalam repository GitHub.
+*/
+
+const photos={
+  coffee:[
+    "photo-1461023058943-07fcbe16d735",
+    "photo-1509042239860-f550ce710b93",
+    "photo-1495474472287-4d71bcdd2085",
+    "photo-1442512595331-e89e73853f31"
+  ],
+  noncoffee:[
+    "photo-1572490122747-3968b75cc699",
+    "photo-1542990253-0b8be1f0f0ed"
+  ],
+  bites:[
+    "photo-1573080496219-bb080dd4f877",
+    "photo-1562967914-608f82629710"
+  ],
+  pasta:[
+    "photo-1473093295043-cdd812d0e601",
+    "photo-1551892374-ecf8754cf8b0",
+    "photo-1547592180-85f173990554"
+  ],
+  rice:[
+    "photo-1546069901-ba9599a7e63c",
+    "photo-1512058564366-18510be2db19"
+  ],
+  milky:[
+    "photo-1572490122747-3968b75cc699",
+    "photo-1461023058943-07fcbe16d735"
+  ],
+  sparkling:[
+    "photo-1544145945-f90425340c7e",
+    "photo-1513558161293-cdaf765edfd4"
+  ],
+  tea:[
+    "photo-1544787219-7f47ccb76574",
+    "photo-1544145945-f90425340c7e"
+  ],
+  matcha:[
+    "photo-1515823064-d6e0c04616a7",
+    "photo-1517701604599-bb29b565090c"
+  ],
+  addon:[
+    "photo-1546069901-ba9599a7e63c",
+    "photo-1573080496219-bb080dd4f877",
+    "photo-1473093295043-cdd812d0e601"
+  ]
+};
+
+/*
+ MENU YANG DISEDIAKAN UNTUK GAMBAR AI.
+
+ Contoh fail:
+ images/ruang-kopi-kita-signature.jpg
+
+ Fail tersebut perlu dimuat naik ke GitHub.
+ Jika belum wujud, foto rujukan akan digunakan.
+*/
+
+const aiImageNames=new Set([
+  "Ruang Kopi Kita Signature",
+  "Sukiya Maggie Bowl",
+  "Sukiya Rice Bowl",
+  "Cili Padi Beef Bowl",
+  "Sukiya Beef Bowl (150g)",
+  "Creamy Tomyam",
+  "Gigi Hadid",
+  "Matcha Biscoff",
+  "Matcha Taro",
+  "Black Forest",
+  "Chocolate Pistachio",
+  "Mango Unite",
+  "PineApple Pine",
+  "Blue Lagoon"
+]);
+
+function slug(name){
+  return name.toLowerCase()
+    .replace(/[^a-z0-9]+/g,"-")
+    .replace(/^-|-$/g,"");
+}
+
+function stockPhoto(item){
+  const list=photos[item.category]||photos.coffee;
+  const index=menu
+    .filter(x=>x.category===item.category)
+    .findIndex(x=>x.id===item.id);
+
+  const photo=list[index%list.length];
+
+  return "https://images.unsplash.com/"+
+    photo+
+    "?auto=format&fit=crop&w=700&q=85";
+}
+
+function imageFor(item){
+  if(aiImageNames.has(item.name)){
+    return "images/"+slug(item.name)+".jpg";
+  }
+  return stockPhoto(item);
+}
+
 let selectedCategory="all";
 let cart=[];
 let submitting=false;
 
 const $=id=>document.getElementById(id);
 const money=n=>"RM"+Number(n).toFixed(2);
-
-/*
- VINTAGE MENU ILLUSTRATION
- Setiap menu menerima ilustrasi tersendiri
- dengan nama dan simbol hidangan.
- Tiada pautan gambar luaran diperlukan.
-*/
-
-function svgEscape(s){
-  return String(s).replace(/[&<>"']/g,c=>({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&apos;"
-  }[c]));
-}
-
-function vintageImage(item){
-  const palettes=[
-    ["#E8D5B5","#79563C"],
-    ["#D8DCC3","#596442"],
-    ["#E6C9B4","#815342"],
-    ["#DDD1BA","#6A6045"],
-    ["#E5D9C8","#67503B"],
-    ["#D4DABF","#576747"]
-  ];
-
-  const [bg,ink]=palettes[item.id%palettes.length];
-
-  const name=svgEscape(item.name);
-  const category=svgEscape(
-    categories[item.category]||"CAFÉ MENU"
-  );
-
-  const words=item.name.split(" ");
-  let lines=[];
-
-  if(item.name.length>24){
-    const midpoint=Math.ceil(words.length/2);
-    lines=[
-      words.slice(0,midpoint).join(" "),
-      words.slice(midpoint).join(" ")
-    ];
-  }else{
-    lines=[item.name];
-  }
-
-  const title=lines.map((line,i)=>
-    `<text x="400" y="${442+i*35}"
-       text-anchor="middle"
-       font-family="Georgia,serif"
-       font-size="${line.length>25?23:29}"
-       font-weight="bold"
-       fill="${ink}">${svgEscape(line)}</text>`
-  ).join("");
-
-  const svg=`
-  <svg xmlns="http://www.w3.org/2000/svg"
-       width="800" height="600"
-       viewBox="0 0 800 600">
-
-    <rect width="800" height="600" fill="${bg}"/>
-
-    <rect x="25" y="25" width="750" height="550"
-      fill="none" stroke="${ink}" stroke-width="3"/>
-
-    <rect x="37" y="37" width="726" height="526"
-      fill="none" stroke="${ink}"
-      stroke-width="1" opacity=".5"/>
-
-    <circle cx="400" cy="245" r="155"
-      fill="#FFF8E8" stroke="${ink}" stroke-width="3"/>
-
-    <circle cx="400" cy="245" r="140"
-      fill="none" stroke="${ink}"
-      stroke-dasharray="3 9" opacity=".6"/>
-
-    <text x="400" y="91"
-      text-anchor="middle"
-      font-size="19"
-      letter-spacing="6"
-      font-family="Georgia,serif"
-      fill="${ink}">RUANG KOPI KITA</text>
-
-    <text x="400" y="315"
-      text-anchor="middle"
-      font-size="130">${item.icon}</text>
-
-    <text x="400" y="395"
-      text-anchor="middle"
-      font-size="15"
-      letter-spacing="4"
-      fill="${ink}"
-      font-family="Georgia,serif">${category}</text>
-
-    ${title}
-
-    <path d="M240 520 H350 M450 520 H560"
-      stroke="${ink}" stroke-width="2"/>
-
-    <text x="400" y="527"
-      text-anchor="middle"
-      font-size="27"
-      fill="${ink}">✦</text>
-  </svg>`;
-
-  return "data:image/svg+xml;charset=utf-8,"+
-    encodeURIComponent(svg);
-}
 
 /* CATEGORY */
 
@@ -671,7 +693,7 @@ function renderCategories(){
   });
 }
 
-/* MENU */
+/* MENU CARDS */
 
 function renderMenu(){
   const root=$("menuGrid");
@@ -682,7 +704,7 @@ function renderMenu(){
 
   const filtered=menu.filter(item=>
     (selectedCategory==="all"||
-      item.category===selectedCategory) &&
+     item.category===selectedCategory) &&
     item.name.toLowerCase().includes(query)
   );
 
@@ -697,11 +719,39 @@ function renderMenu(){
     const card=document.createElement("article");
     card.className="menu-card";
 
+    const photoWrap=document.createElement("div");
+    photoWrap.className="photo-wrap";
+
     const img=document.createElement("img");
     img.className="menu-picture";
-    img.src=vintageImage(item);
-    img.alt="Ilustrasi vintage "+item.name;
+    img.src=imageFor(item);
+    img.alt="Gambar rujukan "+item.name;
     img.loading="lazy";
+
+    const photoLabel=document.createElement("span");
+    photoLabel.className="photo-label";
+    photoLabel.textContent="PHOTO REFERENCE";
+
+    img.addEventListener("load",()=>{
+      if(img.src.includes("/images/")){
+        photoLabel.textContent="AI FOOD VISUAL";
+      }
+    });
+
+    img.addEventListener("error",()=>{
+      const fallback=stockPhoto(item);
+
+      if(img.src!==fallback){
+        img.src=fallback;
+        photoLabel.textContent="PHOTO REFERENCE";
+      }else{
+        img.onerror=null;
+        img.style.display="none";
+        photoLabel.textContent="IMAGE UNAVAILABLE";
+      }
+    });
+
+    photoWrap.append(img,photoLabel);
 
     const body=document.createElement("div");
     body.className="menu-body";
@@ -714,8 +764,9 @@ function renderMenu(){
     name.textContent=item.name;
 
     const select=document.createElement("select");
-    select.setAttribute("aria-label",
-      "Pilihan "+item.name);
+    select.setAttribute(
+      "aria-label","Pilihan "+item.name
+    );
 
     Object.entries(item.prices).forEach(
       ([variant,price])=>{
@@ -744,12 +795,11 @@ function renderMenu(){
     const btn=document.createElement("button");
     btn.className="add";
     btn.textContent="+ Tambah";
-
     btn.onclick=()=>addToCart(item.id,select.value);
 
     bottom.append(price,btn);
     body.append(cat,name,select,bottom);
-    card.append(img,body);
+    card.append(photoWrap,body);
     root.appendChild(card);
   });
 }
@@ -765,7 +815,6 @@ function addToCart(id,variant){
   if(!item)return;
 
   const key=id+"|"+variant;
-
   const existing=cart.find(x=>x.key===key);
 
   if(existing){
@@ -900,7 +949,6 @@ async function submitOrder(){
 
   submitting=true;
   renderCart();
-
   showMessage("Sedang menghantar pesanan...");
 
   try{
@@ -937,8 +985,8 @@ async function submitOrder(){
 
     if(itemError){
       throw new Error(
-        "Pesanan utama sudah direkodkan tetapi item "+
-        "gagal disimpan. Hubungi staf sebelum "+
+        "Pesanan utama telah direkodkan tetapi "+
+        "item gagal disimpan. Hubungi staf sebelum "+
         "mencuba lagi. ID: "+order.id+
         ". "+itemError.message
       );
@@ -962,7 +1010,7 @@ async function submitOrder(){
   }
 }
 
-/* INITIALIZE */
+/* START */
 
 renderCategories();
 renderMenu();
