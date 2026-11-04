@@ -1,370 +1,7 @@
 
-<!DOCTYPE html>
-<html lang="ms">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ruang Kopi Kita | Panel Admin</title>
-<style>
-:root{
-  --dark:#382318;
-  --brown:#684630;
-  --gold:#c49a6c;
-  --cream:#f7f0e7;
-  --line:#e8d9ca;
-  --red:#ac4242;
-  --green:#267347;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  background:var(--cream);
-  color:var(--dark);
-  font-family:Arial,sans-serif;
-}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-.hidden{display:none!important}
-header{
-  background:var(--dark);
-  color:white;
-  padding:17px 5%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
-}
-header h1{font-size:23px;margin:0}
-header small{color:#e9c9a7}
-main{
-  max-width:1250px;
-  margin:auto;
-  padding:25px 18px 65px;
-}
-.btn{
-  border:0;
-  background:var(--brown);
-  color:white;
-  border-radius:9px;
-  padding:11px 16px;
-  font-weight:bold;
-}
-.btn:hover{opacity:.9}
-.btn:disabled{opacity:.55}
-.gold{background:var(--gold);color:var(--dark)}
-.red{background:var(--red)}
-.small{padding:8px 11px;font-size:13px}
-.login{
-  max-width:440px;
-  margin:50px auto;
-  background:white;
-  padding:30px;
-  border-radius:16px;
-  box-shadow:0 8px 30px #38231816;
-}
-.login h2,.login p{text-align:center}
-.login p,.subtitle,.muted{color:#796b60}
-.login .btn{width:100%}
-.field{margin:14px 0}
-.field label{
-  display:block;
-  font-weight:bold;
-  margin-bottom:7px;
-}
-.field input,.field select,.field textarea{
-  width:100%;
-  border:1px solid #d8c9ba;
-  border-radius:8px;
-  padding:12px;
-  background:white;
-}
-.field textarea{min-height:75px}
-nav{
-  display:flex;
-  gap:9px;
-  flex-wrap:wrap;
-  margin-bottom:26px;
-}
-.nav-btn{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:9px;
-  padding:12px 17px;
-  color:var(--brown);
-  font-weight:bold;
-}
-.nav-btn.active{
-  background:var(--brown);
-  color:white;
-}
-h2{margin:0 0 7px}
-.subtitle{
-  margin:0 0 22px;
-  line-height:1.5;
-}
-.panel{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:15px;
-  padding:22px;
-  margin-bottom:20px;
-}
-.panel h3{margin-top:0}
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:15px;
-  margin-bottom:22px;
-}
-.stat{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:13px;
-  padding:20px;
-}
-.stat span{font-size:13px;color:#796b60}
-.stat strong{
-  display:block;
-  font-size:25px;
-  margin-top:12px;
-  overflow-wrap:anywhere;
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:0 16px;
-}
-.full{grid-column:1/-1}
-.toolbar{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-bottom:17px;
-}
-.toolbar input,.toolbar select{
-  padding:11px;
-  border:1px solid var(--line);
-  border-radius:8px;
-  background:white;
-}
-.toolbar input[type=search]{
-  flex:1;
-  min-width:200px;
-}
-.table-wrap{overflow-x:auto}
-table{
-  border-collapse:collapse;
-  width:100%;
-  min-width:700px;
-}
-th,td{
-  padding:13px 11px;
-  text-align:left;
-  border-bottom:1px solid #eee5db;
-  font-size:14px;
-  vertical-align:top;
-}
-th{
-  background:#f7f0e7;
-  color:var(--brown);
-}
-.actions{
-  display:flex;
-  gap:6px;
-  flex-wrap:wrap;
-}
-.msg{
-  padding:13px 15px;
-  border-radius:9px;
-  background:#fbe8e5;
-  color:#953e38;
-  margin-bottom:18px;
-  font-size:14px;
-}
-.msg.ok{
-  background:#e4f4e9;
-  color:#24643e;
-}
-.report-line{
-  display:flex;
-  justify-content:space-between;
-  gap:15px;
-  padding:12px 10px;
-  border-bottom:1px solid #eee5db;
-}
-.report-line.heading{
-  background:#f9f3eb;
-  font-weight:bold;
-  margin-top:12px;
-}
-.report-line.indent{padding-left:24px}
-.report-line.total{
-  font-weight:bold;
-  border-top:2px solid var(--brown);
-}
-.report-line.final{
-  font-weight:bold;
-  font-size:20px;
-  background:#f0e2d2;
-  border-radius:9px;
-  margin-top:16px;
-  padding:18px 12px;
-}
-.positive{color:var(--green)}
-.negative{color:var(--red)}
-.note{
-  padding:13px;
-  background:#fff9eb;
-  border:1px solid #e8d3a1;
-  border-radius:9px;
-  font-size:13px;
-  line-height:1.6;
-  margin:15px 0;
-}
-
-/* =========================================
-   BAHAGIAN 2 — DASHBOARD & RESPONSIVE CSS
-========================================= */
-
-.dash-grid{
-  display:grid;
-  grid-template-columns:1.35fr 1fr;
-  gap:18px;
-}
-
-.dash-grid .panel{
-  min-width:0;
-}
-
-.month-bars{
-  display:grid;
-  grid-template-columns:repeat(6,minmax(0,1fr));
-  gap:10px;
-  align-items:end;
-  min-height:205px;
-  padding:15px 0;
-}
-
-.month-col{
-  text-align:center;
-  min-width:0;
-}
-
-.month-col .bars{
-  height:140px;
-  display:flex;
-  align-items:end;
-  justify-content:center;
-  gap:5px;
-  border-bottom:1px solid var(--line);
-}
-
-.month-col .bars>div{
-  width:35%;
-  min-height:2px;
-  border-radius:5px 5px 0 0;
-}
-
-.bar-sales{
-  background:#c49a6c;
-}
-
-.bar-profit{
-  background:#267347;
-}
-
-.bar-loss{
-  background:#ac4242;
-}
-
-.month-col small{
-  font-size:11px;
-  color:#796b60;
-  display:block;
-  margin-top:7px;
-}
-
-.legend{
-  display:flex;
-  gap:15px;
-  flex-wrap:wrap;
-  font-size:12px;
-  color:#796b60;
-  margin:10px 0;
-}
-
-.legend b{
-  display:inline-block;
-  width:11px;
-  height:11px;
-  border-radius:2px;
-  margin-right:5px;
-}
-
-.mini-row{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  padding:10px 0;
-  border-bottom:1px solid #eee5db;
-  font-size:14px;
-}
-
-.mini-row strong{
-  white-space:nowrap;
-}
-
-.status-note{
-  font-size:13px;
-  line-height:1.5;
-  color:#796b60;
-}
-
-.chart{
-  height:225px;
-  display:flex;
-  align-items:flex-end;
-  gap:10px;
-  border-bottom:2px solid var(--line);
-  padding:15px 10px 10px;
-}
-
-.barwrap{
-  height:100%;
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:flex-end;
-  gap:6px;
-}
-
-.bar{
-  background:var(--gold);
-  width:65%;
-  max-width:65px;
-  border-radius:6px 6px 0 0;
-}
-
-.barwrap small{
-  font-size:11px;
-  color:#796b60;
-}
-
-footer{
-  text-align:center;
-  color:#796b60;
-  padding:20px;
-  font-size:13px;
-}
-
-/* =========================================
-   MODERN ELEGANT LUXURY
-========================================= */
-
-:root{
+<!-- MODERN ELEGANT LUXURY — RUANG KOPI KITA -->
+<style id="modernElegantLuxury2026">
+:root {
   --dark:#211812;
   --brown:#39291f;
   --gold:#c7a06c;
@@ -374,96 +11,118 @@ footer{
   --green:#247653;
 }
 
-body{
-  background:#f7f5f1;
-  color:#29211c;
+html {
+  color-scheme:light;
+}
+
+body {
+  background:#f7f5f1 !important;
+  color:#29211c !important;
+  font-family:Arial,Helvetica,sans-serif !important;
   line-height:1.55;
 }
 
 /* HEADER */
-header{
-  background:#211812;
-  color:#fff;
+body > header {
+  background:#211812 !important;
+  color:#fff !important;
   border-bottom:2px solid #c7a06c;
-  padding:20px 30px;
+  padding:20px 30px !important;
   min-height:90px;
   box-shadow:0 5px 24px #21181218;
 }
 
-header h1{
+body > header h1 {
+  color:#fff !important;
   font-family:Georgia,serif;
   font-size:27px;
-  color:#fff;
+  letter-spacing:.2px;
 }
 
-header small{
-  color:#e2c8a7;
+body > header small {
+  color:#e2c8a7 !important;
 }
 
-/* MAIN */
-main{
+#adminEmail {
+  color:#f3e8db !important;
+}
+
+#logoutBtn {
+  background:transparent !important;
+  color:#fff !important;
+  border:1px solid #c7a06c !important;
+}
+
+/* MAIN CONTENT */
+main {
   max-width:1500px;
   padding:30px 28px 65px;
 }
 
-/* NAVIGATION */
-.nav-btn{
-  background:transparent;
-  color:#eee0d1;
-  border:1px solid transparent;
-  border-radius:10px;
-  padding:13px 15px;
-  font-size:13px;
-  font-weight:600;
-  transition:background .2s,color .2s;
+#dashboardSection {
+  color:#29211c;
 }
 
-.nav-btn:hover{
-  background:#483328;
-  color:#fff;
-}
-
-.nav-btn.active{
-  background:#dfbb85;
-  color:#211812;
-  border-color:#d3aa74;
-}
-
-/* SIDEBAR DESKTOP */
-@media(min-width:1051px){
-
-  body:has(#dashboardSection:not(.hidden)) main{
+/* SIDEBAR */
+@media(min-width:1051px) {
+  body:has(#dashboardSection:not(.hidden)) main {
     margin-left:245px;
     max-width:none;
   }
 
-  #dashboardSection:not(.hidden)>nav{
-    position:fixed;
+  #dashboardSection:not(.hidden) > nav {
+    position:fixed !important;
     top:90px;
     bottom:0;
     left:0;
     width:245px;
-    margin:0;
-    padding:24px 13px;
-    display:flex;
-    flex-direction:column;
-    flex-wrap:nowrap;
+    margin:0 !important;
+    padding:24px 13px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    flex-wrap:nowrap !important;
     gap:8px;
-    background:#211812;
+    background:#211812 !important;
     border-right:1px solid #49372a;
     overflow-y:auto;
     z-index:30;
   }
 
-  #dashboardSection>nav .nav-btn{
+  #dashboardSection > nav .nav-btn {
     width:100%;
     text-align:left;
   }
 }
 
+/* NAVIGATION BUTTONS */
+#dashboardSection nav .nav-btn {
+  background:transparent !important;
+  color:#eee0d1 !important;
+  border:1px solid transparent !important;
+  border-radius:10px !important;
+  padding:13px 15px !important;
+  font-size:13px;
+  font-weight:600;
+  transition:background .2s,color .2s;
+}
+
+#dashboardSection nav .nav-btn:hover {
+  background:#483328 !important;
+  color:#fff !important;
+}
+
+#dashboardSection nav .nav-btn.active {
+  background:linear-gradient(
+    120deg,#f0d6aa,#c69a60
+  ) !important;
+  color:#211812 !important;
+  border-color:#d3aa74 !important;
+  box-shadow:0 4px 12px #00000020;
+}
+
 /* PAGE TITLES */
-.page-section>h2{
-  color:#211812;
+.page-section > h2 {
+  color:#211812 !important;
   font-family:Georgia,serif;
   font-size:clamp(25px,3vw,35px);
   font-weight:700;
@@ -471,115 +130,99 @@ main{
   margin-bottom:8px;
 }
 
-.subtitle{
-  color:#786e65;
+.page-section > .subtitle {
+  color:#786e65 !important;
   font-size:14px;
   line-height:1.65;
   margin-bottom:25px;
 }
 
 /* KPI CARDS */
-.stats{
+.stats {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:17px;
   margin-bottom:24px;
 }
 
-.stat{
+.stat {
   position:relative;
-  background:#fffdfa;
-  color:#211812;
-  border:1px solid #e9e1d6;
-  border-radius:16px;
-  padding:24px 22px;
+  background:#fffdfa !important;
+  color:#211812 !important;
+  border:1px solid #e9e1d6 !important;
+  border-radius:16px !important;
+  padding:24px 22px !important;
   min-height:135px;
   overflow:hidden;
   box-shadow:0 5px 20px #2118120b;
   transition:transform .2s,box-shadow .2s;
 }
 
-.stat::before{
+.stat::before {
   content:"";
   position:absolute;
   top:0;
   left:0;
   right:0;
   height:3px;
-  background:linear-gradient(90deg,#b78a50,#e8d0aa);
+  background:linear-gradient(
+    90deg,#b78a50,#e8d0aa
+  );
 }
 
-.stat:hover{
+.stat:hover {
   transform:translateY(-3px);
   box-shadow:0 10px 26px #21181215;
 }
 
-.stat span{
+.stat span {
   display:block;
-  color:#756b61;
+  color:#756b61 !important;
   font-size:13px;
   font-weight:600;
 }
 
-.stat strong{
+.stat strong {
   display:block;
-  color:#211812;
+  color:#211812 !important;
   font-size:clamp(20px,2.2vw,29px);
   font-weight:800;
   margin-top:14px;
   overflow-wrap:anywhere;
 }
 
-.stat strong.positive{
-  color:#247653;
+.stat strong.positive {
+  color:#247653 !important;
 }
 
-.stat strong.negative{
-  color:#b34b4b;
+.stat strong.negative {
+  color:#b34b4b !important;
 }
 
 /* PANELS */
-.panel{
-  background:#fffdfa;
-  color:#29211c;
-  border:1px solid #e9e1d6;
-  border-radius:16px;
+.panel,
+.extra-card {
+  background:#fffdfa !important;
+  color:#29211c !important;
+  border:1px solid #e9e1d6 !important;
+  border-radius:16px !important;
   padding:24px;
+  margin-bottom:20px;
   box-shadow:0 5px 20px #21181209;
 }
 
-.panel h3{
-  color:#30241d;
+.panel h3,
+.extra-card h3 {
+  color:#30241d !important;
   font-size:17px;
   font-weight:700;
-}
-
-/* BUTTONS */
-.btn{
-  background:#39291f;
-  color:#fff;
-  border:1px solid #39291f;
-  border-radius:9px;
-}
-
-.btn:hover{
-  opacity:1;
-  filter:brightness(1.15);
-}
-
-.btn.gold{
-  background:#dfbb85;
-  color:#211812;
-  border-color:#dfbb85;
-}
-
-.btn.red{
-  background:#a84444;
-  color:#fff;
-  border-color:#a84444;
+  margin-top:0;
 }
 
 /* FORM INPUTS */
-.field label{
-  color:#39291f;
+.field label,
+.extra-card label {
+  color:#39291f !important;
   font-size:13px;
   font-weight:700;
 }
@@ -588,2173 +231,269 @@ main{
 .field select,
 .field textarea,
 .toolbar input,
-.toolbar select{
-  background:#fff;
-  color:#29211c;
-  border:1px solid #ddd3c8;
-  border-radius:9px;
+.toolbar select,
+.extra-card input,
+.extra-card select {
+  background:#fff !important;
+  color:#29211c !important;
+  border:1px solid #ddd3c8 !important;
+  border-radius:9px !important;
   padding:12px 13px;
 }
 
 input:focus,
 select:focus,
-textarea:focus{
+textarea:focus {
   outline:2px solid #d2a66f;
   outline-offset:1px;
 }
 
-/* TABLES */
-table{
-  background:#fffdfa;
+/* BUTTONS */
+.btn {
+  background:#39291f !important;
+  color:#fff !important;
+  border:1px solid #39291f !important;
+  border-radius:9px !important;
+  font-weight:700;
+  transition:filter .2s;
 }
 
-th{
-  background:#f1ebe4;
-  color:#463328;
+.btn:hover {
+  opacity:1 !important;
+  filter:brightness(1.15);
+}
+
+.btn.gold,
+.btn.primary {
+  background:#dfbb85 !important;
+  color:#211812 !important;
+  border-color:#dfbb85 !important;
+}
+
+.btn.red {
+  background:#a84444 !important;
+  color:#fff !important;
+  border-color:#a84444 !important;
+}
+
+/* TABLES */
+.table-wrap,
+.extra-scroll {
+  overflow-x:auto;
+  border-radius:10px;
+}
+
+table {
+  width:100%;
+  background:#fffdfa !important;
+  border-collapse:collapse;
+}
+
+th {
+  background:#f1ebe4 !important;
+  color:#463328 !important;
   font-weight:700;
   font-size:12px;
+  padding:15px 13px;
 }
 
-td{
-  background:#fffdfa;
-  color:#392d25;
+td {
+  background:#fffdfa !important;
+  color:#392d25 !important;
+  padding:14px 13px;
   border-bottom:1px solid #eee8e1;
 }
 
-tbody tr:hover td{
-  background:#faf5ee;
+tbody tr:hover td {
+  background:#faf5ee !important;
 }
 
 /* REPORT */
-.report-line{
+.report-line {
   color:#30251e;
   border-color:#e9e1d6;
 }
 
-.report-line.heading{
-  background:#f4ede3;
-  color:#39291f;
+.report-line.heading {
+  background:#f4ede3 !important;
+  color:#39291f !important;
   border-radius:7px;
 }
 
-.report-line.final{
-  background:#f0dfc5;
-  color:#211812;
+.report-line.final {
+  background:#f0dfc5 !important;
+  color:#211812 !important;
   border:1px solid #d9bb8d;
 }
 
-.positive{
-  color:#247653;
+.positive,
+.extra-positive {
+  color:#247653 !important;
 }
 
-.negative{
-  color:#b34b4b;
+.negative,
+.extra-negative {
+  color:#b34b4b !important;
 }
 
 /* CHARTS */
 .bar-sales,
-.bar{
-  background:#c19a65;
+.bar {
+  background:#c19a65 !important;
 }
 
-.bar-profit{
-  background:#247653;
+.bar-profit {
+  background:#247653 !important;
 }
 
-.bar-loss{
-  background:#b34b4b;
+.bar-loss {
+  background:#b34b4b !important;
+}
+
+.month-col small,
+.barwrap small,
+.status-note,
+.muted {
+  color:#786e65 !important;
+}
+
+.mini-row {
+  border-color:#eee8e1;
+}
+
+/* NOTICES */
+.note {
+  background:#fcf6e9 !important;
+  color:#5b4935 !important;
+  border:1px solid #ead6ae !important;
+  border-radius:10px;
+}
+
+.msg {
+  border-radius:10px;
 }
 
 /* LOGIN */
-.login{
-  background:#fffdfa;
-  color:#211812;
-  border:1px solid #e9e1d6;
-  border-radius:18px;
+.login {
+  background:#fffdfa !important;
+  color:#211812 !important;
+  border:1px solid #e9e1d6 !important;
+  border-radius:18px !important;
   box-shadow:0 12px 35px #21181215;
 }
 
-/* RESPONSIVE */
-@media(max-width:1050px){
+.login h2 {
+  color:#211812 !important;
+}
 
-  main{
-    margin:0;
+/* RESPONSIVE */
+@media(max-width:1050px) {
+  main {
+    margin:0 !important;
     padding:24px 18px 55px;
   }
 
-  #dashboardSection>nav{
-    position:static;
-    display:flex;
-    flex-direction:row;
-    flex-wrap:wrap;
-    width:auto;
+  #dashboardSection > nav {
+    position:static !important;
+    display:flex !important;
+    flex-direction:row !important;
+    flex-wrap:wrap !important;
+    width:auto !important;
     margin-bottom:24px;
-    padding:0;
-    background:transparent;
-    border:0;
+    padding:0 !important;
+    background:transparent !important;
+    border:0 !important;
     gap:8px;
   }
 
-  #dashboardSection nav .nav-btn{
-    background:#39291f;
-    color:#fff;
+  #dashboardSection nav .nav-btn {
+    background:#39291f !important;
+    color:#fff !important;
+    padding:11px 13px !important;
   }
 
-  #dashboardSection nav .nav-btn.active{
-    background:#dfbb85;
-    color:#211812;
+  #dashboardSection nav .nav-btn.active {
+    background:#dfbb85 !important;
+    color:#211812 !important;
   }
 
-  .stats{
+  .stats {
     grid-template-columns:repeat(2,minmax(0,1fr));
-  }
-
-  .dash-grid{
-    grid-template-columns:1fr;
   }
 }
 
-@media(max-width:600px){
-
-  header{
-    padding:18px;
+@media(max-width:600px) {
+  body > header {
+    padding:18px !important;
   }
 
-  header h1{
+  body > header h1 {
     font-size:23px;
   }
 
-  main{
-    padding:20px 13px 45px;
+  main {
+    padding:20px 13px 45px !important;
   }
 
   .stats,
   .grid,
-  .dash-grid{
-    grid-template-columns:1fr;
+  .dash-grid {
+    grid-template-columns:1fr !important;
   }
 
-  .panel{
+  .panel,
+  .extra-card {
     padding:17px;
   }
 
-  .stat{
+  .stat {
     min-height:115px;
   }
 }
 
 /* PRINT REPORT */
-@media print{
-
-  header,
+@media print {
+  body > header,
   nav,
   footer,
   .no-print,
   #loginSection,
   .toolbar,
-  .actions{
-    display:none!important;
+  .actions {
+    display:none !important;
   }
 
   body,
   main,
   .panel,
-  #reportSection{
-    background:white!important;
-    color:black!important;
-    box-shadow:none!important;
+  #reportSection {
+    background:white !important;
+    color:black !important;
+    box-shadow:none !important;
   }
 
-  main{
-    margin:0!important;
-    padding:0!important;
+  main {
+    margin:0 !important;
+    padding:0 !important;
   }
 
-  #dashboardSection{
-    display:block!important;
+  .page-section {
+    display:none !important;
   }
 
-  .page-section{
-    display:none!important;
+  #reportSection {
+    display:block !important;
   }
 
-  #reportSection{
-    display:block!important;
-  }
-
-  #reportSection .panel{
-    border:0!important;
+  #reportSection .panel {
+    border:0 !important;
     padding:5px;
   }
-}
 
+  #extraComparison,
+  #extraReceipts {
+    display:none !important;
+  }
+}
 </style>
-</head>
-
-<body>
-
-<header>
-  <div>
-    <h1>☕ Ruang Kopi Kita</h1>
-    <small>Sistem Pelaporan Untung Rugi | Panel Admin</small>
-  </div>
-  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-    <span id="adminEmail"></span>
-    <button id="logoutBtn" class="btn red hidden"
-      onclick="logout()">Log Keluar</button>
-  </div>
-</header>
-
-<main>
-
-<!-- LOGIN -->
-<section id="loginSection" class="login">
-  <h2>🔐 Login Admin</h2>
-  <p>Masukkan akaun admin Supabase.</p>
-
-  <form id="loginForm">
-    <div class="field">
-      <label>Email Admin</label>
-      <input id="email" type="email" required>
-    </div>
-
-    <div class="field">
-      <label>Kata Laluan</label>
-      <input id="password" type="password" required>
-    </div>
-
-    <button class="btn" id="loginBtn">
-      Masuk Sistem Admin
-    </button>
-  </form>
-
-  <div id="loginMessage" class="msg hidden"
-    style="margin-top:15px"></div>
-</section>
-
-<!-- ADMIN DASHBOARD -->
-<div id="dashboardSection" class="hidden">
-
-<nav class="no-print">
-  <button class="nav-btn active" data-page="homeSection">
-    🏠 Dashboard
-  </button>
-  <button class="nav-btn" data-page="salesSection">
-    💰 Jualan
-  </button>
-  <button class="nav-btn" data-page="purchasesSection">
-    🛒 Belian
-  </button>
-  <button class="nav-btn" data-page="expensesSection">
-    🧾 Belanja Operasi
-  </button>
-  <button class="nav-btn" data-page="reportSection">
-    📊 Untung Rugi
-  </button>
-</nav>
-
-<div id="globalMessage" class="msg hidden"></div>
-
-<!-- DASHBOARD KEWANGAN -->
-<section id="homeSection" class="page-section">
-
-  <h2>Dashboard Kewangan</h2>
-  <p class="subtitle">
-    Ringkasan prestasi kewangan Ruang Kopi Kita
-    berdasarkan data Supabase.
-  </p>
-
-  <div class="toolbar">
-    <label>Bulan:</label>
-    <input type="month" id="dashboardMonth">
-    <button class="btn gold" onclick="loadAll()">
-      🔄 Refresh
-    </button>
-  </div>
-
-  <div class="stats">
-
-    <div class="stat">
-      <span>💰 Jumlah Jualan</span>
-      <strong id="homeSales">RM 0.00</strong>
-    </div>
-
-    <div class="stat">
-      <span>🛒 Jumlah Belian</span>
-      <strong id="homePurchases">RM 0.00</strong>
-    </div>
-
-    <div class="stat">
-      <span>🧾 Belanja Operasi</span>
-      <strong id="homeExpenses">RM 0.00</strong>
-    </div>
-
-    <div class="stat">
-      <span>📦 Kos Jualan</span>
-      <strong id="homeCOGS">—</strong>
-    </div>
-
-    <div class="stat">
-      <span>📊 Untung / (Rugi) Kasar</span>
-      <strong id="homeGross">—</strong>
-    </div>
-
-    <div class="stat">
-      <span>🏆 Untung / (Rugi) Bersih</span>
-      <strong id="homeProfit">—</strong>
-    </div>
-
-  </div>
-
-  <p id="homeInventoryNote" class="note"></p>
-
-  <div class="dash-grid">
-
-    <div class="panel">
-      <h3>📈 Prestasi Kewangan 6 Bulan</h3>
-
-      <p class="status-note">
-        Jualan dan untung/rugi bersih mengikut bulan.
-        Bulan tanpa inventori lengkap tidak mempunyai
-        bar untung/rugi.
-      </p>
-
-      <div class="legend">
-        <span><b class="bar-sales"></b>Jualan</span>
-        <span><b class="bar-profit"></b>Untung</span>
-        <span><b class="bar-loss"></b>Rugi</span>
-      </div>
-
-      <div id="monthlyChart" class="month-bars"></div>
-    </div>
-
-    <div class="panel">
-      <h3>🧾 Pecahan Belanja Bulan Dipilih</h3>
-      <div id="dashboardExpenseBreakdown"></div>
-    </div>
-
-  </div>
-
-  <div class="dash-grid">
-
-    <div class="panel">
-      <h3>📅 Jualan 7 Hari Terakhir</h3>
-      <div id="salesChart" class="chart"></div>
-    </div>
-
-    <div class="panel">
-      <h3>📌 Ringkasan Rekod Bulan Dipilih</h3>
-
-      <div class="mini-row">
-        <span>Bilangan pesanan</span>
-        <strong id="homeOrders">0</strong>
-      </div>
-
-      <div class="mini-row">
-        <span>Rekod belian</span>
-        <strong id="homePurchaseCount">0</strong>
-      </div>
-
-      <div class="mini-row">
-        <span>Rekod belanja operasi</span>
-        <strong id="homeExpenseCount">0</strong>
-      </div>
-
-      <div class="mini-row">
-        <span>Inventori awal</span>
-        <strong id="homeOpening">—</strong>
-      </div>
-
-      <div class="mini-row">
-        <span>Inventori akhir</span>
-        <strong id="homeClosing">—</strong>
-      </div>
-
-    </div>
-  </div>
-
-</section>
-
-<!-- JUALAN -->
-<section id="salesSection" class="page-section hidden">
-
-  <h2>💰 Rekod Jualan</h2>
-  <p class="subtitle">
-    Pesanan pelanggan yang direkodkan dalam Supabase.
-  </p>
-
-  <div class="panel">
-
-    <div class="toolbar">
-      <input type="search" id="salesSearch"
-        placeholder="Cari pesanan, pelanggan atau meja...">
-
-      <select id="salesStatus">
-        <option value="all">Semua Status</option>
-        <option>Baharu</option>
-        <option>Sedang Disediakan</option>
-        <option>Sedia Dihidangkan</option>
-        <option>Selesai</option>
-        <option>Dibatalkan</option>
-      </select>
-    </div>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Pesanan</th>
-            <th>Tarikh</th>
-            <th>Nama</th>
-            <th>Meja</th>
-            <th>Status</th>
-            <th>Jumlah</th>
-          </tr>
-        </thead>
-        <tbody id="salesTable"></tbody>
-      </table>
-    </div>
-
-  </div>
-</section>
-
-<!-- BELIAN -->
-<section id="purchasesSection" class="page-section hidden">
-
-  <h2>🛒 Perekodan Belian</h2>
-  <p class="subtitle">
-    Tambah, edit dan padam rekod belian bahan mentah.
-  </p>
-
-  <div class="panel">
-
-    <h3 id="purchaseFormTitle">Tambah Rekod Belian</h3>
-
-    <form id="purchaseForm">
-      <div class="grid">
-
-        <div class="field">
-          <label>Nama Pembekal</label>
-          <input id="purchaseSupplier" required
-            placeholder="Contoh: Ayu Sdn Bhd">
-        </div>
-
-        <div class="field">
-          <label>Nama Barang</label>
-          <input id="purchaseItem" required
-            placeholder="Contoh: Serbuk kopi">
-        </div>
-
-        <div class="field">
-          <label>Kuantiti</label>
-          <input id="purchaseQty" type="number"
-            min="0.001" step="any" required>
-        </div>
-
-        <div class="field">
-          <label>Jumlah Kos Belian (RM)</label>
-          <input id="purchaseAmount" type="number"
-            min="0" step="0.01" required>
-        </div>
-
-        <div class="field full">
-          <label>Catatan</label>
-          <input id="purchaseNotes"
-            placeholder="Contoh: Belian bahan mentah">
-        </div>
-
-      </div>
-
-      <button id="savePurchaseBtn" class="btn" type="submit">
-        + Simpan Belian
-      </button>
-
-      <button id="cancelPurchaseBtn"
-        class="btn red hidden" type="button"
-        onclick="cancelPurchaseEdit()">
-        Batal Edit
-      </button>
-    </form>
-
-  </div>
-
-  <div class="panel">
-    <h3>Senarai Rekod Belian</h3>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Tarikh</th>
-            <th>Pembekal</th>
-            <th>Barang</th>
-            <th>Kuantiti</th>
-            <th>Jumlah</th>
-            <th>Catatan</th>
-            <th>Tindakan</th>
-          </tr>
-        </thead>
-        <tbody id="purchaseTable"></tbody>
-      </table>
-    </div>
-  </div>
-
-</section>
-
-<!-- BELANJA OPERASI -->
-<section id="expensesSection" class="page-section hidden">
-
-  <h2>🧾 Belanja Operasi</h2>
-  <p class="subtitle">
-    Tambah, edit dan padam perbelanjaan operasi kedai.
-  </p>
-
-  <div class="panel">
-
-    <h3 id="expenseFormTitle">Tambah Belanja Operasi</h3>
-
-    <form id="expenseForm">
-      <div class="grid">
-
-        <div class="field">
-          <label>Tarikh Belanja</label>
-          <input id="expenseDate" type="date" required>
-        </div>
-
-        <div class="field">
-          <label>Kategori</label>
-          <select id="expenseCategory" required>
-            <option value="">Pilih kategori</option>
-            <option>Sewa</option>
-            <option>Gaji</option>
-            <option>Elektrik</option>
-            <option>Air</option>
-            <option>Internet</option>
-            <option>Pengangkutan</option>
-            <option>Penyelenggaraan</option>
-            <option>Pemasaran</option>
-            <option>Lain-lain</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label>Jumlah (RM)</label>
-          <input id="expenseAmount" type="number"
-            min="0" step="0.01" required>
-        </div>
-
-        <div class="field">
-          <label>Keterangan</label>
-          <input id="expenseDescription"
-            placeholder="Contoh: Sewa premis">
-        </div>
-
-      </div>
-
-      <button id="saveExpenseBtn"
-        class="btn" type="submit">
-        + Simpan Belanja
-      </button>
-
-      <button id="cancelExpenseBtn"
-        class="btn red hidden" type="button"
-        onclick="cancelExpenseEdit()">
-        Batal Edit
-      </button>
-
-    </form>
-  </div>
-
-  <div class="panel">
-    <h3>Senarai Belanja Operasi</h3>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Tarikh</th>
-            <th>Kategori</th>
-            <th>Keterangan</th>
-            <th>Jumlah</th>
-            <th>Tindakan</th>
-          </tr>
-        </thead>
-        <tbody id="expenseTable"></tbody>
-      </table>
-    </div>
-  </div>
-
-</section>
-
-<!-- LAPORAN UNTUNG RUGI -->
-<section id="reportSection" class="page-section hidden">
-
-  <h2>📊 Laporan Untung Rugi</h2>
-  <p class="subtitle">
-    Laporan kewangan mengikut bulan dengan
-    carry forward inventori automatik.
-  </p>
-
-  <div class="toolbar no-print">
-    <label>Bulan:</label>
-    <input id="reportMonth" type="month">
-
-    <button class="btn gold" onclick="renderReport()">
-      Jana Laporan
-    </button>
-
-    <button class="btn" onclick="window.print()">
-      🖨️ Cetak / Simpan PDF
-    </button>
-  </div>
-
-  <div class="panel no-print">
-
-    <h3>📦 Pengurusan Inventori Bulanan</h3>
-    <p class="subtitle">
-      Inventori Akhir bulan sebelumnya akan menjadi
-      Inventori Awal bulan semasa secara automatik.
-    </p>
-
-    <div class="grid">
-
-      <div class="field">
-        <label>Inventori Awal (RM)</label>
-        <input id="openingInventory"
-          type="number" min="0" step="0.01" readonly>
-        <small id="openingSource" class="muted"></small>
-      </div>
-
-      <div class="field">
-        <label>Inventori Akhir (RM)</label>
-        <input id="closingInventory"
-          type="number" min="0" step="0.01"
-          placeholder="Masukkan nilai inventori akhir">
-      </div>
-
-      <div class="field full">
-        <label>Catatan Inventori</label>
-        <input id="inventoryNotes"
-          placeholder="Contoh: Nilai stok berdasarkan pengiraan fizikal">
-      </div>
-
-    </div>
-
-    <button id="saveInventoryBtn" class="btn"
-      onclick="saveInventory()">
-      💾 Simpan Inventori Akhir
-    </button>
-
-    <div id="inventoryMessage" class="msg hidden"
-      style="margin-top:15px"></div>
-
-    <div class="note">
-      <strong>Carry Forward:</strong>
-      Jika Inventori Akhir Oktober ialah RM360,
-      Inventori Awal November akan menjadi RM360.
-      Jika nilai Oktober dikemas kini,
-      nilai awal November turut berubah apabila
-      laporan dijana semula.
-    </div>
-
-  </div>
-
-  <div class="panel">
-
-    <h3 style="text-align:center">RUANG KOPI KITA</h3>
-    <h3 style="text-align:center">
-      LAPORAN UNTUNG RUGI SEMENTARA
-    </h3>
-
-    <p id="reportPeriod"
-      style="text-align:center;color:#796b60"></p>
-
-    <div class="report-line heading">
-      <span>HASIL</span><span>RM</span>
-    </div>
-
-    <div class="report-line indent">
-      <span>Jualan</span>
-      <strong id="reportSales"></strong>
-    </div>
-
-    <div class="report-line total">
-      <span>Jumlah Hasil</span>
-      <strong id="reportRevenue"></strong>
-    </div>
-
-    <div class="report-line heading">
-      <span>KOS JUALAN</span><span>RM</span>
-    </div>
-
-    <div class="report-line indent">
-      <span>Inventori Awal</span>
-      <strong id="reportOpening"></strong>
-    </div>
-
-    <div class="report-line indent">
-      <span>Tambah: Belian</span>
-      <strong id="reportPurchases"></strong>
-    </div>
-
-    <div class="report-line indent">
-      <span>Tolak: Inventori Akhir</span>
-      <strong id="reportClosing"></strong>
-    </div>
-
-    <div class="report-line total">
-      <span>Jumlah Kos Jualan</span>
-      <strong id="reportCOGS"></strong>
-    </div>
-
-    <div class="report-line total">
-      <span>Untung / (Rugi) Kasar</span>
-      <strong id="reportGross"></strong>
-    </div>
-
-    <div class="report-line heading">
-      <span>BELANJA OPERASI</span><span>RM</span>
-    </div>
-
-    <div id="expenseBreakdown"></div>
-
-    <div class="report-line total">
-      <span>Jumlah Belanja Operasi</span>
-      <strong id="reportExpenses"></strong>
-    </div>
-
-    <div class="report-line final">
-      <span>Untung / (Rugi) Bersih Sementara</span>
-      <strong id="reportProfit"></strong>
-    </div>
-
-    <p id="reportWarning" class="note"></p>
-
-    <p class="muted"
-      style="font-size:12px;line-height:1.6">
-      Nota: Laporan ini bersifat sementara dan
-      bergantung pada ketepatan rekod jualan,
-      belian, belanja operasi serta penilaian inventori.
-    </p>
-
-  </div>
-
-</section>
-
-</div>
-</main>
-
-<footer>
-  © 2026 Ruang Kopi Kita | Sistem Pelaporan Untung Rugi
-</footer>
-
-<!-- SUPABASE -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-"use strict";
-
-/* ==========================================
-   1. SUPABASE CONFIGURATION
-========================================== */
-
-const SUPABASE_URL =
-  "https://ledcwlnyztcsvdedwmtq.supabase.co";
-
-const SUPABASE_ANON_KEY =
-  "sb_publishable_a1sRyLibWsIpRThtxfUbUQ_-Ksjebvl";
-
-const db = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_ANON_KEY
-);
-
-/* ==========================================
-   2. GLOBAL VARIABLES
-========================================== */
-
-let currentUser = null;
-
-let orders = [];
-let purchases = [];
-let expenses = [];
-let inventories = [];
-
-let editingPurchaseId = null;
-let editingExpenseId = null;
-
-const $ = id => document.getElementById(id);
-
-const money = value =>
-  "RM " + Number(value || 0).toLocaleString(
-    "ms-MY",
-    {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    }
-  );
-
-const number = value => Number(value || 0);
-
-const today = () => {
-  const d = new Date();
-
-  return [
-    d.getFullYear(),
-    String(d.getMonth() + 1).padStart(2, "0"),
-    String(d.getDate()).padStart(2, "0")
-  ].join("-");
-};
-
-const currentMonth = () => today().slice(0, 7);
-
-function monthOf(value) {
-  if (!value) return "";
-
-  return String(value).slice(0, 7);
-}
-
-function dateOf(value) {
-  if (!value) return "";
-
-  return String(value).slice(0, 10);
-}
-
-function showMessage(id, message, success = false) {
-  const el = $(id);
-  if (!el) return;
-
-  el.textContent = message;
-  el.className = success ? "msg ok" : "msg";
-  el.classList.remove("hidden");
-}
-
-function hideMessage(id) {
-  const el = $(id);
-  if (el) el.classList.add("hidden");
-}
-
-function setText(id, value) {
-  const el = $(id);
-  if (el) el.textContent = value;
-}
-
-function escapeHTML(value) {
-  return String(value ?? "").replace(
-    /[&<>"']/g,
-    char => ({
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;"
-    })[char]
-  );
-}
-
-/* ==========================================
-   3. LOGIN & AUTHENTICATION
-========================================== */
-
-async function login(event) {
-  event.preventDefault();
-
-  const email = $("email").value.trim();
-  const password = $("password").value;
-
-  const button = $("loginBtn");
-
-  button.disabled = true;
-  button.textContent = "Sedang log masuk...";
-
-  hideMessage("loginMessage");
-
-  try {
-    const { data, error } =
-      await db.auth.signInWithPassword({
-        email,
-        password
-      });
-
-    if (error) throw error;
-
-    await verifyAdmin(data.user);
-
-  } catch (error) {
-    showMessage(
-      "loginMessage",
-      error.message || "Log masuk gagal."
-    );
-  } finally {
-    button.disabled = false;
-    button.textContent = "Masuk Sistem Admin";
-  }
-}
-
-async function verifyAdmin(user) {
-  if (!user) {
-    showLogin();
-    return;
-  }
-
-  const { data, error } = await db
-    .from("user_roles")
-    .select("role")
-    .eq("user_id", user.id)
-    .eq("role", "admin")
-    .maybeSingle();
-
-  if (error || !data) {
-    await db.auth.signOut();
-
-    showLogin();
-
-    showMessage(
-      "loginMessage",
-      "Akaun ini tidak mempunyai akses admin."
-    );
-
-    return;
-  }
-
-  currentUser = user;
-
-  $("loginSection").classList.add("hidden");
-  $("dashboardSection").classList.remove("hidden");
-  $("logoutBtn").classList.remove("hidden");
-
-  setText("adminEmail", user.email || "");
-
-  await loadAll();
-}
-
-function showLogin() {
-  currentUser = null;
-
-  $("loginSection").classList.remove("hidden");
-  $("dashboardSection").classList.add("hidden");
-  $("logoutBtn").classList.add("hidden");
-
-  setText("adminEmail", "");
-}
-
-async function logout() {
-  await db.auth.signOut();
-  showLogin();
-}
-
-/* ==========================================
-   4. NAVIGATION
-========================================== */
-
-function showPage(pageId) {
-  document.querySelectorAll(".page-section")
-    .forEach(section => {
-      section.classList.add("hidden");
-    });
-
-  const page = $(pageId);
-
-  if (page) page.classList.remove("hidden");
-
-  document.querySelectorAll(".nav-btn")
-    .forEach(button => {
-      button.classList.toggle(
-        "active",
-        button.dataset.page === pageId
-      );
-    });
-
-  if (pageId === "reportSection") {
-    renderReport();
-  }
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-}
-
-/* ==========================================
-   5. LOAD DATA FROM SUPABASE
-========================================== */
-
-async function fetchAllRows(table) {
-  const pageSize = 1000;
-  let start = 0;
-  let result = [];
-
-  while (true) {
-    const { data, error } = await db
-      .from(table)
-      .select("*")
-      .range(start, start + pageSize - 1);
-
-    if (error) throw error;
-
-    result.push(...(data || []));
-
-    if (!data || data.length < pageSize) {
-      break;
-    }
-
-    start += pageSize;
-  }
-
-  return result;
-}
-
-async function loadAll() {
-  if (!currentUser) return;
-
-  try {
-    const [
-      orderData,
-      purchaseData,
-      expenseData,
-      inventoryData
-    ] = await Promise.all([
-      fetchAllRows("orders"),
-      fetchAllRows("purchases"),
-      fetchAllRows("operating_expenses"),
-      fetchAllRows("monthly_inventory")
-    ]);
-
-    orders = orderData;
-    purchases = purchaseData;
-    expenses = expenseData;
-    inventories = inventoryData;
-
-    renderDashboard();
-
-    // Fungsi rekod akan dilengkapkan
-    // dalam Bahagian 5.
-    if (typeof renderSales === "function") {
-      renderSales();
-    }
-
-    if (typeof renderPurchases === "function") {
-      renderPurchases();
-    }
-
-    if (typeof renderExpenses === "function") {
-      renderExpenses();
-    }
-
-    if (typeof renderReport === "function") {
-      renderReport();
-    }
-
-    hideMessage("globalMessage");
-
-  } catch (error) {
-    console.error(error);
-
-    showMessage(
-      "globalMessage",
-      "Gagal memuatkan data: " + error.message
-    );
-  }
-}
-
-/* ==========================================
-   6. FINANCIAL CALCULATIONS
-========================================== */
-
-// Andaian struktur:
-// orders: total, status, created_at
-// purchases: amount, created_at
-// operating_expenses: amount, date
-// monthly_inventory: month, closing_inventory
-//
-// Nama lajur perlu disemak dengan SQL sebenar.
-
-function orderAmount(order) {
-  return number(order.total);
-}
-
-function isCompletedOrder(order) {
-  const status = String(
-    order.status || ""
-  ).toLowerCase();
-
-  return [
-    "selesai",
-    "completed",
-    "complete"
-  ].includes(status);
-}
-
-function monthSales(month) {
-  return orders
-    .filter(order =>
-      monthOf(order.created_at) === month &&
-      isCompletedOrder(order)
-    )
-    .reduce(
-      (total, order) => total + orderAmount(order),
-      0
-    );
-}
-
-function monthPurchases(month) {
-  return purchases
-    .filter(item =>
-      monthOf(item.created_at) === month
-    )
-    .reduce(
-      (total, item) => total + number(item.amount),
-      0
-    );
-}
-
-function monthExpenses(month) {
-  return expenses
-    .filter(item =>
-      monthOf(item.date) === month
-    )
-    .reduce(
-      (total, item) => total + number(item.amount),
-      0
-    );
-}
-
-function previousMonth(month) {
-  const [year, monthNumber] =
-    month.split("-").map(Number);
-
-  const date = new Date(
-    year,
-    monthNumber - 2,
-    1
-  );
-
-  return (
-    date.getFullYear() +
-    "-" +
-    String(date.getMonth() + 1).padStart(2, "0")
-  );
-}
-
-function getInventory(month) {
-  return inventories.find(
-    item => item.month === month
-  ) || null;
-}
-
-function financialSummary(month) {
-  const sales = monthSales(month);
-  const purchaseTotal = monthPurchases(month);
-  const expenseTotal = monthExpenses(month);
-
-  const previous = getInventory(
-    previousMonth(month)
-  );
-
-  const current = getInventory(month);
-
-  // Inventori awal bulan pertama mesti
-  // direkodkan melalui data inventori sebenar.
-  const opening =
-    previous?.closing_inventory != null
-      ? number(previous.closing_inventory)
-      : current?.opening_inventory != null
-        ? number(current.opening_inventory)
-        : null;
-
-  const closing =
-    current?.closing_inventory != null
-      ? number(current.closing_inventory)
-      : null;
-
-  const inventoryComplete =
-    opening !== null && closing !== null;
-
-  const cogs = inventoryComplete
-    ? opening + purchaseTotal - closing
-    : null;
-
-  const gross = inventoryComplete
-    ? sales - cogs
-    : null;
-
-  const profit = inventoryComplete
-    ? gross - expenseTotal
-    : null;
-
-  return {
-    sales,
-    purchases: purchaseTotal,
-    expenses: expenseTotal,
-    opening,
-    closing,
-    cogs,
-    gross,
-    profit,
-    inventoryComplete
-  };
-}
-
-/* ==========================================
-   7. DASHBOARD
-========================================== */
-
-function renderDashboard() {
-  const month =
-    $("dashboardMonth").value || currentMonth();
-
-  const summary = financialSummary(month);
-
-  setText("homeSales", money(summary.sales));
-  setText("homePurchases", money(summary.purchases));
-  setText("homeExpenses", money(summary.expenses));
-
-  setText(
-    "homeCOGS",
-    summary.cogs === null
-      ? "—"
-      : money(summary.cogs)
-  );
-
-  setText(
-    "homeGross",
-    summary.gross === null
-      ? "—"
-      : money(summary.gross)
-  );
-
-  setText(
-    "homeProfit",
-    summary.profit === null
-      ? "—"
-      : money(summary.profit)
-  );
-
-  const profitElement = $("homeProfit");
-
-  profitElement.classList.remove(
-    "positive",
-    "negative"
-  );
-
-  if (summary.profit !== null) {
-    profitElement.classList.add(
-      summary.profit >= 0
-        ? "positive"
-        : "negative"
-    );
-  }
-
-  const monthOrders = orders.filter(
-    item =>
-      monthOf(item.created_at) === month &&
-      isCompletedOrder(item)
-  );
-
-  setText("homeOrders", monthOrders.length);
-
-  setText(
-    "homePurchaseCount",
-    purchases.filter(
-      item => monthOf(item.created_at) === month
-    ).length
-  );
-
-  setText(
-    "homeExpenseCount",
-    expenses.filter(
-      item => monthOf(item.date) === month
-    ).length
-  );
-
-  setText(
-    "homeOpening",
-    summary.opening === null
-      ? "—"
-      : money(summary.opening)
-  );
-
-  setText(
-    "homeClosing",
-    summary.closing === null
-      ? "—"
-      : money(summary.closing)
-  );
-
-  setText(
-    "homeInventoryNote",
-    summary.inventoryComplete
-      ? "Inventori bulan ini lengkap. Untung/rugi boleh dikira."
-      : "Inventori awal atau akhir belum lengkap. Untung/rugi belum boleh ditentukan."
-  );
-
-  renderMonthlyChart(month);
-  renderExpenseBreakdown(month);
-  renderSevenDaySales();
-}
-
-/* ==========================================
-   8. SIX-MONTH FINANCIAL CHART
-========================================== */
-
-function lastSixMonths(selectedMonth) {
-  const [year, month] =
-    selectedMonth.split("-").map(Number);
-
-  const result = [];
-
-  for (let i = 5; i >= 0; i--) {
-    const date = new Date(
-      year,
-      month - 1 - i,
-      1
-    );
-
-    result.push(
-      date.getFullYear() +
-      "-" +
-      String(date.getMonth() + 1).padStart(2, "0")
-    );
-  }
-
-  return result;
-}
-
-function renderMonthlyChart(selectedMonth) {
-  const months = lastSixMonths(selectedMonth);
-
-  const values = months.map(month => ({
-    month,
-    ...financialSummary(month)
-  }));
-
-  const maxValue = Math.max(
-    1,
-    ...values.map(item => item.sales),
-    ...values.map(item =>
-      Math.abs(item.profit || 0)
-    )
-  );
-
-  $("monthlyChart").innerHTML = values.map(
-    item => {
-      const salesHeight =
-        (item.sales / maxValue) * 135;
-
-      const profitHeight =
-        item.profit === null
-          ? 0
-          : (Math.abs(item.profit) / maxValue) * 135;
-
-      const profitClass =
-        item.profit !== null && item.profit < 0
-          ? "bar-loss"
-          : "bar-profit";
-
-      return `
-        <div class="month-col">
-          <div class="bars">
-            <div class="bar-sales"
-              style="height:${salesHeight}px"
-              title="Jualan: ${money(item.sales)}">
-            </div>
-
-            <div class="${profitClass}"
-              style="height:${profitHeight}px"
-              title="${
-                item.profit === null
-                  ? "Inventori tidak lengkap"
-                  : "Untung/Rugi: " + money(item.profit)
-              }">
-            </div>
-          </div>
-
-          <small>${escapeHTML(item.month)}</small>
-        </div>
-      `;
-    }
-  ).join("");
-}
-
-/* ==========================================
-   9. EXPENSE BREAKDOWN
-========================================== */
-
-function renderExpenseBreakdown(month) {
-  const selected = expenses.filter(
-    item => monthOf(item.date) === month
-  );
-
-  const groups = {};
-
-  selected.forEach(item => {
-    const category =
-      item.category || "Lain-lain";
-
-    groups[category] =
-      (groups[category] || 0) +
-      number(item.amount);
-  });
-
-  const entries = Object.entries(groups)
-    .sort((a, b) => b[1] - a[1]);
-
-  if (!entries.length) {
-    $("dashboardExpenseBreakdown").innerHTML =
-      '<p class="muted">Tiada rekod belanja untuk bulan ini.</p>';
-
-    return;
-  }
-
-  $("dashboardExpenseBreakdown").innerHTML =
-    entries.map(([category, amount]) => `
-      <div class="mini-row">
-        <span>${escapeHTML(category)}</span>
-        <strong>${money(amount)}</strong>
-      </div>
-    `).join("");
-}
-
-/* ==========================================
-   10. SEVEN-DAY SALES CHART
-========================================== */
-
-function renderSevenDaySales() {
-  const days = [];
-
-  const now = new Date();
-  now.setHours(12, 0, 0, 0);
-
-  for (let i = 6; i >= 0; i--) {
-    const date = new Date(now);
-    date.setDate(now.getDate() - i);
-
-    const key = [
-      date.getFullYear(),
-      String(date.getMonth() + 1).padStart(2, "0"),
-      String(date.getDate()).padStart(2, "0")
-    ].join("-");
-
-    const total = orders
-      .filter(item =>
-        dateOf(item.created_at) === key &&
-        isCompletedOrder(item)
-      )
-      .reduce(
-        (sum, item) => sum + orderAmount(item),
-        0
-      );
-
-    days.push({
-      date: key,
-      label: date.toLocaleDateString("ms-MY", {
-        day: "numeric",
-        month: "short"
-      }),
-      total
-    });
-  }
-
-  const maximum = Math.max(
-    1,
-    ...days.map(item => item.total)
-  );
-
-  $("salesChart").innerHTML = days.map(
-    item => `
-      <div class="barwrap">
-        <div class="bar"
-          style="height:${
-            (item.total / maximum) * 160
-          }px"
-          title="${money(item.total)}">
-        </div>
-
-        <small>${escapeHTML(item.label)}</small>
-      </div>
-    `
-  ).join("");
-}
-
-/* ==========================================
-   11. INITIAL EVENT LISTENERS
-========================================== */
-
-$("loginForm").addEventListener(
-  "submit",
-  login
-);
-
-document.querySelectorAll(".nav-btn")
-  .forEach(button => {
-    button.addEventListener("click", () => {
-      showPage(button.dataset.page);
-    });
-  });
-
-$("dashboardMonth").value = currentMonth();
-$("reportMonth").value = currentMonth();
-$("expenseDate").value = today();
-
-$("dashboardMonth").addEventListener(
-  "change",
-  renderDashboard
-);
-
-/* ==========================================
-   12. SESSION RESTORE
-========================================== */
-
-async function init() {
-  try {
-    const { data, error } =
-      await db.auth.getUser();
-
-    if (error || !data.user) {
-      showLogin();
-      return;
-    }
-
-    await verifyAdmin(data.user);
-
-  } catch (error) {
-    console.error(error);
-    showLogin();
-  }
-}
-
-// init() akan dipanggil selepas semua
-// fungsi Bahagian 5 dilengkapkan.
-
-/* ==========================================
-   13. JUALAN
-========================================== */
-
-function renderSales() {
-  const search = $("salesSearch").value
-    .trim().toLowerCase();
-
-  const selectedStatus = $("salesStatus").value;
-
-  const filtered = orders.filter(order => {
-    const text = [
-      order.id,
-      order.customer_name,
-      order.table_number
-    ].join(" ").toLowerCase();
-
-    const matchesSearch = text.includes(search);
-
-    const matchesStatus =
-      selectedStatus === "all" ||
-      String(order.status || "").toLowerCase() ===
-      selectedStatus.toLowerCase();
-
-    return matchesSearch && matchesStatus;
-  }).sort((a, b) =>
-    String(b.created_at || "").localeCompare(
-      String(a.created_at || "")
-    )
-  );
-
-  $("salesTable").innerHTML = filtered.length
-    ? filtered.map(order => `
-      <tr>
-        <td>${escapeHTML(order.id)}</td>
-        <td>${escapeHTML(dateOf(order.created_at))}</td>
-        <td>${escapeHTML(order.customer_name || "-")}</td>
-        <td>${escapeHTML(order.table_number || "-")}</td>
-        <td>${escapeHTML(order.status || "-")}</td>
-        <td><strong>${money(orderAmount(order))}</strong></td>
-      </tr>
-    `).join("")
-    : '<tr><td colspan="6">Tiada rekod jualan.</td></tr>';
-}
-
-$("salesSearch").addEventListener("input", renderSales);
-$("salesStatus").addEventListener("change", renderSales);
-
-/* ==========================================
-   14. BELIAN - DISPLAY
-========================================== */
-
-function renderPurchases() {
-  const sorted = [...purchases].sort((a, b) =>
-    String(b.created_at || "").localeCompare(
-      String(a.created_at || "")
-    )
-  );
-
-  $("purchaseTable").innerHTML = sorted.length
-    ? sorted.map(item => `
-      <tr>
-        <td>${escapeHTML(dateOf(item.created_at))}</td>
-        <td>${escapeHTML(item.supplier || "-")}</td>
-        <td>${escapeHTML(item.item_name || "-")}</td>
-        <td>${escapeHTML(item.quantity ?? 0)}</td>
-        <td>${money(item.amount)}</td>
-        <td>${escapeHTML(item.notes || "-")}</td>
-        <td>
-          <div class="actions">
-            <button class="btn small"
-              onclick="editPurchase('${escapeHTML(item.id)}')">
-              Edit
-            </button>
-            <button class="btn red small"
-              onclick="deletePurchase('${escapeHTML(item.id)}')">
-              Padam
-            </button>
-          </div>
-        </td>
-      </tr>
-    `).join("")
-    : '<tr><td colspan="7">Tiada rekod belian.</td></tr>';
-}
-
-/* ==========================================
-   15. BELIAN - ADD / UPDATE
-========================================== */
-
-$("purchaseForm").addEventListener(
-  "submit",
-  async event => {
-    event.preventDefault();
-
-    if (!currentUser) return;
-
-    const button = $("savePurchaseBtn");
-
-    const payload = {
-      supplier: $("purchaseSupplier").value.trim(),
-      item_name: $("purchaseItem").value.trim(),
-      quantity: number($("purchaseQty").value),
-      amount: number($("purchaseAmount").value),
-      notes: $("purchaseNotes").value.trim()
-    };
-
-    if (
-      !payload.supplier ||
-      !payload.item_name ||
-      payload.quantity <= 0 ||
-      payload.amount < 0
-    ) {
-      showMessage(
-        "globalMessage",
-        "Sila isi maklumat belian dengan betul."
-      );
-      return;
-    }
-
-    button.disabled = true;
-
-    try {
-      let result;
-
-      if (editingPurchaseId !== null) {
-        result = await db
-          .from("purchases")
-          .update(payload)
-          .eq("id", editingPurchaseId);
-      } else {
-        result = await db
-          .from("purchases")
-          .insert(payload);
-      }
-
-      if (result.error) throw result.error;
-
-      cancelPurchaseEdit();
-      await loadAll();
-
-      showMessage(
-        "globalMessage",
-        "Rekod belian berjaya disimpan.",
-        true
-      );
-
-    } catch (error) {
-      showMessage(
-        "globalMessage",
-        "Gagal simpan belian: " + error.message
-      );
-    } finally {
-      button.disabled = false;
-    }
-  }
-);
-
-/* ==========================================
-   16. BELIAN - EDIT / DELETE
-========================================== */
-
-function editPurchase(id) {
-  const item = purchases.find(
-    row => String(row.id) === String(id)
-  );
-
-  if (!item) return;
-
-  editingPurchaseId = item.id;
-
-  $("purchaseSupplier").value = item.supplier || "";
-  $("purchaseItem").value = item.item_name || "";
-  $("purchaseQty").value = item.quantity ?? "";
-  $("purchaseAmount").value = item.amount ?? "";
-  $("purchaseNotes").value = item.notes || "";
-
-  setText("purchaseFormTitle", "Edit Rekod Belian");
-  setText("savePurchaseBtn", "💾 Kemaskini Belian");
-
-  $("cancelPurchaseBtn").classList.remove("hidden");
-
-  $("purchaseForm").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
-}
-
-function cancelPurchaseEdit() {
-  editingPurchaseId = null;
-
-  $("purchaseForm").reset();
-
-  setText("purchaseFormTitle", "Tambah Rekod Belian");
-  setText("savePurchaseBtn", "+ Simpan Belian");
-
-  $("cancelPurchaseBtn").classList.add("hidden");
-}
-
-async function deletePurchase(id) {
-  if (!currentUser) return;
-
-  if (!confirm("Padam rekod belian ini?")) return;
-
-  try {
-    const { error } = await db
-      .from("purchases")
-      .delete()
-      .eq("id", id);
-
-    if (error) throw error;
-
-    await loadAll();
-
-    showMessage(
-      "globalMessage",
-      "Rekod belian berjaya dipadam.",
-      true
-    );
-
-  } catch (error) {
-    showMessage(
-      "globalMessage",
-      "Gagal padam belian: " + error.message
-    );
-  }
-}
-
-/* ==========================================
-   17. BELANJA OPERASI - DISPLAY
-========================================== */
-
-function renderExpenses() {
-  const sorted = [...expenses].sort((a, b) =>
-    String(b.date || "").localeCompare(
-      String(a.date || "")
-    )
-  );
-
-  $("expenseTable").innerHTML = sorted.length
-    ? sorted.map(item => `
-      <tr>
-        <td>${escapeHTML(item.date || "-")}</td>
-        <td>${escapeHTML(item.category || "-")}</td>
-        <td>${escapeHTML(item.description || "-")}</td>
-        <td>${money(item.amount)}</td>
-        <td>
-          <div class="actions">
-            <button class="btn small"
-              onclick="editExpense('${escapeHTML(item.id)}')">
-              Edit
-            </button>
-            <button class="btn red small"
-              onclick="deleteExpense('${escapeHTML(item.id)}')">
-              Padam
-            </button>
-          </div>
-        </td>
-      </tr>
-    `).join("")
-    : '<tr><td colspan="5">Tiada rekod belanja.</td></tr>';
-}
-
-/* ==========================================
-   18. BELANJA OPERASI - ADD / UPDATE
-========================================== */
-
-$("expenseForm").addEventListener(
-  "submit",
-  async event => {
-    event.preventDefault();
-
-    if (!currentUser) return;
-
-    const button = $("saveExpenseBtn");
-
-    const payload = {
-      date: $("expenseDate").value,
-      category: $("expenseCategory").value,
-      description:
-        $("expenseDescription").value.trim(),
-      amount: number($("expenseAmount").value)
-    };
-
-    if (
-      !payload.date ||
-      !payload.category ||
-      payload.amount < 0
-    ) {
-      showMessage(
-        "globalMessage",
-        "Sila isi maklumat belanja dengan betul."
-      );
-      return;
-    }
-
-    button.disabled = true;
-
-    try {
-      let result;
-
-      if (editingExpenseId !== null) {
-        result = await db
-          .from("operating_expenses")
-          .update(payload)
-          .eq("id", editingExpenseId);
-      } else {
-        result = await db
-          .from("operating_expenses")
-          .insert(payload);
-      }
-
-      if (result.error) throw result.error;
-
-      cancelExpenseEdit();
-      await loadAll();
-
-      showMessage(
-        "globalMessage",
-        "Belanja operasi berjaya disimpan.",
-        true
-      );
-
-    } catch (error) {
-      showMessage(
-        "globalMessage",
-        "Gagal simpan belanja: " + error.message
-      );
-    } finally {
-      button.disabled = false;
-    }
-  }
-);
-
-/* ==========================================
-   19. BELANJA OPERASI - EDIT / DELETE
-========================================== */
-
-function editExpense(id) {
-  const item = expenses.find(
-    row => String(row.id) === String(id)
-  );
-
-  if (!item) return;
-
-  editingExpenseId = item.id;
-
-  $("expenseDate").value = item.date || today();
-  $("expenseCategory").value = item.category || "";
-  $("expenseDescription").value =
-    item.description || "";
-  $("expenseAmount").value = item.amount ?? "";
-
-  setText("expenseFormTitle", "Edit Belanja Operasi");
-  setText("saveExpenseBtn", "💾 Kemaskini Belanja");
-
-  $("cancelExpenseBtn").classList.remove("hidden");
-
-  $("expenseForm").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
-}
-
-function cancelExpenseEdit() {
-  editingExpenseId = null;
-
-  $("expenseForm").reset();
-  $("expenseDate").value = today();
-
-  setText("expenseFormTitle", "Tambah Belanja Operasi");
-  setText("saveExpenseBtn", "+ Simpan Belanja");
-
-  $("cancelExpenseBtn").classList.add("hidden");
-}
-
-async function deleteExpense(id) {
-  if (!currentUser) return;
-
-  if (!confirm("Padam rekod belanja operasi ini?")) {
-    return;
-  }
-
-  try {
-    const { error } = await db
-      .from("operating_expenses")
-      .delete()
-      .eq("id", id);
-
-    if (error) throw error;
-
-    await loadAll();
-
-    showMessage(
-      "globalMessage",
-      "Belanja operasi berjaya dipadam.",
-      true
-    );
-
-  } catch (error) {
-    showMessage(
-      "globalMessage",
-      "Gagal padam belanja: " + error.message
-    );
-  }
-}
-
-/* ==========================================
-   20. LAPORAN UNTUNG RUGI
-========================================== */
-
-function renderReport() {
-  const month =
-    $("reportMonth").value || currentMonth();
-
-  const summary = financialSummary(month);
-
-  const [year, monthNumber] =
-    month.split("-").map(Number);
-
-  const label = new Date(
-    year,
-    monthNumber - 1,
-    1
-  ).toLocaleDateString("ms-MY", {
-    month: "long",
-    year: "numeric"
-  });
-
-  setText("reportPeriod", "Bagi Bulan " + label);
-
-  setText("reportSales", money(summary.sales));
-  setText("reportRevenue", money(summary.sales));
-  setText("reportPurchases", money(summary.purchases));
-  setText("reportExpenses", money(summary.expenses));
-
-  const nullableMoney = value =>
-    value === null ? "—" : money(value);
-
-  setText(
-    "reportOpening",
-    nullableMoney(summary.opening)
-  );
-
-  setText(
-    "reportClosing",
-    nullableMoney(summary.closing)
-  );
-
-  setText(
-    "reportCOGS",
-    nullableMoney(summary.cogs)
-  );
-
-  setText(
-    "reportGross",
-    nullableMoney(summary.gross)
-  );
-
-  setText(
-    "reportProfit",
-    nullableMoney(summary.profit)
-  );
-
-  const profitElement = $("reportProfit");
-
-  profitElement.classList.remove(
-    "positive",
-    "negative"
-  );
-
-  if (summary.profit !== null) {
-    profitElement.classList.add(
-      summary.profit >= 0
-        ? "positive"
-        : "negative"
-    );
-  }
-
-  const selectedExpenses = expenses.filter(
-    item => monthOf(item.date) === month
-  );
-
-  const categories = {};
-
-  selectedExpenses.forEach(item => {
-    const category =
-      item.category || "Lain-lain";
-
-    categories[category] =
-      (categories[category] || 0) +
-      number(item.amount);
-  });
-
-  const categoryRows = Object.entries(categories)
-    .sort((a, b) => a[0].localeCompare(b[0]));
-
-  $("expenseBreakdown").innerHTML =
-    categoryRows.length
-      ? categoryRows.map(([category, amount]) => `
-        <div class="report-line indent">
-          <span>${escapeHTML(category)}</span>
-          <strong>${money(amount)}</strong>
-        </div>
-      `).join("")
-      : `
-        <div class="report-line indent">
-          <span>Tiada belanja direkodkan</span>
-          <strong>RM 0.00</strong>
-        </div>
-      `;
-
-  $("openingInventory").value =
-    summary.opening === null
-      ? ""
-      : summary.opening.toFixed(2);
-
-  $("closingInventory").value =
-    summary.closing === null
-      ? ""
-      : summary.closing.toFixed(2);
-
-  const inventory = getInventory(month);
-
-  $("inventoryNotes").value =
-    inventory?.notes || "";
-
-  const previous = getInventory(
-    previousMonth(month)
-  );
-
-  setText(
-    "openingSource",
-    previous?.closing_inventory != null
-      ? "Dibawa dari inventori akhir bulan sebelumnya."
-      : summary.opening !== null
-        ? "Inventori awal direkodkan bagi bulan ini."
-        : "Inventori awal belum tersedia."
-  );
-
-  setText(
-    "reportWarning",
-    summary.inventoryComplete
-      ? "Laporan dikira menggunakan inventori awal dan akhir yang direkodkan."
-      : "Laporan belum lengkap kerana inventori awal atau akhir belum direkodkan. Untung/rugi tidak dipaparkan."
-  );
-}
-
-$("reportMonth").addEventListener(
-  "change",
-  renderReport
-);
-
-/* ==========================================
-   21. SIMPAN INVENTORI
-========================================== */
-
-async function saveInventory() {
-  if (!currentUser) return;
-
-  const month = $("reportMonth").value;
-  const closingText =
-    $("closingInventory").value.trim();
-
-  const closing = Number(closingText);
-
-  if (
-    !month ||
-    closingText === "" ||
-    !Number.isFinite(closing) ||
-    closing < 0
-  ) {
-    showMessage(
-      "inventoryMessage",
-      "Masukkan nilai inventori akhir yang sah."
-    );
-    return;
-  }
-
-  const button = $("saveInventoryBtn");
-  button.disabled = true;
-
-  try {
-    const existing = getInventory(month);
-
-    const payload = {
-      month,
-      closing_inventory: closing,
-      notes: $("inventoryNotes").value.trim()
-    };
-
-    let result;
-
-    if (existing) {
-      result = await db
-        .from("monthly_inventory")
-        .update(payload)
-        .eq("id", existing.id);
-    } else {
-      result = await db
-        .from("monthly_inventory")
-        .insert(payload);
-    }
-
-    if (result.error) throw result.error;
-
-    await loadAll();
-
-    showMessage(
-      "inventoryMessage",
-      "Inventori akhir berjaya disimpan.",
-      true
-    );
-
-  } catch (error) {
-    showMessage(
-      "inventoryMessage",
-      "Gagal simpan inventori: " + error.message
-    );
-  } finally {
-    button.disabled = false;
-  }
-}
-
-/* ==========================================
-   22. START APPLICATION
-========================================== */
-
-init();
-
-</script>
-</body>
-</html>
+<!-- END MODERN ELEGANT LUXURY -->
