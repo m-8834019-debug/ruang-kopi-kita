@@ -7,12 +7,11 @@
   <meta name="theme-color" content="#211812">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <link rel="apple-touch-icon" href="./icon-192.png">
+  <title>Ruang Kopi Kita | Aplikasi Pengurusan</title>
+
   <link rel="manifest" href="./manifest.webmanifest">
-
-  <title>Ruang Kopi Kita • App</title>
+  <link rel="apple-touch-icon" href="./icon-192.png">
 
   <style>
     :root {
@@ -22,226 +21,159 @@
     }
 
     * { box-sizing: border-box; }
-    body { margin: 0; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+    }
 
     header {
       background: #211812;
       color: white;
       padding: 16px 20px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 12px;
     }
 
-    header strong {
+    .brand strong {
+      display: block;
       font-family: Georgia, serif;
-      font-size: 21px;
+      font-size: 22px;
     }
 
-    header small {
+    .brand small {
       display: block;
+      margin-top: 4px;
       color: #d4b48a;
       font-size: 11px;
-      margin-top: 3px;
-    }
-
-    .wrap {
-      max-width: 1100px;
-      margin: auto;
-      padding: 22px 16px 90px;
-    }
-
-    .login {
-      max-width: 420px;
-      margin: 8vh auto 0;
-      background: white;
-      padding: 28px;
-      border-radius: 18px;
-      border: 1px solid #e6ded4;
-      box-shadow: 0 12px 35px #27180e15;
-    }
-
-    h1, h2 { font-family: Georgia, serif; }
-    h1 { font-size: 26px; margin: 0 0 8px; }
-    h2 { font-size: 23px; margin: 0 0 10px; }
-
-    .muted {
-      color: #766a5e;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .field { margin: 18px 0; }
-
-    label {
-      display: block;
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 7px;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #d8cbbd;
-      border-radius: 10px;
-      font: inherit;
-      background: white;
-      color: #211812;
+      letter-spacing: 1px;
     }
 
     button {
-      border: 0;
+      border: none;
       border-radius: 10px;
       background: #38271c;
       color: white;
-      padding: 12px 16px;
+      padding: 13px 18px;
       font: inherit;
       font-weight: 700;
       cursor: pointer;
     }
 
-    button:disabled { opacity: .5; cursor: wait; }
-    .hidden { display: none !important; }
+    button:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
 
-    .ghost {
-      background: #493629;
+    .logout {
+      display: none;
+      background: #6b4930;
+      padding: 10px 13px;
       font-size: 12px;
     }
 
-    .notice {
-      padding: 12px;
-      border-radius: 9px;
-      background: #fff1df;
-      color: #6d3d15;
-      margin: 14px 0;
-      font-size: 13px;
+    .login-wrap {
+      max-width: 440px;
+      margin: 8vh auto 30px;
+      padding: 0 15px;
     }
 
-    .top {
+    .login-card {
+      background: white;
+      padding: 30px;
+      border: 1px solid #e6ded4;
+      border-radius: 20px;
+      box-shadow: 0 12px 35px #27180e15;
+    }
+
+    h1 {
+      font-family: Georgia, serif;
+      font-size: 28px;
+      margin: 0 0 10px;
+    }
+
+    .muted {
+      color: #766a5e;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .field { margin: 20px 0; }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d8cbbd;
+      border-radius: 10px;
+      background: #fff;
+      color: #211812;
+      font: inherit;
+    }
+
+    input:focus {
+      outline: 2px solid #c8a77a;
+      outline-offset: 1px;
+    }
+
+    .login-btn { width: 100%; }
+
+    .notice {
+      margin-top: 15px;
+      padding: 13px;
+      border-radius: 10px;
+      background: #fff1df;
+      color: #794319;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .hidden { display: none !important; }
+
+    .dashboard {
+      display: none;
+      width: 100%;
+    }
+
+    .dashboard.active { display: block; }
+
+    .dashboard-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-
-    .pill {
-      font-size: 12px;
-      color: #684d32;
-      background: #efe2ce;
-      padding: 6px 10px;
-      border-radius: 20px;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 10px;
-      margin-bottom: 18px;
+      padding: 12px 18px;
+      background: #f0e6d8;
+      border-bottom: 1px solid #dfd1bf;
+      font-size: 13px;
     }
 
-    .stat {
-      background: white;
-      border: 1px solid #e9e1d6;
-      border-radius: 13px;
-      padding: 15px;
-    }
+    .dashboard-bar b { color: #38271c; }
 
-    .stat b {
+    .dashboard-frame {
       display: block;
-      font-size: 25px;
-      color: #3b281c;
-    }
-
-    .stat span {
-      font-size: 12px;
-      color: #776b60;
-    }
-
-    .tools {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-
-    .tools button {
-      padding: 9px 13px;
-      background: #eee6da;
-      color: #3c2a1e;
-    }
-
-    .tools button.active {
-      background: #39291f;
-      color: white;
-    }
-
-    .orders {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 14px;
-    }
-
-    .order {
-      background: white;
-      border: 1px solid #e9e1d6;
-      border-radius: 16px;
-      padding: 17px;
-    }
-
-    .order-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: start;
-      gap: 8px;
-    }
-
-    .order h3 { margin: 0 0 4px; }
-    .order p { margin: 8px 0; font-size: 14px; }
-    .order select { margin-top: 8px; }
-    .order button { width: 100%; margin-top: 10px; }
-
-    .badge {
-      background: #f3e5d0;
-      color: #4c3421;
-      border-radius: 8px;
-      padding: 6px 8px;
-      font-size: 12px;
-    }
-
-    .empty {
-      background: white;
-      border-radius: 12px;
-      padding: 24px;
-      text-align: center;
-      color: #766a5e;
-    }
-
-    .admin-frame {
-      border: 0;
       width: 100%;
-      height: 100dvh;
-      display: none;
+      height: calc(100dvh - 160px);
+      min-height: 500px;
+      border: 0;
+      background: #f7f4ee;
     }
 
-    .admin-mode header,
-    .admin-mode .wrap {
-      display: none;
-    }
-
-    .admin-mode .admin-frame {
-      display: block;
-    }
-
-    #logout { display: none; }
-
-    @media (max-width: 550px) {
-      .stat { padding: 10px; }
-      .stat b { font-size: 21px; }
-      .wrap { padding: 18px 12px 90px; }
+    @media (max-width: 600px) {
+      .login-card { padding: 24px 20px; }
+      .brand strong { font-size: 19px; }
+      .dashboard-frame {
+        height: calc(100dvh - 150px);
+        min-height: 350px;
+      }
     }
   </style>
 </head>
@@ -249,93 +181,82 @@
 <body>
 
 <header>
-  <div>
+  <div class="brand">
     <strong>☕ Ruang Kopi Kita</strong>
     <small>APLIKASI PENGURUSAN</small>
   </div>
-  <button class="ghost" id="logout">Log Keluar</button>
+
+  <button class="logout" id="logoutBtn" type="button">
+    Log Keluar
+  </button>
 </header>
 
-<main class="wrap">
-
-  <section id="login" class="login">
+<main id="loginSection" class="login-wrap">
+  <section class="login-card">
     <h1>Selamat Datang</h1>
+
     <p class="muted">
-      Log masuk sebagai Admin atau Staf menggunakan
-      akaun yang didaftarkan.
+      Log masuk menggunakan akaun Admin atau Staf
+      yang telah didaftarkan dalam sistem.
     </p>
 
     <form id="loginForm">
       <div class="field">
         <label for="email">Email</label>
-        <input id="email" type="email" autocomplete="username" required>
+        <input
+          id="email"
+          type="email"
+          autocomplete="username"
+          required
+        >
       </div>
 
       <div class="field">
-        <label for="password">Kata laluan</label>
-        <input id="password" type="password" autocomplete="current-password" required>
+        <label for="password">Kata Laluan</label>
+        <input
+          id="password"
+          type="password"
+          autocomplete="current-password"
+          required
+        >
       </div>
 
-      <button id="loginBtn" type="submit" style="width:100%">
+      <button id="loginBtn" class="login-btn" type="submit">
         Log Masuk
       </button>
     </form>
 
     <div id="loginError" class="notice hidden"></div>
   </section>
-
-  <section id="staff" class="hidden">
-
-    <div class="top">
-      <div>
-        <h2>Pesanan Pelanggan</h2>
-        <p class="muted" id="who"></p>
-      </div>
-      <span class="pill" id="connection">Memuatkan…</span>
-    </div>
-
-    <div class="stats">
-      <div class="stat">
-        <b id="newCount">0</b>
-        <span>Baharu</span>
-      </div>
-      <div class="stat">
-        <b id="prepCount">0</b>
-        <span>Disediakan</span>
-      </div>
-      <div class="stat">
-        <b id="readyCount">0</b>
-        <span>Sedia</span>
-      </div>
-    </div>
-
-    <div class="tools" id="filters">
-      <button class="active" data-filter="all">Semua</button>
-      <button data-filter="active">Aktif</button>
-      <button data-filter="done">Selesai</button>
-      <button id="refresh">↻ Refresh</button>
-    </div>
-
-    <div id="error" class="notice hidden"></div>
-    <div id="orders" class="orders"></div>
-
-  </section>
-
 </main>
 
-<iframe
-  id="adminFrame"
-  class="admin-frame"
-  title="Dashboard Admin">
-</iframe>
+<section id="dashboard" class="dashboard">
+  <div class="dashboard-bar">
+    <div>
+      <b id="roleTitle">Dashboard</b>
+      <div id="accountEmail"></div>
+    </div>
+
+    <button id="dashboardLogout" type="button">
+      Log Keluar
+    </button>
+  </div>
+
+  <iframe
+    id="dashboardFrame"
+    class="dashboard-frame"
+    title="Ruang Kopi Kita Dashboard"
+  ></iframe>
+</section>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 "use strict";
 
+// =====================================
 // KONFIGURASI SUPABASE
-// Jangan gunakan nama pemboleh ubah URL.
+// =====================================
 
 const SUPABASE_URL =
   "https://ledcwlnyztcsvdedwmtq.supabase.co";
@@ -344,420 +265,188 @@ const SUPABASE_KEY =
   "sb_publishable_a1sRyLibWsIpRThtxfUbUQ_-Ksjebvl";
 
 let db = null;
+let currentUser = null;
+let currentRole = null;
 
 const $ = id => document.getElementById(id);
 
-let user = null;
-let role = null;
-let orders = [];
-let filter = "all";
-let subscription = null;
-let poll = null;
+// =====================================
+// PAPAR MESEJ RALAT
+// =====================================
 
-const statuses = [
-  "Baharu",
-  "Sedang Disediakan",
-  "Sedia Dihidangkan",
-  "Selesai",
-  "Dibatalkan"
-];
-
-function message(text, id = "error") {
-  const el = $(id);
-  el.textContent = text || "";
-  el.classList.toggle("hidden", !text);
+function showError(text) {
+  const box = $("loginError");
+  box.textContent = text || "";
+  box.classList.toggle("hidden", !text);
 }
 
-function safe(value) {
-  return String(value ?? "").replace(
-    /[&<>"']/g,
-    c => ({
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;"
-    }[c])
-  );
-}
-
-function cash(value) {
-  return "RM " + Number(value || 0).toLocaleString(
-    "ms-MY",
-    {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    }
-  );
-}
-
-function stopUpdates() {
-  if (poll) {
-    clearInterval(poll);
-    poll = null;
-  }
-
-  if (subscription && db) {
-    db.removeChannel(subscription);
-    subscription = null;
-  }
-}
+// =====================================
+// PAPAR LOGIN
+// =====================================
 
 function showLogin() {
-  stopUpdates();
+  currentUser = null;
+  currentRole = null;
 
-  user = null;
-  role = null;
-  orders = [];
-
-  document.body.classList.remove("admin-mode");
-
-  $("adminFrame").removeAttribute("src");
-  $("login").classList.remove("hidden");
-  $("staff").classList.add("hidden");
-  $("logout").style.display = "none";
+  $("dashboardFrame").removeAttribute("src");
+  $("dashboard").classList.remove("active");
+  $("loginSection").classList.remove("hidden");
+  $("logoutBtn").style.display = "none";
 }
 
-async function enter(account) {
-  const result = await db
+// =====================================
+// PAPAR DASHBOARD MENGIKUT PERANAN
+// =====================================
+
+function showDashboard(user, role) {
+  currentUser = user;
+  currentRole = role;
+
+  $("loginSection").classList.add("hidden");
+  $("dashboard").classList.add("active");
+  $("logoutBtn").style.display = "block";
+
+  $("accountEmail").textContent = user.email || "";
+
+  if (role === "admin") {
+    $("roleTitle").textContent = "Panel Admin";
+    $("dashboardFrame").src = "./admin.html";
+  } else {
+    $("roleTitle").textContent = "Panel Staf";
+    $("dashboardFrame").src = "./staff.html";
+  }
+}
+
+// =====================================
+// SEMAK PERANAN PENGGUNA
+// =====================================
+
+async function checkRole(user) {
+  const { data, error } = await db
     .from("user_roles")
     .select("role")
-    .eq("user_id", account.id)
+    .eq("user_id", user.id)
     .maybeSingle();
 
-  if (result.error) {
-    throw result.error;
-  }
-
-  const accountRole = String(
-    result.data?.role || ""
-  ).toLowerCase();
-
-  if (!["admin", "staff", "staf"].includes(accountRole)) {
+  if (error) {
     throw new Error(
-      "Akaun belum mempunyai peranan Admin atau Staf dalam jadual user_roles."
+      "Gagal menyemak peranan pengguna: " + error.message
     );
   }
 
-  user = account;
-  role = accountRole;
-
-  $("login").classList.add("hidden");
-  $("logout").style.display = "block";
+  const role = String(data?.role || "")
+    .trim()
+    .toLowerCase();
 
   if (role === "admin") {
-    stopUpdates();
-    document.body.classList.add("admin-mode");
-    $("staff").classList.add("hidden");
-    $("adminFrame").src = "./admin.html";
+    showDashboard(user, "admin");
     return;
   }
 
-  document.body.classList.remove("admin-mode");
-  $("staff").classList.remove("hidden");
-  $("who").textContent = account.email || "Staf";
+  if (role === "staff" || role === "staf") {
+    showDashboard(user, "staff");
+    return;
+  }
 
-  await loadOrders();
-
-  subscription = db
-    .channel("rkk-staff-orders")
-    .on(
-      "postgres_changes",
-      {
-        event: "*",
-        schema: "public",
-        table: "orders"
-      },
-      () => loadOrders()
-    )
-    .subscribe();
-
-  poll = setInterval(loadOrders, 15000);
+  throw new Error(
+    "Akaun ini belum mempunyai peranan Admin atau Staf. " +
+    "Semak jadual user_roles dalam Supabase."
+  );
 }
 
-// LOGIN
+// =====================================
+// PROSES LOGIN
+// =====================================
+
 $("loginForm").addEventListener("submit", async event => {
   event.preventDefault();
 
   const button = $("loginBtn");
   button.disabled = true;
+  button.textContent = "Sedang Log Masuk...";
 
-  message("", "loginError");
+  showError("");
 
   try {
     if (!db) {
       throw new Error(
-        "Sambungan Supabase belum tersedia. Semak internet dan cuba lagi."
+        "Supabase belum bersambung. Semak internet."
       );
     }
 
     const email = $("email").value.trim();
     const password = $("password").value;
 
-    const result = await db.auth.signInWithPassword({
-      email,
-      password
-    });
+    const { data, error } =
+      await db.auth.signInWithPassword({
+        email,
+        password
+      });
 
-    if (result.error) {
-      throw result.error;
+    if (error) throw error;
+
+    if (!data?.user) {
+      throw new Error("Maklumat akaun tidak diterima.");
     }
 
-    if (!result.data?.user) {
-      throw new Error("Maklumat pengguna tidak diterima.");
-    }
+    await checkRole(data.user);
 
-    await enter(result.data.user);
     $("password").value = "";
 
   } catch (error) {
     const errorText = error?.message || String(error);
 
     try {
-      if (db) {
-        await db.auth.signOut();
-      }
+      if (db) await db.auth.signOut();
     } catch (_) {}
 
     showLogin();
-    message(errorText, "loginError");
+    showError(errorText);
 
   } finally {
     button.disabled = false;
+    button.textContent = "Log Masuk";
   }
 });
 
+// =====================================
 // LOG KELUAR
-$("logout").addEventListener("click", async () => {
-  stopUpdates();
+// =====================================
+
+async function logout() {
+  $("logoutBtn").disabled = true;
+  $("dashboardLogout").disabled = true;
 
   try {
     if (db) {
-      await db.auth.signOut();
-    }
-  } catch (error) {
-    console.warn(error);
-  }
-
-  showLogin();
-});
-
-// AMBIL PESANAN
-async function loadOrders() {
-  if (!db || !user || role === "admin") {
-    return;
-  }
-
-  const result = await db
-    .from("orders")
-    .select("*")
-    .order("created_at", { ascending: false })
-    .limit(200);
-
-  if (result.error) {
-    message(
-      "Gagal membaca pesanan: " + result.error.message
-    );
-    $("connection").textContent = "Sambungan bermasalah";
-    return;
-  }
-
-  orders = result.data || [];
-
-  message("");
-
-  $("connection").textContent =
-    "Disambungkan • " +
-    new Date().toLocaleTimeString("ms-MY");
-
-  render();
-}
-
-// PAPAR PESANAN
-function render() {
-  const count = status => orders.filter(
-    order =>
-      String(order.status || "").toLowerCase() ===
-      status.toLowerCase()
-  ).length;
-
-  $("newCount").textContent = count("Baharu");
-  $("prepCount").textContent = count("Sedang Disediakan");
-  $("readyCount").textContent = count("Sedia Dihidangkan");
-
-  const isActive = order =>
-    !["selesai", "dibatalkan"].includes(
-      String(order.status || "").toLowerCase()
-    );
-
-  const shown = orders.filter(order => {
-    if (filter === "all") return true;
-    if (filter === "active") return isActive(order);
-    return !isActive(order);
-  });
-
-  if (!shown.length) {
-    $("orders").innerHTML =
-      '<div class="empty">Tiada pesanan untuk dipaparkan.</div>';
-    return;
-  }
-
-  $("orders").innerHTML = shown.map(order => {
-    const id = String(order.id);
-
-    const date = order.created_at
-      ? new Date(order.created_at).toLocaleString("ms-MY")
-      : "";
-
-    const options = statuses.map(status => {
-      const selected =
-        status === (order.status || "Baharu")
-          ? "selected"
-          : "";
-
-      return `
-        <option value="${safe(status)}" ${selected}>
-          ${safe(status)}
-        </option>
-      `;
-    }).join("");
-
-    return `
-      <article class="order">
-
-        <div class="order-head">
-          <div>
-            <h3>
-              Pesanan #${safe(
-                order.order_number || id.slice(0, 8)
-              )}
-            </h3>
-            <div class="muted">${safe(date)}</div>
-          </div>
-
-          <span class="badge">
-            ${safe(order.status || "Baharu")}
-          </span>
-        </div>
-
-        <p>
-          <b>Nama:</b>
-          ${safe(order.customer_name || "-")}
-        </p>
-
-        <p>
-          <b>Meja:</b>
-          ${safe(order.table_number || "-")}
-        </p>
-
-        <p>
-          <b>Jumlah:</b>
-          ${cash(order.total_amount)}
-        </p>
-
-        <label>Status pesanan</label>
-
-        <select data-id="${safe(id)}">
-          ${options}
-        </select>
-
-        <button data-save="${safe(id)}">
-          Simpan Status
-        </button>
-
-      </article>
-    `;
-  }).join("");
-
-  $("orders")
-    .querySelectorAll("[data-save]")
-    .forEach(button => {
-      button.addEventListener("click", () => {
-        saveStatus(button.dataset.save);
-      });
-    });
-}
-
-// SIMPAN STATUS PESANAN
-async function saveStatus(id) {
-  const item = orders.find(
-    order => String(order.id) === String(id)
-  );
-
-  if (!item) return;
-
-  const select = Array.from(
-    $("orders").querySelectorAll("select[data-id]")
-  ).find(element => element.dataset.id === String(id));
-
-  if (!select) return;
-
-  const status = select.value;
-
-  if (!statuses.includes(status)) return;
-
-  const button = Array.from(
-    $("orders").querySelectorAll("[data-save]")
-  ).find(element => element.dataset.save === String(id));
-
-  if (button) button.disabled = true;
-
-  try {
-    const result = await db
-      .from("orders")
-      .update({ status })
-      .eq("id", id)
-      .select("id,status");
-
-    if (result.error) {
-      throw result.error;
+      const { error } = await db.auth.signOut();
+      if (error) throw error;
     }
 
-    if (!result.data?.length) {
-      throw new Error(
-        "Kemas kini tidak dibenarkan. Semak polisi RLS Supabase."
-      );
-    }
-
-    await loadOrders();
+    showLogin();
+    showError("");
 
   } catch (error) {
-    message(
-      "Gagal kemas kini status: " + error.message
-    );
+    alert("Gagal log keluar: " + error.message);
 
-    if (button) button.disabled = false;
+  } finally {
+    $("logoutBtn").disabled = false;
+    $("dashboardLogout").disabled = false;
   }
 }
 
-// TAPIS PESANAN
-$("filters")
-  .querySelectorAll("[data-filter]")
-  .forEach(button => {
-    button.addEventListener("click", () => {
-      filter = button.dataset.filter;
+$("logoutBtn").addEventListener("click", logout);
+$("dashboardLogout").addEventListener("click", logout);
 
-      $("filters")
-        .querySelectorAll("[data-filter]")
-        .forEach(element => {
-          element.classList.toggle(
-            "active",
-            element === button
-          );
-        });
-
-      render();
-    });
-  });
-
-$("refresh").addEventListener("click", loadOrders);
-
+// =====================================
 // MULAKAN APLIKASI
+// =====================================
+
 async function startApp() {
   try {
     if (!window.supabase?.createClient) {
       throw new Error(
-        "Pustaka Supabase gagal dimuatkan. Semak sambungan internet."
+        "Pustaka Supabase tidak berjaya dimuatkan."
       );
     }
 
@@ -766,33 +455,38 @@ async function startApp() {
       SUPABASE_KEY
     );
 
-    const result = await db.auth.getUser();
+    const { data, error } = await db.auth.getUser();
 
-    if (result.data?.user) {
+    if (error && error.name !== "AuthSessionMissingError") {
+      console.warn("Semakan sesi:", error.message);
+    }
+
+    if (data?.user) {
       try {
-        await enter(result.data.user);
-      } catch (error) {
+        await checkRole(data.user);
+      } catch (roleError) {
         await db.auth.signOut();
         showLogin();
-        message(error.message, "loginError");
+        showError(roleError.message);
       }
     }
 
   } catch (error) {
     console.error("Ralat aplikasi:", error);
-    message(
-      "Ralat sambungan: " + error.message,
-      "loginError"
-    );
+    showError("Ralat aplikasi: " + error.message);
   }
 }
 
 startApp();
 
+// =====================================
 // SERVICE WORKER
-if ("serviceWorker" in navigator &&
-    location.protocol === "https:") {
+// =====================================
 
+if (
+  "serviceWorker" in navigator &&
+  location.protocol === "https:"
+) {
   navigator.serviceWorker
     .register("./sw.js")
     .catch(error => console.warn(error));
