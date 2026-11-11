@@ -2214,7 +2214,12 @@ header small{color:#e3c79d;font-size:12px;letter-spacing:.4px}
 #logoutBtn{background:transparent;color:#fffaf3;border:1px solid #b98d58}
 main{max-width:1500px;padding:34px 30px 70px;transition:margin .2s ease}
 @media(min-width:1051px){
- body:has(#dashboardSection:not(.hidden)) main{margin-left:246px;max-width:none}
+body:has(#dashboardSection:not(.hidden)) main {
+  margin-left: 246px;
+  width: calc(100% - 246px);
+  max-width: none;
+  min-width: 0;
+}{margin-left:246px;max-width:none}
  #dashboardSection:not(.hidden)>nav{position:fixed;top:96px;left:0;bottom:0;width:246px;padding:25px 13px;margin:0;background:#241812;border-right:1px solid #4e3829;display:flex;flex-direction:column;flex-wrap:nowrap;gap:7px;overflow-y:auto;z-index:20}
  #dashboardSection>nav .nav-btn{width:100%;text-align:left;justify-content:flex-start}
 }
@@ -2257,7 +2262,65 @@ tbody tr:hover td{background:#faf5ee}
 @media(max-width:1050px){main{margin:0;padding:24px 18px 55px}#dashboardSection>nav{position:static;display:flex;flex-direction:row;flex-wrap:wrap;width:auto;padding:0;background:transparent;border:0;gap:8px;margin-bottom:24px}.nav-btn{background:#39271e;color:white;border-radius:9px;padding:11px 13px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){header{padding:18px}header h1{font-size:24px}main{padding:20px 13px 45px}.stats,.grid,.dash-grid{grid-template-columns:1fr}.panel{padding:17px}.stat{min-height:115px}}
 @media print{header,nav,footer,.no-print,#loginSection,.toolbar,.actions{display:none!important}body,main,.panel,#reportSection{background:white!important;color:black!important;box-shadow:none!important}main{margin:0!important;padding:0!important}.page-section{display:none!important}#dashboardSection{display:block!important}#reportSection{display:block!important}#reportSection .panel{border:0!important;padding:5px}#extraExports,#extraComparison,#extraReceipts{display:none!important}}
-</style>
+/* PEMBETULAN DASHBOARD RUANG KOPI KITA */
+
+#dashboardSection,
+.page-section,
+#homeSection {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Kad kewangan */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 17px;
+  width: 100%;
+}
+
+.stat {
+  min-width: 0;
+  width: 100%;
+}
+
+/* Graf dan panel */
+.dash-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 18px;
+  width: 100%;
+}
+
+.dash-grid .panel {
+  min-width: 0;
+}
+
+/* Paparan tablet */
+@media (max-width: 1200px) {
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Paparan telefon */
+@media (max-width: 1050px) {
+  body:has(#dashboardSection:not(.hidden)) main {
+    margin: 0;
+    width: 100%;
+  }
+
+  .dash-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .stats {
+    grid-template-columns: 1fr;
+  }
+}</style>
 <!-- END LUXURY ESPRESSO THEME -->
 <!-- =========================================
  RUANG KOPI KITA
