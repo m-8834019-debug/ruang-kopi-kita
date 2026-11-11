@@ -2535,6 +2535,62 @@ aside::-webkit-scrollbar {
 }
 </style>
 
+<style>
+/* FIX PAPARAN RUANG KOPI KITA */
+
+/* Pastikan saiz elemen tidak melebihi ruang */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Header tidak terpotong */
+header {
+  position: relative !important;
+  top: auto !important;
+  min-height: 85px;
+  padding-top: 18px !important;
+  padding-bottom: 18px !important;
+}
+
+/* Kandungan utama boleh mengecil ikut skrin */
+main,
+.dashboard,
+.main-content,
+.content {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Kad dashboard tidak terkeluar */
+.stats {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.stat, .panel {
+  min-width: 0;
+}
+
+/* Paparan skrin lebih kecil */
+@media (max-width: 1100px) {
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .stats {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
 
 </body>
 </html>
