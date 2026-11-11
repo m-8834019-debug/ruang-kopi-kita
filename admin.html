@@ -2501,60 +2501,42 @@ tbody tr:hover td {
 <style>
 /* FIX SCROLL - RUANG KOPI KITA */
 
-/* Header sentiasa berada di atas */
+<style>
+/* FIX SCROLL SIDEBAR - RUANG KOPI KITA */
+
+/* Header ikut scroll seperti biasa */
 header {
-  position: sticky !important;
-  top: 0 !important;
-  z-index: 1000 !important;
-  width: 100%;
+  position: relative !important;
+  top: auto !important;
 }
 
-/* Sidebar kekal kemas ketika scroll */
+/* Sidebar tidak lagi melekat pada skrin */
 .sidebar,
 aside {
-  position: sticky !important;
-  top: 90px !important;
-  align-self: flex-start !important;
-  max-height: calc(100vh - 105px) !important;
+  position: relative !important;
+  top: auto !important;
+  bottom: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+  align-self: stretch !important;
+}
+
+/* Halaman menggunakan scroll biasa */
+html,
+body {
   overflow-y: auto !important;
-  scrollbar-width: thin;
-  scrollbar-color: #CDA46B #211711;
-}
-
-/* Warna sidebar lebih sekata */
-.sidebar,
-aside {
-  background: #211711 !important;
-}
-
-/* Scroll sidebar lebih cantik */
-.sidebar::-webkit-scrollbar,
-aside::-webkit-scrollbar {
-  width: 5px;
-}
-
-.sidebar::-webkit-scrollbar-thumb,
-aside::-webkit-scrollbar-thumb {
-  background: #CDA46B;
-  border-radius: 10px;
-}
-
-/* Scroll halaman lebih lembut */
-html {
   scroll-behavior: smooth;
 }
 
-/* Paparan telefon */
-@media (max-width: 768px) {
-  .sidebar,
-  aside {
-    position: relative !important;
-    top: 0 !important;
-    max-height: none !important;
-    overflow: visible !important;
-  }
+/* Elakkan sidebar mempunyai scroll sendiri */
+.sidebar::-webkit-scrollbar,
+aside::-webkit-scrollbar {
+  display: none;
 }
 </style>
+
 
 </body>
 </html>
