@@ -2528,6 +2528,42 @@ html {
 }
 </style>
 
+<style>
+/* FIX SCROLL SIDEBAR - RUANG KOPI KITA */
+
+/* Header ikut scroll seperti biasa */
+header {
+  position: relative !important;
+  top: auto !important;
+}
+
+/* Sidebar tidak lagi melekat pada skrin */
+.sidebar,
+aside {
+  position: relative !important;
+  top: auto !important;
+  bottom: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+  align-self: stretch !important;
+}
+
+/* Halaman menggunakan scroll biasa */
+html,
+body {
+  overflow-y: auto !important;
+  scroll-behavior: smooth;
+}
+
+/* Elakkan sidebar mempunyai scroll sendiri */
+.sidebar::-webkit-scrollbar,
+aside::-webkit-scrollbar {
+  display: none;
+}
+</style>
+
 
 </body>
 </html>
