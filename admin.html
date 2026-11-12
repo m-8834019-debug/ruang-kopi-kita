@@ -2201,180 +2201,475 @@ loadAll=async function(){
 })();
 </script>
 
-<!-- LUXURY ESPRESSO THEME - RUANG KOPI KITA -->
+<!-- ==========================================
+     RKK MAISON BLOOM
+     LUXURY FLORAL ADMIN DESIGN
+     VISUAL THEME ONLY
+========================================== -->
 
-<style id="rkk-layout-fix">
+<style id="rkk-maison-bloom">
+
+:root {
+  --dark: #56364b;
+  --brown: #80566a;
+  --gold: #cda36d;
+  --cream: #fff8f2;
+  --line: #ead8d9;
+  --red: #b64d66;
+  --green: #3c846a;
+
+  --rose: #f8dfe6;
+  --sage: #e0efdf;
+  --lavender: #e8e1fa;
+  --butter: #fff0c8;
+  --peach: #ffe5d5;
+  --ink: #493646;
+  --muted: #907b87;
+  --sidebar: 250px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0 !important;
+  min-width: 0;
+  background: #fff8f2 !important;
+  color: var(--ink) !important;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+}
+
+/* HEADER PREMIUM */
+
+header {
+  position: relative;
+  z-index: 30;
+  width: 100%;
+  min-height: 92px;
+  padding: 17px 30px !important;
+
+  background: linear-gradient(
+    115deg,
+    #57364c,
+    #835c70,
+    #a57787
+  ) !important;
+
+  border-bottom: 3px solid #e7c69c !important;
+  color: white !important;
+
+  box-shadow: 0 6px 24px #57364c18;
+}
+
+header::after {
+  content: "✦  ✧  ✦";
+  position: absolute;
+  right: 25%;
+  top: 18px;
+  color: #f9e0bd;
+  font-size: 25px;
+  letter-spacing: 15px;
+  opacity: .35;
+  pointer-events: none;
+}
+
+header h1 {
+  margin: 0;
+  font-family: Georgia, serif !important;
+  font-size: clamp(23px, 2.5vw, 30px) !important;
+  color: #fff9f4 !important;
+  letter-spacing: .3px;
+}
+
+header small {
+  color: #ffe5ce !important;
+  font-size: 12px;
+}
+
+#adminEmail {
+  color: #fff4eb !important;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+#logoutBtn {
+  background: #fff3e9 !important;
+  color: #70485a !important;
+  border: 1px solid #f1d3bc !important;
+  box-shadow: none !important;
+}
+
+/* LAYOUT UTAMA */
+
+main {
+  box-sizing: border-box !important;
+  max-width: none !important;
+  min-width: 0 !important;
+}
+
+#dashboardSection {
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+.page-section {
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
 @media screen and (min-width: 1051px) {
 
   body:has(#dashboardSection:not(.hidden)) main {
-    margin: 0 0 0 246px !important;
+    margin: 0 0 0 var(--sidebar) !important;
     padding: 0 !important;
-    width: calc(100vw - 246px) !important;
-    max-width: calc(100vw - 246px) !important;
-    min-width: 0 !important;
+    width: calc(100vw - var(--sidebar)) !important;
+    max-width: calc(100vw - var(--sidebar)) !important;
   }
 
   #dashboardSection:not(.hidden) {
     margin: 0 !important;
     padding: 0 !important;
     width: 100% !important;
-    max-width: 100% !important;
   }
+
+  /* SIDEBAR MELEKAT DENGAN DASHBOARD */
 
   #dashboardSection:not(.hidden) > nav {
     position: fixed !important;
-    top: 96px !important;
+    top: 92px !important;
     left: 0 !important;
     bottom: 0 !important;
-    width: 246px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+
+    width: var(--sidebar) !important;
+    min-width: var(--sidebar) !important;
+
     margin: 0 !important;
+    padding: 26px 14px !important;
+    gap: 9px !important;
+
+    background: linear-gradient(
+      180deg,
+      #56364b,
+      #68465a,
+      #805d70
+    ) !important;
+
+    border-right: 2px solid #e2c29a !important;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 20;
   }
 
-  #dashboardSection .page-section {
+  #dashboardSection > .page-section {
     margin: 0 !important;
-    padding: 20px !important;
+    padding: 32px 30px 65px !important;
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
   }
 
-  #homeSection .stats {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr)) !important;
-  }
-
-  #homeSection .dash-grid {
-    grid-template-columns: minmax(0, 1fr) !important;
+  #dashboardSection > #globalMessage {
+    margin: 15px 30px 0 !important;
   }
 }
-</style>
-}</style>
-<!-- END LUXURY ESPRESSO THEME -->
-<!-- =========================================
- RUANG KOPI KITA
-<!-- RUANG KOPI KITA - LUXURY ESPRESSO GOLD -->
-<style id="rkk-color-theme">
 
-:root {
-  --dark: #211711;
-  --brown: #68412B;
-  --gold: #CDA46B;
-  --cream: #FAF4E9;
-  --line: #E5D5C2;
-  --red: #B74343;
-  --green: #23764D;
+/* BUTANG SIDEBAR */
+
+#dashboardSection > nav .nav-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+
+  flex: 0 0 auto !important;
+  width: 100% !important;
+  min-height: 48px !important;
+
+  margin: 0 !important;
+  padding: 13px 15px !important;
+
+  text-align: left !important;
+  white-space: normal;
+
+  color: #fff1ee !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: 12px !important;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  box-shadow: none !important;
+  transition: background .2s, transform .2s;
 }
 
-/* LATAR BELAKANG */
-body {
-  background: var(--cream);
-  color: var(--dark);
+#dashboardSection > nav .nav-btn:hover {
+  background: #ffffff1c !important;
+  transform: translateX(3px);
 }
 
-/* HEADER */
-header {
+#dashboardSection > nav .nav-btn.active {
   background: linear-gradient(
     115deg,
-    #211711,
-    #493022
-  );
-  color: #FFFFFF;
-  border-bottom: 3px solid var(--gold);
+    #f8dfe6,
+    #fcebd7
+  ) !important;
+
+  color: #583b50 !important;
+  border: 1px solid #f7e6d5 !important;
+  box-shadow: 0 4px 15px #27132120 !important;
 }
 
-header h1 {
-  color: #FFFFFF;
+/* TAJUK HALAMAN */
+
+.page-section > h2 {
+  font-family: Georgia, serif !important;
+  font-size: clamp(26px, 3vw, 37px) !important;
+  font-weight: 600 !important;
+  color: #56364b !important;
+  letter-spacing: -.5px;
+  margin: 0 0 10px !important;
 }
 
-header small {
-  color: #F0D2A6;
+.page-section > h2::after {
+  content: " ✦";
+  color: #d3a57a;
+  font-size: .65em;
 }
 
-/* BUTANG UTAMA */
+.subtitle {
+  color: #907b87 !important;
+  line-height: 1.7;
+  margin-bottom: 25px !important;
+}
+
+/* KAD KEWANGAN PASTEL LUXURY */
+
+#homeSection .stats {
+  display: grid !important;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  margin: 24px 0 !important;
+}
+
+#homeSection .stat {
+  position: relative;
+  min-width: 0 !important;
+  width: 100% !important;
+  min-height: 150px;
+
+  padding: 25px !important;
+  overflow: hidden;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 21px !important;
+
+  box-shadow:
+    0 8px 25px #68465a10,
+    inset 0 1px 0 #ffffffc9 !important;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+}
+
+#homeSection .stat:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px #68465a20 !important;
+}
+
+/* Setiap kad warna berbeza */
+
+#homeSection .stat:nth-child(1) {
+  background: linear-gradient(
+    135deg, #ffe2e8, #fff0ef
+  ) !important;
+}
+
+#homeSection .stat:nth-child(2) {
+  background: linear-gradient(
+    135deg, #e0efdf, #f3faed
+  ) !important;
+}
+
+#homeSection .stat:nth-child(3) {
+  background: linear-gradient(
+    135deg, #fff0c8, #fff9e9
+  ) !important;
+}
+
+#homeSection .stat:nth-child(4) {
+  background: linear-gradient(
+    135deg, #e8e1fa, #f5f0ff
+  ) !important;
+}
+
+#homeSection .stat:nth-child(5) {
+  background: linear-gradient(
+    135deg, #ffe5d5, #fff3e8
+  ) !important;
+}
+
+#homeSection .stat:nth-child(6) {
+  background: linear-gradient(
+    135deg, #e0ebf7, #f2f6ff
+  ) !important;
+}
+
+#homeSection .stat::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    #c68b9e,
+    #e6c89e,
+    #9bbfa8
+  ) !important;
+}
+
+#homeSection .stat::after {
+  content: "✧";
+  position: absolute;
+  right: 19px;
+  bottom: 7px;
+  font-size: 65px;
+  font-family: Georgia, serif;
+  line-height: 1;
+  color: #8c5c7930;
+  pointer-events: none;
+}
+
+#homeSection .stat span {
+  position: relative;
+  z-index: 1;
+  display: block;
+  color: #765467 !important;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#homeSection .stat strong {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-top: 19px;
+  font-size: clamp(23px, 2.4vw, 32px);
+  color: #4b3445;
+  overflow-wrap: anywhere;
+}
+
+#homeSection .stat strong.positive {
+  color: #267a59 !important;
+}
+
+#homeSection .stat strong.negative {
+  color: #b64d66 !important;
+}
+
+/* PANEL GRAF */
+
+.dash-grid {
+  display: grid !important;
+  grid-template-columns:
+    minmax(0, 1.25fr)
+    minmax(0, 1fr) !important;
+  gap: 18px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+.panel,
+.extra-card {
+  min-width: 0 !important;
+  max-width: 100% !important;
+
+  background: #fffdfb !important;
+  border: 1px solid #f0dfe2 !important;
+  border-radius: 20px !important;
+  padding: 25px !important;
+
+  box-shadow: 0 7px 25px #7654670c !important;
+}
+
+.panel h3,
+.extra-card h3 {
+  color: #68465a !important;
+  font-family: Georgia, serif;
+  font-size: 18px;
+}
+
+#monthlyChart,
+#salesChart {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.bar-sales,
+.bar {
+  background: #d49aad !important;
+}
+
+.bar-profit {
+  background: #80b89c !important;
+}
+
+.bar-loss {
+  background: #cf8291 !important;
+}
+
+/* BORANG DAN BUTANG */
+
 .btn {
-  background: #68412B;
-  color: #FFFFFF;
-  box-shadow: 0 2px 5px #21171115;
+  background: #83576e !important;
+  color: white !important;
+  border: 1px solid #83576e !important;
+  border-radius: 11px !important;
+  padding: 11px 17px;
+  box-shadow: 0 4px 10px #68465a12;
 }
 
 .btn:hover {
-  background: #805137;
-  opacity: 1;
+  filter: brightness(1.08);
 }
 
-/* BUTANG EMAS */
 .btn.gold,
 .gold {
-  background: #CDA46B;
-  color: #211711;
+  background: #e8c58e !important;
+  color: #56364b !important;
+  border-color: #e8c58e !important;
 }
 
-.btn.gold:hover {
-  background: #E1B981;
-}
-
-/* BUTANG PADAM */
 .btn.red,
 .red {
-  background: #B74343;
-  color: #FFFFFF;
+  background: #b64d66 !important;
+  color: white !important;
+  border-color: #b64d66 !important;
 }
 
-/* MENU NAVIGASI */
-.nav-btn {
-  background: #FFFDF9;
-  border-color: #E5D5C2;
-  color: #68412B;
-}
-
-.nav-btn:hover {
-  background: #F4E6D1;
-  border-color: #CDA46B;
-}
-
-.nav-btn.active {
-  background: #68412B;
-  color: #FFFFFF;
-  border-color: #68412B;
-  box-shadow: inset 0 -3px 0 #CDA46B;
-}
-
-/* KAD DASHBOARD */
-.panel,
-.stat,
-.login,
-.extra-card {
-  background: #FFFDF9;
-  border-color: #E5D5C2;
-  box-shadow: 0 6px 18px #2117110C;
-}
-
-.stat {
-  border-top: 3px solid #CDA46B;
-}
-
-.stat strong {
-  color: #211711;
-}
-
-/* TAJUK DAN TEKS */
-h2,
-.panel h3 {
-  color: #39251A;
-}
-
-.subtitle,
-.muted,
-.status-note,
-.month-col small,
-.barwrap small {
-  color: #756455;
-}
-
-/* BORANG */
-.field label,
-.extra-card label {
-  color: #39251A;
+#logoutBtn {
+  background: #fff3e9 !important;
+  color: #70485a !important;
+  border-color: #f1d3bc !important;
 }
 
 .field input,
@@ -2384,109 +2679,173 @@ h2,
 .toolbar select,
 .extra-card input,
 .extra-card select {
-  background: #FFFFFF;
-  color: #211711;
-  border-color: #D8C5AF;
+  min-width: 0;
+  max-width: 100%;
+  background: #fffefd !important;
+  border: 1px solid #e7d2d9 !important;
+  border-radius: 11px !important;
+  color: #56364b !important;
+  padding: 12px;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-  outline: 2px solid #CDA46B;
+  outline: 2px solid #d6a0b2;
   outline-offset: 1px;
 }
 
 /* JADUAL */
-th,
-.extra-table th {
-  background: #F3E6D4;
-  color: #39251A;
+
+.table-wrap,
+.extra-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  border-radius: 12px;
 }
 
-td,
-.extra-table td {
-  border-color: #EEE2D3;
-  color: #33261D;
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: #f8e9ed !important;
+  color: #68465a !important;
+  font-weight: 700;
+}
+
+td {
+  background: #fffdfb !important;
+  color: #584650 !important;
+  border-bottom: 1px solid #f0e3e5 !important;
 }
 
 tbody tr:hover td {
-  background: #FFF7EB;
+  background: #fff5f7 !important;
 }
 
-/* PENYATA UNTUNG RUGI */
-.report-line {
-  color: #33261D;
-  border-color: #E7D9C8;
-}
+/* LAPORAN UNTUNG RUGI */
 
 .report-line.heading {
-  background: #F3E6D4;
-  color: #39251A;
+  background: #f8e9ed !important;
+  color: #68465a !important;
 }
 
 .report-line.final {
-  background: #EAD2AF;
-  color: #211711;
-  border: 1px solid #CDA46B;
+  background: #f3e2c9 !important;
+  border: 1px solid #dfc49d !important;
+  color: #493646 !important;
 }
 
-/* KEUNTUNGAN DAN KERUGIAN */
-.positive,
-.extra-positive {
-  color: #23764D;
-}
-
-.negative,
-.extra-negative {
-  color: #B74343;
-}
-
-/* GRAF */
-.bar-sales,
-.bar {
-  background: #CDA46B;
-}
-
-.bar-profit {
-  background: #23764D;
-}
-
-.bar-loss {
-  background: #B74343;
-}
-
-/* NOTA */
 .note {
-  background: #FFF4DD;
-  border-color: #E5C38C;
-  color: #5B4329;
+  background: #fff5e5 !important;
+  border: 1px solid #ead4b6 !important;
+  color: #765b56 !important;
 }
 
-.mini-row {
-  border-color: #EEE2D3;
+.muted,
+.status-note {
+  color: #907b87 !important;
+}
+
+/* LOGIN */
+
+body:not(:has(#dashboardSection:not(.hidden))) main {
+  margin: 0 auto !important;
+  width: 100% !important;
+  max-width: 1100px !important;
+  padding: 25px !important;
+}
+
+.login {
+  background: #fffdfb !important;
+  border: 1px solid #f0dfe2 !important;
+  border-radius: 24px !important;
+  box-shadow: 0 15px 40px #68465a18 !important;
+}
+
+/* TABLET */
+
+@media screen and (max-width: 1050px) {
+
+  body:has(#dashboardSection:not(.hidden)) main {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #dashboardSection > nav {
+    position: static !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 15px !important;
+    gap: 8px !important;
+    background: #68465a !important;
+  }
+
+  #dashboardSection > nav .nav-btn {
+    flex: 1 1 160px !important;
+    width: auto !important;
+  }
+
+  #dashboardSection > .page-section {
+    padding: 25px 18px 50px !important;
+    margin: 0 !important;
+  }
+
+  .dash-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+/* TELEFON */
+
+@media screen and (max-width: 600px) {
+
+  header {
+    padding: 17px !important;
+  }
+
+  header::after {
+    display: none;
+  }
+
+  #homeSection .stats,
+  .grid,
+  .dash-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  #homeSection .stat {
+    min-height: 125px;
+    padding: 20px !important;
+  }
+
+  .panel,
+  .extra-card {
+    padding: 17px !important;
+  }
+
+  #dashboardSection > .page-section {
+    padding: 20px 13px 40px !important;
+  }
 }
 
 /* CETAK LAPORAN */
+
 @media print {
-  body,
-  .panel,
-  #reportSection {
-    background: #FFFFFF !important;
-    color: #111111 !important;
-    box-shadow: none !important;
-  }
 
-  .report-line.heading,
-  .report-line.final {
-    background: #EEEEEE !important;
-    color: #111111 !important;
-  }
-}
+  header,
+  nav,
+  footer,
+  .no-print,
+  #loginSection,
 
-</style>
-<!-- END LUXURY ESPRESSO GOLD -->
-
-<style>
 /* FIX PAPARAN RUANG KOPI KITA */
 
 /* Pastikan saiz elemen tidak melebihi ruang */
