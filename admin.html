@@ -2202,131 +2202,56 @@ loadAll=async function(){
 </script>
 
 <!-- LUXURY ESPRESSO THEME - RUANG KOPI KITA -->
-<style id="luxuryEspressoTheme">
-/* RUANG KOPI KITA | MODERN ELEGANT LUXURY — visual only */
-:root{--dark:#241812;--brown:#39271e;--gold:#bd8b4b;--cream:#f7f5f1;--line:#e8e1d8;--red:#b64b4b;--green:#237653;--lux-text:#29211c;--lux-muted:#786e65}
-html{color-scheme:light;scroll-behavior:smooth}
-body{margin:0;background:#f7f5f1;color:#29211c;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.55}
-header{background:#241812;color:#fffaf3;border-bottom:2px solid #bd8b4b;padding:20px 32px;min-height:96px;box-shadow:0 4px 20px #24181215}
-header h1{color:#fffaf3;font-family:Georgia,serif;font-size:29px;letter-spacing:.2px}
-header small{color:#e3c79d;font-size:12px;letter-spacing:.4px}
-#adminEmail{color:#e9d8c6;font-size:12px}
-#logoutBtn{background:transparent;color:#fffaf3;border:1px solid #b98d58}
-main{max-width:1500px;padding:34px 30px 70px;transition:margin .2s ease}
-@media(min-width:1051px){
-body:has(#dashboardSection:not(.hidden)) main {
-  margin-left: 246px;
-  width: calc(100% - 246px);
-  max-width: none;
-  min-width: 0;
-  }
- #dashboardSection:not(.hidden)>nav{position:fixed;top:96px;left:0;bottom:0;width:246px;padding:25px 13px;margin:0;background:#241812;border-right:1px solid #4e3829;display:flex;flex-direction:column;flex-wrap:nowrap;gap:7px;overflow-y:auto;z-index:20}
- #dashboardSection>nav .nav-btn{width:100%;text-align:left;justify-content:flex-start}
-}
-.nav-btn{display:flex;align-items:center;background:transparent;border:1px solid transparent;color:#e9d9c6;border-radius:10px;padding:13px 15px;font-weight:600;font-size:13px;transition:.2s ease}
-.nav-btn:hover{background:#473127;color:white;border-color:#71543d}
-.nav-btn.active{background:linear-gradient(120deg,#f0d29d,#c8944e);color:#241812;border-color:#d5aa6a;box-shadow:0 3px 12px #00000015}
-.page-section>h2{font-family:Georgia,serif;font-size:clamp(25px,3vw,35px);color:#241812;font-weight:700;letter-spacing:-.5px;margin:0 0 7px}
-.subtitle{color:#776b60;font-size:14px;line-height:1.6;margin-bottom:24px}
-h3{color:#2d211b;font-size:17px;font-weight:700}
-.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;margin:24px 0}
-.stat{position:relative;overflow:hidden;background:#fffdfa;color:#241812;border:1px solid #e9e0d5;border-radius:15px;padding:24px 22px;min-height:133px;box-shadow:0 5px 18px #34231909;transition:transform .2s,box-shadow .2s}
-.stat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#bd8b4b,#ecd4ac)}
-.stat:hover{transform:translateY(-3px);box-shadow:0 9px 24px #34231914}
-.stat span{display:block;color:#75685e;font-size:13px;font-weight:600}
-.stat strong{display:block;color:#241812;font-size:clamp(21px,2.1vw,29px);font-weight:800;margin-top:15px;overflow-wrap:anywhere}
-.stat strong.positive{color:#237653}.stat strong.negative{color:#b64b4b}
-.panel,.extra-card{background:#fffdfa;border:1px solid #e9e0d5;border-radius:16px;padding:24px;box-shadow:0 5px 18px #34231908;margin-bottom:20px}
-.panel h3{margin-top:0;margin-bottom:16px}
-.field label,.extra-card label{color:#39271e;font-size:13px;font-weight:700}
-.field input,.field select,.field textarea,.toolbar input,.toolbar select,.extra-card input,.extra-card select{background:#fff;color:#241812;border:1px solid #ddd4ca;border-radius:9px;padding:12px 13px}
-input:focus,select:focus,textarea:focus{outline:2px solid #d4ac76;outline-offset:1px}
-.btn{background:#39271e;color:#fff;border:1px solid #39271e;border-radius:9px;padding:11px 17px;font-weight:700;transition:.2s}
-.btn:hover{opacity:1;filter:brightness(1.13)}
-.btn.gold,.gold{background:#dcb77e;color:#241812;border-color:#dcb77e}
-.btn.red{background:#a84545;color:white;border-color:#a84545}
-.table-wrap,.extra-scroll{overflow-x:auto;border-radius:10px}
-table{width:100%;border-collapse:collapse;background:#fffdfa}
-th{background:#f0ebe5;color:#49362a;font-weight:700;font-size:12px;padding:15px 13px}
-td{color:#392d26;background:#fffdfa;padding:14px 13px;border-bottom:1px solid #eee8e1}
-tbody tr:hover td{background:#faf5ee}
-.report-line{color:#30251e;border-color:#e9e0d5}
-.report-line.heading{background:#f4ede3;color:#39271e;border-radius:7px}
-.report-line.final{background:#f0dfc4;color:#241812;border:1px solid #d9bb8d}
-.positive,.extra-positive{color:#237653}.negative,.extra-negative{color:#b64b4b}
-.bar-sales,.bar{background:#c18d4d}.bar-profit{background:#237653}.bar-loss{background:#b64b4b}
-.month-col small,.barwrap small,.status-note,.muted{color:#786e65}
-.mini-row{border-color:#eee8e1}
-.login{background:#fffdfa;border:1px solid #e9e0d5;border-radius:18px;box-shadow:0 12px 35px #24181214}
-.login h2{color:#241812}
-@media(max-width:1050px){main{margin:0;padding:24px 18px 55px}#dashboardSection>nav{position:static;display:flex;flex-direction:row;flex-wrap:wrap;width:auto;padding:0;background:transparent;border:0;gap:8px;margin-bottom:24px}.nav-btn{background:#39271e;color:white;border-radius:9px;padding:11px 13px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:600px){header{padding:18px}header h1{font-size:24px}main{padding:20px 13px 45px}.stats,.grid,.dash-grid{grid-template-columns:1fr}.panel{padding:17px}.stat{min-height:115px}}
-@media print{header,nav,footer,.no-print,#loginSection,.toolbar,.actions{display:none!important}body,main,.panel,#reportSection{background:white!important;color:black!important;box-shadow:none!important}main{margin:0!important;padding:0!important}.page-section{display:none!important}#dashboardSection{display:block!important}#reportSection{display:block!important}#reportSection .panel{border:0!important;padding:5px}#extraExports,#extraComparison,#extraReceipts{display:none!important}}
-/* PEMBETULAN DASHBOARD RUANG KOPI KITA */
 
-#dashboardSection,
-.page-section,
-#homeSection {
-  width: 100%;
-  min-width: 0;
-  max-width: 100%;
-}
+<style id="rkk-layout-fix">
+@media screen and (min-width: 1051px) {
 
-/* Kad kewangan */
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 17px;
-  width: 100%;
-}
-
-.stat {
-  min-width: 0;
-  width: 100%;
-}
-
-/* Graf dan panel */
-.dash-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-  gap: 18px;
-  width: 100%;
-}
-
-.dash-grid .panel {
-  min-width: 0;
-}
-
-/* Paparan tablet */
-@media (max-width: 1200px) {
-  .stats {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-/* Paparan telefon */
-@media (max-width: 1050px) {
   body:has(#dashboardSection:not(.hidden)) main {
-    margin: 0;
-    width: 100%;
+    margin: 0 0 0 246px !important;
+    padding: 0 !important;
+    width: calc(100vw - 246px) !important;
+    max-width: calc(100vw - 246px) !important;
+    min-width: 0 !important;
   }
 
-  .dash-grid {
-    grid-template-columns: 1fr;
+  #dashboardSection:not(.hidden) {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #dashboardSection:not(.hidden) > nav {
+    position: fixed !important;
+    top: 96px !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: 246px !important;
+    margin: 0 !important;
+  }
+
+  #dashboardSection .page-section {
+    margin: 0 !important;
+    padding: 20px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  #homeSection .stats {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  #homeSection .dash-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
   }
 }
-
-@media (max-width: 600px) {
-  .stats {
-    grid-template-columns: 1fr;
-  }
+</style>
 }</style>
 <!-- END LUXURY ESPRESSO THEME -->
 <!-- =========================================
  RUANG KOPI KITA
-
-
-
 <!-- RUANG KOPI KITA - LUXURY ESPRESSO GOLD -->
 <style id="rkk-color-theme">
 
