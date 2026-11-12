@@ -2802,6 +2802,64 @@ header {
 }
 </style>
 
+/* DASHBOARD RUANG KOPI KITA - SUSUNAN KEMAS */
+
+@media screen and (min-width: 1051px) {
+
+  body:has(#dashboardSection:not(.hidden)) main {
+    position: relative !important;
+    margin: 0 0 0 246px !important;
+    padding: 24px !important;
+    width: calc(100% - 246px) !important;
+    max-width: calc(100% - 246px) !important;
+    min-width: 0 !important;
+  }
+
+  #dashboardSection,
+  #homeSection,
+  .page-section {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  #homeSection .stats {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 16px !important;
+  }
+
+  #homeSection .stat {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    padding: 20px !important;
+  }
+
+  #homeSection .dash-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  body:has(#dashboardSection:not(.hidden)) main {
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #homeSection .stats {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 
 </body>
 </html>
