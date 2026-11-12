@@ -2349,7 +2349,7 @@ main {
 
   #dashboardSection:not(.hidden) > nav {
 position: sticky !important;
-top: 0 !important;
+top: 92px !important;
 left: auto !important;
 bottom: auto !important;
 grid-column: 1 !important;
@@ -2925,7 +2925,19 @@ main,
 
 <style id="rkk-layout-bersambung">
 /* SIDEBAR DAN DASHBOARD MELEKAT */
+@media screen and (min-width: 1051px) {
+  body:has(#dashboardSection:not(.hidden)) header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 100 !important;
+    min-height: 92px !important;
+  }
 
+  #dashboardSection:not(.hidden) > nav {
+    height: calc(100vh - 92px) !important;
+    align-self: start !important;
+  }
+}
 @media screen and (min-width: 1051px) {
 
   body:has(#dashboardSection:not(.hidden)) main {
