@@ -2225,7 +2225,7 @@ loadAll=async function(){
   --peach: #ffe5d5;
   --ink: #493646;
   --muted: #907b87;
-  --sidebar: 250px;
+  --sidebar: 230px;
 }
 
 *,
@@ -2334,20 +2334,26 @@ main {
     max-width: calc(100vw - var(--sidebar)) !important;
   }
 
-  #dashboardSection:not(.hidden) {
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
+ #dashboardSection:not(.hidden) {
+  display: grid !important;
+  grid-template-columns: 230px minmax(0, 1fr) !important;
+  gap: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  align-items: start !important;
+}
   }
 
   /* SIDEBAR MELEKAT DENGAN DASHBOARD */
 
   #dashboardSection:not(.hidden) > nav {
-    position: fixed !important;
-    top: 92px !important;
-    left: 0 !important;
-    bottom: 0 !important;
-
+position: sticky !important;
+top: 0 !important;
+left: auto !important;
+bottom: auto !important;
+grid-column: 1 !important;
+grid-row: 1 / -1 !important;
     display: flex !important;
     flex-direction: column !important;
     flex-wrap: nowrap !important;
@@ -2360,6 +2366,10 @@ main {
     padding: 26px 14px !important;
     gap: 9px !important;
 
+#dashboardSection:not(.hidden) > #globalMessage {
+  grid-column: 2 !important;
+  min-width: 0 !important;
+}
     background: linear-gradient(
       180deg,
       #56364b,
@@ -2372,7 +2382,19 @@ main {
     overflow-y: auto;
     z-index: 20;
   }
+#dashboardSection:not(.hidden) > .page-section:not(.hidden) {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 25px !important;
+}
 
+#dashboardSection:not(.hidden) > #globalMessage {
+  grid-column: 2 !important;
+  min-width: 0 !important;
+}
   #dashboardSection > .page-section {
     margin: 0 !important;
     padding: 32px 30px 65px !important;
