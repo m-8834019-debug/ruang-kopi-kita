@@ -2219,7 +2219,7 @@ body:has(#dashboardSection:not(.hidden)) main {
   width: calc(100% - 246px);
   max-width: none;
   min-width: 0;
-}{margin-left:246px;max-width:none}
+
  #dashboardSection:not(.hidden)>nav{position:fixed;top:96px;left:0;bottom:0;width:246px;padding:25px 13px;margin:0;background:#241812;border-right:1px solid #4e3829;display:flex;flex-direction:column;flex-wrap:nowrap;gap:7px;overflow-y:auto;z-index:20}
  #dashboardSection>nav .nav-btn{width:100%;text-align:left;justify-content:flex-start}
 }
@@ -2613,6 +2613,146 @@ main,
 @media (max-width: 650px) {
   .stats {
     grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<style id="rkk-dashboard-final-fix">
+/* RUANG KOPI KITA - DASHBOARD FIX */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  width: 100%;
+}
+
+/* Header kekal di atas halaman */
+header {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  width: 100% !important;
+  min-height: 96px;
+  z-index: 1;
+}
+
+/* Sidebar dan ruang dashboard */
+@media (min-width: 1051px) {
+
+  body:has(#dashboardSection:not(.hidden)) main {
+    margin: 0 0 0 246px !important;
+    width: calc(100% - 246px) !important;
+    max-width: calc(100% - 246px) !important;
+    min-width: 0 !important;
+    padding: 28px 25px 60px !important;
+  }
+
+  #dashboardSection:not(.hidden) > nav {
+    position: fixed;
+    left: 0;
+    top: 96px;
+    bottom: 0;
+    width: 246px;
+    overflow-y: auto;
+  }
+}
+
+/* Semua kandungan muat dalam ruang */
+#dashboardSection,
+.page-section,
+#homeSection {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Kad kewangan */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 17px;
+  width: 100%;
+}
+
+.stat {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Graf */
+.dash-grid {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 18px;
+  width: 100%;
+}
+
+.panel,
+.dash-grid .panel {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Jadual boleh scroll sendiri */
+.table-wrap,
+.extra-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Skrin sederhana */
+@media (min-width: 1051px) and (max-width: 1250px) {
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dash-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1050px) {
+  body:has(#dashboardSection:not(.hidden)) main {
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #dashboardSection > nav {
+    position: static !important;
+    width: 100% !important;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dash-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Telefon */
+@media (max-width: 600px) {
+  .stats,
+  .grid,
+  .dash-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Jangan ganggu cetakan laporan */
+@media print {
+  main {
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
   }
 }
 </style>
