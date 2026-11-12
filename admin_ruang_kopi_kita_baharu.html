@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ms">
 <head>
@@ -341,53 +340,14 @@ footer{
   .panel{border:0;padding:5px}
 }
 </style>
-
-<style id="rkk-official-brand-redesign">
-:root{
-  --dark:#211711;--brown:#573522;--gold:#c9a36c;
-  --cream:#faf8f5;--line:#e9e2da;
-}
-body{background:#faf8f5;color:#251b16}
-header{background:#211711!important;border-bottom:3px solid #c9a36c;padding:14px 3%!important}
-.rkk-brand{display:flex;align-items:center;gap:15px}
-.rkk-brand-logo{width:76px;height:64px;object-fit:contain;background:white;border-radius:12px;padding:5px}
-.rkk-brand h1{font-family:Georgia,serif;font-size:clamp(20px,2.3vw,29px);margin:0;color:#fff}
-.rkk-brand small{display:block;margin-top:5px;color:#e7cba5;font-size:12px}
-#homeSection>h2{font-size:clamp(27px,3vw,39px);letter-spacing:-.7px}
-#dashboardSection>nav .nav-btn{font-size:14px}
-.stat{border-radius:18px;background:#fff;border:1px solid #e8ded2;box-shadow:0 8px 22px #2a190c0b}
-.stat::before{height:4px;background:linear-gradient(90deg,#a36c38,#e4c899)}
-.stat strong{letter-spacing:-.6px}
-.panel,.extra-card{background:#fff;border:1px solid #e9e0d7;border-radius:18px}
-.rkk-report-brand{text-align:center;padding:12px 0 8px}
-.rkk-report-logo{width:230px;max-width:75%;height:125px;object-fit:contain;display:block;margin:0 auto 8px}
-.rkk-report-brand h3{font-size:17px;letter-spacing:1.2px;margin:0 0 10px;color:#352219}
-#reportSection>.panel:not(.no-print){max-width:850px;margin-left:auto;margin-right:auto;padding:32px 38px}
-#reportSection .report-line{font-variant-numeric:tabular-nums}
-#reportSection .report-line.final{border-radius:10px}
-@media(max-width:600px){
-  .rkk-brand-logo{width:57px;height:52px}
-  .rkk-brand h1{font-size:20px}
-  .rkk-brand small{font-size:10px}
-  #reportSection>.panel:not(.no-print){padding:20px 14px}
-  .rkk-report-logo{height:100px}
-}
-@media print{
-  @page{size:A4;margin:15mm}
-  .rkk-report-logo{width:190px;height:110px;print-color-adjust:exact}
-  .rkk-report-brand{padding-top:0}
-  #reportSection>.panel:not(.no-print){max-width:none;padding:0!important;margin:0!important}
-  #reportSection .report-line{break-inside:avoid}
-}
-</style>
-
 </head>
 
 <body>
 <header>
   <div>
-    <div class="rkk-brand"><img src="./logo-ruang-kopi-kita.png" alt="Logo rasmi Ruang Kopi Kita" class="rkk-brand-logo"><div><h1>Ruang Kopi Kita</h1><small>Sistem Pelaporan Untung Rugi | Panel Admin</small></div></div>
-    </div>
+    <h1>☕ Ruang Kopi Kita</h1>
+    <small>Sistem Pelaporan Untung Rugi | Panel Admin</small>
+  </div>
   <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
     <span id="adminEmail"></span>
     <button id="logoutBtn" class="btn red hidden" onclick="logout()">Log Keluar</button>
@@ -749,7 +709,7 @@ header{background:#211711!important;border-bottom:3px solid #c9a36c;padding:14px
   </div>
 
   <div class="panel">
-    <div class="rkk-report-brand"><img src="./logo-ruang-kopi-kita.png" alt="Logo rasmi Ruang Kopi Kita" class="rkk-report-logo"><h3>RUANG KOPI KITA</h3></div>
+    <h3 style="text-align:center">RUANG KOPI KITA</h3>
     <h3 style="text-align:center">
       LAPORAN UNTUNG RUGI SEMENTARA
     </h3>
@@ -1861,9 +1821,30 @@ async function init(){
 
 init();
 </script>
+
 <!-- ==================================================
      RUANG KOPI KITA - 3 FUNGSI TAMBAHAN
-     Tampal sebelum </body> dalam admin.html
+     Tampal sebelum 
+<style id="rkk-layout-repair">
+/* Repair conflicting positioning without changing the original visual arrangement */
+html,body{width:100%;max-width:100%;margin:0;overflow-x:clip}
+header{position:relative!important;top:auto!important;min-height:96px;box-sizing:border-box}
+header h1{line-height:1.25}
+main{width:100%;max-width:1500px;min-width:0;margin:0 auto!important;padding:32px 30px 70px}
+#dashboardSection{position:relative;min-width:0}
+#dashboardSection:not(.hidden)>nav{position:absolute!important;top:0!important;left:0!important;bottom:auto!important;height:auto!important;max-height:none!important;overflow:visible!important;width:235px!important;display:flex;flex-direction:column;flex-wrap:nowrap;gap:7px;padding:13px 12px 16px;margin:0;background:#241812;border-radius:0 0 12px 12px;z-index:1}
+#dashboardSection>.page-section,#dashboardSection>#globalMessage{margin-left:255px;min-width:0;max-width:calc(100% - 255px)}
+#dashboardSection>.page-section .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+#dashboardSection>.page-section .dash-grid{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}
+#dashboardSection>.page-section .panel,#dashboardSection>.page-section .stat{min-width:0}
+#dashboardSection>.page-section .stat strong{font-size:clamp(19px,2vw,29px)}
+@media(max-width:1100px){main{padding:25px 18px 60px}#dashboardSection>.page-section .stats{grid-template-columns:repeat(2,minmax(0,1fr))}#dashboardSection>.page-section .dash-grid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:800px){#dashboardSection:not(.hidden)>nav{position:relative!important;top:auto!important;left:auto!important;width:100%!important;flex-direction:row;flex-wrap:wrap;background:transparent;padding:0;margin:0 0 20px;border-radius:0}#dashboardSection>.page-section,#dashboardSection>#globalMessage{margin-left:0;max-width:100%}#dashboardSection>nav .nav-btn{width:auto;background:#39271e;color:#fff}#dashboardSection>nav .nav-btn.active{background:#cda46b;color:#211711}}
+@media(max-width:550px){#dashboardSection>.page-section .stats,#dashboardSection>.page-section .dash-grid{grid-template-columns:minmax(0,1fr)}main{padding:20px 13px 45px}}
+@media print{#dashboardSection>.page-section,#dashboardSection>#globalMessage{margin-left:0!important;max-width:100%!important}#dashboardSection>nav{display:none!important}}
+</style>
+
+</body> dalam admin.html
 ================================================== -->
 <style>
 .extra-tools{display:flex;flex-wrap:wrap;gap:10px;margin:15px 0}
@@ -2298,10 +2279,262 @@ tbody tr:hover td{background:#faf5ee}
 @media print{header,nav,footer,.no-print,#loginSection,.toolbar,.actions{display:none!important}body,main,.panel,#reportSection{background:white!important;color:black!important;box-shadow:none!important}main{margin:0!important;padding:0!important}.page-section{display:none!important}#dashboardSection{display:block!important}#reportSection{display:block!important}#reportSection .panel{border:0!important;padding:5px}#extraExports,#extraComparison,#extraReceipts{display:none!important}}
 </style>
 <!-- END LUXURY ESPRESSO THEME -->
-<!-- =========================================
- RUANG KOPI KITA
+<!-- RUANG KOPI KITA - LUXURY ESPRESSO GOLD -->
+<style id="rkk-color-theme">
+
+:root {
+  --dark: #211711;
+  --brown: #68412B;
+  --gold: #CDA46B;
+  --cream: #FAF4E9;
+  --line: #E5D5C2;
+  --red: #B74343;
+  --green: #23764D;
+}
+
+/* LATAR BELAKANG */
+body {
+  background: var(--cream);
+  color: var(--dark);
+}
+
+/* HEADER */
+header {
+  background: linear-gradient(
+    115deg,
+    #211711,
+    #493022
+  );
+  color: #FFFFFF;
+  border-bottom: 3px solid var(--gold);
+}
+
+header h1 {
+  color: #FFFFFF;
+}
+
+header small {
+  color: #F0D2A6;
+}
+
+/* BUTANG UTAMA */
+.btn {
+  background: #68412B;
+  color: #FFFFFF;
+  box-shadow: 0 2px 5px #21171115;
+}
+
+.btn:hover {
+  background: #805137;
+  opacity: 1;
+}
+
+/* BUTANG EMAS */
+.btn.gold,
+.gold {
+  background: #CDA46B;
+  color: #211711;
+}
+
+.btn.gold:hover {
+  background: #E1B981;
+}
+
+/* BUTANG PADAM */
+.btn.red,
+.red {
+  background: #B74343;
+  color: #FFFFFF;
+}
+
+/* MENU NAVIGASI */
+.nav-btn {
+  background: #FFFDF9;
+  border-color: #E5D5C2;
+  color: #68412B;
+}
+
+.nav-btn:hover {
+  background: #F4E6D1;
+  border-color: #CDA46B;
+}
+
+.nav-btn.active {
+  background: #68412B;
+  color: #FFFFFF;
+  border-color: #68412B;
+  box-shadow: inset 0 -3px 0 #CDA46B;
+}
+
+/* KAD DASHBOARD */
+.panel,
+.stat,
+.login,
+.extra-card {
+  background: #FFFDF9;
+  border-color: #E5D5C2;
+  box-shadow: 0 6px 18px #2117110C;
+}
+
+.stat {
+  border-top: 3px solid #CDA46B;
+}
+
+.stat strong {
+  color: #211711;
+}
+
+/* TAJUK DAN TEKS */
+h2,
+.panel h3 {
+  color: #39251A;
+}
+
+.subtitle,
+.muted,
+.status-note,
+.month-col small,
+.barwrap small {
+  color: #756455;
+}
+
+/* BORANG */
+.field label,
+.extra-card label {
+  color: #39251A;
+}
+
+.field input,
+.field select,
+.field textarea,
+.toolbar input,
+.toolbar select,
+.extra-card input,
+.extra-card select {
+  background: #FFFFFF;
+  color: #211711;
+  border-color: #D8C5AF;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid #CDA46B;
+  outline-offset: 1px;
+}
+
+/* JADUAL */
+th,
+.extra-table th {
+  background: #F3E6D4;
+  color: #39251A;
+}
+
+td,
+.extra-table td {
+  border-color: #EEE2D3;
+  color: #33261D;
+}
+
+tbody tr:hover td {
+  background: #FFF7EB;
+}
+
+/* PENYATA UNTUNG RUGI */
+.report-line {
+  color: #33261D;
+  border-color: #E7D9C8;
+}
+
+.report-line.heading {
+  background: #F3E6D4;
+  color: #39251A;
+}
+
+.report-line.final {
+  background: #EAD2AF;
+  color: #211711;
+  border: 1px solid #CDA46B;
+}
+
+/* KEUNTUNGAN DAN KERUGIAN */
+.positive,
+.extra-positive {
+  color: #23764D;
+}
+
+.negative,
+.extra-negative {
+  color: #B74343;
+}
+
+/* GRAF */
+.bar-sales,
+.bar {
+  background: #CDA46B;
+}
+
+.bar-profit {
+  background: #23764D;
+}
+
+.bar-loss {
+  background: #B74343;
+}
+
+/* NOTA */
+.note {
+  background: #FFF4DD;
+  border-color: #E5C38C;
+  color: #5B4329;
+}
+
+.mini-row {
+  border-color: #EEE2D3;
+}
+
+/* CETAK LAPORAN */
+@media print {
+  body,
+  .panel,
+  #reportSection {
+    background: #FFFFFF !important;
+    color: #111111 !important;
+    box-shadow: none !important;
+  }
+
+  .report-line.heading,
+  .report-line.final {
+    background: #EEEEEE !important;
+    color: #111111 !important;
+  }
+}
+
+</style>
+<!-- END LUXURY ESPRESSO GOLD -->
 
 
+
+
+
+<style id="rkk-layout-repair">
+/* Repair conflicting positioning without changing the original visual arrangement */
+html,body{width:100%;max-width:100%;margin:0;overflow-x:clip}
+header{position:relative!important;top:auto!important;min-height:96px;box-sizing:border-box}
+header h1{line-height:1.25}
+main{width:100%;max-width:1500px;min-width:0;margin:0 auto!important;padding:32px 30px 70px}
+#dashboardSection{position:relative;min-width:0}
+#dashboardSection:not(.hidden)>nav{position:absolute!important;top:0!important;left:0!important;bottom:auto!important;height:auto!important;max-height:none!important;overflow:visible!important;width:235px!important;display:flex;flex-direction:column;flex-wrap:nowrap;gap:7px;padding:13px 12px 16px;margin:0;background:#241812;border-radius:0 0 12px 12px;z-index:1}
+#dashboardSection>.page-section,#dashboardSection>#globalMessage{margin-left:255px;min-width:0;max-width:calc(100% - 255px)}
+#dashboardSection>.page-section .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+#dashboardSection>.page-section .dash-grid{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}
+#dashboardSection>.page-section .panel,#dashboardSection>.page-section .stat{min-width:0}
+#dashboardSection>.page-section .stat strong{font-size:clamp(19px,2vw,29px)}
+@media(max-width:1100px){main{padding:25px 18px 60px}#dashboardSection>.page-section .stats{grid-template-columns:repeat(2,minmax(0,1fr))}#dashboardSection>.page-section .dash-grid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:800px){#dashboardSection:not(.hidden)>nav{position:relative!important;top:auto!important;left:auto!important;width:100%!important;flex-direction:row;flex-wrap:wrap;background:transparent;padding:0;margin:0 0 20px;border-radius:0}#dashboardSection>.page-section,#dashboardSection>#globalMessage{margin-left:0;max-width:100%}#dashboardSection>nav .nav-btn{width:auto;background:#39271e;color:#fff}#dashboardSection>nav .nav-btn.active{background:#cda46b;color:#211711}}
+@media(max-width:550px){#dashboardSection>.page-section .stats,#dashboardSection>.page-section .dash-grid{grid-template-columns:minmax(0,1fr)}main{padding:20px 13px 45px}}
+@media print{#dashboardSection>.page-section,#dashboardSection>#globalMessage{margin-left:0!important;max-width:100%!important}#dashboardSection>nav{display:none!important}}
+</style>
 
 </body>
 </html>
