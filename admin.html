@@ -382,7 +382,9 @@ footer{
   <button class="nav-btn" data-page="expensesSection">🧾 Belanja Operasi</button>
   <button class="nav-btn" data-page="reportSection">📊 Untung Rugi</button>
 </nav>
-
+<button class="nav-btn" data-page="accountsSection">
+  📚 Chart of Accounts
+</button>
 <div id="globalMessage" class="msg hidden"></div>
 
 <section id="homeSection" class="page-section">
@@ -773,7 +775,48 @@ footer{
     </p>
   </div>
 </section>
+<!-- CHART OF ACCOUNTS -->
+<section id="accountsSection" class="page-section hidden">
 
+  <h2>📚 Chart of Accounts</h2>
+  <p class="subtitle">
+    Senarai akaun perakaunan Ruang Kopi Kita.
+  </p>
+
+  <div class="panel">
+    <div class="toolbar">
+      <input
+        type="search"
+        id="accountSearch"
+        placeholder="Cari kod atau nama akaun..."
+        oninput="renderAccounts()"
+      >
+
+      <button class="btn gold" onclick="loadAccounts()">
+        🔄 Refresh Akaun
+      </button>
+    </div>
+
+    <div id="accountMessage" class="status-note">
+      Klik Refresh Akaun untuk memaparkan senarai.
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Kod Akaun</th>
+            <th>Nama Akaun</th>
+            <th>Jenis Akaun</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="accountsTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+</section>
 </div>
 </main>
 
@@ -1817,6 +1860,80 @@ async function init(){
   }catch(err){
     showLogin();
     loginMessage(err.message);
+  }
+}
+
+let chartAccounts = [];
+
+async function loadAccounts() {
+  const status = document.getElementById("accountMessage");
+
+  if (!db || !admin) {
+    status.textContent = "Sila log masuk sebagai admin dahulu.";
+    return;
+  }
+
+  status.textContent = "Sedang memuatkan carta akaun...";
+
+  try {
+    const { data, error } = await db
+      .from("chart_of_accounts")
+      .select("id,account_code,account_name,account_type,is_active")
+      .order("account_code", { ascending: true });
+
+    if (error) throw error;
+
+    chartAccounts = data || [];
+    renderAccounts();
+
+    status.textContent =
+      chartAccounts.length + " akaun berjaya dimuatkan.";
+
+  } catch (err) {
+    status.textContent = "Ralat: " + err.message;
+  }
+}
+
+function renderAccounts() {
+  const body = document.getElementById("accountsTable");
+  if (!body) return;
+
+  const search = (
+    document.getElementById("accountSearch")?.value || ""
+  ).toLowerCase();
+
+  body.replaceChildren();
+
+  const filtered = chartAccounts.filter(a =>
+    (a.account_code + " " + a.account_name + " " + a.account_type)
+      .toLowerCase()
+      .includes(search)
+  );
+
+  filtered.forEach(a => {
+    const tr = document.createElement("tr");
+
+    [
+      a.account_code,
+      a.account_name,
+      a.account_type,
+      a.is_active ? "Aktif" : "Tidak Aktif"
+    ].forEach(value => {
+      const cell = document.createElement("td");
+      cell.textContent = value;
+      tr.appendChild(cell);
+    });
+
+    body.appendChild(tr);
+  });
+
+  if (!filtered.length) {
+    const tr = document.createElement("tr");
+    const cell = document.createElement("td");
+    cell.colSpan = 4;
+    cell.textContent = "Tiada akaun dijumpai.";
+    tr.appendChild(cell);
+    body.appendChild(tr);
   }
 }
 
