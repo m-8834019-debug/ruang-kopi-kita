@@ -1967,6 +1967,72 @@ async function loadAccounts() {
   }
 }
 
+async function editAccount(id) {
+  const a = chartAccounts.find(x => String(x.id) === String(id));
+
+  if (!a) {
+    alert("Akaun tidak dijumpai.");
+    return;
+  }
+
+  const newName = prompt("Nama Akaun:", a.account_name);
+  if (newName === null) return;
+
+  const name = newName.trim();
+  if (!name) {
+    alert("Nama akaun tidak boleh kosong.");
+    return;
+  }
+
+  try {
+    const { data, error } = await db
+      .from("chart_of_accounts")
+      .update({ account_name: name })
+      .eq("id", id)
+      .select("id");
+
+    if (error) throw error;
+    if (!data?.length) {
+      throw new Error("Tiada akaun dikemas kini. Semak polisi RLS.");
+    }
+
+    await loadAccounts();
+    alert("Nama akaun berjaya dikemas kini.");
+
+  } catch (err) {
+    alert("Gagal edit akaun: " + err.message);
+  }
+}
+
+async function deactivateAccount(id) {
+  const a = chartAccounts.find(x => String(x.id) === String(id));
+  if (!a) return;
+
+  if (!confirm(
+    "Nyahaktifkan akaun " + a.account_code +
+    " - " + a.account_name + "?"
+  )) return;
+
+  try {
+    const { data, error } = await db
+      .from("chart_of_accounts")
+      .update({ is_active: false })
+      .eq("id", id)
+      .select("id");
+
+    if (error) throw error;
+    if (!data?.length) {
+      throw new Error("Tiada akaun dikemas kini. Semak polisi RLS.");
+    }
+
+    await loadAccounts();
+    alert("Akaun berjaya dinyahaktifkan.");
+
+  } catch (err) {
+    alert("Gagal nyahaktif akaun: " + err.message);
+  }
+}
+
 function renderAccounts() {
   const body = document.getElementById("accountsTable");
   if (!body) return;
