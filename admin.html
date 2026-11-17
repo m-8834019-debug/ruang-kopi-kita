@@ -506,6 +506,7 @@ footer{
             <th>Nama</th>
             <th>Meja</th>
             <th>Status</th>
+            <th>Tindakan</th>
             <th>Jumlah</th>
           </tr>
         </thead>
@@ -1995,6 +1996,24 @@ function renderAccounts() {
       cell.textContent = value;
       tr.appendChild(cell);
     });
+
+const actionCell = document.createElement("td");
+
+const editButton = document.createElement("button");
+editButton.type = "button";
+editButton.className = "btn gold small";
+editButton.textContent = "✏️ Edit";
+editButton.onclick = () => editAccount(a.id);
+
+const deactivateButton = document.createElement("button");
+deactivateButton.type = "button";
+deactivateButton.className = "btn red small";
+deactivateButton.textContent = "Nyahaktif";
+deactivateButton.onclick = () => deactivateAccount(a.id);
+
+actionCell.className = "actions";
+actionCell.append(editButton, deactivateButton);
+tr.appendChild(actionCell);
 
     body.appendChild(tr);
   });
