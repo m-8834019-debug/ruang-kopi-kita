@@ -783,6 +783,77 @@ footer{
     Senarai akaun perakaunan Ruang Kopi Kita.
   </p>
 
+<div class="panel">
+  <h3>➕ Tambah Akaun Baharu</h3>
+
+  <form id="accountForm">
+    <div class="grid">
+
+      <div class="field">
+        <label>Kod Akaun</label>
+        <input id="newAccountCode"
+               placeholder="Contoh: 9040/0000"
+               pattern="[0-9]{4}/[0-9]{4}"
+               title="Format: 0000/0000"
+               required>
+      </div>
+
+      <div class="field">
+        <label>Nama Akaun</label>
+        <input id="newAccountName"
+               placeholder="Contoh: Electricity"
+               required>
+      </div>
+
+      <div class="field">
+        <label>Jenis Akaun</label>
+        <select id="newAccountType" required>
+          <option value="">Pilih jenis akaun</option>
+          <option value="Asset">Asset</option>
+          <option value="Liability">Liability</option>
+          <option value="Equity">Equity</option>
+          <option value="Revenue">Revenue</option>
+          <option value="Cost of Sales">Cost of Sales</option>
+          <option value="Expense">Expense</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Account Group</label>
+        <select id="newAccountGroup" required>
+          <option value="">Pilih kumpulan</option>
+          <option>Capital &amp; Reserves</option>
+          <option>Fixed Assets</option>
+          <option>Current Assets</option>
+          <option>Current Liabilities</option>
+          <option>Revenue</option>
+          <option>Cost of Goods Sold</option>
+          <option>Other Revenue</option>
+          <option>Expenditure</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Classified As</label>
+        <input id="newAccountClass"
+               placeholder="Contoh: FA, B, C, S">
+      </div>
+
+      <div class="field">
+        <label>Currency</label>
+        <input value="MYR" readonly>
+      </div>
+
+    </div>
+
+    <button class="btn" type="submit" id="saveAccountBtn">
+      💾 Simpan Akaun
+    </button>
+
+    <p id="saveAccountMessage" class="status-note"></p>
+  </form>
+</div>
+
   <div class="panel">
     <div class="toolbar">
       <input
@@ -1936,6 +2007,49 @@ function renderAccounts() {
     body.appendChild(tr);
   }
 }
+
+document.getElementById("accountForm")
+  .addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const button = document.getElementById("saveAccountBtn");
+    const status = document.getElementById("saveAccountMessage");
+
+    if (!db || !admin) {
+      status.textContent = "Sila log masuk sebagai admin.";
+      return;
+    }
+
+    const record = {
+      account_code: document.getElementById("newAccountCode").value.trim(),
+      account_name: document.getElementById("newAccountName").value.trim(),
+      account_type: document.getElementById("newAccountType").value,
+      account_group: document.getElementById("newAccountGroup").value,
+      classified_as: document.getElementById("newAccountClass").value.trim() || null,
+      currency: "MYR"
+    };
+
+    button.disabled = true;
+    status.textContent = "Sedang menyimpan akaun...";
+
+    try {
+      const { error } = await db
+        .from("chart_of_accounts")
+        .insert(record);
+
+      if (error) throw error;
+
+      status.textContent = "✅ Akaun berjaya ditambah.";
+      this.reset();
+
+      await loadAccounts();
+
+    } catch (err) {
+      status.textContent = "❌ Gagal menyimpan: " + err.message;
+    } finally {
+      button.disabled = false;
+    }
+  });
 
 init();
 </script>
