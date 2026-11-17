@@ -1948,9 +1948,10 @@ async function loadAccounts() {
 
   try {
     const { data, error } = await db
-      .from("chart_of_accounts")
-      .select("id,account_code,account_name,account_type,is_active")
-      .order("account_code", { ascending: true });
+     .from("chart_of_accounts")
+.select("id,account_code,account_name,account_type,is_active")
+.eq("is_active", true)
+.order("account_code", { ascending: true });
 
     if (error) throw error;
 
