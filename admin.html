@@ -2035,6 +2035,45 @@ async function deactivateAccount(id) {
   }
 }
 
+async function reactivateAccount(id) {
+  const a = chartAccounts.find(x => String(x.id) === String(id));
+
+  if (!a) {
+    alert("Akaun tidak dijumpai.");
+    return;
+  }
+
+  if (!db || !admin) {
+    alert("Sila log masuk sebagai admin.");
+    return;
+  }
+
+  if (!confirm(
+    "Aktifkan semula akaun " +
+    a.account_code + " - " + a.account_name + "?"
+  )) return;
+
+  try {
+    const { data, error } = await db
+      .from("chart_of_accounts")
+      .update({ is_active: true })
+      .eq("id", id)
+      .select("id");
+
+    if (error) throw error;
+
+    if (!data?.length) {
+      throw new Error("Tiada akaun dikemas kini. Semak polisi RLS.");
+    }
+
+    await loadAccounts();
+    alert("Akaun berjaya diaktifkan semula.");
+
+  } catch (err) {
+    alert("Gagal aktifkan akaun: " + err.message);
+  }
+}
+
 function renderAccounts() {
   const body = document.getElementById("accountsTable");
   if (!body) return;
@@ -2085,11 +2124,20 @@ editButton.className = "btn gold small";
 editButton.textContent = "✏️ Edit";
 editButton.onclick = () => editAccount(a.id);
 
+
 const deactivateButton = document.createElement("button");
 deactivateButton.type = "button";
-deactivateButton.className = "btn red small";
-deactivateButton.textContent = "Nyahaktif";
-deactivateButton.onclick = () => deactivateAccount(a.id);
+
+if (a.is_active) {
+  deactivateButton.className = "btn red small";
+  deactivateButton.textContent = "Nyahaktif";
+  deactivateButton.onclick = () => deactivateAccount(a.id);
+} else {
+  deactivateButton.className = "btn gold small";
+  deactivateButton.textContent = "✅ Aktifkan Semula";
+  deactivateButton.onclick = () => reactivateAccount(a.id);
+}
+
 
 actionCell.className = "actions";
 actionCell.append(editButton, deactivateButton);
