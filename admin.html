@@ -1478,6 +1478,25 @@ function cancelPurchaseEdit(){
   $("cancelPurchaseBtn").classList.add("hidden");
 }
 
+const purchaseAccountSelect = document.getElementById("purchaseAccount");
+
+if (purchaseAccountSelect) {
+  purchaseAccountSelect.addEventListener("focus", async () => {
+    const previousValue = purchaseAccountSelect.value;
+
+    await loadPurchaseAccounts();
+
+    if (
+      previousValue &&
+      [...purchaseAccountSelect.options].some(
+        option => option.value === previousValue
+      )
+    ) {
+      purchaseAccountSelect.value = previousValue;
+    }
+  });
+}
+
 $("purchaseForm").addEventListener("submit",async e=>{
   e.preventDefault();
 
