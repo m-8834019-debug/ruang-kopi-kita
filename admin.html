@@ -529,6 +529,19 @@ footer{
           <input id="purchaseSupplier" required
             placeholder="Contoh: Ayu Sdn Bhd">
         </div>
+        
+<div class="field">
+  <label>Tarikh Belian</label>
+  <input id="purchaseDate" type="date" required>
+</div>
+
+<div class="field">
+  <label>Kod Akaun Belian</label>
+  <select id="purchaseAccount" required>
+    <option value="">-- Pilih Kod Akaun --</option>
+  </select>
+</div>
+
         <div class="field">
           <label>Nama Barang</label>
           <input id="purchaseItem" required
@@ -1472,24 +1485,27 @@ $("purchaseForm").addEventListener("submit",async e=>{
   b.disabled=true;
 
   try{
-    const record={
-      supplier_name:$("purchaseSupplier").value.trim(),
-      item_name:$("purchaseItem").value.trim(),
-      quantity:num($("purchaseQty").value),
-      total_amount:num($("purchaseAmount").value),
-      notes:$("purchaseNotes").value.trim()
-    };
 
-    if(
-      !record.supplier_name||
-      !record.item_name||
-      record.quantity<=0||
-      record.total_amount<0
-    ){
-      throw new Error(
-        "Sila lengkapkan maklumat belian."
-      );
-    }
+const record = {
+  purchase_date: $("purchaseDate").value,
+  supplier_name: $("purchaseSupplier").value.trim(),
+  item_name: $("purchaseItem").value.trim(),
+  quantity: num($("purchaseQty").value),
+  total_amount: num($("purchaseAmount").value),
+  notes: $("purchaseNotes").value.trim(),
+  account_id: $("purchaseAccount").value || null
+};
+
+if (
+  !record.purchase_date ||
+  !record.supplier_name ||
+  !record.item_name ||
+  record.quantity <= 0 ||
+  record.total_amount < 0
+) {
+  throw new Error("Sila lengkapkan maklumat belian.");
+}
+
 
     const query=editingPurchaseId===null
       ?db.from("purchases").insert(record)
@@ -1936,6 +1952,43 @@ async function init(){
 }
 
 let chartAccounts = [];
+
+async function loadPurchaseAccounts() {
+  const select = document.getElementById("purchaseAccount");
+  if (!select || !db || !admin) return;
+
+  select.replaceChildren(new Option("-- Pilih Kod Akaun --", ""));
+
+  const { data, error } = await db
+    .from("chart_of_accounts")
+    .select("id,account_code,account_name")
+    .eq("is_active", true)
+    .eq("account_type", "Cost of Sales")
+    .order("account_code", { ascending: true });
+
+  if (error) {
+    console.error("Gagal memuatkan akaun belian:", error);
+    select.replaceChildren(
+      new Option("Gagal memuatkan akaun", "")
+    );
+    return;
+  }
+
+  (data || []).forEach(account => {
+    select.add(new Option(
+      account.account_code + " — " + account.account_name,
+      account.id
+    ));
+  });
+
+  const purchaseAccount = (data || []).find(
+    a => a.account_code === "6010/0000"
+  );
+
+  if (purchaseAccount) {
+    select.value = purchaseAccount.id;
+  }
+}
 
 
 async function loadAccounts() {
