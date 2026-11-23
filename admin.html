@@ -1893,11 +1893,13 @@ function renderReport(){
     reportProfit:f.net
   };
 
-  Object.entries(values).forEach(([id,value])=>{
-    $(id).textContent=value===null
-      ?"Belum direkodkan"
-      :money(value);
-  });
+ Object.entries(values).forEach(([id,value])=>{
+  $(id).textContent = value === null
+    ? "Belum direkodkan"
+    : value < 0
+      ? "(" + money(Math.abs(value)) + ")"
+      : money(value);
+});
 
   $("reportGross").className=
     f.gross===null?""
