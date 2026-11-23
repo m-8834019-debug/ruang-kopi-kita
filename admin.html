@@ -345,25 +345,35 @@ footer{
     visibility: hidden !important;
   }
 
-  #reportSection,
-  #reportSection * {
+  #printStatement,
+  #printStatement * {
     visibility: visible !important;
+  }
+
+  #dashboardSection {
+    display: block !important;
   }
 
   #reportSection {
     display: block !important;
+  }
+
+  #printStatement {
+    display: block !important;
     position: absolute !important;
-    left: 0 !important;
     top: 0 !important;
+    left: 0 !important;
     width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
-  }
-
-  #reportSection .panel {
     border: none !important;
     box-shadow: none !important;
-    padding: 0 !important;
+    background: white !important;
+  }
+
+  header, nav, footer,
+  .no-print, .toolbar, .actions {
+    display: none !important;
   }
 }
 </style>
@@ -751,7 +761,7 @@ footer{
     </div>
   </div>
 
-  <div class="panel">
+ <div class="panel" id="printStatement">
    <h2 style="text-align:center;font-size:24px;font-weight:800;letter-spacing:1px;margin-bottom:8px">
   RUANG KOPI KITA
 </h2>
