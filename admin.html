@@ -1527,6 +1527,12 @@ $("purchaseDate").value = p.purchase_date
 $("purchaseSupplier").value = p.supplier_name || "";
 $("purchaseItem").value = p.item_name || "";
 $("purchaseQty").value = p.quantity;
+
+$("purchaseUnitPrice").value =
+  Number(p.quantity) > 0
+    ? (Number(p.total_amount) / Number(p.quantity)).toFixed(2)
+    : "";
+
 $("purchaseAmount").value = p.total_amount;
 $("purchaseNotes").value = p.notes || "";
 
