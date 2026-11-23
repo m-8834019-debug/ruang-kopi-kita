@@ -330,15 +330,41 @@ footer{
   .stats,.grid{grid-template-columns:1fr}
   .panel{padding:15px}
 }
-@media print{
-  header,nav,footer,.no-print,#loginSection,
-  .toolbar,.actions{display:none!important}
-  body{background:white}
-  main{padding:0}
-  #dashboardSection{display:block!important}
-  .page-section{display:none!important}
-  #reportSection{display:block!important}
-  .panel{border:0;padding:5px}
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 15mm;
+  }
+
+  body {
+    background: white !important;
+    margin: 0 !important;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  #reportSection,
+  #reportSection * {
+    visibility: visible !important;
+  }
+
+  #reportSection {
+    display: block !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #reportSection .panel {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
 }
 </style>
 </head>
