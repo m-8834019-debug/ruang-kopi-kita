@@ -726,19 +726,39 @@ footer{
   </div>
 
   <div class="panel">
-    <h3 style="text-align:center">RUANG KOPI KITA</h3>
+   <h2 style="text-align:center;font-size:24px;font-weight:800;letter-spacing:1px;margin-bottom:8px">
+  RUANG KOPI KITA
+</h2>
     <h3 style="text-align:center">
-      LAPORAN UNTUNG RUGI SEMENTARA
+      PENYATA UNTUNG RUGI SEMENTARA
     </h3>
-    <p id="reportPeriod"
-      style="text-align:center;color:#796b60"></p>
+   <p id="reportPeriod"
+   style="text-align:center;
+          color:#333;
+          font-size:14px;
+          font-weight:600;
+          margin-top:8px;
+          margin-bottom:30px;">
+</p>
 
-    <div class="report-line heading">
-      <span>HASIL</span><span>RM</span>
-    </div>
-    <div class="report-line indent">
-      <span>Jualan</span><strong id="reportSales"></strong>
-    </div>
+   <div class="report-line heading"
+     style="background:#f0ebe5;
+            color:#30241e;
+            font-weight:800;
+            padding:12px 15px;
+            border-bottom:2px solid #6b4a35;">
+  <span>PENDAPATAN</span>
+  <span>RM</span>
+</div>
+   <div class="report-line heading"
+     style="background:#f0ebe5;
+            color:#30241e;
+            font-weight:800;
+            padding:12px 15px;
+            border-bottom:2px solid #6b4a35;">
+  <span>KOS JUALAN</span>
+  <span>RM</span>
+</div>
     <div class="report-line total">
       <span>Jumlah Hasil</span>
       <strong id="reportRevenue"></strong>
@@ -768,18 +788,32 @@ footer{
       <strong id="reportGross"></strong>
     </div>
 
-    <div class="report-line heading">
-      <span>BELANJA OPERASI</span><span>RM</span>
-    </div>
+   <div class="report-line heading"
+     style="background:#f0ebe5;
+            color:#30241e;
+            font-weight:800;
+            padding:12px 15px;
+            border-bottom:2px solid #6b4a35;">
+  <span>BELANJA OPERASI</span>
+  <span>RM</span>
+</div>
     <div id="expenseBreakdown"></div>
     <div class="report-line total">
       <span>Jumlah Belanja Operasi</span>
       <strong id="reportExpenses"></strong>
     </div>
-    <div class="report-line final">
-      <span>Untung / (Rugi) Bersih Sementara</span>
-      <strong id="reportProfit"></strong>
-    </div>
+    <div class="report-line final"
+     style="background:#e9f1e8;
+            color:#23452b;
+            font-weight:800;
+            font-size:17px;
+            padding:18px 15px;
+            margin-top:20px;
+            border-top:3px double #23452b;
+            border-bottom:3px double #23452b;">
+  <span>UNTUNG / (RUGI) BERSIH SEMENTARA</span>
+  <strong id="reportProfit"></strong>
+</div>
 
     <p id="reportWarning" class="note"></p>
     <p class="muted" style="font-size:12px;line-height:1.6">
