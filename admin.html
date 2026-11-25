@@ -619,8 +619,25 @@ footer{
   </div>
 
   <div class="panel">
-    <h3>Senarai Rekod Belian</h3>
-    <div class="table-wrap">
+   <h3>Senarai Rekod Belian</h3>
+
+<div class="field" style="margin:15px 0;">
+  <label>Tapis Mengikut Bulan</label>
+
+  <input type="month" id="purchaseFilterMonth">
+
+  <button type="button" class="btn"
+    onclick="renderPurchases()">
+    Tapis Rekod
+  </button>
+
+  <button type="button" class="btn gold"
+    onclick="document.getElementById('purchaseFilterMonth').value='';renderPurchases();">
+    Semua Rekod
+  </button>
+</div>
+
+<div class="table-wrap">
       <table>
         <thead>
           <tr>
