@@ -644,8 +644,9 @@ footer{
             <th>Tarikh</th>
             <th>Pembekal</th>
             <th>Barang</th>
-            <th>Kuantiti</th>
-            <th>Jumlah</th>
+           <th>Kuantiti</th>
+<th>Harga Seunit (RM)</th>
+<th>Jumlah (RM)</th>
             <th>Catatan</th>
             <th>Tindakan</th>
           </tr>
@@ -1697,17 +1698,29 @@ function renderPurchases(){
   const body=$("purchaseTable");
   body.replaceChildren();
 
-  purchases.forEach(p=>{
-    const tr=node("tr","");
+  const selectedMonth = $("purchaseFilterMonth").value;
 
+  const filteredPurchases = purchases.filter(p => {
+    const date = String(
+      p.purchase_date || p.created_at || ""
+    ).slice(0, 7);
+
+    return !selectedMonth || date === selectedMonth;
+  });
+
+  filteredPurchases.forEach(p=>{
+    const tr=node("tr","");
     [
       formatDate(p.created_at),
       p.supplier_name,
       p.item_name,
-      p.quantity,
-      money(p.total_amount),
-      p.notes||"-"
-    ].forEach(v=>tr.appendChild(td(v)));
+     p.quantity,
+Number(p.quantity) > 0
+  ? money(Number(p.total_amount) / Number(p.quantity))
+  : "-",
+money(p.total_amount),
+p.notes||"-"
+].forEach(v=>tr.appendChild(td(v)));
 
     const action=node("td","");
     const wrap=node("div","");
@@ -1727,7 +1740,7 @@ function renderPurchases(){
     body.appendChild(tr);
   });
 
-  if(!purchases.length)empty(body,7);
+ if(!filteredPurchases.length)empty(body,8);
 }
 
 function editExpense(id){
